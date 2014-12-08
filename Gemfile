@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
+#debugging
 
-
+gem 'better_errors', group: :development
+gem 'binding_of_caller', group: :development
+#securing secrets
+gem 'figaro'
+#authentication
+gem 'devise'
+gem 'omniauth-facebook'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
