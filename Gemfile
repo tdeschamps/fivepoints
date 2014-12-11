@@ -9,6 +9,12 @@ gem 'devise'
 gem 'omniauth-facebook'
 #picture_upload
 gem 'paperclip'
+
+#get facebook friends
+gem 'koala', "~> 1.10.0rc"
+#creat simple forms
+gem 'simple_form'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
