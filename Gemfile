@@ -15,6 +15,11 @@ gem 'koala', "~> 1.10.0rc"
 #creat simple forms
 gem 'simple_form'
 
+#add bootstrap
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'font-awesome-sass', '~> 4.2.0'
+#add slim support
+gem 'slim'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
