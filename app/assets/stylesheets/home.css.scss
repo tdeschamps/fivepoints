@@ -1,0 +1,22 @@
+html, body {
+	height: 100%
+}
+
+html, body
+	{
+	.background-container 
+		{
+		height:100%;
+		margin:0;
+	}
+}
+.background {
+  text-align: center;
+  background-image: url('https://unsplash.imgix.net/reserve/PPE2xapKRNyy2DlTt89F_Gutman_island.jpg?q=75&fm=jpg&s=d65d0e7f397d2a59c93dbd0aa4b29603');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 230px;
+  padding-bottom: 230px;
+  height: 100%
+}
