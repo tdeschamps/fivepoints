@@ -12,7 +12,6 @@ html, body
 }
 .background {
   text-align: center;
-  background-image: url('https://unsplash.imgix.net/reserve/PPE2xapKRNyy2DlTt89F_Gutman_island.jpg?q=75&fm=jpg&s=d65d0e7f397d2a59c93dbd0aa4b29603');
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -20,3 +19,20 @@ html, body
   padding-bottom: 230px;
   height: 100%
 }
+
+.search-wrapper{
+    position: relative;
+    height: 600px;
+    text-align: center;
+ }
+.video-wrapper{
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+  video {
+    width: 100%;
+    z-index:0;
+    bottom:0;
+    }
+  }
