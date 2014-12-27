@@ -9,7 +9,7 @@ $border-bottom-color: blue;
 
 // Set your navbar button
 $btn-height: 40px;
-$btn-bg: blue;
+$btn-bg: #FF4A50;
 $btn-color: white;
 $btn-horizontal-padding: 10px;
 $btn-top-border-width: 0;
@@ -17,7 +17,7 @@ $btn-top-border-color: transparent;
 $btn-right-border-width: 0;
 $btn-right-border-color: transparent;
 $btn-bottom-border-width: 3px;
-$btn-bottom-border-color: lightblue;
+$btn-bottom-border-color: transparent;
 $btn-left-border-width: 0;
 $btn-left-border-color: transparent;
 
@@ -92,7 +92,7 @@ $btn-margin-top: ($height + 2 * $vertical-padding - $btn-height - $btn-top-borde
 
 
 #nav-btn:hover{
-  background-color: $btn-bg;
+  background-color: #F97171;
   border-bottom: ($btn-bottom-border-width * 2/3) solid $btn-bottom-border-color;
   margin-top: $btn-margin-top + ($btn-bottom-border-width  * 1/3);
 }
@@ -103,7 +103,7 @@ $btn-margin-top: ($height + 2 * $vertical-padding - $btn-height - $btn-top-borde
 }
 
 #logo{
-  height: $height;
+  height: 50px;
   padding: 0px;
 }
 
