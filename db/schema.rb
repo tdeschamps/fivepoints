@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211105010) do
+ActiveRecord::Schema.define(version: 20141229213531) do
 
   create_table "followships", force: true do |t|
     t.integer "follower_id"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20141211105010) do
   add_index "followships", ["followed_id"], name: "index_followships_on_followed_id"
   add_index "followships", ["follower_id", "followed_id"], name: "index_followships_on_follower_id_and_followed_id", unique: true
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id"
+
+  create_table "places", force: true do |t|
+    t.string   "name"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.string   "address"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.integer  "ranking"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                        default: "", null: false

@@ -17,32 +17,38 @@ html{
 
 .search-wrapper{
     height: 600px;
+    position: relative;
  }
+
  .search-container {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  width: 90%;
   height: 90%;
   top:50px;
   text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
   
-  va-container {
+  .va-container {
     display: table;
     width: 100%;
     height: 100%;
+    padding-top: 10%;
+
+    h1 {
+      color: white;
+    }
   }
 }
 
 .video-wrapper{
-    position: absolute;
     overflow: hidden;
     z-index: -1;
-    top:0;
-    right: 0;
-    left:0;
-    bottom:0;
+    height:100%;
+    width: 100%;
   .welcome-video {
     width: 100%;
-    position: absolute;
     bottom: 0;
+    position: fixed;
     }
   }
