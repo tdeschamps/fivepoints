@@ -1,0 +1,2 @@
+class CityGuidePlacesController < ApplicationController
+end

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_followships, source: :followed
   has_many :followers, through: :passive_followships, source: :follower
   
+  has_many :city_guides
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [ :facebook ]

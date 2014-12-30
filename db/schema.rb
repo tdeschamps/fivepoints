@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229213531) do
+ActiveRecord::Schema.define(version: 20141230230515) do
+
+  create_table "city_guide_places", force: true do |t|
+    t.integer  "city_guides_id"
+    t.integer  "cities_id"
+    t.integer  "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "city_guides", force: true do |t|
+    t.string   "city"
+    t.integer  "users_id"
+    t.text     "story"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "followships", force: true do |t|
     t.integer "follower_id"

@@ -1,0 +1,6 @@
+div.container
+	div.row
+		div.col-xs-12.col-sm-4.col-sm-offset-4
+			= form_tag places_path, class: "navbar-form navbar-left", :method => 'get' do
+    			= text_field_tag :search, params[:search], class: "form-control"
+    			= submit_tag "Search", :name => nil, class: "btn btn-primary"
