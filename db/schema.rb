@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20141230230515) do
 
   create_table "city_guide_places", force: true do |t|
     t.integer  "city_guides_id"
-    t.integer  "cities_id"
+    t.integer  "places_id"
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
