@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20141230230515) do
     t.string   "uid"
     t.string   "picture"
     t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "token"
     t.datetime "token_expiry"
     t.string   "username"

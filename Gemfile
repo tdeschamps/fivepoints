@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'devise'
 gem 'omniauth-facebook'
 #picture_upload
+gem 'aws-sdk'
 gem 'paperclip'
 
 #get facebook friends

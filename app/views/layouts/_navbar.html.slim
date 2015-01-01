@@ -18,7 +18,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-wagon[role="navigation"]
               |  Messages 
           li.dropdown
             = link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do
-              = image_tag "http://placehold.it/30x30", id: "profile-pic"
+              = image_tag current_user.picture, id: "profile-pic"
               |  Profile 
               span.caret
             ul.dropdown-menu[role="menu"]
