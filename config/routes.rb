@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :users do 
       resources :city_guides, only: [:new, :create, :edit]
     end
+
+    resources :city_guides, only: [:show, :index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
