@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230230515) do
+ActiveRecord::Schema.define(version: 20150105083832) do
 
   create_table "city_guide_places", force: true do |t|
     t.integer  "city_guide_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141230230515) do
     t.text     "story"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "followships", force: true do |t|

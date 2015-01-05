@@ -1,0 +1,16 @@
+div.container.padded-down
+	div.col-xs-12.col-sm-6.col-sm-offset-3
+		h1 
+			| Create your city guide
+		= simple_form_for(new_user_city_guide_path(current_user, @city_guide), html: { class: "form-horizontal"}, wrapper: :horizontal_form) do |f|
+			.form-inputs
+			= f.input :name, required: true
+			= f.input :city, required: true, input_html: {id: "city"}
+			= f.input :story, required: false, as: :text
+			.form-actions
+			= f.button :submit, "Create"
+
+= content_for :js do
+
+	script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
+	= javascript_include_tag "city_guides/autocomplete.js"
