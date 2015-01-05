@@ -1,3 +1,13 @@
 // Place all the styles related to the CityGuidePlaces controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$height = 200px;
+$profile-radius: 50%;
+$profile-border-color: white;
+$profile-border-width: 2px;
+
+.city-guide-pic{
+  height: $height;
+  margin-right: 10px;
+  border-radius: $profile-radius;
+}

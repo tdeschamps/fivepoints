@@ -1,0 +1,8 @@
+div.container.padded-down
+	div.row
+		div.col-xs-12.div-col-sm-6.col-sm-offset-3
+			h1
+				= @cityguide.name
+	div.row
+		div.col-xs-12.col-xs-3
+			=image_tag @cityguide.uploaded_files.last.file.url(:medium), class:"city-guide-pic"
