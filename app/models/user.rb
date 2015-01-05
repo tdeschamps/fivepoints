@@ -12,16 +12,11 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_followships, source: :follower
   
   has_many :city_guides
+  has_many :uploaded_files, as: :imageable
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [ :facebook ]
-  
-  has_attached_file :profile_picture,
-    styles: { large: "500x500>", medium: "300x300>", thumb: "100x100>" }
-
-  validates_attachment_content_type :profile_picture,
-    content_type: /\Aimage\/.*\z/
 
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
