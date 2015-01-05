@@ -10,7 +10,8 @@ gem 'omniauth-facebook'
 #picture_upload
 gem 'aws-sdk'
 gem 'paperclip'
-
+#nested-forms
+gem 'cocoon'
 #get facebook friends
 gem 'koala', "~> 1.10.0rc"
 #creat simple forms

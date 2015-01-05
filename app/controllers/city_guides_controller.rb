@@ -3,6 +3,7 @@ class CityGuidesController < ApplicationController
 	before_action :set_city_guide, only: [:edit, :update]
 	def new
 		@city_guide = CityGuide.new()
+		@uploaded_file = @city_guide.uploaded_files.build()
 	end
 	
 	def create
@@ -23,7 +24,7 @@ class CityGuidesController < ApplicationController
 	end
 
 	def city_guide_params
-		params.require(:city_guide).permit(:user_id, :city, :name, :story)
+		params.require(:city_guide).permit(:user_id, :city, :name, :story, uploaded_files_attributes: [:file])
 	end
 
 	def set_city_guide

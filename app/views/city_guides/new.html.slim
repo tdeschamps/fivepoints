@@ -8,6 +8,8 @@ div.container.padded-down
 		html: { class: "form-horizontal"}, wrapper: :horizontal_form do |f|
 			.form-inputs
 			= f.input :name, required: true
+			= f.simple_fields_for :uploaded_files do |file|
+			    = render 'add_picture_form', :f => file
 			= f.input :city, required: true, input_html: {id: "city"}
 			= f.input :story, required: false, as: :text
 			.form-actions
