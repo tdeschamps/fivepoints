@@ -4,5 +4,20 @@ div.container.padded-down
 			h1
 				= @cityguide.name
 	div.row
-		div.col-xs-12.col-xs-3
+		div.col-xs-12.col-sm-3
 			=image_tag @cityguide.uploaded_files.last.file.url(:medium), class:"city-guide-pic"
+		div.col-xs-12.col-sm-9
+			div.col-xs-12
+				table.table.table-bordered.table-striped#sortable
+					thead
+						tr
+							th Rank
+							th Venue
+							th Type
+					tbody
+			div.col-xs-12
+				button#add-place.btn.btn-success Add a place
+							
+= content_for :js do
+	= javascript_include_tag "city_guides/city_guide_places.js"
+	= javascript_include_tag "city_guides/sortable_list.js"

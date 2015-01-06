@@ -23,5 +23,5 @@ function onPlaceChanged() {
 }
 
 google.maps.event.addDomListener(window, 'load', function() {
-  initializeAutocomplete('city');
+  initializeAutocomplete('user_input_autocomplete_address');
 });

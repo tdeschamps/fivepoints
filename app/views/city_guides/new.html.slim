@@ -10,7 +10,14 @@ div.container.padded-down
 			= f.input :name, required: true
 			= f.simple_fields_for :uploaded_files do |file|
 			    = render 'add_picture_form', :f => file
-			= f.input :city, required: true, input_html: {id: "city"}
+			div.form-group
+				label.col-sm-3.string.control-label
+					| City
+				div.col-sm-9	    
+					input#user_input_autocomplete_address.form-control autocomplete="off" name="user_input_autocomplete_address" placeholder=("City")    
+			= f.input :city, as: :hidden, input_html: {id: "locality"}
+			= f.input :country, as: :hidden, input_html: {id: "country"}
+			= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}
 			= f.input :story, required: false, as: :text
 			.form-actions
 			= f.button :submit, "Create"

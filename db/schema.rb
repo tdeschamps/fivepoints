@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105191660) do
+ActiveRecord::Schema.define(version: 20150106083814) do
 
   create_table "city_guide_places", force: true do |t|
     t.integer  "city_guide_id"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20150105191660) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "state"
+    t.string   "country"
   end
 
   create_table "followships", force: true do |t|
@@ -50,6 +52,19 @@ ActiveRecord::Schema.define(version: 20150105191660) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "uploaded_files", force: true do |t|
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "uploaded_files", ["imageable_id", "imageable_type"], name: "index_uploaded_files_on_imageable_id_and_imageable_type"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

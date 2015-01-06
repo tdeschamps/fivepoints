@@ -7,3 +7,6 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( city_guides/autocomplete.js )
+Rails.application.config.assets.precompile += %w( city_guides/city_guide_places.js )
+
+Rails.application.config.assets.precompile += %w( city_guides/sortable_list.js )
