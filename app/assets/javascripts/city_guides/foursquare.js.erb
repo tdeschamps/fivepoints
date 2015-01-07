@@ -1,0 +1,56 @@
+
+(function( $ ) {
+	var foursq_client_id = '<%= ENV['4SQ_CLIENT_ID'].to_s %>';
+	var foursq_client_secret = '<%= ENV['4SQ_CLIENT_SECRET'].to_s %>';	
+	//keep track of which results list item is selected
+	//TODO change term to "results list"
+	var resultsListIndex = 0;
+	var resultsListActive = false;
+	var opts;
+	var lastEntered = "";
+	var data;
+	var resultsList;
+	var resultsListID = "";
+	
+	fs_suggest = function(options) {
+		
+		var defaults = {
+			url	: 'https://api.foursquare.com/v2/venues/suggestCompletion?', // i suppose you could change this...
+			near : 'Paris', //default to SF since it's well known
+			v : '20140806', //last API version	
+   			m : 'foursquare', //mode foursquare
+			limit : 10, //perhaps an option to ignore limits
+			client_id : foursq_client_id, //get this from foursquare.com
+			client_secret : foursq_client_secret, //same
+			style_results: true //set to false if the way i control the position of results, you can do it yourse
+								//the default is to be right under the input and match the width of the input
+								//and hopefully to adjust in a responsive way
+		}
+
+		function callFoursquareSuggestion() {
+			//TODO check for options and set up some error checking
+			url = opts.url 
+					+ "query=" + opts.req
+					+ "&near=" + opts.near
+					+ "&v=" + opts.v
+					+ "&m=" + opts.m
+					+ "&limit=" + opts.limit
+					+ "&client_id=" + opts.client_id
+					+ "&client_secret=" + opts.client_secret;
+					 
+			$.getJSON(url, function() { 
+				console.log("get search results ajax called");
+			})
+			.success(function(_data, status, xhr) {
+				console.log("success");
+		        console.log(_data);
+				data = _data;
+		    })
+			.error(function() {
+		        //TODO show some kind of error message
+				//"this application doesn't MAKE errors"
+				console.log("Api error");
+		    });
+		};
+	};	
+})( jQuery );

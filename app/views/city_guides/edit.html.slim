@@ -21,3 +21,12 @@ div.container.padded-down
 = content_for :js do
 	= javascript_include_tag "city_guides/city_guide_places.js"
 	= javascript_include_tag "city_guides/sortable_list.js"
+	= javascript_include_tag "city_guides/foursquare.js"
+	= javascript_include_tag "city_guides/foursquare_autocomplete.js"
+	javascript: 
+		$(document).on('click', '#user_input_foursquare', function() {
+      		var city = #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}};
+      				var $this = $(this);
+      				console.log(city);
+      				$this.autocomplete({source: fs_suggest({near: city, query: req})});
+      	});
