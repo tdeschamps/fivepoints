@@ -11,7 +11,24 @@
 	var data;
 	var resultsList;
 	var resultsListID = "";
-	
+
+	$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+		var wrapperAutocomplete = $("<a class='col-xs-12'>");
+		var wrapperIcon = $("<div style= 'height: 32px; width: 32px; float: left; margin-top : 9px'>").append("<img class='categoryIcon' src=" +item.categoryPic+">");
+		var wrapperVenue = $("<a >");
+		var wrapperVenueName = $("<div>").append("<a>" + item.name +"</a>");
+		var wrapperVenueAddress = $("<div>").append("<a>" + item.address +"</a>");
+		wrapperVenue = wrapperVenue.append(wrapperVenueName).append(wrapperVenueAddress);
+		var autocompleteReturn = wrapperAutocomplete.append(wrapperIcon).append(wrapperVenue);
+		autocompleteReturn = $( "<li style= 'height: 50px'></li>" ).append(autocompleteReturn)
+		autocompleteReturn.resize();
+		//console.log(autocompleteReturn.appendTo( ul ))
+		return autocompleteReturn.appendTo( ul );
+		//return $( "<li>" )
+        //	.append( "<a><img class='float:left' src=" + item.categoryPic + ">" + item.name + "<br>" + item.address + "</a>" )
+        //	.appendTo( ul );
+	}
+
 	fs_suggest = function(response, options) {
 		
 		var defaults = {
@@ -30,7 +47,15 @@
 		opts = $.extend(defaults, options);	
 		
 		function handleFoursquareObject(foursquareObject){
-			return foursquareObject.name;
+			var newFoursquareObject = {}
+			newFoursquareObject.name = foursquareObject.name;
+			newFoursquareObject.id = foursquareObject.id;
+			newFoursquareObject.address = foursquareObject.location.address + ", " +foursquareObject.location.city;
+			newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") +"bg_32" + foursquareObject.categories[0].icon.suffix;
+			
+
+
+			return newFoursquareObject;
 
 		}
 
@@ -51,6 +76,7 @@
 			.success(function(_data, status, xhr) {
 				console.log("success");
 		        data = _data.response.minivenues.map(handleFoursquareObject);
+				console.log(data);
 				response( data );
 		    })
 			.error(function() {

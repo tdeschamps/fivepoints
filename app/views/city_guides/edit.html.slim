@@ -37,6 +37,14 @@ div.container.padded-down
       						}
       					)
       				},
-      			minLength : 3	
+      			minLength : 3,
+      			focus: function( event, ui ) {
+      			        $this.val( ui.item.name );
+      			        return false;
+      			      },
+      		  	select: function( event, ui ) {
+      		  	  $this.val( ui.item.name );
+      		  	  return false;
+      		  	},	
       		});
       	});
