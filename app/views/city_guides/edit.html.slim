@@ -26,7 +26,17 @@ div.container.padded-down
 	javascript: 
 		$(document).on('click', '#user_input_foursquare', function() {
       		var city = #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}};
-      				var $this = $(this);
-      				console.log(city);
-      				$this.autocomplete({source: fs_suggest({near: city, query: req})});
+      		var $this = $(this);
+      		console.log(city);
+      		
+      		$this.autocomplete({
+      			source: function(request, response) {
+      					fs_suggest(response, {
+      						near: city, 
+      						query: request.term
+      						}
+      					)
+      				},
+      			minLength : 3	
+      		});
       	});
