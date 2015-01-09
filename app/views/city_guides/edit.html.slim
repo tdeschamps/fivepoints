@@ -21,3 +21,34 @@ div.container.padded-down
 = content_for :js do
 	= javascript_include_tag "city_guides/city_guide_places.js"
 	= javascript_include_tag "city_guides/sortable_list.js"
+	= javascript_include_tag "city_guides/foursquare.js"
+	= javascript_include_tag "city_guides/foursquare_autocomplete.js"
+	javascript: 
+		$(document).on('click', '#user_input_foursquare', function() {
+			initFoursquare({
+				city : #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}},
+				city_guide_id : #{{@cityguide.id}}
+				})
+      		var city = #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}};
+      		var $this = $(this);
+      		console.log(city);
+      		
+      		$this.autocomplete({
+      			source: function(request, response) {
+      					fs_suggest(response, {
+      						near: city, 
+      						query: request.term
+      						}
+      					)
+      				},
+      			minLength : 3,
+      			focus: function( event, ui ) {
+      			        $this.val( ui.item.name );
+      			        return false;
+      			      },
+      		  	select: function( event, ui ) {
+      		  	  $this.val( ui.item.name );
+      		  	  return false;
+      		  	},	
+      		});
+      	});

@@ -1,0 +1,10 @@
+(function( $ ) {
+	$('#user_input_foursquare').click(function() {
+		var $this = $(this);
+		console.log(city);
+		$this.fs_suggest({
+    		'near' :city, 
+    		'limit' : 10
+    	});
+    });		
+})( jQuery );

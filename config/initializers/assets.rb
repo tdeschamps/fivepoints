@@ -8,5 +8,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( city_guides/autocomplete.js )
 Rails.application.config.assets.precompile += %w( city_guides/city_guide_places.js )
-
 Rails.application.config.assets.precompile += %w( city_guides/sortable_list.js )
+Rails.application.config.assets.precompile += %w( city_guides/foursquare.js )
+Rails.application.config.assets.precompile += %w( city_guides/foursquare_autocomplete.js )

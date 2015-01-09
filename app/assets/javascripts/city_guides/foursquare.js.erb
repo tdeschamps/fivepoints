@@ -1,0 +1,94 @@
+
+(function( $ ) {
+		initFoursquare = function(options) {
+
+		console.log(options);
+		var foursq_client_id = '<%= ENV['4SQ_CLIENT_ID'].to_s %>';
+		var foursq_client_secret = '<%= ENV['4SQ_CLIENT_SECRET'].to_s %>';	
+		//keep track of which results list item is selected
+		//TODO change term to "results list"
+		var resultsListIndex = 0;
+		var resultsListActive = false;
+		var opts;
+		var lastEntered = "";
+		var data;
+		var resultsList;
+		var resultsListID = "";
+
+		$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+			var wrapperAutocomplete = $("<a class='col-xs-12'>");
+			var wrapperIcon = $("<div style= 'height: 32px; width: 32px; float: left; margin-top : 9px'>").append("<img class='categoryIcon' src=" +item.categoryPic+">");
+			var wrapperVenue = $("<a >");
+			var wrapperVenueName = $("<div>").append("<a>" + item.name +"</a>");
+			var wrapperVenueAddress = $("<div>").append("<a>" + item.address +"</a>");
+			wrapperVenue = wrapperVenue.append(wrapperVenueName).append(wrapperVenueAddress);
+			var autocompleteReturn = wrapperAutocomplete.append(wrapperIcon).append(wrapperVenue);
+			autocompleteReturn = $( "<li style= 'height: 50px'></li>" ).append(autocompleteReturn)
+			autocompleteReturn.resize();
+			//console.log(autocompleteReturn.appendTo( ul ))
+			return autocompleteReturn.appendTo( ul );
+			//return $( "<li>" )
+	        //	.append( "<a><img class='float:left' src=" + item.categoryPic + ">" + item.name + "<br>" + item.address + "</a>" )
+	        //	.appendTo( ul );
+		}
+
+		fs_suggest = function(response, options) {
+			
+			var defaults = {
+				url	: 'https://api.foursquare.com/v2/venues/suggestCompletion?', // i suppose you could change this...
+				near : 'Paris', //default to SF since it's well known
+				v : '20140806', //last API version	
+	   			m : 'foursquare', //mode foursquare
+				limit : 10, //perhaps an option to ignore limits
+				client_id : foursq_client_id, //get this from foursquare.com
+				client_secret : foursq_client_secret, //same
+				style_results: true //set to false if the way i control the position of results, you can do it yourse
+									//the default is to be right under the input and match the width of the input
+									//and hopefully to adjust in a responsive way
+			}
+
+			opts = $.extend(defaults, options);	
+			
+			function handleFoursquareObject(foursquareObject){
+				var newFoursquareObject = {}
+				newFoursquareObject.name = foursquareObject.name;
+				newFoursquareObject.id = foursquareObject.id;
+				newFoursquareObject.address = foursquareObject.location.address + ", " +foursquareObject.location.city;
+				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") +"bg_32" + foursquareObject.categories[0].icon.suffix;
+				
+
+
+				return newFoursquareObject;
+
+			}
+
+			function callFoursquareSuggestion(response) {
+				//TODO check for options and set up some error checking
+				url = opts.url 
+						+ "query=" + opts.query
+						+ "&near=" + opts.near
+						+ "&v=" + opts.v
+						+ "&m=" + opts.m
+						+ "&limit=" + opts.limit
+						+ "&client_id=" + opts.client_id
+						+ "&client_secret=" + opts.client_secret;
+						 
+				$.getJSON(url, function() { 
+					console.log("get search results ajax called");
+				})
+				.success(function(_data, status, xhr) {
+					console.log("success");
+			        data = _data.response.minivenues.map(handleFoursquareObject);
+					console.log(data);
+					response( data );
+			    })
+				.error(function() {
+			        //TODO show some kind of error message
+					//"this application doesn't MAKE errors"
+					console.log("Api error");
+			    });
+			};
+			if (opts.query.length >= 3) callFoursquareSuggestion(response);
+		};
+	}		
+})( jQuery );
