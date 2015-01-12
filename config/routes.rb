@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
     root 'home#index'
     devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+    post 'places/create_from_city_guide' => 'places#create_from_city_guide'
     resources :places, only: [:index, :show]
 
     resources :users do 
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     resources :city_guides, only: [:show, :index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

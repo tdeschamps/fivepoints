@@ -1,8 +1,4 @@
-
-(function( $ ) {
-		initFoursquare = function(options) {
-
-		console.log(options);
+	initFoursquare = function() {
 		var foursq_client_id = '<%= ENV['4SQ_CLIENT_ID'].to_s %>';
 		var foursq_client_secret = '<%= ENV['4SQ_CLIENT_SECRET'].to_s %>';	
 		//keep track of which results list item is selected
@@ -33,7 +29,6 @@
 		}
 
 		fs_suggest = function(response, options) {
-			
 			var defaults = {
 				url	: 'https://api.foursquare.com/v2/venues/suggestCompletion?', // i suppose you could change this...
 				near : 'Paris', //default to SF since it's well known
@@ -48,15 +43,16 @@
 			}
 
 			opts = $.extend(defaults, options);	
-			
+			console.log(opts);
 			function handleFoursquareObject(foursquareObject){
 				var newFoursquareObject = {}
 				newFoursquareObject.name = foursquareObject.name;
 				newFoursquareObject.id = foursquareObject.id;
 				newFoursquareObject.address = foursquareObject.location.address + ", " +foursquareObject.location.city;
 				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") +"bg_32" + foursquareObject.categories[0].icon.suffix;
-				
-
+				newFoursquareObject.postalCode = foursquareObject.location.postalCode;
+				newFoursquareObject.state = foursquareObject.location.state;
+				newFoursquareObject.token = opts.form_token;
 
 				return newFoursquareObject;
 
@@ -90,5 +86,16 @@
 			};
 			if (opts.query.length >= 3) callFoursquareSuggestion(response);
 		};
-	}		
-})( jQuery );
+
+		function fs_complete(item) {
+
+			var data = JSON.parse(item);
+			for (var prop in data) {
+				var property_value = data[prop];
+				var type_element = document.getElementById(prop);
+				if (type_element) {
+				   type_element.value = property_value;
+				  }
+		}
+	}
+	}
