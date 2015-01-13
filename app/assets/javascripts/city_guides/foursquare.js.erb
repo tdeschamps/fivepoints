@@ -16,7 +16,7 @@
 			var wrapperIcon = $("<div style= 'height: 32px; width: 32px; float: left; margin-top : 9px'>").append("<img class='categoryIcon' src=" +item.categoryPic+">");
 			var wrapperVenue = $("<a >");
 			var wrapperVenueName = $("<div>").append("<a>" + item.name +"</a>");
-			var wrapperVenueAddress = $("<div>").append("<a>" + item.address +"</a>");
+			var wrapperVenueAddress = $("<div>").append("<a>" + item.address + ", " + item.city + "</a>");
 			wrapperVenue = wrapperVenue.append(wrapperVenueName).append(wrapperVenueAddress);
 			var autocompleteReturn = wrapperAutocomplete.append(wrapperIcon).append(wrapperVenue);
 			autocompleteReturn = $( "<li style= 'height: 50px'></li>" ).append(autocompleteReturn)
@@ -26,6 +26,18 @@
 			//return $( "<li>" )
 	        //	.append( "<a><img class='float:left' src=" + item.categoryPic + ">" + item.name + "<br>" + item.address + "</a>" )
 	        //	.appendTo( ul );
+		}
+
+		fs_complete = function (dom, item) {
+
+			for (var prop in item) {
+				var property_value = item[prop];
+				var type_element = dom.find('#' + prop);
+				if (type_element.length > 0) {
+				   type_element.val(property_value);
+				   console.log(type_element.value);
+				  }
+			}
 		}
 
 		fs_suggest = function(response, options) {
@@ -47,8 +59,9 @@
 			function handleFoursquareObject(foursquareObject){
 				var newFoursquareObject = {}
 				newFoursquareObject.name = foursquareObject.name;
-				newFoursquareObject.id = foursquareObject.id;
-				newFoursquareObject.address = foursquareObject.location.address + ", " +foursquareObject.location.city;
+				newFoursquareObject.foursquare_id = foursquareObject.id;
+				newFoursquareObject.address = foursquareObject.location.address;
+				newFoursquareObject.city = foursquareObject.location.city;
 				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") +"bg_32" + foursquareObject.categories[0].icon.suffix;
 				newFoursquareObject.postalCode = foursquareObject.location.postalCode;
 				newFoursquareObject.state = foursquareObject.location.state;
@@ -84,18 +97,7 @@
 					console.log("Api error");
 			    });
 			};
+
 			if (opts.query.length >= 3) callFoursquareSuggestion(response);
 		};
-
-		function fs_complete(item) {
-
-			var data = JSON.parse(item);
-			for (var prop in data) {
-				var property_value = data[prop];
-				var type_element = document.getElementById(prop);
-				if (type_element) {
-				   type_element.value = property_value;
-				  }
-		}
-	}
 	}
