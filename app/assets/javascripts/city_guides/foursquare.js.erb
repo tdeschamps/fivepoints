@@ -1,8 +1,4 @@
-
-(function( $ ) {
-		initFoursquare = function(options) {
-
-		console.log(options);
+	initFoursquare = function() {
 		var foursq_client_id = '<%= ENV['4SQ_CLIENT_ID'].to_s %>';
 		var foursq_client_secret = '<%= ENV['4SQ_CLIENT_SECRET'].to_s %>';	
 		//keep track of which results list item is selected
@@ -20,7 +16,7 @@
 			var wrapperIcon = $("<div style= 'height: 32px; width: 32px; float: left; margin-top : 9px'>").append("<img class='categoryIcon' src=" +item.categoryPic+">");
 			var wrapperVenue = $("<a >");
 			var wrapperVenueName = $("<div>").append("<a>" + item.name +"</a>");
-			var wrapperVenueAddress = $("<div>").append("<a>" + item.address +"</a>");
+			var wrapperVenueAddress = $("<div>").append("<a>" + item.address + ", " + item.city + "</a>");
 			wrapperVenue = wrapperVenue.append(wrapperVenueName).append(wrapperVenueAddress);
 			var autocompleteReturn = wrapperAutocomplete.append(wrapperIcon).append(wrapperVenue);
 			autocompleteReturn = $( "<li style= 'height: 50px'></li>" ).append(autocompleteReturn)
@@ -32,8 +28,19 @@
 	        //	.appendTo( ul );
 		}
 
+		fs_complete = function (dom, item) {
+
+			for (var prop in item) {
+				var property_value = item[prop];
+				var type_element = dom.find('#' + prop);
+				if (type_element.length > 0) {
+				   type_element.val(property_value);
+				   console.log(type_element.value);
+				  }
+			}
+		}
+
 		fs_suggest = function(response, options) {
-			
 			var defaults = {
 				url	: 'https://api.foursquare.com/v2/venues/suggestCompletion?', // i suppose you could change this...
 				near : 'Paris', //default to SF since it's well known
@@ -48,15 +55,17 @@
 			}
 
 			opts = $.extend(defaults, options);	
-			
+			console.log(opts);
 			function handleFoursquareObject(foursquareObject){
 				var newFoursquareObject = {}
 				newFoursquareObject.name = foursquareObject.name;
-				newFoursquareObject.id = foursquareObject.id;
-				newFoursquareObject.address = foursquareObject.location.address + ", " +foursquareObject.location.city;
+				newFoursquareObject.foursquare_id = foursquareObject.id;
+				newFoursquareObject.address = foursquareObject.location.address;
+				newFoursquareObject.city = foursquareObject.location.city;
 				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") +"bg_32" + foursquareObject.categories[0].icon.suffix;
-				
-
+				newFoursquareObject.postalCode = foursquareObject.location.postalCode;
+				newFoursquareObject.state = foursquareObject.location.state;
+				newFoursquareObject.token = opts.form_token;
 
 				return newFoursquareObject;
 
@@ -88,7 +97,7 @@
 					console.log("Api error");
 			    });
 			};
+
 			if (opts.query.length >= 3) callFoursquareSuggestion(response);
 		};
-	}		
-})( jQuery );
+	}

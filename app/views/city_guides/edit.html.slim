@@ -8,13 +8,10 @@ div.container.padded-down
 			=image_tag @cityguide.uploaded_files.last.file.url(:medium), class:"city-guide-pic"
 		div.col-xs-12.col-sm-9
 			div.col-xs-12
-				table.table.table-bordered.table-striped#sortable
-					thead
-						tr
-							th Rank
-							th Venue
-							th Type
-					tbody
+				ul.place-list#sortable
+					- @places.each do |place|
+						= render 'show_place', place: place
+					= render 'add_place'
 			div.col-xs-12
 				button#add-place.btn.btn-success Add a place
 							
@@ -23,21 +20,24 @@ div.container.padded-down
 	= javascript_include_tag "city_guides/sortable_list.js"
 	= javascript_include_tag "city_guides/foursquare.js"
 	= javascript_include_tag "city_guides/foursquare_autocomplete.js"
-	javascript: 
-		$(document).on('click', '#user_input_foursquare', function() {
+	javascript:
+
+		$(document).on('click', '#user_input_foursquare', function () {
 			initFoursquare({
 				city : #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}},
-				city_guide_id : #{{@cityguide.id}}
+				city_guide_id : #{{@cityguide.id}},
+				form_token : #{{form_authenticity_token.to_json}}
 				})
       		var city = #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}};
       		var $this = $(this);
-      		console.log(city);
-      		
+      		var $that = $this.parentsUntil($('form #new_place'));
+      		console.log($that);
       		$this.autocomplete({
       			source: function(request, response) {
       					fs_suggest(response, {
       						near: city, 
-      						query: request.term
+      						query: request.term,
+      						form_token : #{{form_authenticity_token.to_json}}
       						}
       					)
       				},
@@ -46,7 +46,8 @@ div.container.padded-down
       			        $this.val( ui.item.name );
       			        return false;
       			      },
-      		  	select: function( event, ui ) {
+      		  	select: function( event, ui ) {	
+      		  	  fs_complete($that, ui.item)
       		  	  $this.val( ui.item.name );
       		  	  return false;
       		  	},	

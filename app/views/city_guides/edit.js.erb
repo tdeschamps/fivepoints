@@ -1,12 +1,2 @@
-(function( $ ) {
-
-	$('#user_input_foursquare').click(function() {
-		var $this = $(this);
-		$this.fs_suggest({
-    'client_id'     : foursq_client_id,
-    'client_secret' : foursq_client_secret,
-    'near' : 'Los Angeles, CA', 
-    'limit' : 10;
-	});
-
-})
+$('.place-list').append("<%= j render partial: 'show_place, locals: {place: @place } %>");
+$('.place-list').append("<%= j render partial: 'add_place, locals: {place: Place.new() } %>");

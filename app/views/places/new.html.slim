@@ -1,0 +1,51 @@
+div.container.padded-down
+	div.col-xs-12.col-sm-6.col-sm-offset-3
+		h1 
+			| Create a new Place
+		= simple_form_for @place,
+		url: url_for(action: 'create', controller: 'places'),
+		method: 'post', 
+		html: { class: "form-horizontal" }, wrapper: :horizontal_form do |f|
+			.form-inputs
+			= f.input :name, required: true, input_html: {id: "user_input_foursquare"}
+			= f.input :city, input_html: {id: "city"}
+			= f.input :zipcode, input_html: {id: "postalCode"}
+			= f.input :address, input_html: {id: "address"}
+			.form-actions
+			= f.button :submit, "Create"
+
+= content_for :js do
+	= javascript_include_tag "city_guides/city_guide_places.js"
+	= javascript_include_tag "city_guides/sortable_list.js"
+	= javascript_include_tag "city_guides/foursquare.js"
+	javascript:
+
+		$(document).on('click', '#user_input_foursquare', function () {
+			initFoursquare({
+				city : "toto",
+				city_guide_id : 1,
+				form_token : "toto"})
+      		var city = $('#city').val();
+      		var $this = $(this);
+      		var $that = $this.parent().parentsUntil('.simple-form');
+      		console.log($that);
+      		$this.autocomplete({
+      			source: function(request, response) {
+      					fs_suggest(response, {
+      						near: city, 
+      						query: request.term
+      						}
+      					)
+      				},
+      			minLength : 3,
+      			focus: function( event, ui ) {
+      			        $this.val( ui.item.name );
+      			        return false;
+      			      },
+      		  	select: function( event, ui ) {	
+      		  	  fs_complete($that, ui.item)
+      		  	  $this.val( ui.item.name );
+      		  	  return false;
+      		  	},	
+      		});
+      	});			

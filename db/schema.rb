@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106083814) do
+ActiveRecord::Schema.define(version: 20150113143542) do
 
-  create_table "city_guide_places", force: true do |t|
+  create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
     t.integer  "place_id"
     t.integer  "rank"
@@ -21,18 +21,18 @@ ActiveRecord::Schema.define(version: 20150106083814) do
     t.datetime "updated_at"
   end
 
-  create_table "city_guides", force: true do |t|
-    t.string   "city"
+  create_table "city_guides", force: :cascade do |t|
+    t.string   "city",       limit: 255
     t.integer  "user_id"
     t.text     "story"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "state"
-    t.string   "country"
+    t.string   "name",       limit: 255
+    t.string   "state",      limit: 255
+    t.string   "country",    limit: 255
   end
 
-  create_table "followships", force: true do |t|
+  create_table "followships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
   end
@@ -41,53 +41,56 @@ ActiveRecord::Schema.define(version: 20150106083814) do
   add_index "followships", ["follower_id", "followed_id"], name: "index_followships_on_follower_id_and_followed_id", unique: true
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id"
 
-  create_table "places", force: true do |t|
-    t.string   "name"
-    t.string   "city"
+  create_table "places", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "city",          limit: 255
     t.integer  "zipcode"
-    t.string   "address"
+    t.string   "address",       limit: 255
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "ranking"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "foursquare_id"
+    t.text     "story"
+    t.string   "category"
   end
 
-  create_table "uploaded_files", force: true do |t|
+  create_table "uploaded_files", force: :cascade do |t|
     t.integer  "imageable_id"
-    t.string   "imageable_type"
+    t.string   "imageable_type",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
+    t.string   "file_file_name",    limit: 255
+    t.string   "file_content_type", limit: 255
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
   end
 
   add_index "uploaded_files", ["imageable_id", "imageable_type"], name: "index_uploaded_files_on_imageable_id_and_imageable_type"
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "picture"
-    t.string   "name"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "token"
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "picture",                limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "token",                  limit: 255
     t.datetime "token_expiry"
-    t.string   "username"
+    t.string   "username",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

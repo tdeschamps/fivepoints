@@ -13,12 +13,14 @@ class CityGuidesController < ApplicationController
 	end
 	
 	def edit
-		
+		@places = @cityguide.places.all
+		@place = Place.new()
+		@city_guide_places = @place.city_guide_places.build()
+
 		respond_with do |format|
       		format.js
       		format.html
-      	end
-      	
+      	end	
 	end
 	
 	def index
@@ -37,4 +39,5 @@ class CityGuidesController < ApplicationController
 	def set_city_guide
 		@cityguide = CityGuide.find(params[:id])
 	end
+
 end
