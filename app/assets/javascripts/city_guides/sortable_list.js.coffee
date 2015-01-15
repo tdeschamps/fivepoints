@@ -18,12 +18,12 @@ jQuery ->
         ui.item.children('td').effect('highlight', {}, 1000)
       update: (e, ui) ->
         item_id = ui.item.data('item-id')
-        console.log(item_id)
-        position = ui.item.index() # this will not work with paginated items, as the index is zero on every page
+        position = ui.item.index() + 1 # this will not work with paginated items, as the index is zero on every page
+        console.log(position)
         $.ajax(
           type: 'POST'
-          url: '/things/update_row_order'
+          url: '/city_guide_places/update_rank'
           dataType: 'json'
-          data: { thing: {thing_id: item_id, row_order_position: position } }
+          data: { city_guide_place: {city_guide_place_id: item_id, rank: position } }
         )
     )

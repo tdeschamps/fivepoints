@@ -21,10 +21,7 @@ div.container.padded-down
 	javascript:
 
 		$(document).on('click', '#user_input_foursquare', function () {
-			initFoursquare({
-				city : "toto",
-				city_guide_id : 1,
-				form_token : "toto"})
+			initFoursquare()
       		var city = $('#city').val();
       		var $this = $(this);
       		var $that = $this.parent().parentsUntil('.simple-form');

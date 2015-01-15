@@ -11,22 +11,21 @@ div.container.padded-down
 				ul.place-list.list-unstyled.ui-sortable#sortable
 					- @city_guide_places.each do |city_guide_place|
 						= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place }	
-					= render 'add_place'
-			div.col-xs-12
-				button#add-place.btn.btn-success Add a place
+					= render 'add_place' if @city_guide_places.count < 5
+			- if @city_guide_places.count >= 5
+				div.col-xs-12
+					p Want to add anew awesome place? You need to tick one out of your guide first, sorry :)
 							
 = content_for :js do
 	= javascript_include_tag "city_guides/city_guide_places.js"
 	= javascript_include_tag "city_guides/sortable_list.js"
 	= javascript_include_tag "city_guides/foursquare.js"
-	= javascript_include_tag "city_guides/foursquare_autocomplete.js"
 	javascript:
 
 		$(document).on('click', '#user_input_foursquare', function () {
 			initFoursquare({
 				city : #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}},
-				city_guide_id : #{{@cityguide.id}},
-				form_token : #{{form_authenticity_token.to_json}}
+				city_guide_id : #{{@cityguide.id}}
 				})
       		var city = #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}};
       		var $this = $(this);
@@ -36,8 +35,7 @@ div.container.padded-down
       			source: function(request, response) {
       					fs_suggest(response, {
       						near: city, 
-      						query: request.term,
-      						form_token : #{{form_authenticity_token.to_json}}
+      						query: request.term
       						}
       					)
       				},
