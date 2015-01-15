@@ -15,6 +15,6 @@ li#new-place-form
 			= f.input :foursquare_id, as: :hidden, input_html: {id: "foursquare_id"}
 			= f.input :category, as: :hidden, input_html: {id: "category"}
 			= f.simple_fields_for :city_guide_places do |city_guide_place|
-				= render 'create_city_guide_place', f: city_guide_place
+				= render 'city_guides/create_city_guide_place', f: city_guide_place
 			.form-actions
 			= f.button :submit, "Create", id: "send-form"

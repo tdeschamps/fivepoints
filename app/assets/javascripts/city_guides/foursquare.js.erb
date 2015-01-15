@@ -62,17 +62,15 @@
 				newFoursquareObject.foursquare_id = foursquareObject.id;
 				newFoursquareObject.address = foursquareObject.location.address;
 				newFoursquareObject.city = foursquareObject.location.city;
-				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") +"bg_32" + foursquareObject.categories[0].icon.suffix;
+				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") + "32" + foursquareObject.categories[0].icon.suffix;
 				newFoursquareObject.postalCode = foursquareObject.location.postalCode;
 				newFoursquareObject.state = foursquareObject.location.state;
-				newFoursquareObject.token = opts.form_token;
 
 				return newFoursquareObject;
 
 			}
 
 			function callFoursquareSuggestion(response) {
-				//TODO check for options and set up some error checking
 				url = opts.url 
 						+ "query=" + opts.query
 						+ "&near=" + opts.near
@@ -86,9 +84,8 @@
 					console.log("get search results ajax called");
 				})
 				.success(function(_data, status, xhr) {
-					console.log("success");
+					//console.log("success");
 			        data = _data.response.minivenues.map(handleFoursquareObject);
-					console.log(data);
 					response( data );
 			    })
 				.error(function() {

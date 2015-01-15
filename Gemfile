@@ -14,9 +14,11 @@ gem 'paperclip'
 gem 'cocoon'
 #get facebook friends
 gem 'koala', "~> 1.10.0rc"
-#creat simple forms
+#create simple forms
 gem 'simple_form'
 
+#sort places within city guide
+gem 'ranked-model'
 #add bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.2.0'

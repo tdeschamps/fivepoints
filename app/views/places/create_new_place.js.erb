@@ -1,0 +1,4 @@
+$("<%= j render partial: 'city_guides/show_place', locals: {place: place, city_guide_place: @city_guide_place } %>").insertBefore($('#new-place-form'));
+if ( $('.place-list > li').length <= 5 ) {
+	$('#new-place-form').fadeIn();
+}

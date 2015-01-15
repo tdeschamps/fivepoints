@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     resources :city_guides do
       resources :city_guide_places, only: [:new, :create]
     end
+
+    resources :city_guide_places, only: [:show]
+    
+    post 'city_guide_places/update_rank'=> 'city_guide_places#update_rank'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
