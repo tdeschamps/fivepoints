@@ -5,12 +5,12 @@ div.container.padded-down
 				= @cityguide.name
 	div.row
 		div.col-xs-12.col-sm-3
-			=image_tag @cityguide.uploaded_files.last.file.url(:medium), class:"city-guide-pic"
+			= image_tag @cityguide.uploaded_files.last.file.url(:medium), class:"city-guide-pic"
 		div.col-xs-12.col-sm-9
 			div.col-xs-12
-				ul.place-list#sortable
-					- @places.each do |place|
-						= render 'show_place', place: place
+				ul.place-list.list-unstyled.ui-sortable#sortable
+					- @city_guide_places.each do |city_guide_place|
+						= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place }	
 					= render 'add_place'
 			div.col-xs-12
 				button#add-place.btn.btn-success Add a place

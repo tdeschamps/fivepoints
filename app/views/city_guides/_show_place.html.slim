@@ -1,6 +1,9 @@
-li
+li.panel.panel-info data-item-id = (city_guide_place.id if city_guide_place || 0)
 	div.col-xs-12.col-sm-6.col-sm-offset-3
-		h1 place.name
+		h1 
+			= place.name
 		ul
-			li place.address
-			li place.city
+			li 
+				= place.address
+			li 
+				= place.city

@@ -14,13 +14,10 @@ class CityGuidesController < ApplicationController
 	
 	def edit
 		@places = @cityguide.places.all
+		@city_guide_places = @cityguide.city_guide_places.all
 		@place = Place.new()
-		@city_guide_places = @place.city_guide_places.build()
+		@new_city_guide_places = @place.city_guide_places.build()
 
-		respond_with do |format|
-      		format.js
-      		format.html
-      	end	
 	end
 	
 	def index
