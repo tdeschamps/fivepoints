@@ -16,7 +16,8 @@ gem 'cocoon'
 gem 'koala', "~> 1.10.0rc"
 #create simple forms
 gem 'simple_form'
-
+#add geocode coordinate to new places
+gem 'geocoder'
 #sort places within city guide
 gem 'ranked-model'
 #add bootstrap

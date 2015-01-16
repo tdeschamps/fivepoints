@@ -65,6 +65,9 @@
 				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") + "32" + foursquareObject.categories[0].icon.suffix;
 				newFoursquareObject.postalCode = foursquareObject.location.postalCode;
 				newFoursquareObject.state = foursquareObject.location.state;
+				newFoursquareObject.longitude = foursquareObject.location.lng;
+				newFoursquareObject.latitude = foursquareObject.location.lat;
+				newfoursquareObject.categories = foursquareObject.categories.map(function(category) {return category.name});
 
 				return newFoursquareObject;
 
