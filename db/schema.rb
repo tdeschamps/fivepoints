@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113143542) do
+ActiveRecord::Schema.define(version: 20150116162650) do
 
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150113143542) do
     t.integer  "foursquare_id"
     t.text     "story"
     t.string   "category"
+    t.string   "state"
   end
 
   create_table "uploaded_files", force: :cascade do |t|

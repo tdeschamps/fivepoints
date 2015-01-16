@@ -1,10 +1,14 @@
 class PlacesController < ApplicationController
 	respond_to :html, :js
 	before_action :foursquare_place_params, only: [:create_place_from_city_guide]
-	
+
 	def index
 	end
-
+	
+	def create
+		@place = Place.create(place_params)
+	end
+	
 	def create_place_from_city_guide
 
 		@place = Place.new(@foursquare_place_params)
@@ -32,7 +36,11 @@ class PlacesController < ApplicationController
 
 	private
 	
+	def place_params
+		params.require(:place).permit(:foursquare_id, :city, :zipcode, :name, :address, :category, :state, city_guide_places_attributes: [:id, :city_guide_id])
+	end
+
 	def foursquare_place_params
-		@foursquare_place_params = params.require(:place).permit(:foursquare_id, :city, :zipcode, :name, :address, :category, :state, :story, city_guide_places_attributes: [:id, :city_guide_id])
+		@foursquare_place_params = params.require(:place).permit(:foursquare_id, :city, :zipcode, :name, :address, :latitude, :longitude, :category, :state, city_guide_places_attributes: [:id, :city_guide_id])
 	end
 end

@@ -7,42 +7,17 @@ div.container.padded-down
 		method: 'post', 
 		html: { class: "form-horizontal" }, wrapper: :horizontal_form do |f|
 			.form-inputs
-			= f.input :name, required: true, input_html: {id: "user_input_foursquare"}
-			= f.input :city, input_html: {id: "city"}
-			= f.input :zipcode, input_html: {id: "postalCode"}
-			= f.input :address, input_html: {id: "address"}
-			.form-actions
-			= f.button :submit, "Create"
+                  = f.input :name, required: true, input_html: {id: "name"}
+                  = f.input :address, input_html: {id: "user_input_autocomplete_address"}
+                  fieldset.disabled
+                        = f.input :zipcode, disabled: true, input_html: {id: "postal_code"}
+                        = f.input :city, disabled: true, input_html: {id: "locality"}
+                        = f.input :state, disabled: true, input_html: {id: "administrative_area_level_1"}
+                  = f.input :category, input_html: {id: "category"}
+                  .form-actions
+                  = f.button :submit, "Create", id: "send-form"
 
 = content_for :js do
-	= javascript_include_tag "city_guides/city_guide_places.js"
-	= javascript_include_tag "city_guides/sortable_list.js"
-	= javascript_include_tag "city_guides/foursquare.js"
-	javascript:
 
-		$(document).on('click', '#user_input_foursquare', function () {
-			initFoursquare()
-      		var city = $('#city').val();
-      		var $this = $(this);
-      		var $that = $this.parent().parentsUntil('.simple-form');
-      		console.log($that);
-      		$this.autocomplete({
-      			source: function(request, response) {
-      					fs_suggest(response, {
-      						near: city, 
-      						query: request.term
-      						}
-      					)
-      				},
-      			minLength : 3,
-      			focus: function( event, ui ) {
-      			        $this.val( ui.item.name );
-      			        return false;
-      			      },
-      		  	select: function( event, ui ) {	
-      		  	  fs_complete($that, ui.item)
-      		  	  $this.val( ui.item.name );
-      		  	  return false;
-      		  	},	
-      		});
-      	});			
+      script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
+      = javascript_include_tag "city_guides/autocomplete.js"

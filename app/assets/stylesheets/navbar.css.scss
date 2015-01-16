@@ -1,6 +1,6 @@
 // Set your navbar general settings
 $color: grey;
-$bg: transparent;
+$bg: white;
 $height: 30px;
 $vertical-padding: 10px;
 $horizontal-padding: 50px;
@@ -46,8 +46,11 @@ $profile-border-width: 2px;
   padding-bottom: $vertical-padding;
 }
 
-.navbar-fivemarks.landing .navbar-nav  > li > a {
-  color: white;
+.landing {
+  background: transparent;
+  .navbar-nav  > li > a {
+    color: white;
+  }
 }
 
 .navbar-fivemarks .navbar-nav > li > a:hover {
