@@ -5,6 +5,8 @@ html
       | Fivepoints
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" /
+
   body
     - if current_page?(root_path)
   	 = render "layouts/navbar_landing"

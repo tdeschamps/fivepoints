@@ -8,6 +8,10 @@
  @import "home";
  @import "city_guides";
 
+p, a, h1, h2, h3 {
+	font-family: "Open Sans"
+}
+
 .padded-down {
 	padding-top: 70px;
 }

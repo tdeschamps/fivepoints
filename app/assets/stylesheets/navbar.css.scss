@@ -37,13 +37,16 @@ $profile-border-width: 2px;
   padding-right: $horizontal-padding;
   border-bottom: $border-bottom-width solid $border-bottom-color;
   min-height: 0;
+  .navbar-nav > li > a {
+    color: $color;
+    line-height: $height;
+    padding-top: $vertical-padding;
+    padding-bottom: $vertical-padding;
+  }
 }
 
-.navbar-fivemarks .navbar-nav > li > a {
-  color: $color;
-  line-height: $height;
-  padding-top: $vertical-padding;
-  padding-bottom: $vertical-padding;
+.navbar-right {    
+  padding-top: 10px;
 }
 
 .landing {
