@@ -1,3 +1,3 @@
 .nested-fields.form_group.
   = f.input :city_guide_id, as: :hidden, input_html: {value: @cityguide.id}
-  = f.input :city_guide_id, as: :hidden, input_html: {value: (@cityguide.places.count + 1)}
+  = f.input :rank, as: :hidden, input_html: {value: (@cityguide.places.count + 1)}
