@@ -23,21 +23,24 @@ class PlacesController < ApplicationController
 			place.state = @foursquare_place_params[:state]
 		
 		end
-		
-		@city_guide_id = @foursquare_place_params[:city_guide_places_attributes]["0"][:city_guide_id]
-		
+
 		respond_to do |format|
 
       		if @place.persisted?
-      			@city_guide_place = @place.city_guide_places.create(@foursquare_place_params[:city_guide_places_attributes]["0"])
+      			if @place.city_guide_places.find_by_city_guide_id(@foursquare_place_params[:city_guide_places_attributes]["0"][:city_guide_id])
       			#@city_guide_place = @place.city_guide_places.where(city_guide_id: @city_guide_id).first
-      			format.html { redirect_to @place, notice: 'Place was successfully created.' }
-      			format.json { render action: 'create_new_place', status: :created, location: city_guide_place(@city_guide_place) }
-      			format.js   { render action: 'create_new_place', status: :created, locals: {place: @place, city_guide_place: @city_guide_place} }
+	      			format.html { render action: 'new' }
+	      			format.json { render json: 'no_new_place', status: :unprocessable_entity }
+	      			format.js   { render action: 'no_new_place', status: :unprocessable_entity }
+	      		else
+	      			@city_guide_place = @place.city_guide_places.create(@foursquare_place_params[:city_guide_places_attributes]["0"])
+	      			format.html { redirect_to @place, notice: 'Place was successfully created.' }
+	      			format.json { render json: 'create_new_place', status: :created, location: city_guide_place(@city_guide_place) }
+	      			format.js   { render action: 'create_new_place', status: :created, locals: {place: @place, city_guide_place: @city_guide_place} }
+      			end
       		else
       			format.html { render action: 'new' }
       			format.json { render json: @place.errors, status: :unprocessable_entity }
-      			# added:
       			format.js   { render json: @place.errors, status: :unprocessable_entity }
       		end
       	end
