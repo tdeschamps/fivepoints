@@ -7,5 +7,14 @@ class CityGuidePlace < ActiveRecord::Base
 	
 	belongs_to :place
 	
+	after_create :set_foursquare_picture
 
+	private
+
+	def set_foursquare_picture
+		foursquare_picture_url = FoursquarePicture.new({foursquare_id: ENV['4SQ_CLIENT_ID'].to_s,
+							foursquare_secret: ENV['4SQ_CLIENT_SECRET'].to_s,
+							place_id: self.place_id}).GetPicture()
+		self.update(foursquare_picture_url: foursquare_picture_url)
+	end
 end
