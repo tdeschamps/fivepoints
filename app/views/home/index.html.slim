@@ -1,18 +1,19 @@
 
  	div.search-wrapper
  		div.video-wrapper
- 			video.welcome-video muted = true autoplay="true" loop="loop" x-webkit-airplay = "allow" data-youtube-id = "N9oxmRT2YWw"
- 				source	src = "http://mazwai.com/system/posts/videos/000/000/142/preview_mp4/bernie_anderson--long_distance_valentine.mp4?1418592672" type="video/mp4"
+ 			iframe#player.welcome-video allowfullscreen="1" frameborder="0" height="720" src="//www.youtube.com/embed/fLCf-URqIf0?autoplay=1&amp;modestbranding=1&amp;loop=1&amp;muted='muted'&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1&amp;version=3&amp;html5=1" style=(" z-index: 0; width: 2183.2px; height: 100vh; top: 0px; left: 0px; overflow: hidden; opacity: 1; margin-left: -251.6px;") title=("YouTube video player") width="640" 
  		div.search-container
  			div.va-container
  				h1 Never miss a place you'll love
- 		div.search-banner
  					
- 	div.container 
+ 	div.container-toto 
  		div.row
  			div.col-sm-4.col-xs-12
  				| toto
  			div.col-sm-4.col-xs-12
  				| toto
  			div.col-sm-4.col-xs-12
- 				| toto		
+ 				| toto
+
+	= content_for :js do
+		= javascript_include_tag "home.js"

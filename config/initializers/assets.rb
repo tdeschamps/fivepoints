@@ -11,3 +11,4 @@ Rails.application.config.assets.precompile += %w( city_guides/city_guide_places.
 Rails.application.config.assets.precompile += %w( city_guides/sortable_list.js )
 Rails.application.config.assets.precompile += %w( city_guides/foursquare.js )
 Rails.application.config.assets.precompile += %w( city_guides/foursquare_autocomplete.js )
+Rails.application.config.assets.precompile += %w( home.js )

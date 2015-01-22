@@ -4,6 +4,7 @@ class PlacesController < ApplicationController
 	before_action :place_params, only: [:create]
 	before_action :set_place, only: [:show]
 	
+	
 	def index
 	end
 	
@@ -61,11 +62,16 @@ class PlacesController < ApplicationController
 	def set_place
 		Place.find(params[:id])
 	end
+
 	def place_params
 		params.require(:place).permit(:foursquare_id, :city, :zipcode, :name, :address, :category, :state, city_guide_places_attributes: [:rank, :city_guide_id])
 	end
 
 	def foursquare_place_params
-		@foursquare_place_params = params.require(:place).permit(:foursquare_id, :city, :zipcode, :name, :address, :latitude, :longitude, :category, :state, city_guide_places_attributes: [:rank, :city_guide_id])
+		@foursquare_place_params = params.require(:place)
+										.permit(:foursquare_id, :city, :zipcode, :name, :address, :latitude, :longitude, :category, :state, 
+										city_guide_places_attributes: [:rank, :city_guide_id, :place, :story, 
+											uploaded_files_attributes: [:file]])
 	end
+
 end

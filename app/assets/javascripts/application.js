@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
 //= require jquery-ui/autocomplete

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121173925) do
+ActiveRecord::Schema.define(version: 20150122092107) do
 
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20150121173925) do
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "foursquare_picture_url"
     t.text     "story"
   end
 
@@ -44,10 +43,10 @@ ActiveRecord::Schema.define(version: 20150121173925) do
   add_index "followships", ["follower_id"], name: "index_followships_on_follower_id"
 
   create_table "places", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "city",          limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "city",                   limit: 255
     t.integer  "zipcode"
-    t.string   "address",       limit: 255
+    t.string   "address",                limit: 255
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "ranking"
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150121173925) do
     t.string   "foursquare_id"
     t.string   "category"
     t.string   "state"
+    t.string   "foursquare_picture_url"
   end
 
   create_table "uploaded_files", force: :cascade do |t|
