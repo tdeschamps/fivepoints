@@ -7,6 +7,9 @@ gem 'figaro'
 #authentication
 gem 'devise'
 gem 'omniauth-facebook'
+#add twitter and linkedin connections
+gem 'omniauth-twitter'
+gem 'omniauth-linkedin'
 #picture_upload
 gem 'aws-sdk'
 gem 'paperclip'
