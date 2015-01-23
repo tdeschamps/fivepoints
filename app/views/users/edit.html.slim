@@ -1,0 +1,7 @@
+div.container.padded-down
+h1 
+	= @user.email
+h2 
+	= @user.username
+= link_to 'twitter', user_omniauth_authorize_path(:twitter)
+= link_to 'twitter', user_omniauth_authorize_path(:linkedin)

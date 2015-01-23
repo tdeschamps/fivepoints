@@ -218,6 +218,7 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.5)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -239,6 +240,8 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   koala (~> 1.10.0rc)
+  oauth2
+  omniauth
   omniauth-facebook
   omniauth-linkedin
   omniauth-twitter
@@ -254,3 +257,4 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  uuidtools (~> 2.1.5)

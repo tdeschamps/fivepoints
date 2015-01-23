@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122210154) do
+ActiveRecord::Schema.define(version: 20150123210154) do
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "name"
+    t.string   "link"
+    t.datetime "token_expiry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
