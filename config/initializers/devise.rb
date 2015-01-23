@@ -236,6 +236,7 @@ Devise.setup do |config|
   Devise.setup do |config|
     config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"], scope: 'email'
     config.omniauth :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"], strategy_class: OmniAuth::Strategies::Twitter
+    config.omniauth :linkedin, ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"], scope: 'r_fullprofile r_emailaddress r_network', fields: ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "connections"]
   end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
