@@ -5,9 +5,13 @@ gem 'binding_of_caller', group: :development
 #securing secrets
 gem 'figaro'
 #authentication
+gem 'omniauth'
+gem 'oauth2'
 gem 'devise'
 gem 'omniauth-facebook'
 #add twitter and linkedin connections
+
+gem 'uuidtools', '~> 2.1.5'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
 #picture_upload
