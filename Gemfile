@@ -10,7 +10,6 @@ gem 'oauth2'
 gem 'devise'
 gem 'omniauth-facebook'
 #add twitter and linkedin connections
-
 gem 'uuidtools', '~> 2.1.5'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'

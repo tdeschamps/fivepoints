@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123210154) do
+ActiveRecord::Schema.define(version: 20150123210155) do
+
+  create_table "authentifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider"
