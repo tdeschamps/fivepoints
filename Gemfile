@@ -21,6 +21,7 @@ gem 'cocoon'
 #gems socials friends
 gem 'koala', "~> 1.10.0rc"
 gem 'twitter'
+gem 'linkedin'
 #create simple forms
 gem 'simple_form'
 gem 'remotipart', '~> 1.2'

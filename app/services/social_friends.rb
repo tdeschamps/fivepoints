@@ -5,6 +5,8 @@ class SocialFriends
 		@twitter_token = args[:twitter_token]
 		@twitter_secret = args[:twitter_secret]
 		@twitter_user_id = args[:twitter_user_id]
+		@linkedin_token = args[:linkedin_token]
+		@linkedin_secret = args[:linkedin_secret]
 
 	end
 
@@ -23,6 +25,14 @@ class SocialFriends
 		end
 
 		friends = client.friend_ids
+	end
+
+	def GetLinkedinConnections
+		client = LinkedIn::Client.new(ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET'])
+		client.authorize_from_access(@linkedin_token, @linkedin_secret)
+		p client
+		client.connections
+
 	end
 
 end
