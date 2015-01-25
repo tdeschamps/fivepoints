@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :city_guides
   has_many :uploaded_files, as: :imageable
   
-  has_many :authorization
+  has_many :authorizations
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

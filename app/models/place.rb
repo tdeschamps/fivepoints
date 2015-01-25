@@ -11,9 +11,7 @@ class Place < ActiveRecord::Base
   	private
   	
   	def set_foursquare_picture
-		foursquare_additional_infos = FoursquarePicture.new({foursquare_id: ENV['4SQ_CLIENT_ID'].to_s,
-							foursquare_secret: ENV['4SQ_CLIENT_SECRET'].to_s,
-							place_id: self.id}).GetAdditionalInfos()
+		foursquare_additional_infos = FoursquarePicture.new(self.id).GetAdditionalInfos()
 		self.update(foursquare_additional_infos)
 	end
 end

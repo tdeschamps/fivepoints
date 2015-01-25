@@ -18,8 +18,9 @@ gem 'aws-sdk'
 gem 'paperclip'
 #nested-forms
 gem 'cocoon'
-#get facebook friends
+#gems socials friends
 gem 'koala', "~> 1.10.0rc"
+gem 'twitter'
 #create simple forms
 gem 'simple_form'
 gem 'remotipart', '~> 1.2'
