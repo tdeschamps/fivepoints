@@ -3,9 +3,10 @@ class CityGuidePlacesController < ApplicationController
 	
 	def update_rank
 		@city_guide_place = CityGuidePlace.find(city_guide_place_params[:city_guide_place_id])
+		previous_rank = @city_guide_place.rank
 		@city_guide_place.rank = city_guide_place_params[:rank]
 		@city_guide_place.save
-
+		@city_guide_place.place.update_score(previous_rank, city_guide_place_params[:rank].to_i)
 		render nothing: true
 	end
 

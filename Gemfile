@@ -10,7 +10,6 @@ gem 'oauth2'
 gem 'devise'
 gem 'omniauth-facebook'
 #add twitter and linkedin connections
-
 gem 'uuidtools', '~> 2.1.5'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
@@ -19,8 +18,10 @@ gem 'aws-sdk'
 gem 'paperclip'
 #nested-forms
 gem 'cocoon'
-#get facebook friends
+#gems socials friends
 gem 'koala', "~> 1.10.0rc"
+gem 'twitter'
+gem 'linkedin'
 #create simple forms
 gem 'simple_form'
 gem 'remotipart', '~> 1.2'

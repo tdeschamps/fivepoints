@@ -3,11 +3,10 @@ require 'json'
 
 class FoursquarePicture
 	
-	def initialize(params = {})
-		@foursquare_id = params[:foursquare_id]
-		@foursquare_secret = params[:foursquare_secret]
-		@city_guide_place_id = params[:city_guide_place_id]
-		@place_id = params[:place_id]
+	def initialize(place_id)
+		@foursquare_id = ENV['4SQ_CLIENT_ID']
+		@foursquare_secret = ENV['4SQ_CLIENT_SECRET']
+		@place_id = place_id
 	end
 
 	def GetAdditionalInfos
