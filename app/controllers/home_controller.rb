@@ -25,7 +25,6 @@ class HomeController < ApplicationController
 	end
 
 	def get_params(social_params, auth)
-		p auth
 		social_params["#{auth.downcase}_token".to_sym] = current_user.authorizations.where(provider: auth).first.token
 		social_params["#{auth.downcase}_secret".to_sym] = current_user.authorizations.where(provider: auth).first.secret
 		social_params["#{auth.downcase}_user_id".to_sym] = current_user.authorizations.where(provider: auth).first.uid.to_i
