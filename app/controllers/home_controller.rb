@@ -16,10 +16,9 @@ class HomeController < ApplicationController
 		
 		if user_signed_in?
 			socialfriends = SocialFriends.new(social_params)
-			fb_friends = socialfriends.GetFacebookFriends if current_user.token
-			twitter_friends = socialfriends.GetTwitterFriends if current_user.authorizations.where(provider: 'Twitter').first
-			linkedin_connections = socialfriends.GetLinkedinConnections if current_user.authorizations.where(provider: 'LinkedIn').first
-			p linkedin_connections
+			fb_friends = socialfriends.get_facebook_friends if current_user.token
+			twitter_friends = socialfriends.get_twitter_friends if current_user.authorizations.where(provider: 'Twitter').first
+			linkedin_connections = socialfriends.get_linkedin_connections if current_user.authorizations.where(provider: 'LinkedIn').first
 		end
 
 	end

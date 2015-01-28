@@ -10,12 +10,12 @@ class SocialFriends
 
 	end
 
-	def GetFacebookFriends
+	def get_facebook_friends
 		@graph = Koala::Facebook::API.new(@fb_token)
 		friends = @graph.get_connections("me", "friends")
 	end
 
-	def GetTwitterFriends
+	def get_twitter_friends
 
 		client = Twitter::REST::Client.new do |config|
 		  config.consumer_key        = ENV['TWITTER_KEY']
@@ -27,7 +27,7 @@ class SocialFriends
 		friends = client.friend_ids
 	end
 
-	def GetLinkedinConnections
+	def get_linkedin_connections
 		client = LinkedIn::Client.new(ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET'])
 		client.authorize_from_access(@linkedin_token, @linkedin_secret)
 		p client
