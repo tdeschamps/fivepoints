@@ -2,6 +2,8 @@ class CityGuidesController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :update]
 	before_action :set_city_guide, only: [:edit, :update]
+	scope :friends, ->
+
 	def new
 		@city_guide = CityGuide.new()
 		@uploaded_file = @city_guide.uploaded_files.build()
