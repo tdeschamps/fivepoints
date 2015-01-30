@@ -1,20 +1,25 @@
 class HomeController < ApplicationController
 	after_action :get_social_friends, only: [:index]
 	def index
-		
 	end
 
+	def feed
+		@user = current_user
+		@city_guides = CityGuide.joins(user: :followers).where("followships.follower_id = ?", @user.id)
+	end
 	private
 	
 	def get_social_friends
-		social_params = {}
-		social_params[:fb_token] = current_user.token if current_user.token
-		
-		current_user.authorizations.all.each do |auth|
-			get_params social_params, auth.provider
-		end
 		
 		if user_signed_in?
+			social_params = {}
+			social_params[:fb_token] = current_user.token if current_user.token
+			
+			current_user.authorizations.all.each do |auth|
+				get_params social_params, auth.provider
+			end
+		
+		
 			socialfriends = SocialFriends.new(social_params)
 			fb_friends = socialfriends.get_facebook_friends if current_user.token
 			twitter_friends = socialfriends.get_twitter_friends if current_user.authorizations.where(provider: 'Twitter').first

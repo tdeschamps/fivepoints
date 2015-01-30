@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :active_followships, class_name:  "Followship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy                              
+                                foreign_key: "follower_id",
+                                dependent:   :destroy                              
   has_many :passive_followships, class_name:  "Followship",
-                                   foreign_key: "followed_id",
-                                   dependent:   :destroy
+                                 foreign_key: "followed_id",
+                                 dependent:   :destroy
 
   has_many :following, through: :active_followships, source: :followed
   has_many :followers, through: :passive_followships, source: :follower
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_ouath(provider, access_token, resource=nil)
+  def self.find_for_oauth(provider, access_token, resource=nil)
     user, email, name, uid, auth_attr = nil, nil, nil, {}
 
     case provider

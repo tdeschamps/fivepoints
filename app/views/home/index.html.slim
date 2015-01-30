@@ -1,19 +1,30 @@
 
  	div.search-wrapper
- 		div.video-wrapper
- 			iframe#player.welcome-video allowfullscreen="1" frameborder="0" height="720" src="//www.youtube.com/embed/fLCf-URqIf0?loop=1&playlist=fLCf-URqIf0&autoplay=1&modestbranding=1&controls=0&showinfo=0&rel=0&enablejsapi=1&version=3&html5=1" style=(" z-index: 0; width: 2183.2px; height: 100vh; top: 0px; left: 0px; overflow: hidden; opacity: 1; margin-left: -251.6px;") title=("YouTube video player") width="640" 
+ 		div.landing-wrapper 
  		div.search-container
  			div.va-container
  				h1 Never miss a place you'll love
  					
- 	div.container-toto 
- 		div.row
- 			div.col-sm-4.col-xs-12
- 				| toto
- 			div.col-sm-4.col-xs-12
- 				| toto
- 			div.col-sm-4.col-xs-12
- 				| toto
-
+ 	div.moto
+ 		div.container 
+	 		div.row
+	 			div.col-sm-4.col-xs-12.moto-containers
+	 				= image_tag "backpack.svg", class:"moto-icon"
+	 				h3 Travel smoothly, you won't have to bring a zillion cityguides with you
+	 			div.col-sm-4.col-xs-12.moto-containers
+	 				= image_tag "map.svg", class:"moto-icon"
+	 				h3 Walk in your friends footprints
+	 			div.col-sm-4.col-xs-12.moto-containers
+	 				= image_tag "hamburger.svg", class:"moto-icon"
+	 				h3 Find the best place and bring some stories back
+ 	div.cut-quote
+ 		div.cut-cover
+ 			div.container.text-center
+ 			blockquote 
+ 				| "This place was cooler before it was cool" 
+ 				small A guy from Portland
+ 	div.home-section
+ 		div.container 
+	 		div.row			
 	= content_for :js do
 		= javascript_include_tag "home.js"

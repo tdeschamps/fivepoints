@@ -8,8 +8,12 @@
  @import "home";
  @import "city_guides";
 
+ @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700");
+ $base-font: "Open Sans", "Helvetica", "sans-serif";
+ $header-font: "Montserrat", "sans-serif";
+
 body, p, a, h1, h2, h3 {
-	font-family: "Open Sans"
+	font-family: $header-font
 }
 
 .padded-down {

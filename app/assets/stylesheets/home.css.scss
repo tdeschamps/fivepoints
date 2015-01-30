@@ -16,8 +16,20 @@ html{
 }
 
 .search-wrapper{
-    height: 100vh;
+    height: 600px;
  }
+.landing-wrapper {
+    background:asset-url('landing.jpg') no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 35vh;
+    height: 100%;
+    color: white;
+    position: relative;
+    margin : 0;
+  }
 
  .search-container {
   position: absolute;
@@ -36,6 +48,7 @@ html{
 
     h1 {
       color: white;
+      font-size: 70px;
     }
   }
 }
@@ -62,19 +75,30 @@ html{
     right: 0;
     }
   }
-.container-toto {
-  height: 40vh;
-  background: white;
+.moto {
+  min-height: 40vh;
+  background: #FF4A50;
+  color: white;
+  text-align: center;
+  width: 100%;
 }
+.moto-containers {
+  margin-top: 8vh;
+}
+
+.moto-icon {
+  height: 64px;
+}
+
 .home-section {
   padding: 30px 0 40px 0;
   background-size: cover;
-  background-color: #fff;
+  background-color: #FE9A29;
   font-size: 18px;
-  font-family: 'Open Sans';
   color: rgb(137, 132, 132);
   position: relative;
   text-align: center;
+  height: 50vh;
 
   .home-skill {
     box-shadow: 0 1px 2px #999;
@@ -202,15 +226,17 @@ html{
 }
 
 .cut-quote {
-    background:asset-url('test-home.jpg') no-repeat top center fixed;
+    background:asset-url('first.jpg') no-repeat top center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 35vh;
     height: 100%;
     color: white;
     position: relative;
     margin : 0;
+    text-align: center;
 
     blockquote {
       position: relative;
