@@ -28,7 +28,13 @@
 	 		div.row
 	 			div.col-xs-12.col-sm-6
 	 				h1 One city, five places, five stories
-	 			div.col-xs-12.col-xs-6
+	 			div.col-xs-12.col-sm-6
+	 				div.cities
+		 				- @cities.each_with_index do |city, index|
+		 					img src = "/assets/#{city}.png" data-sr = "wait #{(@cities.size - index) * 0.2}s and then hustle -20%"
 	 									
 	= content_for :js do
 		= javascript_include_tag "home.js"
+		= javascript_include_tag "scrollReveal.js"
+		javascript: 
+			window.sr = new scrollReveal();

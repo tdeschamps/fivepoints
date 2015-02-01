@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 	after_action :get_social_friends, only: [:index]
 	def index
+		@cities = %w(berlin los_angeles paris shanghai lisbon)
 	end
 
 	def feed

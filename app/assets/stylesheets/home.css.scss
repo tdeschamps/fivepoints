@@ -294,3 +294,50 @@ html{
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.cities {
+  img {
+    height: 40vh;
+    position: absolute;
+    z-index: 9;
+
+    &:nth-child(1) {
+      right: 60px;
+      z-index: 8;
+    }
+
+    &:nth-child(2) {
+      right: 120px;
+      z-index: 7;
+    }
+
+    &:nth-child(3) {
+      right: 180px;
+      z-index: 6;
+    }
+
+    &:nth-child(4) {
+      right: 240px;
+      z-index: 5;
+    }
+
+    &:nth-child(5) {
+      right: 300px;
+      z-index: 4;
+    }
+
+    &:nth-child(6) {
+      right: 360px;
+      z-index: 3;
+    }
+
+    &:nth-child(7) {
+      right: 420px;
+      z-index: 2;
+    }
+
+    &:nth-child(8) {
+      right: 480px;
+      z-index: 1;
+    }
+  }
+}
