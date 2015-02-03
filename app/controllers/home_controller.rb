@@ -1,13 +1,16 @@
 class HomeController < ApplicationController
 	after_action :get_social_friends, only: [:index]
+	
 	def index
-		@cities = %w(berlin los_angeles paris shanghai lisbon)
+		@city_guide_pictures = %w(berlin los_angeles paris shanghai lisbon)
+		@cities_pictures = %w(paris berlin san-francisco tokyo sydney cape-town)
 	end
 
 	def feed
 		@user = current_user
-		@city_guides = CityGuide.joins(user: :followers).where("followships.follower_id = ?", @user.id)
+		@city_guides = CityGuide.friends(@user)
 	end
+
 	private
 	
 	def get_social_friends

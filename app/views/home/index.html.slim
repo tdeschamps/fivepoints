@@ -26,12 +26,27 @@
  	div.home-section
  		div.container 
 	 		div.row
-	 			div.col-xs-12.col-sm-6
+	 			div.col-xs-12.col-sm-6.va-middle
 	 				h1 One city, five places, five stories
 	 			div.col-xs-12.col-sm-6
-	 				div.cities
-		 				- @cities.each_with_index do |city, index|
-		 					img src = "/assets/#{city}.png" data-sr = "wait #{(@cities.size - index) * 0.2}s and then hustle -20%"
+	 				div.city-guides
+		 				- @city_guide_pictures.each_with_index do |city, index|
+		 					img src = "/assets/#{city}.png" data-sr = "wait #{(@city_guide_pictures.size - index) * 0.4}s and then hustle 20%"
+	section.cities-ribbon
+		- @cities_pictures.each_with_index do |city, index|
+			div.col-lg-2.col-md-4.col-sm-12 data-sr = "wait #{(index+1) * 0.4}s enter bottom"
+				div[class= "discovery-card #{city}-style"]
+					div.city-badge
+						.iconmelon
+						  svg viewbox=("0 0 32 32") 
+						    use xlink:href="##{city}"
+					div.city-title
+						h1 #{city}
+	section.your-turn
+		div.container
+			= link_to new_user_city_guide_path(current_user), class: "btn btn-primary", id: "landing-btn" do
+              |  Create your guide 
+
 	 									
 	= content_for :js do
 		= javascript_include_tag "home.js"

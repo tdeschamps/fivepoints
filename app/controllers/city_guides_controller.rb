@@ -2,7 +2,7 @@ class CityGuidesController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :update]
 	before_action :set_city_guide, only: [:edit, :update]
-	scope :friends, -> {}
+	
 
 	def new
 		@city_guide = CityGuide.new()
@@ -24,6 +24,7 @@ class CityGuidesController < ApplicationController
 	
 	def index
 		@city_guides = @user.city_guides.all
+		@friends_city_guides = CityGuide.friends(@user).includes(:city_guide_places).limit(10)
 	end
 
 	private

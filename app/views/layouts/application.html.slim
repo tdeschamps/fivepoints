@@ -9,6 +9,7 @@ html
 
   body
     - if current_page?(root_path)
+     = render "layouts/svg_landing"
   	 = render "layouts/navbar_landing"
     - else
      = render "layouts/navbar"

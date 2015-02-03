@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'json'
 
-class FoursquarePicture
+class FoursquareInfos
 	
 	def initialize(place_id)
 		@foursquare_id = ENV['4SQ_CLIENT_ID']

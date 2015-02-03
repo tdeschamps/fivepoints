@@ -16,7 +16,7 @@ html{
 }
 
 .search-wrapper{
-    height: 600px;
+    height: 100vh;
  }
 .landing-wrapper {
     background:asset-url('landing.jpg') no-repeat top center fixed;
@@ -266,6 +266,100 @@ html{
     }
   }
 
+.cities-ribbon {
+  min-height: 30vh;
+  margin: 0;
+
+  .discovery-card {
+    height: 30vh;
+    margin-left: -15px;
+    margin-right: -15px;
+    text-align: center;
+  }
+  .paris-style {
+    background: asset-url("paris_picture.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+
+  .berlin-style {
+    background: asset-url("berlin_picture.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+  
+  .sydney-style {
+    background: asset-url("sydney_picture.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+
+  .tokyo-style {
+    background: asset-url("tokyo_picture.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }  
+  
+  .san-francisco-style {
+    background: asset-url("san-francisco_picture.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+  
+
+  .cape-town-style {
+    background: asset-url("cape-town_picture.jpg") no-repeat top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  } 
+
+  .city-badge{
+    position: absolute;
+    height: 25vh;
+    width: 90%;
+    top: 1vh;
+    left: 5%;
+
+    .iconmelon,
+    .im {
+      position: relative;
+      width: 22vh;
+      height: 22vh;
+      display: block;
+      fill: white;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .iconmelon:after,
+    .im:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .city-title {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    
+    h1 {
+      color: white;
+    }
+  }
+}
+
+
+
 .cut-video {
   background:asset-url('test-home.jpg') no-repeat top center fixed;
   -webkit-background-size: cover;
@@ -294,58 +388,84 @@ html{
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.cities {
+
+
+.city-guides {
   img {
     height: 40vh;
     position: absolute;
     z-index: 9;
 
     &:nth-child(1) {
-      right: 60px;
+      right: 00px;
       top: 10px;
       z-index: 8;
     }
 
     &:nth-child(2) {
-      right: 120px;
+      right: 60px;
       z-index: 7;
       top: 20px;
     }
 
     &:nth-child(3) {
-      right: 180px;
+      right: 120px;
       z-index: 6;
       top: 10px;
     }
 
     &:nth-child(4) {
-      right: 240px;
+      right: 180px;
       z-index: 5;
       top: 20px;
     }
 
     &:nth-child(5) {
-      right: 300px;
+      right: 240px;
       z-index: 4;
       top: 10px;
     }
 
     &:nth-child(6) {
-      right: 360px;
+      right: 300px;
       z-index: 3;
       top: 20px;
     }
 
     &:nth-child(7) {
-      right: 420px;
+      right: 360px;
       z-index: 2;
       top: 10px;
     }
 
     &:nth-child(8) {
-      right: 480px;
+      right: 420px;
       z-index: 1;
       top:20px;
     }
   }
+}
+.your-turn {
+  height: 15vh;
+  width: 100%;
+  background: #F97171;
+  text-align: center;
+  padding-top: 5vh; 
+}
+
+#landing-btn {
+  line-height: $btn-height;
+  padding: 0 $btn-horizontal-padding;
+  color: #ff4a50;
+  border-radius: 4px;
+  margin-top: $btn-margin-top;
+  border-radius: 2px;
+  font-weight: bold;
+  background-color: white;
+  border-top: $btn-top-border-width solid $btn-top-border-color;
+  border-right: $btn-right-border-width solid $btn-right-border-color;
+  border-bottom: $btn-bottom-border-width solid $btn-bottom-border-color;
+  border-left: $btn-left-border-width solid $btn-left-border-color;
+  font-size: 12px;
+  width: 60%
 }
