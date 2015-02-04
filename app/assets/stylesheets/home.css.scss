@@ -50,6 +50,10 @@ html{
       color: white;
       font-size: 70px;
     }
+
+    h2 {
+      color: white;
+    }
   }
 }
 .search-banner {
@@ -76,14 +80,14 @@ html{
     }
   }
 .moto {
-  min-height: 40vh;
+  min-height: 30vh;
   background: #FF4A50;
   color: white;
   text-align: center;
   width: 100%;
 }
 .moto-containers {
-  margin-top: 8vh;
+  margin-top: 5vh;
 }
 
 .moto-icon {
@@ -93,12 +97,22 @@ html{
 .home-section {
   padding: 30px 0 40px 0;
   background-size: cover;
-  background-color: #FE9A29;
+  background-color: rgba(254,154,41, 0.63);
   font-size: 18px;
   color: rgb(137, 132, 132);
   position: relative;
   text-align: center;
   height: 50vh;
+
+  .container, .row, .col {
+    height: 100%;
+  }
+
+  h1 {
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+    }
 
   .home-skill {
     box-shadow: 0 1px 2px #999;
@@ -231,7 +245,7 @@ html{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 35vh;
+    min-height: 40vh;
     height: 100%;
     color: white;
     position: relative;
@@ -468,4 +482,31 @@ html{
   border-left: $btn-left-border-width solid $btn-left-border-color;
   font-size: 12px;
   width: 60%
+}
+.va-middle {
+  display: table;
+  height: 100%;
+}
+.parallax {
+  perspective: 1px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--back {
+  transform: translateZ(-1px) scale(2);
+}
+.parallax__layer--base {
+  transform: translateZ(0);
 }
