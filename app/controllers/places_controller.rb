@@ -4,7 +4,8 @@ class PlacesController < ApplicationController
 	before_action :place_params, only: [:create]
 	before_action :set_place, only: [:show]
 	
-	
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
 	def index
 	end
 	
@@ -79,4 +80,8 @@ class PlacesController < ApplicationController
 												)
 	end
 
+	def user_not_authorized
+    	flash[:alert] = "You are not authorized to perform this action."
+    	redirect_to(request.referrer || new_user_registration_path)
+  	end
 end

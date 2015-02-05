@@ -4,22 +4,9 @@
  @import "bootstrap";
  @import "jquery-ui";
  // Import our navbar.scss after bootstrap
- @import "navbar";
- @import "home";
+ @import "globals/all";
+ @import "components/all";
+ @import "layouts/*";
+ @import "pages/*";
  @import "city_guides";
-
- @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700");
- $base-font: "Open Sans", "Helvetica", "sans-serif";
- $header-font: "Montserrat", "sans-serif";
-
-body, p, a, h1, h2, h3 {
-	font-family: $header-font
-}
-
-.padded-down {
-	padding-top: 70px;
-}
-
-.panel {
-	overflow: hidden;
-}
+ 

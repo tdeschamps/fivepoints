@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update] 
 	before_action :user_params, only: [:create, :update]
 
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
 	def show
 	end
 
@@ -12,6 +14,7 @@ class UsersController < ApplicationController
 	def update
 		authorize @user
 	end
+	
 	private
 	
 	def user_params
@@ -21,4 +24,9 @@ class UsersController < ApplicationController
 	def set_user
 		@user = User.find(params[:id])
 	end
+
+	def user_not_authorized
+    	flash[:alert] = "You are not authorized to perform this action."
+    	redirect_to(request.referrer || new_user_registration_path)
+  	end
 end

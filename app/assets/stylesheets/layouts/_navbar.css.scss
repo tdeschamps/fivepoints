@@ -1,0 +1,117 @@
+// Set your profile picture
+$profile-radius: 50%;
+$profile-border-color: white;
+$profile-border-width: 2px;
+
+
+// And do not look at what follows!
+// This is why we use sass :)
+.navbar-fivemarks{
+  background: $navbar-bg;
+  border: none;
+  font-weight: $weight-regular;
+  padding-left: $navbar-horizontal-padding;
+  padding-right: $navbar-horizontal-padding;
+  border-bottom: $navbar-border-bottom-width solid $navbar-border-bottom-color;
+  min-height: 0;
+  .navbar-nav > li > a {
+    color: $navbar-color;
+    line-height: $navbar-height;
+    padding-top: $navbar-vertical-padding;
+    padding-bottom: $navbar-vertical-padding;
+  }
+}
+
+.navbar-right {    
+  padding-top: 10px;
+}
+
+.landing {
+  background: transparent;
+  .navbar-nav  > li > a {
+    color: $white;
+  }
+}
+
+.navbar-fivemarks .navbar-nav > li > a:hover {
+  color: $navbar-color;
+  line-height: $navbar-height;
+  padding-top: $navbar-vertical-padding;
+  padding-bottom: $navbar-vertical-padding;
+}
+
+.navbar-fivemarks .navbar-nav>.open>a,
+.navbar-fivemarks .navbar-nav>.open>a:hover,
+.navbar-fivemarks .navbar-nav>.open>a:focus {
+  line-height: $navbar-height;
+  padding-top: $navbar-vertical-padding;
+  padding-bottom: $navbar-vertical-padding;
+  color: $navbar-color;
+  background-color: transparent;
+}
+
+.navbar-fivemarks .navbar-brand,
+.navbar-fivemarks .navbar-brand:hover
+ {
+  display: block;
+  color: $navbar-color;
+  padding-top: $navbar-vertical-padding;
+  padding-bottom: $navbar-vertical-padding;
+}
+
+#nav-btn {
+  @include button($sunset-orange);
+}
+
+#logo{
+  height: 50px;
+  padding: 0px;
+}
+
+#profile-pic{
+  height: $navbar-height;
+  margin-right: 10px;
+  border-radius: $profile-radius;
+}
+
+.navbar-fivemarks .navbar-toggle {
+  border-color: #dddddd;
+  width: 45px;
+  background: transparent;
+}
+
+
+.navbar-fivemarks .navbar-nav > li > .dropdown-menu{
+  border-radius: 0;
+  margin-top: 10px;
+}
+
+.navbar-fivemarks .navbar-nav > li > .dropdown-menu:before{
+  background: white;
+  height: 10px;
+  width: 10px;
+  content: "\00a0";
+  display: block;
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+  bottom: 57px;
+  transform: rotate(45deg);
+  border-top: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+  #logo {
+    height: 50px;
+  }
+  .navbar-fivemarks .navbar-brand,
+  .navbar-fivemarks .navbar-brand:hover
+   {
+    display: block;
+    color: $navbar-color;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

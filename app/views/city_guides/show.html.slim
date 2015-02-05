@@ -1,0 +1,16 @@
+div.container.padded-down
+	div.row
+		div.col-xs-12.div-col-sm-6.col-sm-offset-3
+			h1
+				= @city_guide.name
+	div.row
+		div.col-xs-12.col-sm-3
+			= image_tag @city_guide.uploaded_files.last.file.url(:medium), class:"city-guide-pic"
+		div.col-xs-12.col-sm-9
+			div.col-xs-12
+				ul.place-list.list-unstyled.ui-sortable#sortable
+					- @city_guide_places.each do |city_guide_place|
+						= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place }	
+							
+= content_for :js do
+	

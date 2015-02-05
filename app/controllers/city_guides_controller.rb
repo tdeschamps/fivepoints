@@ -2,9 +2,11 @@ class CityGuidesController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :update]
 	before_action :set_city_guide, only: [:edit, :update, :show]
+
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 	
 	def show
-		@city_guide_places = @cityguide.city_guide_places.all
+		@city_guide_places = @city_guide.city_guide_places.all
 	end
 
 	def new
@@ -46,5 +48,10 @@ class CityGuidesController < ApplicationController
 	def set_city_guide
 		@city_guide = CityGuide.find(params[:id])
 	end
+	
+	def user_not_authorized
+    	flash[:alert] = "You are not authorized to perform this action."
+    	redirect_to(request.referrer || new_user_registration_path)
+  	end
 
 end

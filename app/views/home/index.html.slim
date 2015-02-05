@@ -1,10 +1,11 @@
-.parallax
+
  	div.search-wrapper
+ 		div.landing-wrapper
  		div.search-container
  			div.va-container
  				h1 Never miss a place you'll love
  				h2 Fivemarks is the easiest way to share your travel stories with your friends
- 		div.landing-wrapper
+ 		
 
  	div.moto
  		div.container 
@@ -32,10 +33,11 @@
 	 			div.col-xs-12.col-sm-6
 	 				div.city-guides
 		 				- @city_guide_pictures.each_with_index do |city, index|
-		 					img src = "/assets/#{city}.png" data-sr = "wait #{(@city_guide_pictures.size - index) * 0.4}s and then hustle 20%"
+		 					img src = "/assets/#{city}.png" data-sr = "wait #{(@city_guide_pictures.size - index) * 0.3}s and then hustle -5%"
+	.cut-quote2	 					
 	section.cities-ribbon
 		- @cities_pictures.each_with_index do |city, index|
-			div.col-lg-2.col-md-4.col-sm-12 data-sr = "wait #{(index+1) * 0.2}s enter bottom"
+			div.col-lg-2.col-md-4.col-sm-12 data-sr = "wait #{(index+1) * 0.3}s enter right"
 				div[class= "discovery-card #{city}-style"]
 					div.city-badge
 						.iconmelon

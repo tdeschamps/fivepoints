@@ -1,10 +1,3 @@
-html{
-
-  min-height: 100%; 
-  body {
-   margin: 0;
-  }
-}
 .background {
   text-align: center;
   background-position: center;
@@ -64,27 +57,12 @@ html{
   background-color: rgba(0,0,0,0.6);
 }
 
-.video-wrapper{
-    overflow: hidden;
-    z-index: -1;
-    height:100%;
-    width: 100%;
-    position: fixed;
-  .welcome-video {
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    }
-  }
 .moto {
-  min-height: 30vh;
   background: #FF4A50;
   color: white;
+  padding: 30px 0 40px 0;
+  position: relative;
   text-align: center;
-  width: 100%;
 }
 .moto-containers {
   margin-top: 5vh;
@@ -95,14 +73,12 @@ html{
 }
 
 .home-section {
-  padding: 30px 0 40px 0;
+  padding: 30px 0 30px 0;
   background-size: cover;
   background-color: rgba(254,154,41, 0.63);
   font-size: 18px;
-  color: rgb(137, 132, 132);
   position: relative;
   text-align: center;
-  height: 50vh;
 
   .container, .row, .col {
     height: 100%;
@@ -110,8 +86,6 @@ html{
 
   h1 {
     color: white;
-    display: table-cell;
-    vertical-align: middle;
     }
 
   .home-skill {
@@ -199,46 +173,6 @@ html{
   opacity: 0.8;
 }
 
-.home-wish {
-  padding: 2em 0 3em 0;
-  background-size: cover;
-  background-color: #fff;
-  font-size: 18px;
-  font-family: 'Raleway', sans-serif;
-  color: rgb(137, 132, 132);
-  position: relative;
-  text-align: center;
-
-  h2 {
-    font-family: 'Roboto';
-    font-size: 25px;
-    line-height: 1.7em;
-    text-transform: uppercase;
-    color: #333;
-    padding-bottom: 1em;
-  }
-
-  a {
-    color: #333;
-    border: 2px solid #333;
-    padding: 10px 30px;
-    text-transform: Uppercase;
-    font-weight: 600;
-
-    webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-
-    &:hover {
-      color: #fff;
-      background-color: #333;
-      border: 2px solid #333;
-      text-decoration: none;
-    }
-  }
-}
-
 .cut-quote {
     background:asset-url('first.jpg') no-repeat top center fixed;
     -webkit-background-size: cover;
@@ -283,6 +217,7 @@ html{
 .cities-ribbon {
   min-height: 30vh;
   margin: 0;
+  padding: 0;
 
   .discovery-card {
     height: 30vh;
@@ -363,35 +298,12 @@ html{
   .city-title {
     text-align: center;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     width: 100%;
     
     h1 {
       color: white;
     }
-  }
-}
-
-
-
-.cut-video {
-  background:asset-url('test-home.jpg') no-repeat top center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100%;
-  color: white;
-  position: relative;
-  margin : 0;
-
-  .container-video {
-    margin: 0 auto;
-    max-width: 600px;
-  }
-
-  .cut-scene-video {
-    padding: 70px 40px;
   }
 }
 
@@ -405,6 +317,7 @@ html{
 
 
 .city-guides {
+  height: 40vh;
   img {
     height: 40vh;
     position: absolute;
@@ -412,101 +325,78 @@ html{
 
     &:nth-child(1) {
       right: 00px;
-      top: 10px;
       z-index: 8;
     }
 
     &:nth-child(2) {
       right: 60px;
       z-index: 7;
-      top: 20px;
+      top: 10px;
     }
 
     &:nth-child(3) {
       right: 120px;
       z-index: 6;
-      top: 10px;
     }
 
     &:nth-child(4) {
       right: 180px;
       z-index: 5;
-      top: 20px;
+      top: 10px;
     }
 
     &:nth-child(5) {
       right: 240px;
       z-index: 4;
-      top: 10px;
     }
 
     &:nth-child(6) {
       right: 300px;
       z-index: 3;
-      top: 20px;
+      top: 10px;
     }
 
     &:nth-child(7) {
       right: 360px;
       z-index: 2;
-      top: 10px;
     }
 
     &:nth-child(8) {
       right: 420px;
       z-index: 1;
-      top:20px;
+      top: 10px;
     }
   }
 }
+.cut-quote2 {
+    background:asset-url('bath.jpg') no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 40vh;
+    height: 100%;
+    color: white;
+    position: relative;
+    margin : 0;
+    text-align: center;
+}
+
 .your-turn {
   height: 15vh;
   width: 100%;
   background: #F97171;
   text-align: center;
-  padding-top: 5vh; 
+  padding-top: 5vh;
+  clear: both; 
 }
 
 #landing-btn {
-  line-height: $btn-height;
-  padding: 0 $btn-horizontal-padding;
-  color: #ff4a50;
-  border-radius: 4px;
-  margin-top: $btn-margin-top;
-  border-radius: 2px;
-  font-weight: bold;
-  background-color: white;
-  border-top: $btn-top-border-width solid $btn-top-border-color;
-  border-right: $btn-right-border-width solid $btn-right-border-color;
-  border-bottom: $btn-bottom-border-width solid $btn-bottom-border-color;
-  border-left: $btn-left-border-width solid $btn-left-border-color;
-  font-size: 12px;
-  width: 60%
+  @include button(white);
+  color: $sunset-orange;
+  width: 60%;
 }
 .va-middle {
-  display: table;
   height: 100%;
-}
-.parallax {
-  perspective: 1px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.parallax__group {
-  position: relative;
-  height: 100vh;
-  transform-style: preserve-3d;
-}
-.parallax__layer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.parallax__layer--back {
-  transform: translateZ(-1px) scale(2);
-}
-.parallax__layer--base {
-  transform: translateZ(0);
+  margin: 10% 0;
 }
