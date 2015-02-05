@@ -11,7 +11,7 @@ class UserPolicy
   	end
 
   	def update?
-    	user.id = prams[:id]
+    	user == profile_user 
   	end
 
 end

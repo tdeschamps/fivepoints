@@ -9,9 +9,13 @@ class UsersController < ApplicationController
 		authorize @user
 	end
 
+	def update
+		authorize @user
+	end
 	private
 	
-	def user_params	
+	def user_params
+
 	end
 
 	def set_user

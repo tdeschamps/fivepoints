@@ -45,8 +45,12 @@
 						h1 #{city}
 	section.your-turn
 		div.container
-			= link_to new_user_city_guide_path(current_user), class: "btn btn-primary", id: "landing-btn" do
-              |  Create your guide 
+			- if current_user
+				= link_to new_user_city_guide_path(current_user), class: "btn btn-primary", id: "landing-btn" do
+              		|  Create your guide
+            - else
+            	= link_to new_user_registration_path, class: "btn btn-primary", id: "landing-btn" do
+              		|  Join us!  	
 
 	 									
 	= content_for :js do

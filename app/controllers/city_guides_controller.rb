@@ -1,20 +1,26 @@
 class CityGuidesController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :update]
-	before_action :set_city_guide, only: [:edit, :update]
+	before_action :set_city_guide, only: [:edit, :update, :show]
 	
+	def show
+		@city_guide_places = @cityguide.city_guide_places.all
+	end
 
 	def new
 		@city_guide = CityGuide.new()
 		@uploaded_file = @city_guide.uploaded_files.build()
+		authorize @city_guide
 	end
 	
 	def create
+		authorize @city_guide
 		@cityguide = @user.city_guides.create(city_guide_params)
 		redirect_to edit_user_city_guide_path(@user, @cityguide)
 	end
 	
 	def edit
+		authorize @city_guide
 		@city_guide_places = @cityguide.city_guide_places.all
 		@place = Place.new()
 		@new_city_guide_places = @place.city_guide_places.build()
@@ -38,7 +44,7 @@ class CityGuidesController < ApplicationController
 	end
 
 	def set_city_guide
-		@cityguide = CityGuide.find(params[:id])
+		@city_guide = CityGuide.find(params[:id])
 	end
 
 end

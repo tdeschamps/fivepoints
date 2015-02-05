@@ -11,9 +11,15 @@ class PlacesController < ApplicationController
 	def show
 	
 	end
-	
+
+	def new
+		@place = Place.new()
+		authorize @place
+	end
+
 	def create
 		@place = Place.create(place_params)
+		authorize @place
 	end
 	
 	def create_place_from_city_guide
@@ -37,8 +43,8 @@ class PlacesController < ApplicationController
       			if @place.city_guide_places.find_by_city_guide_id(@foursquare_place_params[:city_guide_places_attributes]["0"][:city_guide_id])
       			#@city_guide_place = @place.city_guide_places.where(city_guide_id: @city_guide_id).first
 	      			format.html { render action: 'new' }
-	      			format.json { render json: 'no_new_place', status: :unprocessable_entity }
-	      			format.js   { render action: 'no_new_place', status: :unprocessable_entity }
+	      			format.json { render json: 'no_new_place', status: :found }
+	      			format.js   { render action: 'no_new_place', status: :found }
 	      		else
 	      			@city_guide_place = @place.city_guide_places.create(@foursquare_place_params[:city_guide_places_attributes]["0"])
 	      			format.html { redirect_to @place, notice: 'Place was successfully created.' }
@@ -53,9 +59,7 @@ class PlacesController < ApplicationController
       	end
 	end
 
-	def new
-		@place = Place.new()
-	end
+	
 
 	private
 
