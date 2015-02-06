@@ -1,8 +1,8 @@
 li#new-place-form
-	div.col-xs-12.col-sm-6.col-sm-offset-3
+	div.col-xs-12.col-sm-6
 		h1 
 			| Create a new Place
-		= simple_form_for [@cityguide, @place],
+		= simple_form_for [@city_guide, @place],
 		url: url_for(action: 'create_place_from_city_guide', controller: 'places'),
 		method: 'post',
 		remote: true, 

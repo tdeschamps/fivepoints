@@ -1,5 +1,7 @@
-li.panel.panel-info data-item-id = (city_guide_place.id if city_guide_place || 0)
-	div.col-xs-12.col-sm-6.col-sm-offset-3
+li.panel data-item-id = (city_guide_place.id if city_guide_place || 0)
+	.col-xs-12
+		.cityguide-place style=("background: url('#{place.foursquare_picture_url}') no-repeat top center fixed;") 
+	div.col-xs-12.col-sm-6
 		h1 
 			= place.name
 		ul

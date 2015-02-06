@@ -23,7 +23,7 @@ class CityGuidesController < ApplicationController
 	
 	def edit
 		authorize @city_guide
-		@city_guide_places = @cityguide.city_guide_places.all
+		@city_guide_places = @city_guide.city_guide_places.all
 		@place = Place.new()
 		@new_city_guide_places = @place.city_guide_places.build()
 		@new_city_guide_places_file = @new_city_guide_places.uploaded_files.build()
