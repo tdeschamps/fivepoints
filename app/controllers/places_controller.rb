@@ -4,16 +4,23 @@ class PlacesController < ApplicationController
 	before_action :place_params, only: [:create]
 	before_action :set_place, only: [:show]
 	
-	
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
 	def index
 	end
 	
 	def show
 	
 	end
-	
+
+	def new
+		@place = Place.new()
+		authorize @place
+	end
+
 	def create
 		@place = Place.create(place_params)
+		authorize @place
 	end
 	
 	def create_place_from_city_guide
@@ -37,8 +44,8 @@ class PlacesController < ApplicationController
       			if @place.city_guide_places.find_by_city_guide_id(@foursquare_place_params[:city_guide_places_attributes]["0"][:city_guide_id])
       			#@city_guide_place = @place.city_guide_places.where(city_guide_id: @city_guide_id).first
 	      			format.html { render action: 'new' }
-	      			format.json { render json: 'no_new_place', status: :unprocessable_entity }
-	      			format.js   { render action: 'no_new_place', status: :unprocessable_entity }
+	      			format.json { render json: 'no_new_place', status: :found }
+	      			format.js   { render action: 'no_new_place', status: :found }
 	      		else
 	      			@city_guide_place = @place.city_guide_places.create(@foursquare_place_params[:city_guide_places_attributes]["0"])
 	      			format.html { redirect_to @place, notice: 'Place was successfully created.' }
@@ -53,9 +60,7 @@ class PlacesController < ApplicationController
       	end
 	end
 
-	def new
-		@place = Place.new()
-	end
+	
 
 	private
 
@@ -70,8 +75,13 @@ class PlacesController < ApplicationController
 	def foursquare_place_params
 		@foursquare_place_params = params.require(:place)
 										.permit(:foursquare_id, :city, :zipcode, :name, :address, :latitude, :longitude, :category, :state, 
-										city_guide_places_attributes: [:rank, :city_guide_id, :place, :story, 
-											uploaded_files_attributes: [:file]])
+												city_guide_places_attributes: [:rank, :city_guide_id, :place, :story, 
+												uploaded_files_attributes: [:file]]
+												)
 	end
 
+	def user_not_authorized
+    	flash[:alert] = "You are not authorized to perform this action."
+    	redirect_to(request.referrer || new_user_registration_path)
+  	end
 end

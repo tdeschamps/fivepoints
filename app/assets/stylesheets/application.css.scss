@@ -4,18 +4,9 @@
  @import "bootstrap";
  @import "jquery-ui";
  // Import our navbar.scss after bootstrap
- @import "navbar";
- @import "home";
+ @import "globals/all";
+ @import "components/all";
+ @import "layouts/*";
+ @import "pages/*";
  @import "city_guides";
-
-body, p, a, h1, h2, h3 {
-	font-family: "Open Sans"
-}
-
-.padded-down {
-	padding-top: 70px;
-}
-
-.panel {
-	overflow: hidden;
-}
+ 

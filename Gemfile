@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 #debugging
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
+gem 'quiet_assets', group: :development
 #securing secrets
 gem 'figaro'
 #authentication

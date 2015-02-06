@@ -1,19 +1,28 @@
 class CityGuidesController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :update]
-	before_action :set_city_guide, only: [:edit, :update]
+	before_action :set_city_guide, only: [:edit, :update, :show]
+
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+	
+	def show
+		@city_guide_places = @city_guide.city_guide_places.all
+	end
+
 	def new
 		@city_guide = CityGuide.new()
 		@uploaded_file = @city_guide.uploaded_files.build()
+		authorize @city_guide
 	end
 	
 	def create
+		authorize @city_guide
 		@cityguide = @user.city_guides.create(city_guide_params)
 		redirect_to edit_user_city_guide_path(@user, @cityguide)
 	end
 	
 	def edit
-		@places = @cityguide.places.all
+		authorize @city_guide
 		@city_guide_places = @cityguide.city_guide_places.all
 		@place = Place.new()
 		@new_city_guide_places = @place.city_guide_places.build()
@@ -22,6 +31,8 @@ class CityGuidesController < ApplicationController
 	end
 	
 	def index
+		@city_guides = @user.city_guides.all
+		@friends_city_guides = CityGuide.friends(@user).includes(:city_guide_places).limit(10)
 	end
 
 	private
@@ -35,7 +46,12 @@ class CityGuidesController < ApplicationController
 	end
 
 	def set_city_guide
-		@cityguide = CityGuide.find(params[:id])
+		@city_guide = CityGuide.find(params[:id])
 	end
+	
+	def user_not_authorized
+    	flash[:alert] = "You are not authorized to perform this action."
+    	redirect_to(request.referrer || new_user_registration_path)
+  	end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123210155) do
+ActiveRecord::Schema.define(version: 20150130173157) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20150123210155) do
     t.datetime "updated_at"
   end
 
+  add_index "authorizations", ["uid"], name: "index_authorizations_on_uid"
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
+
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
     t.integer  "place_id"
@@ -41,6 +44,9 @@ ActiveRecord::Schema.define(version: 20150123210155) do
     t.datetime "updated_at"
     t.text     "story"
   end
+
+  add_index "city_guide_places", ["city_guide_id"], name: "index_city_guide_places_on_city_guide_id"
+  add_index "city_guide_places", ["place_id"], name: "index_city_guide_places_on_place_id"
 
   create_table "city_guides", force: :cascade do |t|
     t.string   "city",       limit: 255
@@ -52,6 +58,8 @@ ActiveRecord::Schema.define(version: 20150123210155) do
     t.string   "state",      limit: 255
     t.string   "country",    limit: 255
   end
+
+  add_index "city_guides", ["user_id"], name: "index_city_guides_on_user_id"
 
   create_table "followships", force: :cascade do |t|
     t.integer "follower_id"

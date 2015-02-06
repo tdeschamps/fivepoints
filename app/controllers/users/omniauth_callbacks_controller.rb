@@ -28,7 +28,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def oauthorize(kind)
-    @user = User.find_for_ouath(kind, request.env["omniauth.auth"], current_user)
+    @user = User.find_for_oauth(kind, request.env["omniauth.auth"], current_user)
     if @user
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => kind
       session["devise.#{kind.downcase}_data"] = env["omniauth.auth"]

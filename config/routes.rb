@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+    
+    # authenticated :user do
+    #   root :to => "home#feed", :as => "authenticated_root"
+    # end
+
     root 'home#index'
     devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
     post 'places/create_place_from_city_guide' => 'places#create_place_from_city_guide'

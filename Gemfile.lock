@@ -158,6 +158,10 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -271,6 +275,8 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   paperclip
+  pundit
+  quiet_assets
   rails (= 4.2.0)
   ranked-model
   remotipart (~> 1.2)
