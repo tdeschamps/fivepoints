@@ -1,6 +1,7 @@
 class Place < ActiveRecord::Base
 	has_many :city_guide_places
 	has_many :city_guides, through: :city_guide_places
+  has_many :uploaded_files, as: :imageable
 	after_create :set_foursquare_picture, :update_score
   
 	accepts_nested_attributes_for :city_guide_places, allow_destroy: true
@@ -28,8 +29,9 @@ class Place < ActiveRecord::Base
   private
   	
 	def set_foursquare_picture
-		foursquare_additional_infos = FoursquareInfos.new(self.id).get_additional_infos()
+		foursquare_additional_infos = FoursquareInfos.new(self).get_additional_infos()
 		self.update(foursquare_additional_infos)
+    self.uploaded_files.new.file_from_url self.foursquare_picture_url
 	end
 
 end

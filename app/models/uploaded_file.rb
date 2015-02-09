@@ -7,4 +7,7 @@ class UploadedFile < ActiveRecord::Base
   	validates_attachment_content_type :file,
     content_type: /\Aimage\/.*\z/
 
+    def file_from_url(url)
+  		self.file = URI.parse(url)
+	end
 end

@@ -16,9 +16,10 @@ class CityGuidesController < ApplicationController
 	end
 	
 	def create
+		@city_guide = @user.city_guides.new(city_guide_params)
 		authorize @city_guide
-		@cityguide = @user.city_guides.create(city_guide_params)
-		redirect_to edit_user_city_guide_path(@user, @cityguide)
+		@city_guide.save
+		redirect_to edit_user_city_guide_path(@user, @city_guide)
 	end
 	
 	def edit
