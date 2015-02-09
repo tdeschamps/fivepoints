@@ -19,14 +19,15 @@ div.container.padded-down
 = content_for :js do
 	= javascript_include_tag "city_guides/sortable_list.js"
 	= javascript_include_tag "city_guides/foursquare.js"
+	= javascript_include_tag "city_guides/city_guide_places.js"
 	javascript:
 
 		$(document).on('click', '#user_input_foursquare', function () {
 			initFoursquare({
-				city : #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}},
-				city_guide_id : #{{@cityguide.id}}
+				city : #{{(@city_guide.city.gsub(" ","%20")+ "," + @city_guide.state).to_json}},
+				city_guide_id : #{{@city_guide.id}}
 				})
-      		var city = #{{(@cityguide.city.gsub(" ","%20")+ "," + @cityguide.state).to_json}};
+      		var city = #{{(@city_guide.city.gsub(" ","%20")+ "," + @city_guide.state).to_json}};
       		var $this = $(this);
       		var $that = $this.parentsUntil($('form #new_place'));
       		console.log($that);

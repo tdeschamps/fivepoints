@@ -12,7 +12,7 @@ class FoursquareInfos
 	def get_additional_infos
 
 		@foursquare_place_id = Place.find(@place_id).foursquare_id
-		response = open("https://api.foursquare.com/v2/venues/#{@foursquare_place_id}?&client_id=#{@foursquare_id}&client_secret=#{@foursquare_secret}&v=20140806")
+		response = open("https://api.foursquare.com/v2/venues/#{@foursquare_place_id}?&client_id=#{@foursquare_id}&client_secret=#{@foursquare_secret}&v=20150206")
 		json = JSON.parse(response.read.to_s)
 		picture_object = json['response']['venue']['photos']['groups'][0]['items'][0]
 		foursquare_rating = json['response']['venue']['rating']
