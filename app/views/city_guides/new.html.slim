@@ -7,14 +7,14 @@ div.container.padded-down
 		method: 'post', 
 		html: { class: "form-horizontal"}, wrapper: :horizontal_form do |f|
 			.form-inputs
-			= f.input :name, required: true
+			= f.input :name, required: true, input_html: {class: "cityguide-input", placeholder: "From Paris with love"}
 			= f.simple_fields_for :uploaded_files do |file|
 			    = render 'add_picture_form', :f => file
 			div.form-group
 				label.col-sm-3.string.control-label
 					| City
 				div.col-sm-9	    
-					input#user_input_autocomplete_address.form-control autocomplete="off" name="user_input_autocomplete_address" placeholder=("City")    
+					input#user_input_autocomplete_address.form-control.cityguide-input autocomplete="off" name="user_input_autocomplete_address" placeholder=("City")    
 			= f.input :city, as: :hidden, input_html: {id: "locality"}
 			= f.input :country, as: :hidden, input_html: {id: "country"}
 			= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}

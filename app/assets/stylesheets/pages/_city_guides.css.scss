@@ -1,3 +1,9 @@
 .page-wrapper {
 	min-height: 95vh;
 }
+
+.places-row {
+    height: 90vh;
+    z-index: 2;
+    overflow: scroll;
+}

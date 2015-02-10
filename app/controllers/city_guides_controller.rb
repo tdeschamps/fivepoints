@@ -7,6 +7,26 @@ class CityGuidesController < ApplicationController
 	
 	def show
 		@city_guide_places = @city_guide.city_guide_places.all
+		@places = @city_guide.places.all
+		@geolocations = Array.new
+
+		@places.each do |place|
+		  @geolocations << {
+		    type: 'Feature',
+		    geometry: {
+		      type: 'Point',
+		      coordinates: [place.longitude, place.latitude]
+		    },
+		    properties: {
+		      name: place.name,
+		      address: place.address,
+		      :'marker-color' => '#00607d',
+		      :'marker-symbol' => 'circle',
+		      :'marker-size' => 'medium'
+		    }
+		  }
+		end
+		@geolocations = @geolocations.to_json
 	end
 
 	def new
