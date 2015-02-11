@@ -7,13 +7,17 @@ html{
 }
 
 body, p, a, h1, h2, h3 {
-	font-family: $header-font
+	font-family: $header-font;
 }
 
 .padded-down {
 	padding-top: 70px;
+	margin-bottom: 30px;
 }
 
 .panel {
 	overflow: hidden;
+}
+textarea {
+	resize: none;
 }
