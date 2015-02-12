@@ -63,7 +63,7 @@ class CityGuidesController < ApplicationController
 	end
 
 	def city_guide_params
-		params.require(:city_guide).permit(:user_id, :city, :country, :state, :story, uploaded_files_attributes: [:file])
+		params.require(:city_guide).permit(:user_id, :city, :country, :state, :name, :story, uploaded_files_attributes: [:file])
 	end
 
 	def set_city_guide

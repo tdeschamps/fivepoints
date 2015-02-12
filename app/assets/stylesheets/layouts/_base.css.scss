@@ -1,8 +1,9 @@
 html{
 
-  min-height: 100%; 
+  height: 100%; 
   body {
    margin: 0;
+   min-height: 100%;
   }
 }
 
@@ -10,14 +11,20 @@ body, p, a, h1, h2, h3 {
 	font-family: $header-font;
 }
 
-.padded-down {
-	padding-top: 70px;
-	margin-bottom: 30px;
-}
+//.padded-down {
+//	padding-top: 70px;
+//	margin-bottom: 30px;
+//	min-height: 95%;
+//}
 
 .panel {
 	overflow: hidden;
 }
 textarea {
 	resize: none;
+}
+.padded-down {
+	padding-top: 70px;
+	padding-bottom: 30px;
+	min-height: 95vh;
 }

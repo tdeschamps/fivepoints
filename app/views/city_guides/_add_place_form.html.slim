@@ -1,0 +1,25 @@
+- modal ||= false
+- remote = modal ? true : false
+#new-place-form
+	div.col-xs-12.col-sm-6
+		h1 
+			| Create a new Place
+		= simple_form_for [@city_guide, @place],
+		url: url_for(action: 'create_place_from_city_guide', controller: 'places'),
+		method: 'post',
+		remote: true, 
+		html: { class: "form-horizontal" }, wrapper: :horizontal_form do |f|
+			.form-inputs
+			= f.input :name, required: true, input_html: {id: "user_input_foursquare"}
+			= f.input :city, as: :hidden, input_html: {id: "city"}
+			= f.input :zipcode, as: :hidden, input_html: {id: "postalCode"}
+			= f.input :address, as: :hidden, input_html: {id: "address"}
+			= f.input :foursquare_id, as: :hidden, input_html: {id: "foursquare_id"}
+			= f.input :category, as: :hidden, input_html: {id: "category"}
+			= f.input :state, as: :hidden, input_html: {id: "state"}
+			= f.input :longitude, as: :hidden, input_html: {id: "longitude"}
+			= f.input :latitude, as: :hidden, input_html: {id: "latitude"}
+			= f.simple_fields_for :city_guide_places do |city_guide_place|
+				= render 'city_guides/create_city_guide_place', f: city_guide_place
+			.form-actions
+			= f.button :submit, "Create", id: "send-form"

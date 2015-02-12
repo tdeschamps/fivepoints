@@ -1,43 +1,45 @@
 div.container.padded-down
-	div.col-xs-12.col-sm-6.col-sm-offset-3
+	div.col-xs-12.col-sm-8.col-sm-offset-2
 		h1 
 			| Create your city guide
 		= simple_form_for @city_guide,
 		url: url_for(action: 'create', controller: 'city_guides'),
 		method: 'post' do |f|
-
-			.input.input--cityguide
-				= f.input_field :name, {class: "input__field input__field--cityguide", id: "cityguide-name"}
-				label.input__label.input__label--cityguide.input__label--cityguide-color-1 for="cityguide-name" 
-				  span.input__label-content.input__label-content--cityguide Name
-			
-			= f.simple_fields_for :uploaded_files do |file|
-			    = render 'add_picture_form', :f => file
-			
-			.input.input--cityguide
+			.col-xs-12.col-md-6
+				.input.input--cityguide
+					= f.input_field :name, {class: "input__field input__field--cityguide", id: "cityguide-name"}
+					label.input__label.input__label--cityguide.input__label--cityguide-color-1 for="cityguide-name" 
+					  span.input__label-content.input__label-content--cityguide Name
 				
-				input#user_input_autocomplete_address.cityguide-input.input__field.input__field--cityguide autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
+				= f.simple_fields_for :uploaded_files do |file|
+				    = render 'add_picture_form', :f => file
 				
-				label.input__label.input__label--cityguide.input__label--cityguide-color-2 for="user_input_autocomplete_address" 
-				  span.input__label-content.input__label-content--cityguide Enter a location  
-					    
-			= f.input :city, as: :hidden, input_html: {id: "locality"}
-			= f.input :country, as: :hidden, input_html: {id: "country"}
-			= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}
-			.input.input--cityguide-story
-				= f.input_field :story,{ required: false, as: :text, class: "input__field input__field--cityguide-story", id: "cityguide-story", placeholder: "Tell us your beautiful story"}
-				label.input__label.input__label--cityguide-story for="cityguide-story" 
-				  span.input__label-content.input__label-content--cityguide-story Story
+				.input.input--cityguide
+					
+					input#user_input_autocomplete_address.cityguide-input.input__field.input__field--cityguide autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
+					
+					label.input__label.input__label--cityguide.input__label--cityguide-color-2 for="user_input_autocomplete_address" 
+					  span.input__label-content.input__label-content--cityguide Enter a location  
+						    
+				= f.input :city, as: :hidden, input_html: {id: "locality"}
+				= f.input :country, as: :hidden, input_html: {id: "country"}
+				= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}
+			
+			.col-xs-12.col-md-6	
+				.input.input--cityguide-story
+				
+					= f.input_field :story,{ required: false, as: :text, class: "input__field input__field--cityguide-story", id: "cityguide-story", placeholder: "Tell us your beautiful story"}
+				
+					label.input__label.input__label--cityguide-story for="cityguide-story" 
+					  span.input__label-content.input__label-content--cityguide-story Story
 			
 			= f.button :submit, "Create", {class: "submit-button progress-button", "data-style" => "fill", "data-horizontal" => ""}
-
 
 = content_for :js do
 
 	script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 	= javascript_include_tag "city_guides/autocomplete.js"
 	= javascript_include_tag "classie.js"
-	= javascript_include_tag "progressButton.js"
 	javascript:
 		(function() {
 			// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
@@ -72,20 +74,4 @@ div.container.padded-down
 				}
 			}
 
-			[].slice.call( document.querySelectorAll( 'input.progress-button' ) ).forEach( function( bttn ) {
-							new ProgressButton( bttn, {
-								callback : function( instance ) {
-									var progress = 0,
-										interval = setInterval( function() {
-											progress = Math.min( progress + Math.random() * 0.1, 1 );
-											instance._setProgress( progress );
-
-											if( progress === 1 ) {
-												instance._stop(1);
-												clearInterval( interval );
-											}
-										}, 200 );
-								}
-							} );
-						} );
 		})();

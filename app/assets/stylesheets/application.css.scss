@@ -2,6 +2,8 @@
  // "bootstrap-sass" imports
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
  @import "jquery-ui";
  // Import our navbar.scss after bootstrap
  @import "globals/all";

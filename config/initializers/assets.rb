@@ -14,5 +14,4 @@ Rails.application.config.assets.precompile += %w( city_guides/foursquare_autocom
 Rails.application.config.assets.precompile += %w( classie.js )
 Rails.application.config.assets.precompile += %w( scrollReveal.js )
 Rails.application.config.assets.precompile += %w( city_guides/map.js )
-Rails.application.config.assets.precompile += %w( progressButton.js )
 Rails.application.config.assets.precompile += %w( scrollReveal.js )

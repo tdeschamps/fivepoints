@@ -1,2 +1,5 @@
 .nested-fields.input.input--cityguide
-  = f.file_field :file, :label => "Upload an image"
+  = f.file_field :file, :label => "Upload an image", class:"hide", id:"file-upload"
+  .upload
+	  i.fa.fa-camera-retro.fa-4x.upload-icon
+	  label.upload-label.input__label for="image-input" Add your picture

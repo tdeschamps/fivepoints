@@ -1,6 +1,15 @@
 form {
 		font-size: $bigger-size;
 		font-weight: $weight-light;
+		.upload {
+			cursor:pointer;
+			label {
+				cursor: pointer;
+				width: 60%;
+				float: none;
+				padding: 0;
+			}
+		}
 }
 .input {
 	position: relative;
@@ -38,7 +47,7 @@ form {
 	width: 40%;
 	color: #6a7989;
 	font-weight: $weight-light;
-	font-size: 75%;
+	font-size: 100%;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -50,6 +59,12 @@ form {
 .input__label-content {
 	position: relative;
 	display: block;
-	padding: 1.6em 0;
+	padding: 0.8em 0;
 	width: 100%;
 }
+.upload-icon {
+	height:50px;
+	width:50px;
+	margin-right: 0.5em;
+}
+

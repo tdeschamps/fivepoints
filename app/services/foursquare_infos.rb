@@ -18,9 +18,12 @@ class FoursquareInfos
 		response = open(foursquare_place_url)
 		p response
 		json = JSON.parse(response.read.to_s)
-		picture_object = json['response']['venue']['photos']['groups'][0]['items'][0]
+		if json['response']['venue']['photos']['count'] > 0
+			picture_object = json['response']['venue']['photos']['groups'][0]['items'][0] 
+			picture_url = "#{picture_object['prefix']}#{picture_object['width']}x#{picture_object['height']}#{picture_object['suffix']}"
+		end
 		foursquare_rating = json['response']['venue']['rating']
-		picture_url = "#{picture_object['prefix']}#{picture_object['width']}x#{picture_object['height']}#{picture_object['suffix']}"
+		
 		
 		return {foursquare_picture_url: picture_url, foursquare_rating: foursquare_rating}
 	

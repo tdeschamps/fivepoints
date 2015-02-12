@@ -1,9 +1,9 @@
 .footer {
 	position: relative;
 	width: 100%;
-	background: asset-url('footer_pttrn.png') repeat;
 	background-color: lightgrey;
 	min-height: 5vh;
+	bottom:0;
 }
 
 .footer-wrapper {
