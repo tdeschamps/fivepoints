@@ -3,14 +3,15 @@
 		.cityguide-header style=("background: url('#{@city_guide.uploaded_files.last.file.url(:large)}') no-repeat fixed; background-size:cover;")			
 		h1
 					= @city_guide.name
-	
-	.row
-		.col-xs-12.col-sm-6.col-md-3
-			.col-xs-12
-				ul.place-list.list-unstyled.ui-sortable#sortable
-					- @city_guide_places.each do |city_guide_place|
-						= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place }	
-					= render 'add_place' if @city_guide_places.count < 5
+	.container
+		.row
+			ul.place-list.list-unstyled.ui-sortable#sortable
+			
+				- @city_guide_places.each do |city_guide_place|
+					
+					= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place} 
+						
+				= render 'add_place' if @city_guide_places.count < 5
 			- if @city_guide_places.count >= 5
 				.col-xs-12
 					p Want to add anew awesome place? You need to tick one out of your guide first, sorry :)
@@ -18,10 +19,12 @@
 = render "add_place_modal"
 .md-overlay
 = content_for :js do
+	= javascript_include_tag "classie.js"
 	= javascript_include_tag "city_guides/sortable_list.js"
 	= javascript_include_tag "city_guides/foursquare.js"
 	= javascript_include_tag "city_guides/city_guide_places.js"
-	= javascript_include_tag "classie.js"
+	= javascript_include_tag "city_guides/newUpload.js"
+	
 	javascript:
 
 		$(document).on('click', '#user_input_foursquare', function () {

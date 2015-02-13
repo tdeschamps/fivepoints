@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	$( '#sortable' ).sortable();
+    $( '#sortable' ).disableSelection();
+    
 	$('#add-place').click(function() {
 		var nb_places = $("tbody > tr").length;
 		

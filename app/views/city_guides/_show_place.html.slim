@@ -1,11 +1,10 @@
-li.panel data-item-id = (city_guide_place.id if city_guide_place || 0)
-	.col-xs-12.col-sm-6
-		.cityguide-place style=("background: url('#{place.foursquare_picture_url}') center;") 
-	div.col-xs-12.col-sm-6
-		h1 
-			= place.name
-		ul
-			li 
-				= place.address
-			li 
-				= place.city
+li.item.col-xs-12.col-sm-6.col-md-4
+	- if place.foursquare_picture_url || city_guide_place.uploaded_files.first
+		.tile-link style=("background-image: url('#{place.foursquare_picture_url}');")
+			.cityguide-tile data-item-id = (city_guide_place.id if city_guide_place || 0)
+				h2 #{place.name}
+	- else
+		.tile-link
+			.cityguide-tile data-item-id = (city_guide_place.id if city_guide_place || 0)
+				h2 #{place.name} 	
+				

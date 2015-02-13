@@ -6,8 +6,8 @@ jQuery ->
     ##$('.table td').css('width', desired_width)
 
     $('#sortable').sortable(
-      axis: 'y'
-      items: '.panel'
+      #axis: 'y'
+      items: '.item'
       cursor: 'move'
 
       sort: (e, ui) ->

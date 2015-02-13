@@ -25,14 +25,3 @@ function onPlaceChanged() {
 google.maps.event.addDomListener(window, 'load', function() {
   initializeAutocomplete('user_input_autocomplete_address');
 });
-
-$(document).ready(function() {
-  var $realInputField;
-  $realInputField = $('#file-upload');
-  $realInputField.change(function() {
-    return $('.upload label').text($(this).val().replace(/^.*[\\\/]/, ''));
-  });
-  return $('form .upload').click(function() {
-    return $realInputField.click();
-  });
-});
