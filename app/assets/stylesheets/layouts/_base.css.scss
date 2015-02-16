@@ -8,7 +8,7 @@ html{
 }
 
 body, p, a, h1, h2, h3 {
-	font-family: $header-font;
+	font-family: $base-font;
 }
 
 //.padded-down {
@@ -27,4 +27,7 @@ textarea {
 	padding-top: 70px;
 	padding-bottom: 30px;
 	min-height: 95vh;
+}
+.light {
+	font-weight: $weight-light;
 }

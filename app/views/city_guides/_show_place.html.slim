@@ -1,10 +1,12 @@
 li.item.col-xs-12.col-sm-6.col-md-4
 	- if place.foursquare_picture_url || city_guide_place.uploaded_files.first
-		.tile-link style=("background-image: url('#{place.foursquare_picture_url}');")
+		.tile-place.row-space-4 style=("background-image: url('#{place.foursquare_picture_url}');")
 			.cityguide-tile data-item-id = (city_guide_place.id if city_guide_place || 0)
-				h2 #{place.name}
+				.vertical-middle
+					h2 #{place.name}
 	- else
-		.tile-link
+		.tile-place.row-space-4
 			.cityguide-tile data-item-id = (city_guide_place.id if city_guide_place || 0)
-				h2 #{place.name} 	
+				.vertical-middle
+					h2 #{place.name} 	
 				

@@ -1,9 +1,11 @@
 .page-wrapper
 	.header-wrapper
-		.cityguide-header style=("background: url('#{@city_guide.uploaded_files.last.file.url(:large)}') no-repeat fixed; background-size:cover;")			
-		h1
-					= @city_guide.name
+		.cityguide-header style=("background: url('#{@city_guide.uploaded_files.last.file.url(:large)}') no-repeat fixed; background-size:cover;")
+		.darken			
+			h1
+				= @city_guide.name
 	.container
+		= render "cityguide_story", city_guide: @city_guide if @city_guide.story
 		.row
 			ul.place-list.list-unstyled.ui-sortable#sortable
 			
@@ -12,18 +14,29 @@
 					= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place} 
 						
 				= render 'add_place' if @city_guide_places.count < 5
-			- if @city_guide_places.count >= 5
-				.col-xs-12
-					p Want to add anew awesome place? You need to tick one out of your guide first, sorry :)
-						
+				- if @city_guide_places.count >= 5
+					li.col-xs-12.col-sm-6.col-md-4
+						.tile-full.row-space-4
+							.cityguide-tile
+								.vertical-middle
+									p Want to add anew awesome place? You need to tick one out of your guide first, sorry :)
+	.map-wrapper
+		#map
 = render "add_place_modal"
 .md-overlay
+
+= content_tag(:div, id: "city-coordinates", data: {url: @city_coordinates}) do
+
+= content_tag(:div, id: "geolocations", data: {url: @geolocations}) do
+
 = content_for :js do
 	= javascript_include_tag "classie.js"
 	= javascript_include_tag "city_guides/sortable_list.js"
 	= javascript_include_tag "city_guides/foursquare.js"
 	= javascript_include_tag "city_guides/city_guide_places.js"
 	= javascript_include_tag "city_guides/newUpload.js"
+	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
+	= javascript_include_tag "city_guides/map"
 	
 	javascript:
 

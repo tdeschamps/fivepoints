@@ -75,11 +75,14 @@ var ModalEffects = (function() {
 			function removeModal( hasPerspective ) {
 				classie.remove( modal, 'md-show' );
 			}	
+			console.log(el);
+			console.log(modal);
 			
 			el.addEventListener( 'click', function( ev ) {
 				classie.add( modal, 'md-show' );
-				overlay.removeEventListener( 'click', removeModalHandler );
-				overlay.addEventListener( 'click', removeModalHandler );
+				console.log('toto');
+				overlay.removeEventListener( 'click', removeModal );
+				overlay.addEventListener( 'click', removeModal );
 
 
 			});

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130173157) do
+ActiveRecord::Schema.define(version: 20150216095738) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20150130173157) do
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "story"
   end
 
   add_index "city_guide_places", ["city_guide_id"], name: "index_city_guide_places_on_city_guide_id"

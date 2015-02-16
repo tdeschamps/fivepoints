@@ -1,15 +1,18 @@
 $(document).ready(function() {
 	L.mapbox.accessToken = 'pk.eyJ1IjoidGhvbWFzZHVjaGFtcCIsImEiOiI3VWtQXzdBIn0.o8nQtuU21tFPiTTiDajong';
-	var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
+	var cityCoordinates =  $('#city-coordinates').data('url')
+  var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
 		zoomControl: false
-	}).setView([48.8534100 , 2.3488000], 12);
+	}).setView([cityCoordinates[0] , cityCoordinates[1]], 12);
 	map.doubleClickZoom.disable();
 	map.scrollWheelZoom.disable();
   
   var geolocations = $('#geolocations').data('url');
 	geojson = geolocations
-  map.featureLayer.setGeoJSON(geojson)
+  
 
+  if (geolocations) {
+    map.featureLayer.setGeoJSON(geojson)
     map.featureLayer.on('layeradd', function(e) {
       var marker, popupContent, properties;
       marker = e.layer;
@@ -20,6 +23,7 @@ $(document).ready(function() {
         minWidth: 320
       });
     });
+  };  
 
 
 });
