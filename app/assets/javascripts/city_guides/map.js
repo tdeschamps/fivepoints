@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	L.mapbox.accessToken = 'pk.eyJ1IjoidGhvbWFzZHVjaGFtcCIsImEiOiI3VWtQXzdBIn0.o8nQtuU21tFPiTTiDajong';
 	var cityCoordinates =  $('#city-coordinates').data('url')
-  var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
+  var map = L.mapbox.map('map', 'thomasduchamp.3d50a81c', {
 		zoomControl: false
 	}).setView([cityCoordinates[0] , cityCoordinates[1]], 12);
 	map.doubleClickZoom.disable();
