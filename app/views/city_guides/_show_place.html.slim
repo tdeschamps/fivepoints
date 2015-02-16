@@ -8,5 +8,6 @@ li.item.col-xs-12.col-sm-6.col-md-4
 		.tile-place.row-space-4
 			.cityguide-tile data-item-id = (city_guide_place.id if city_guide_place || 0)
 				.vertical-middle
-					h2 #{place.name} 	
+					h2 #{place.name}
+= render "city_guides/cityguide_full" if city_guide_place.rank == 5					 	
 				

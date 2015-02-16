@@ -1,2 +1,14 @@
-$("<%= j render partial: 'city_guides/show_place', locals: {place: @place, city_guide_place: @city_guide_place } %>").insertBefore($('#new-place'));
-console.log($('.place-list > li').length)
+$("<%= j render partial: 'city_guides/show_place', locals: {place: @place, city_guide_place: @city_guide_place} %>").insertBefore($('#new-place'));
+if ($('.place-list > li').length > 5) {
+	$('#new-place').fadeOut();
+}
+
+
+
+L.marker([@place.latitude, @place.longitude], {
+    icon: L.mapbox.marker.icon({
+        'marker-size': 'medium',
+        'marker-symbol': 'circle',
+        'marker-color': '#FF4A50'
+    })
+}).addTo(map);

@@ -14,12 +14,7 @@
 					= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place} 
 						
 				= render 'add_place' if @city_guide_places.count < 5
-				- if @city_guide_places.count >= 5
-					li.col-xs-12.col-sm-6.col-md-4
-						.tile-full.row-space-4
-							.cityguide-tile
-								.vertical-middle
-									h3 Want to add a new awesome place? You need to tick one out of your guide first, sorry :)
+					
 	.map-wrapper
 		#map
 = render "add_place_modal"

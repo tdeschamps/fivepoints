@@ -27,7 +27,14 @@ class CityGuidesController < ApplicationController
 	def edit
 		authorize @city_guide
 		@city_guide_places = @city_guide.city_guide_places.all
-		@city_coordinates = (Geocoder::Calculations.geographic_center @city_guide.places.map {|a| [a.latitude, a.longitude]}).to_json
+		@city_latitudes, @city_longitudes = [], []
+		
+		@city_guide.places.all.each do |a| 
+				@city_latitudes << a.latitude
+				@city_longitudes << a.longitude
+			end
+
+		@city_coordinates= [[@city_latitudes.min,@city_longitudes.min], [@city_latitudes.max, @city_longitudes.max]].to_json
 		@place = Place.new()
 		@new_city_guide_places = @place.city_guide_places.build()
 		@new_city_guide_places_file = @new_city_guide_places.uploaded_files.build()
