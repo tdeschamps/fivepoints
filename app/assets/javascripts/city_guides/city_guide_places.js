@@ -80,7 +80,6 @@ var ModalEffects = (function() {
 			
 			el.addEventListener( 'click', function( ev ) {
 				classie.add( modal, 'md-show' );
-				console.log('toto');
 				overlay.removeEventListener( 'click', removeModal );
 				overlay.addEventListener( 'click', removeModal );
 

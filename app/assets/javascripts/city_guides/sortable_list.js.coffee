@@ -15,15 +15,15 @@ jQuery ->
       stop: (e, ui) ->
         ui.item.removeClass('active-item-shadow')
         # highlight the row on drop to indicate an update
-        ui.item.children('td').effect('highlight', {}, 1000)
+        ui.item.children('li').effect('highlight', {}, 1000)
       update: (e, ui) ->
         item_id = ui.item.data('item-id')
         position = ui.item.index() + 1 # this will not work with paginated items, as the index is zero on every page
         console.log(position)
         $.ajax(
           type: 'POST'
-          url: '/city_guide_places/update_rank'
+          url: '/city_guide_places/update_row_order'
           dataType: 'json'
-          data: { city_guide_place: {city_guide_place_id: item_id, rank: position } }
+          data: { city_guide_place: {city_guide_place_id: item_id, row_order_position: position } }
         )
     )

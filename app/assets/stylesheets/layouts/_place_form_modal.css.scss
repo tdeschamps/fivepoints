@@ -1,0 +1,11 @@
+#new_cityguide-place_modal {
+	.input__field--cityguide, 
+	.input__label,
+	.upload-icon {
+		color: white;
+	}
+	.input__label--cityguide-color-1::after {
+		border-color: $white;
+	}
+	
+}

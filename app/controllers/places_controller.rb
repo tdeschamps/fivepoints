@@ -75,7 +75,7 @@ class PlacesController < ApplicationController
 	def foursquare_place_params
 		@foursquare_place_params = params.require(:place)
 										.permit(:foursquare_id, :city, :zipcode, :name, :address, :latitude, :longitude, :category, :state, 
-												city_guide_places_attributes: [:rank, :city_guide_id, :place, :story, 
+												city_guide_places_attributes: [:row_order_position, :city_guide_id, :place, :story, 
 												uploaded_files_attributes: [:file]]
 												)
 	end

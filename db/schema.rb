@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216095738) do
+ActiveRecord::Schema.define(version: 20150217121025) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150216095738) do
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
     t.integer  "place_id"
-    t.integer  "rank"
+    t.integer  "row_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

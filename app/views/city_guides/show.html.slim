@@ -5,7 +5,7 @@
 			.title-cell
 				.cover-title style=("background: url('#{@city_guide.uploaded_files.last.file.url(:large)}') center no-repeat;")
 					h1 #{@city_guide.name}
-			.ul.place-list.list-unstyled.ui-sortable#sortable
+			.ul.place-list.list-unstyled
 				- @city_guide_places.each do |city_guide_place|
 					.col-xs-12
 								= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place }	

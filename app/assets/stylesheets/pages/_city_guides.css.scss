@@ -1,13 +1,25 @@
 .page-wrapper {
 	min-height: 95vh;
 }
+#story {
+	p {
+		font-size:22px;
+	}
 
+	h2 {
+		font-size: 36px;
+		font-weight: 700;
+	}
+}
 .places-row {
     height: 90vh;
     z-index: 2;
-    overflow: scroll;
+    //overflow: scroll;
 }
-
+.places-list-wrapper {
+	//overflow: scroll;
+	max-height: 60vh;
+}
 //modal test
 md-perspective,
 .md-perspective body {

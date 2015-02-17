@@ -4,7 +4,9 @@
 	max-width: 1200px;
 	background-size: cover;
 }
-
+.item {
+  border: 1px solid transparent;
+}
 .vertical-middle {
   vertical-align: middle;
   display: table-cell;
@@ -56,3 +58,6 @@
 .row-space-8 {
   margin-bottom: 50px;
 }
+.size-4 {
+    height: 200px;
+  }

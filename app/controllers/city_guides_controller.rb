@@ -32,7 +32,7 @@ class CityGuidesController < ApplicationController
 		@city_guide.places.all.each do |a| 
 				@city_latitudes << a.latitude
 				@city_longitudes << a.longitude
-			end
+		end
 
 		@city_coordinates= [[@city_latitudes.min,@city_longitudes.min], [@city_latitudes.max, @city_longitudes.max]].to_json
 		@place = Place.new()

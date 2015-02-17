@@ -27,6 +27,7 @@ class Place < ActiveRecord::Base
   	self.ranking = ranking + scores[new_rank.to_s] - scores[previous_rank.to_s]
 		self.save   	
   end
+  
   private
   	
 	def set_foursquare_picture
@@ -35,7 +36,7 @@ class Place < ActiveRecord::Base
 	end
 
   def save_foursquare_picture
-    p "uploading picture..."
+    p self.foursquare_picture_url
     self.uploaded_files.new.file_from_url self.foursquare_picture_url
   end
 

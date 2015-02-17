@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     resources :city_guide_places, only: [:show]
     
-    post 'city_guide_places/update_rank'=> 'city_guide_places#update_rank'
+    post 'city_guide_places/update_row_order'=> 'city_guide_places#update_row_order'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
