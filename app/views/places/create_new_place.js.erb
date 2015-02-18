@@ -1,15 +1,6 @@
 $("<%= j render partial: 'city_guides/show_place_edit', locals: {place: @place, city_guide_place: @city_guide_place} %>").insertBefore($('#new-place'));
-if ($('.place-list > li').length > 5) {
-	$('#new-place').fadeOut();
-	$("<%= j render partial: 'city_guides/cityguide_full'%>").appendTo('ul');
+
+if ($('.place-list > li').length > 4) {
+	$('#new-place').hide();
+	$("<%= j render partial: 'city_guides/cityguide_full' %>").appendTo($('ul.place-list')).fadeIn();
 }
-
-
-console.log(map)
-/*L.marker([@place.latitude, @place.longitude], {
-    icon: L.mapbox.marker.icon({
-        'marker-size': 'medium',
-        'marker-symbol': 'circle',
-        'marker-color': '#FF4A50'
-    })
-}).addTo(map);*/

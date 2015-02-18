@@ -1,11 +1,15 @@
 $(document).ready(function() {
 	L.mapbox.accessToken = 'pk.eyJ1IjoidGhvbWFzZHVjaGFtcCIsImEiOiI3VWtQXzdBIn0.o8nQtuU21tFPiTTiDajong';
-	var cityCoordinates =  $('#city-coordinates').data('url')
+	var cityBoundariesCoordinates =  $('#city-boundaries-coordinates').data('url')
+  
+
   var map = L.mapbox.map('map', 'thomasduchamp.3d50a81c', {
 		zoomControl: true
-	}).fitBounds([cityCoordinates[0] , cityCoordinates[1]], 12);
-	map.doubleClickZoom.disable();
-	map.scrollWheelZoom.disable();
+	}).fitBounds([cityBoundariesCoordinates[0] , cityBoundariesCoordinates[1]], 12);
+	map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
   
@@ -15,7 +19,6 @@ $(document).ready(function() {
 
   if (geolocations) {
     myLayer.on('layeradd', function(e) {
-      console.log("toto");
       var marker, popupContent, properties;
       marker = e.layer;
       properties = marker.feature.properties;
@@ -29,5 +32,30 @@ $(document).ready(function() {
     myLayer.setGeoJSON(geojson);
   };  
 
+  $(document).on('click', '#send-form', function(){
+    //$('#new-place-form').fadeOut(200, function(){
+    //  $('#new-place-form').find('input[type="text"]').val('');
+    //})
 
+    L.mapbox.featureLayer({
+        // this feature is in the GeoJSON format: see geojson.org
+        // for the full specification
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            // coordinates here are in longitude, latitude order because
+            // x, y is the standard for GeoJSON and many formats
+            coordinates: [$('input#longitude').val(),$('input#latitude').val()]
+        },
+        properties: {
+            title: $('input#user_input_foursquare').val(),
+            description: $('input#address').val(),
+            // one can customize markers by adding simplestyle properties
+            // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+            'marker-size': 'medium',
+            'marker-symbol': 'circle',
+            'marker-color': '#FF4A50'
+        }
+    }).addTo(map);
+  });
 });

@@ -36,8 +36,14 @@ class Place < ActiveRecord::Base
 	end
 
   def save_foursquare_picture
-    p self.foursquare_picture_url
-    self.uploaded_files.new.file_from_url self.foursquare_picture_url
+    
+    begin
+      self.uploaded_files.new.file_from_url self.foursquare_picture_url 
+    rescue Exception => e
+      p e.message
+      self
+    end
+  
   end
 
 end
