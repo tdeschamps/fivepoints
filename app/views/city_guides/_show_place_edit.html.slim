@@ -4,6 +4,8 @@ li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (city_guide_place.id if city_
 			.cityguide-tile 
 				.vertical-middle
 					h2 #{place.name}
+			= link_to archive_url(id: city_guide_place.id), method: :post, remote: true, class: 'md-close'
+				i.fa.fa-times.fa-4x
 	- else
 		.tile-place.row-space-4
 			.cityguide-tile data-item-id = (city_guide_place.id if city_guide_place || 0)

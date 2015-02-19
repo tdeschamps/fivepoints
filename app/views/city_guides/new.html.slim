@@ -1,4 +1,4 @@
-div.container.padded-down
+div.container.padded-down.full-page
 	div.col-xs-12.col-sm-8.col-sm-offset-2
 		h1 
 			| Create your city guide
@@ -9,7 +9,7 @@ div.container.padded-down
 				.input.input--cityguide
 					= f.input_field :name, {class: "input__field input__field--cityguide", id: "cityguide-name"}
 					label.input__label.input__label--cityguide.input__label--cityguide-color-1 for="cityguide-name" 
-					  span.input__label-content.input__label-content--cityguide Name
+					  span.input__label-content.input__label-content--cityguide Title
 				
 				= f.simple_fields_for :uploaded_files do |file|
 				    = render 'add_picture_form', :f => file

@@ -24,4 +24,4 @@
 			= f.simple_fields_for :city_guide_places do |city_guide_place|
 				= render 'city_guides/create_city_guide_place', f: city_guide_place
 			.form-actions
-			= f.button :submit, "Create", id: "send-form"
+			= f.button :submit, "Create", id: "send-form", class: "cityguideplace-button progress-button"

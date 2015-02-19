@@ -9,3 +9,18 @@
 	}
 	
 }
+.cityguideplace-button {
+	@include button($white);
+	color: $sunset-orange;
+	&:hover {
+		background-color: lightblue;
+		color: $white;
+	}
+}
+.md-close {
+	position: absolute;
+	top:0;
+	right:0;
+	cursor:	pointer;
+	color: white;
+}
