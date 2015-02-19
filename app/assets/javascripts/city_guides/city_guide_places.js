@@ -1,37 +1,40 @@
 $(document).ready(function() {
 	$( '#sortable' ).sortable();
     $( '#sortable' ).disableSelection();
-    
-	$('#add-place').click(function() {
-		var nb_places = $("tbody > tr").length;
-		
-		if (nb_places >= 4) {
-			$('#add-place').hide();
-		};
-	});
 
 	$(document).on('click', '#send-form', function(){
 		//$('#new-place-form').fadeOut(200, function(){
 		//	$('#new-place-form').find('input[type="text"]').val('');
 		//})
 		$('.md-close').click();
+		$('#place_city_guide_places_attributes_0_position').val() = parseInt($('#place_city_guide_places_attributes_0_position').val()) - 1;
 	});
 
 
-	  $(document).bind('ajaxError', 'form#new_person', function(event, jqxhr, settings, exception){
+	 $(document).bind('ajaxError', 'form#new-place-form', function(event, jqxhr, settings, exception){
 
-	    // note: jqxhr.responseJSON undefined, parsing responseText instead
-	    $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+	   // note: jqxhr.responseJSON undefined, parsing responseText instead
+	   $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
 
-	  });
+	});
+
+	$(document).on('click', '#send-to-archive', function() {
+		var tile = $(this).parents('li');
+		tile.fadeOut(400, function() {
+			tile.remove();
+			tile.appendTo($('#archived-places-list > ul')).fadeIn(200);
+			var newPlace = document.getElementById('new-place').parentNode;
+			classie.remove( newPlace, 'hidden');
+			$('#cityguide-full').remove();
+			$('#place_city_guide_places_attributes_0_position').val(parseInt($('#place_city_guide_places_attributes_0_position').val()) - 1);
+		})
+	}) 
 });
 
 	(function($) {
 
 	  $.fn.modal_success = function(){
-	    // close modal
-	    this.modal('hide');
-
+	    
 	    // clear form input elements
 	    // todo/note: handle textarea, select, etc
 	    this.find('form input[type="text"]').val('');
@@ -72,11 +75,9 @@ var ModalEffects = (function() {
 			var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
 				close = modal.querySelector( '.md-close' );
 			
-			function removeModal( hasPerspective ) {
+			function removeModal() {
 				classie.remove( modal, 'md-show' );
 			}	
-			console.log(el);
-			console.log(modal);
 			
 			el.addEventListener( 'click', function( ev ) {
 				classie.add( modal, 'md-show' );
@@ -97,4 +98,38 @@ var ModalEffects = (function() {
 
 	init();
 
+})();
+
+(function() {
+	// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+	if (!String.prototype.trim) {
+		(function() {
+			// Make sure we trim BOM and NBSP
+			var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+			String.prototype.trim = function() {
+				return this.replace(rtrim, '');
+			};
+		})();
+	}
+
+	[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+		// in case the input is already filled..
+		if( inputEl.value.trim() !== '' ) {
+			classie.add( inputEl.parentNode, 'input--filled' );
+		}
+
+		// events:
+		inputEl.addEventListener( 'focus', onInputFocus );
+		inputEl.addEventListener( 'blur', onInputBlur );
+	} );
+
+	function onInputFocus( ev ) {
+		classie.add( ev.target.parentNode, 'input--filled' );
+	}
+
+	function onInputBlur( ev ) {
+		if( ev.target.value.trim() === '' ) {
+			classie.remove( ev.target.parentNode, 'input--filled' );
+		}
+	}
 })();

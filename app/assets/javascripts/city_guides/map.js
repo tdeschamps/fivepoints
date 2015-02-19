@@ -5,7 +5,7 @@ $(document).ready(function() {
 
   var map = L.mapbox.map('map', 'thomasduchamp.3d50a81c', {
 		zoomControl: true
-	}).fitBounds([cityBoundariesCoordinates[0] , cityBoundariesCoordinates[1]], 12);
+	}).setView([cityBoundariesCoordinates[0] , cityBoundariesCoordinates[1]], 12);
 	map.touchZoom.disable();
   map.doubleClickZoom.disable();
   map.scrollWheelZoom.disable();
@@ -30,14 +30,18 @@ $(document).ready(function() {
       });
     });
     myLayer.setGeoJSON(geojson);
-  };  
+  }; 
+
+  console.log(myLayer.getBounds());
+  map.fitBounds(myLayer.getBounds());
+  
 
   $(document).on('click', '#send-form', function(){
     //$('#new-place-form').fadeOut(200, function(){
     //  $('#new-place-form').find('input[type="text"]').val('');
     //})
 
-    L.mapbox.featureLayer({
+    var featureLayer = L.mapbox.featureLayer({
         // this feature is in the GeoJSON format: see geojson.org
         // for the full specification
         type: 'Feature',
@@ -57,5 +61,6 @@ $(document).ready(function() {
             'marker-color': '#FF4A50'
         }
     }).addTo(map);
-  });
+    map.fitBounds(featureLayer.getBounds());
+  }); 
 });

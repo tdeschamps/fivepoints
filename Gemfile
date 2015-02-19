@@ -29,7 +29,7 @@ gem 'remotipart', '~> 1.2'
 #add geocode coordinate to new places
 gem 'geocoder'
 #sort places within city guide
-gem 'ranked-model'
+gem 'acts_as_list'
 #security
 gem 'pundit'
 #add bootstrap

@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150218103140) do
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
     t.integer  "place_id"
-    t.integer  "row_order"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

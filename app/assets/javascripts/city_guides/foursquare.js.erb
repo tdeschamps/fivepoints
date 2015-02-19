@@ -12,14 +12,14 @@
 		var resultsListID = "";
 
 		$.ui.autocomplete.prototype._renderItem = function (ul, item) {
-			var wrapperAutocomplete = $("<a class='col-xs-12'>");
-			var wrapperIcon = $("<div style= 'height: 32px; width: 32px; float: left; margin-top : 9px'>").append("<img class='categoryIcon' src=" +item.categoryPic+">");
-			var wrapperVenue = $("<a >");
-			var wrapperVenueName = $("<div>").append("<a>" + item.name +"</a>");
+			var wrapperAutocomplete = $("<a>");
+			var wrapperIcon = $("<div style= 'height: 32px; width: 32px; float: left; margin: auto 0;'>").append("<img class='categoryIcon' src=" +item.categoryPic+">");
+			var wrapperVenue = $("<a>");
+			var wrapperVenueName = $("<div style= 'padding-left: 5px;''>").append("<a>" + item.name +"</a>");
 			var wrapperVenueAddress = $("<div>").append("<a>" + item.address + ", " + item.city + "</a>");
 			wrapperVenue = wrapperVenue.append(wrapperVenueName).append(wrapperVenueAddress);
 			var autocompleteReturn = wrapperAutocomplete.append(wrapperIcon).append(wrapperVenue);
-			autocompleteReturn = $( "<li style= 'height: 50px'></li>" ).append(autocompleteReturn)
+			autocompleteReturn = $( "<li style= 'min-height: 50px; overflow: hidden'></li>" ).append(autocompleteReturn)
 			autocompleteReturn.resize();
 			//console.log(autocompleteReturn.appendTo( ul ))
 			return autocompleteReturn.appendTo( ul );

@@ -28,30 +28,25 @@ class CityGuidesController < ApplicationController
 		
 		authorize @city_guide
 		
-		@city_guide_places = @city_guide.city_guide_places.all
+		@city_guide_places = @city_guide.city_guide_places.active_places
+		@archived_city_guide_places = @city_guide.city_guide_places.archived_places
 		city_boundaries_latitudes, city_boundaries_longitudes = [], []
-		
-		if @city_guide.places.count > 1
+		@city_coordinates = (Geocoder.search @city_guide.formatted_address)[0].data["geometry"]["location"].map { |k, v| v}
+		if @city_guide_places.count > 1
 
-			@city_guide.places.all.each do |a| 
+			@city_guide_places.each do |a|
+					a = a.place 
 					city_boundaries_latitudes << a.latitude if a.latitude
 					city_boundaries_longitudes << a.longitude if a.longitude
 			end
-		
+			
 			@city_boundaries_coordinates= [[city_boundaries_latitudes.min,city_boundaries_longitudes.min], [city_boundaries_latitudes.max, city_boundaries_longitudes.max]].to_json
-		else
-			city_coordinates = (Geocoder.search @city_guide.formatted_address)[0].data["geometry"]["bounds"]
-			@city_boundaries_coordinates = [
-											[city_coordinates["southwest"]["lat"], city_coordinates["southwest"]["lng"]],
-											[city_coordinates["northeast"]["lat"], city_coordinates["northeast"]["lng"]]
-										]
 		end
 		
 		@place = Place.new()
 		@new_city_guide_places = @place.city_guide_places.build()
 		@new_city_guide_places_file = @new_city_guide_places.uploaded_files.build()
-		@geolocations = places_coordinates @city_guide.places
-		
+		@geolocations = places_coordinates @city_guide.places.where(city_guide_places: {position: [1..5]})
 	end
 	
 	def index

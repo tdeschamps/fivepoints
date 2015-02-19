@@ -22,8 +22,8 @@ jQuery ->
         console.log(position)
         $.ajax(
           type: 'POST'
-          url: '/city_guide_places/update_row_order'
+          url: '/city_guide_places/update_position'
           dataType: 'json'
-          data: { city_guide_place: {city_guide_place_id: item_id, row_order_position: position } }
+          data: { city_guide_place: {city_guide_place_id: item_id, position: position } }
         )
     )
