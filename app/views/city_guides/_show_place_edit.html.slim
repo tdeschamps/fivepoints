@@ -7,6 +7,7 @@ li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (city_guide_place.id if city_
 			- unless archive
 				= link_to archive_url(id: city_guide_place.id), method: :post, remote: true, class: 'archive-tile', id: 'send-to-archive'
 					i.fa.fa-times.fa-4x
+				.rank-square	
 	- else
 		.tile-place.row-space-4
 			.cityguide-tile 
@@ -15,5 +16,6 @@ li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (city_guide_place.id if city_
 			- unless archive		
 				= link_to archive_url(id: city_guide_place.id), method: :post, remote: true, class: 'archive-tile', id: 'send-to-archive'
 					i.fa.fa-times.fa-4x
+
 								 	
 				

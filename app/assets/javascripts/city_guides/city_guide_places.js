@@ -28,7 +28,14 @@ $(document).ready(function() {
 			$('#cityguide-full').remove();
 			$('#place_city_guide_places_attributes_0_position').val(parseInt($('#place_city_guide_places_attributes_0_position').val()) - 1);
 		})
-	}) 
+	})
+
+	$(document).on('mouseup', '#sortable', function(){
+		var l = $('#sortable > li.item').length;
+		for (var i = 0; i < l; i ++) {
+			console.log($('#sortable > li.item')[i]);
+		}
+	}); 
 });
 
 	(function($) {

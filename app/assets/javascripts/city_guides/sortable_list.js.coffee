@@ -19,7 +19,6 @@ jQuery ->
       update: (e, ui) ->
         item_id = ui.item.data('item-id')
         position = ui.item.index() + 1 # this will not work with paginated items, as the index is zero on every page
-        console.log(position)
         $.ajax(
           type: 'POST'
           url: '/city_guide_places/update_position'
