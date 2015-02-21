@@ -19,6 +19,12 @@ jQuery ->
       update: (e, ui) ->
         item_id = ui.item.data('item-id')
         position = ui.item.index() + 1 # this will not work with paginated items, as the index is zero on every page
+        l = $('#sortable > li.item').not('.ui-sortable-placeholder').length
+        i = 0
+        while i < l - 1
+          $('#sortable > li.item').not('.ui-sortable-placeholder').find($('.rank-square')).find($('h1'))[i].innerHTML = i + 1
+          i++
+          
         $.ajax(
           type: 'POST'
           url: '/city_guide_places/update_position'

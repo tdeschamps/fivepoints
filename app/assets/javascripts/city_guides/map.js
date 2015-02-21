@@ -61,6 +61,6 @@ $(document).ready(function() {
             'marker-color': '#FF4A50'
         }
     }).addTo(map);
-    map.fitBounds(featureLayer.getBounds());
+    //map.fitBounds(featureLayer.getBounds());
   }); 
 });

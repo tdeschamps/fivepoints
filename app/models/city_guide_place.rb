@@ -5,7 +5,7 @@ class CityGuidePlace < ActiveRecord::Base
 	has_many :uploaded_files, as: :imageable
 
 	scope :active_places , -> { where(position: [1..5]).order('position ASC') }
-	scope :archived_places , -> { where.not(position: [1..5]) }
+	scope :archived_places , -> { where(position: nil) }
 
 	acts_as_list scope: :city_guide
 	
