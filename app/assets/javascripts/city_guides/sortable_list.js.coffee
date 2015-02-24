@@ -21,14 +21,15 @@ jQuery ->
         position = ui.item.index() + 1 # this will not work with paginated items, as the index is zero on every page
         l = $('#sortable > li.item').not('.ui-sortable-placeholder').length
         i = 0
-        while i < l - 1
+        while i < l
           $('#sortable > li.item').not('.ui-sortable-placeholder').find($('.rank-square')).find($('h1'))[i].innerHTML = i + 1
+          console.log($('#sortable > li.item').not('.ui-sortable-placeholder').find($('.rank-square')).find($('h1'))[i].innerHTML)
           i++
-          
+
         $.ajax(
           type: 'POST'
           url: '/city_guide_places/update_position'
           dataType: 'json'
           data: { city_guide_place: {city_guide_place_id: item_id, position: position } }
         )
-    )
+      )
