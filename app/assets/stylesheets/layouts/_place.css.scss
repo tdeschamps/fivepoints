@@ -1,0 +1,72 @@
+.place-main-wrapper {
+	box-shadow: 0 1px 1px #ccc;
+}
+
+.carousel {
+	margin-right: -15px;
+	.carousel-inner {
+		.item {
+			height: 400px;
+			background-size: cover;
+		  	background-position: center;
+		  	border-top-left-radius: 4px;
+		}
+	}
+	.carousel-control {
+  		background: none;
+	}
+}
+.place-main-data {
+	margin-left: -15px;
+	background-color: #ffffff;
+  	padding: 25px 50px 5px 50px;
+  	border-top-right-radius: 4px;
+  	min-height: 200px;
+
+  	h1 {
+  		text-transform: uppercase;
+  		color: $sunset-orange;
+  		font-size: 20px;
+  		margin-top: 10px;
+  	}
+  	.place-main-adress {
+  		padding-top: 10px;
+  		padding-bottom: 10px;
+  		border-top: 1px solid #ccc;
+  		border-bottom: 1px solid #ccc;
+
+  		p {
+  			top:0;
+  			bottom: 0;
+  			margin: auto 0;
+  		}
+  	}
+}
+.place-type {
+  		background-color: $sunset-orange;
+  		max-height:200px;
+  		height: 200px;
+  		top:0;
+  		bottom:0;
+  		position: relative;
+  		margin-left: -15px;
+  		.type-wrapper {
+  			border-top: 2px;
+  			position: absolute;
+  			min-height: 1em;
+  			max-height: 60px;
+  			top:0;
+  			bottom: 0;
+  			margin: auto 15%;
+  			width: 70%;
+  			border-top: 2px solid white;
+  			border-bottom: 2px solid white;
+  			padding-top: 10px;
+  			padding-bottom: 10px;
+  			h1 {
+	  			color:white;
+	  			text-transform: uppercase;
+	  			margin: auto;
+  			}
+  		}
+  	}

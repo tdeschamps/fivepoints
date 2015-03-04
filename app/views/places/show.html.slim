@@ -1,0 +1,29 @@
+.page-wrapper	
+	.container.padded-down
+		.back-link
+			i.fa.fa-arrow-left
+			| Explore #{@place.city}
+		.place-main-wrapper
+			.row
+				.col-xs-12.col-md-7.col-lg-8
+					- if @place.uploaded_files.count > 1
+						= render partial: "./shared/carousel", locals: {pictures: @place.uploaded_files}
+					- else 
+						| toto
+				.col-xs-12.col-md-5.col-lg-4.text-center	
+					.place-main-data
+						h1 #{@place.name}
+						.place-main-adress
+							p #{@place.address}
+						h3 #{@place.city}
+					.place-type.text-center
+						.type-wrapper
+							h1 #{@place.category}
+	.map-wrapper
+		#map
+
+= content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
+
+= content_for :js do
+	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
+	= javascript_include_tag "city_guides/map"												

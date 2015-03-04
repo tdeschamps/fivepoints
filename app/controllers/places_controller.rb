@@ -7,10 +7,11 @@ class PlacesController < ApplicationController
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 	def index
+
 	end
 	
 	def show
-	
+		@place_coordinates = [@place.latitude, @place.longitude]
 	end
 
 	def new
@@ -65,7 +66,7 @@ class PlacesController < ApplicationController
 	private
 
 	def set_place
-		Place.find(params[:id])
+		@place = Place.includes(:uploaded_files).find(params[:id])
 	end
 
 	def place_params

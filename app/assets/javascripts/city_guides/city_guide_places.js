@@ -7,7 +7,6 @@ $(document).ready(function() {
 		//	$('#new-place-form').find('input[type="text"]').val('');
 		//})
 		$('.md-close').click();
-		$('#place_city_guide_places_attributes_0_position').val( parseInt($('#place_city_guide_places_attributes_0_position').val()) + 1 );
 	});
 
 
@@ -23,10 +22,12 @@ $(document).ready(function() {
 		tile.fadeOut(400, function() {
 			tile.remove();
 			tile.find('.rank-square').remove();
+			tile.find('#send-to-archive').remove();
 			tile.appendTo($('#archived-places-list > ul')).fadeIn(200);
-			var newPlace = document.getElementById('new-place').parentNode;
+			var newPlace = document.getElementById('new-place');
 			classie.remove( newPlace, 'hidden');
 			$('#cityguide-full').remove();
+			$('#new-place').show(200);
 			$('#place_city_guide_places_attributes_0_position').val(parseInt($('#place_city_guide_places_attributes_0_position').val()) - 1);
 		})
 	})
@@ -38,9 +39,9 @@ $(document).ready(function() {
 	    
 	    // clear form input elements
 	    // todo/note: handle textarea, select, etc
-	    this.find('form input[type="text"]').val('');
-
+	    $('#place_city_guide_places_attributes_0_position').val( parseInt($('#place_city_guide_places_attributes_0_position').val()) + 1 );
 	    // clear error state
+	    this.find('form input[type="text"]').val('');
 	    this.clear_previous_errors();
 	  };
 

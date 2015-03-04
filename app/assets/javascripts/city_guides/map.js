@@ -30,11 +30,15 @@ $(document).ready(function() {
       });
     });
     myLayer.setGeoJSON(geojson);
+    
+    if (geolocations.length > 1) {
+      map.fitBounds(myLayer.getBounds());
+    };
   }; 
 
   console.log(myLayer.getBounds());
-  map.fitBounds(myLayer.getBounds());
   
+
 
   $(document).on('click', '#send-form', function(){
     //$('#new-place-form').fadeOut(200, function(){
@@ -61,6 +65,14 @@ $(document).ready(function() {
             'marker-color': '#FF4A50'
         }
     }).addTo(map);
+
+    featureLayer.eachLayer(function(layer) {
+      console.log(layer);
+      var properties = layer.feature.properties;
+      console.log(properties);
+      popupContent = '<div class="popup">' + '<h3>' + properties.title + '</h3>' + '<p>' + properties.description + '</p>' + '</div>';
+      layer.bindPopup(popupContent);
+    });
     //map.fitBounds(featureLayer.getBounds());
   }); 
 });

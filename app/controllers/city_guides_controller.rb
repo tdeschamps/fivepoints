@@ -6,9 +6,13 @@ class CityGuidesController < ApplicationController
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 	
 	def show
-		@city_guide_places = @city_guide.city_guide_places.all
-		@places = @city_guide.places.all
+		@city_guide_places = @city_guide.city_guide_places.includes(:place).active_places
+		@places = @city_guide.places.joins(:city_guide_places).where.not(city_guide_places: {position: nil})
+		
+		@city_coordinates = (Geocoder.search @city_guide.formatted_address)[0].data["geometry"]["location"].map { |k, v| v}
 		@geolocations = places_coordinates @places
+
+		@attributes = %w(address city category)
 	end
 
 	def new
@@ -65,7 +69,7 @@ class CityGuidesController < ApplicationController
 	end
 
 	def set_city_guide
-		@city_guide = CityGuide.find(params[:id])
+		@city_guide = CityGuide.includes(:places).find(params[:id])
 	end
 	
 	def user_not_authorized

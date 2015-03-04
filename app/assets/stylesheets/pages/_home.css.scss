@@ -39,6 +39,17 @@
     height: 100%;
     padding-top: 10%;
 
+    .centering {
+      position: absolute;
+      min-height: 1em;
+      height: 200px;
+      top:0;
+      bottom: 0;
+      left:0;
+      right: 0;
+      margin: auto auto;
+    }
+
     h1 {
       color: white;
       font-size: 70px;
@@ -223,6 +234,7 @@
     margin-left: -15px;
     margin-right: -15px;
     text-align: center;
+    background-color: $froly;
   }
   .paris-style {
     background: asset-url("paris_picture.jpg") no-repeat top center;
@@ -316,9 +328,9 @@
 
 
 .city-guides {
-  height: 40vh;
+  height: 25vh;
   img {
-    height: 40vh;
+    height: 25vh;
     position: absolute;
     z-index: 9;
 
@@ -383,7 +395,7 @@
 .your-turn {
   height: 15vh;
   width: 100%;
-  background: #F97171;
+  background: $white;
   text-align: center;
   padding-top: 5vh;
   clear: both; 
@@ -392,9 +404,34 @@
 #landing-btn {
   @include button(white);
   color: $sunset-orange;
+  border: 2px solid  $sunset-orange;
+  border-bottom: 2px solid  $froly;
+  border-radius: 999em;
   width: 60%;
+  min-height: 1em;
+  text-align: center;
+  transition: all 0.5s ease-in;
+  font-size: 22px;
+  font-weight: $weight-regular;
+
+  &:hover {
+    background-color: $sunset-orange;
+    color: $white;
+  }
 }
 .va-middle {
-  height: 100%;
-  margin: 10% 0;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  height: 36px;
+  margin: auto 0;
+
+  h1 {
+    margin: auto;
+  }
+}
+.pinkysnap {
+  background-color: $sunset-orange-transparent;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

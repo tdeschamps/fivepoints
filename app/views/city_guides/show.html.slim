@@ -1,15 +1,23 @@
-.padded-down
-	#map
-	.places-row
-		col-xs-12.col-sm-4
-			.title-cell
-				.cover-title style=("background: url('#{@city_guide.uploaded_files.last.file.url(:large)}') center no-repeat;")
-					h1 #{@city_guide.name}
-			.ul.place-list.list-unstyled
-				- @city_guide_places.each do |city_guide_place|
-					.col-xs-12
-								= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place }	
-				
+.page-wrapper
+	.header-wrapper
+		.cityguide-header style=("background: url('#{@city_guide.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
+		.darken			
+			h1
+				= @city_guide.name
+	.container
+		.col-xs-12
+			= render "cityguide_story", city_guide: @city_guide if @city_guide.story
+		.col-xs-12
+			.row-space-top-8.row-space-8.text-center#story		
+				h2 The places
+			.places-list-wrapper#active-places-list
+				ul.place-list.list-unstyled#sortable
+					- @city_guide_places.each do |city_guide_place|	
+						= render partial: 'show_place', locals: {place: city_guide_place.place, city_guide_place: city_guide_place, archive: false}
+	.map-wrapper
+		#map 			
+
+= content_tag(:div, id: "city-boundaries-coordinates", data: {url: @city_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do
 					
 = content_for :js do

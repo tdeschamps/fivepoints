@@ -31,18 +31,19 @@ class Place < ActiveRecord::Base
   private
   	
 	def set_foursquare_picture
-		foursquare_additional_infos = FoursquareInfos.new(self).get_additional_infos()
+		foursquare_additional_infos, picture_group = FoursquareInfos.new(self).get_additional_infos()
 		self.update(foursquare_additional_infos)
 	end
 
   def save_foursquare_picture
+    #FoursquarePicture.perform_later self.id
     
-    begin
-      self.uploaded_files.new.file_from_url self.foursquare_picture_url 
-    rescue Exception => e
-      p e.message
-      self
-    end
+    # begin
+    #   self.uploaded_files.new.file_from_url self.foursquare_picture_url 
+    # rescue Exception => e
+    #   p e.message
+    #   self
+    # end
   
   end
 

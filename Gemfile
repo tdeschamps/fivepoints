@@ -15,7 +15,7 @@ gem 'uuidtools', '~> 2.1.5'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
 #picture_upload
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
 #nested-forms
 gem 'cocoon'
@@ -36,7 +36,8 @@ gem 'pundit'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'modernizr-rails'
-
+#add delayed jobs mgmt
+gem 'sidekiq'
 #add slim support
 gem 'slim'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

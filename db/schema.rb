@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218103140) do
+ActiveRecord::Schema.define(version: 20150303141933) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -85,6 +85,12 @@ ActiveRecord::Schema.define(version: 20150218103140) do
     t.string   "state"
     t.string   "foursquare_picture_url"
     t.float    "foursquare_rating"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "facebook_username"
+    t.string   "facebook_name"
+    t.string   "phone"
+    t.string   "formatted_phone"
   end
 
   create_table "uploaded_files", force: :cascade do |t|

@@ -3,6 +3,6 @@ $("<%= j render partial: 'city_guides/show_place_edit', locals: {place: @place, 
 
 if ($('#active-places-list > ul > li').length > 4) {
 	$('#new-place').hide();
-	$("<%= j render partial: 'city_guides/cityguide_full' %>").appendTo($('ul.place-list')).fadeIn();
+	$("<%= j render partial: 'city_guides/cityguide_full' %>").appendTo($('ul.place-list#sortable')).fadeIn();
 };
 $('#new-place-form').modal_success()
