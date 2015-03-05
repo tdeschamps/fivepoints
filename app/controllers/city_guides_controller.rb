@@ -50,7 +50,7 @@ class CityGuidesController < ApplicationController
 		@place = Place.new()
 		@new_city_guide_places = @place.city_guide_places.build()
 		@new_city_guide_places_file = @new_city_guide_places.uploaded_files.build()
-		@geolocations = places_coordinates @city_guide.places.where(city_guide_places: {position: [1..5]})
+		@geolocations = MapMarkersGenerator.new(@city_guide.places.where(city_guide_places: {position: [1..5]})).create_markers()
 	end
 	
 	def index
@@ -76,28 +76,5 @@ class CityGuidesController < ApplicationController
     	flash[:alert] = "You are not authorized to perform this action."
     	redirect_to(request.referrer || new_user_registration_path)
   	end
-
-  	def places_coordinates(collections) 
-  		
-  		@geolocations = Array.new
-
-  		collections.each do |place|
-  		  @geolocations << {
-  		    type: 'Feature',
-  		    geometry: {
-  		      type: 'Point',
-  		      coordinates: [place.longitude, place.latitude]
-  		    },
-  		    properties: {
-  		      name: place.name,
-  		      address: place.address,
-  		      :'marker-color' => '#FF4A50',
-  		      :'marker-symbol' => 'circle',
-  		      :'marker-size' => 'medium'
-  		    }
-  		  }
-  		end
-  		return @geolocations.to_json
-  	end 
 
 end

@@ -30,10 +30,8 @@ $(document).ready(function() {
       });
     });
     myLayer.setGeoJSON(geojson);
-    
-    if (geolocations.length > 1) {
-      map.fitBounds(myLayer.getBounds());
-    };
+    map.fitBounds(myLayer.getBounds());
+
   }; 
 
   console.log(myLayer.getBounds());

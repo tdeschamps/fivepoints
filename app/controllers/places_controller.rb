@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
 	end
 	
 	def show
+		@geolocations = MapMarkersGenerator.new(@place).create_markers()
 		@place_coordinates = [@place.latitude, @place.longitude]
 	end
 

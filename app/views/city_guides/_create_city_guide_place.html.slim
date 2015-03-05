@@ -1,6 +1,8 @@
 .nested-fields.form_group
   = f.simple_fields_for :uploaded_files do |file|
-  	= render 'add_picture_form', :f => file	
+  	= render 'add_picture_form', :f => file
+  .input	
+  	= f.input :story, as: :text, placeholder: 'Add a few words about this places (if you feel so :))', input_html: {class: ' textarea--cityguide'}	
   = f.input :city_guide_id, as: :hidden, input_html: {value: @city_guide.id}
   = f.input :position, as: :hidden, input_html: {value: @city_guide_places.count + 1}
   
