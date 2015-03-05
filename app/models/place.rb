@@ -7,8 +7,8 @@ class Place < ActiveRecord::Base
   
 	accepts_nested_attributes_for :city_guide_places, allow_destroy: true
 
-	#geocoded_by :address
-  	#after_validation :geocode, if: :address_changed?
+	geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   def update_score(previous_rank = 0 , new_rank = 0)
   	scores = {

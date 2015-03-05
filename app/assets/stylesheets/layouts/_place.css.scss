@@ -1,5 +1,6 @@
 .place-main-wrapper {
 	box-shadow: 0 1px 1px #ccc;
+  background-color: $white;
   i {
     color: $sunset-orange;
   }
@@ -98,11 +99,22 @@
   }
 }
 .place-attributes {
-  padding:0px 10px;
+  padding-left: 10px;
   font-size: 16px;
+  height: 80px;
+  max-height: 80px;
+
   .attribute {
     text-align: left;
     margin-top: 5px; 
   }
-
 }
+
+.rating-wrapper {
+   height:100%;
+
+   h1{
+    @include centered_h1;
+    color: white;
+   }
+  } 

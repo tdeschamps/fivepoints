@@ -21,14 +21,23 @@
 						.type-wrapper
 							h1 #{@place.category}
 					.place-attributes
-						- %w(twitter facebook formatted_phone).each_with_index do |attr,i|
-							- if @place[attr.to_sym]
-								.attribute
-									i.fa class="#{%w(fa-twitter fa-facebook fa-phone)[i]}"
-									|    #{@place[attr.to_sym]}
+						.col-xs-9
+							- %w(twitter facebook formatted_phone).each_with_index do |attr,i|
+								- if @place[attr.to_sym]
+									.attribute
+										i.fa class="#{%w(fa-twitter fa-facebook fa-phone)[i]}"
+										|    #{@place[attr.to_sym]}
+						.rating-wrapper.col-xs-3 style=("background-color: rgba(#{(255 * (1 - @place.foursquare_rating.to_f/10)).to_i}, #{(255 * (@place.foursquare_rating.to_f/10)).to_i}, 0, 0.7);")
+							h1 #{@place.foursquare_rating}
 
 	.map-wrapper
 		#map
+	.container.similar-places
+		h1.strong.text-center Similar places
+		.places-list-wrapper#active-places-list
+			ul.place-list.list-unstyled#sortable
+				- @similar_places.each do |similar_place|	
+					= render partial: './city_guides/show_place', locals: {place: similar_place, city_guide_place: similar_place, archive: false}	
 
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do	

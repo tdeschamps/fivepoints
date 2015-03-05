@@ -13,6 +13,11 @@ class PlacesController < ApplicationController
 	def show
 		@geolocations = MapMarkersGenerator.new(@place).create_markers()
 		@place_coordinates = [@place.latitude, @place.longitude]
+
+		@similar_places = Place.where("category like :category AND id != :id ", {category:@place.category, id: @place.id}).near([@place.latitude, @place.longitude])
+		@active_city_guides = @place.city_guide_places.active_places.select { |city_guide_place| city_guide_place.city_guide && city_guide_place_place_id != @place.id}
+
+		@attributes = %w(address city category)
 	end
 
 	def new
@@ -67,7 +72,7 @@ class PlacesController < ApplicationController
 	private
 
 	def set_place
-		@place = Place.includes(:uploaded_files).find(params[:id])
+		@place = Place.includes(:uploaded_files, :city_guides).find(params[:id])
 	end
 
 	def place_params
