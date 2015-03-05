@@ -7,10 +7,11 @@ class PlacesController < ApplicationController
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 	def index
+
 	end
 	
 	def show
-	
+		@place_coordinates = [@place.latitude, @place.longitude]
 	end
 
 	def new
@@ -65,7 +66,7 @@ class PlacesController < ApplicationController
 	private
 
 	def set_place
-		Place.find(params[:id])
+		@place = Place.includes(:uploaded_files).find(params[:id])
 	end
 
 	def place_params
@@ -75,7 +76,7 @@ class PlacesController < ApplicationController
 	def foursquare_place_params
 		@foursquare_place_params = params.require(:place)
 										.permit(:foursquare_id, :city, :zipcode, :name, :address, :latitude, :longitude, :category, :state, 
-												city_guide_places_attributes: [:rank, :city_guide_id, :place, :story, 
+												city_guide_places_attributes: [:position, :city_guide_id, :place, :story, 
 												uploaded_files_attributes: [:file]]
 												)
 	end

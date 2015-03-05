@@ -1,2 +1,5 @@
-.nested-fields.form_group.col-xs-12.col-sm-9.col-sm-offset-3
-  = f.file_field :file, :label => "Upload an image"
+.nested-fields.input.input--cityguide
+  = f.file_field :file, :label => "Upload an image", class:"hide", id:"file-upload"
+  .upload
+	  i.fa.fa-picture-o.fa-4x.upload-icon
+	  label.upload-label.input__label for="image-input" Add your picture

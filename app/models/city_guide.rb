@@ -7,5 +7,5 @@ class CityGuide < ActiveRecord::Base
 
 	scope :friends, ->(user) {
 		joins(user: :followers).where("followships.follower_id = ?", user.id)
-	}
+	} 
 end

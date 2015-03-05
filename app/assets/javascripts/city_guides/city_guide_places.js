@@ -1,32 +1,137 @@
-
 $(document).ready(function() {
-	$('#add-place').click(function() {
-		var nb_places = $("tbody > tr").length;
-		var input = "<div class='col-xs-10'><input id='user_input_foursquare' name='user_input_autocomplete_address' class='form-control' placeholder='Start typing your address...'></div>"
-		
-		function formGenerator() {
-			var formWrapper = '<form role="form" class="col-xs-2" name="place" action="/places/create_from_city_guide" method="post" >';
-			var placeToken = '<input id="token" name="place[request_forgery_protection_token]">';
-			var placeName = '<input type="hidden" id="name" name="place[name]">';
-			var placeAddress = '<input type="hidden" id="address" name="place[address]">';
-			var placeCity = '<input type="hidden" id="city" name="place[city]">';
-			var placeCategory = '<input type="hidden" id="category" name="place[category]">';
-			var placeCategoryPic = '<input type="hidden" id="categoryPic" name="place[categoryPic]">';
-			var submitButton = '<input type="submit" id="commit" value="Create" class="btn btn-default">'
-
-			return formWrapper + placeToken + placeName + placeAddress + placeCity + placeCategory + placeCategoryPic + submitButton
-		}
-
-		var form = formGenerator(); 
-		$('#sortable tbody').append("<tr  class="+"item"+"><td>toto</td><td>"+input + form + "</td></tr>");
-		if (nb_places >= 4) {
-			$('#add-place').hide();
-		};
-	});
+	$( '#sortable' ).sortable();
+    $( '#sortable' ).disableSelection();
 
 	$(document).on('click', '#send-form', function(){
-		$('#new-place-form').fadeOut(200, function(){
-			$('#new-place-form').find('input[type="text"]').val('');
-		})
+		//$('#new-place-form').fadeOut(200, function(){
+		//	$('#new-place-form').find('input[type="text"]').val('');
+		//})
+		$('.md-close').click();
 	});
+
+
+	 $(document).bind('ajaxError', 'form#new-place-form', function(event, jqxhr, settings, exception){
+
+	   // note: jqxhr.responseJSON undefined, parsing responseText instead
+	   $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+
+	});
+
+	$(document).on('click', '#send-to-archive', function() {
+		var tile = $(this).parents('li');
+		tile.fadeOut(400, function() {
+			tile.remove();
+			tile.find('.rank-square').remove();
+			tile.find('#send-to-archive').remove();
+			tile.appendTo($('#archived-places-list > ul')).fadeIn(200);
+			var newPlace = document.getElementById('new-place');
+			classie.remove( newPlace, 'hidden');
+			$('#cityguide-full').remove();
+			$('#new-place').show(200);
+			$('#place_city_guide_places_attributes_0_position').val(parseInt($('#place_city_guide_places_attributes_0_position').val()) - 1);
+		})
+	})
 });
+
+	(function($) {
+
+	  $.fn.modal_success = function(){
+	    
+	    // clear form input elements
+	    // todo/note: handle textarea, select, etc
+	    $('#place_city_guide_places_attributes_0_position').val( parseInt($('#place_city_guide_places_attributes_0_position').val()) + 1 );
+	    // clear error state
+	    this.find('form input[type="text"]').val('');
+	    this.clear_previous_errors();
+	  };
+
+	  $.fn.render_form_errors = function(errors){
+
+	    $form = this;
+	    this.clear_previous_errors();
+	    model = this.data('model');
+
+	    // show error messages in input form-group help-block
+	    $.each(errors, function(field, messages){
+	      $input = $('input[name="' + model + '[' + field + ']"]');
+	      $input.closest('.form-group').addClass('has-error').find('.help-block').html( messages.join(' & ') );
+	    });
+
+	  };
+
+	  $.fn.clear_previous_errors = function(){
+	    $('.form-group.has-error', this).each(function(){
+	      $('.help-block', $(this)).html('');
+	      $(this).removeClass('has-error');
+	    });
+	  }
+	}(jQuery));
+
+var ModalEffects = (function() {
+
+	function init() {
+
+		var overlay = document.querySelector( '.md-overlay' );
+
+		[].slice.call( document.querySelectorAll( '.md-trigger' ) ).forEach( function( el, i ) {
+			var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+				close = modal.querySelector( '.md-close' );
+			
+			function removeModal() {
+				classie.remove( modal, 'md-show' );
+			}	
+			
+			el.addEventListener( 'click', function( ev ) {
+				classie.add( modal, 'md-show' );
+				overlay.removeEventListener( 'click', removeModal );
+				overlay.addEventListener( 'click', removeModal );
+
+
+			});
+
+			close.addEventListener( 'click', function( ev ) {
+				ev.stopPropagation();
+				removeModal();
+			});
+
+		} );
+
+	}
+
+	init();
+
+})();
+
+(function() {
+	// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+	if (!String.prototype.trim) {
+		(function() {
+			// Make sure we trim BOM and NBSP
+			var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+			String.prototype.trim = function() {
+				return this.replace(rtrim, '');
+			};
+		})();
+	}
+
+	[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+		// in case the input is already filled..
+		if( inputEl.value.trim() !== '' ) {
+			classie.add( inputEl.parentNode, 'input--filled' );
+		}
+
+		// events:
+		inputEl.addEventListener( 'focus', onInputFocus );
+		inputEl.addEventListener( 'blur', onInputBlur );
+	} );
+
+	function onInputFocus( ev ) {
+		classie.add( ev.target.parentNode, 'input--filled' );
+	}
+
+	function onInputBlur( ev ) {
+		if( ev.target.value.trim() === '' ) {
+			classie.remove( ev.target.parentNode, 'input--filled' );
+		}
+	}
+})();

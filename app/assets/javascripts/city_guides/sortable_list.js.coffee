@@ -6,8 +6,8 @@ jQuery ->
     ##$('.table td').css('width', desired_width)
 
     $('#sortable').sortable(
-      axis: 'y'
-      items: '.panel'
+      #axis: 'y'
+      items: '.item'
       cursor: 'move'
 
       sort: (e, ui) ->
@@ -15,15 +15,21 @@ jQuery ->
       stop: (e, ui) ->
         ui.item.removeClass('active-item-shadow')
         # highlight the row on drop to indicate an update
-        ui.item.children('td').effect('highlight', {}, 1000)
+        ui.item.children('li').effect('highlight', {}, 1000)
       update: (e, ui) ->
         item_id = ui.item.data('item-id')
         position = ui.item.index() + 1 # this will not work with paginated items, as the index is zero on every page
-        console.log(position)
+        l = $('#sortable > li.item').not('.ui-sortable-placeholder').length
+        i = 0
+        while i < l
+          $('#sortable > li.item').not('.ui-sortable-placeholder').find($('.rank-square')).find($('h1'))[i].innerHTML = i + 1
+          console.log($('#sortable > li.item').not('.ui-sortable-placeholder').find($('.rank-square')).find($('h1'))[i].innerHTML)
+          i++
+
         $.ajax(
           type: 'POST'
-          url: '/city_guide_places/update_rank'
+          url: '/city_guide_places/update_position'
           dataType: 'json'
-          data: { city_guide_place: {city_guide_place_id: item_id, rank: position } }
+          data: { city_guide_place: {city_guide_place_id: item_id, position: position } }
         )
-    )
+      )

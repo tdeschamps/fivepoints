@@ -1,5 +1,8 @@
-$("<%= j render partial: 'city_guides/show_place', locals: {place: @place, city_guide_place: @city_guide_place } %>").insertBefore($('#new-place-form'));
-console.log($('.place-list > li').length)
-if ( $('.place-list > li').length < 5 ) {
-	$('#new-place-form').fadeIn();
-}
+//$('#place_city_guide_places_attributes_0_position').val() = parseInt($('#place_city_guide_places_attributes_0_position').val()) + 1; 
+$("<%= j render partial: 'city_guides/show_place_edit', locals: {place: @place, city_guide_place: @city_guide_place, archive: false} %>").insertBefore($('#new-place').fadeIn());
+
+if ($('#active-places-list > ul > li').length > 4) {
+	$('#new-place').hide();
+	$("<%= j render partial: 'city_guides/cityguide_full' %>").appendTo($('ul.place-list#sortable')).fadeIn();
+};
+$('#new-place-form').modal_success()

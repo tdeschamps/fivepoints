@@ -1,0 +1,17 @@
+.footer {
+	position: relative;
+	width: 100%;
+	background-color: $froly;
+	min-height: 5%;
+	height:80px;
+	bottom:0;
+}
+
+.footer-wrapper {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+}

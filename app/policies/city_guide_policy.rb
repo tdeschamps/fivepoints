@@ -8,11 +8,11 @@ class CityGuidePolicy
 	end
 
 	def new?
-		user.sign_in?
+		user
 	end
 
 	def create?
-		user.sign_in?
+		user
 	end
 
 	def edit?

@@ -1,0 +1,23 @@
+.title-cell {
+	min-height: 300px;
+	position: relative;
+	margin-bottom: 20px;
+	text-align: center;
+
+	.cover-title {
+		position: absolute;
+		background-size: cover;
+		height: 100%;
+		width:100%;
+
+		h1 {
+			color: white;
+			margin: 10% 0;
+		}
+	}
+}
+#sortable {
+	li {
+		float:left;
+	}
+}

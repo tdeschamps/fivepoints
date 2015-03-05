@@ -20,6 +20,7 @@ function onPlaceChanged() {
       }
     }
   }
+  document.getElementById('formatted_address').value = place.formatted_address; 
 }
 
 google.maps.event.addDomListener(window, 'load', function() {

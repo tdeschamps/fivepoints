@@ -13,16 +13,15 @@ Rails.application.routes.draw do
       resources :city_guides, only: [:new, :create, :edit]
     end
 
-    resources :city_guides, only: [:show, :index]
-    
-    resources :city_guides do
+    resources :city_guides, only: [:show, :index] do
       resources :city_guide_places, only: [:new, :create]
     end
 
     resources :city_guide_places, only: [:show]
+    resources :places, only: [:show, :index]
     
-    post 'city_guide_places/update_rank'=> 'city_guide_places#update_rank'
-
+    post 'city_guide_places/update_position' => 'city_guide_places#update_position'
+    post 'city_guide_places/:id/send_to_archive' => 'city_guide_places#send_to_archive', as: :archive
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,11 +1,30 @@
-li.panel data-item-id = (city_guide_place.id if city_guide_place || 0)
-	.col-xs-12
-		.cityguide-place style=("background: url('#{place.foursquare_picture_url}') center;") 
-	div.col-xs-12.col-sm-6
-		h1 
-			= place.name
-		ul
-			li 
-				= place.address
-			li 
-				= place.city
+li.item.col-xs-12.col-lg-6
+	.cityguide-card.row-space-8.cornered-top
+		- if place.foursquare_picture_url || city_guide_place.uploaded_files.first
+			.tile-place.cornered-top style=("background-image: url('#{city_guide_place.uploaded_files.first || place.foursquare_picture_url}');")
+			.cityguideplace-infos
+				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
+				h1 #{place.name}
+				.col-xs-12
+					- @attributes.each do |a|
+						- if (!place[a].nil? && place[a] != "")
+							.attributes
+								strong #{a.capitalize}: 
+								p   #{place[a]}
+
+		- else
+			.tile-place.cornered-top
+				.cityguide-tile
+			.cityguideplace-infos
+				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
+				h1 #{place.name}
+				.col-xs-12
+					- @attributes.each do |a|
+						- if (!place[a].nil? && place[a] != "" )
+							.attributes
+								strong #{a.capitalize}: 
+								p   #{place[a]}
+
+
+					 	
+				

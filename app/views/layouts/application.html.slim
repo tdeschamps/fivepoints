@@ -2,9 +2,10 @@ doctype html
 html
   head
     title
-      | Fivepoints
+      | Fivemarks
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    link href="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css" rel="stylesheet"
     link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" /
 
   body
@@ -16,5 +17,6 @@ html
      
     = yield
     = render "layouts/footer"
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = yield :js

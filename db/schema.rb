@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130173157) do
+ActiveRecord::Schema.define(version: 20150303141933) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,24 +39,24 @@ ActiveRecord::Schema.define(version: 20150130173157) do
   create_table "city_guide_places", force: :cascade do |t|
     t.integer  "city_guide_id"
     t.integer  "place_id"
-    t.integer  "rank"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "story"
   end
 
   add_index "city_guide_places", ["city_guide_id"], name: "index_city_guide_places_on_city_guide_id"
   add_index "city_guide_places", ["place_id"], name: "index_city_guide_places_on_place_id"
 
   create_table "city_guides", force: :cascade do |t|
-    t.string   "city",       limit: 255
+    t.string   "city",              limit: 255
     t.integer  "user_id"
     t.text     "story"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",       limit: 255
-    t.string   "state",      limit: 255
-    t.string   "country",    limit: 255
+    t.string   "name",              limit: 255
+    t.string   "state",             limit: 255
+    t.string   "country",           limit: 255
+    t.string   "formatted_address"
   end
 
   add_index "city_guides", ["user_id"], name: "index_city_guides_on_user_id"
@@ -85,6 +85,12 @@ ActiveRecord::Schema.define(version: 20150130173157) do
     t.string   "state"
     t.string   "foursquare_picture_url"
     t.float    "foursquare_rating"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "facebook_username"
+    t.string   "facebook_name"
+    t.string   "phone"
+    t.string   "formatted_phone"
   end
 
   create_table "uploaded_files", force: :cascade do |t|

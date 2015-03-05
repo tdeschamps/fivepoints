@@ -18,3 +18,4 @@
 //= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
 //= require cocoon
+//= require modernizr

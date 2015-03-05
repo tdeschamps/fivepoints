@@ -1,0 +1,26 @@
+#new_cityguide-place_modal {
+	.input__field--cityguide, 
+	.input__label,
+	.upload-icon {
+		color: white;
+	}
+	.input__label--cityguide-color-1::after {
+		border-color: $white;
+	}
+	
+}
+.cityguideplace-button {
+	@include button($white);
+	color: $sunset-orange;
+	&:hover {
+		background-color: lightblue;
+		color: $white;
+	}
+}
+.md-close {
+	position: absolute;
+	top:0;
+	right:5px;
+	cursor:	pointer;
+	color: white;
+}
