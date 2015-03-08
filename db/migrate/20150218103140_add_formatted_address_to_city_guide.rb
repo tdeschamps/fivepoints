@@ -1,6 +1,6 @@
-class AddFormattedAddressToCityGuide < ActiveRecord::Migration
+class AddFormattedAddressToBlackBook < ActiveRecord::Migration
   def change
-  	add_column :city_guides, :formatted_address, :string
+  	add_column :black_books, :formatted_address, :string
   end
 
 end

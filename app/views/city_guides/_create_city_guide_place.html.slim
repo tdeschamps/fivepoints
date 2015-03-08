@@ -1,6 +1,0 @@
-.nested-fields.form_group
-  = f.simple_fields_for :uploaded_files do |file|
-  	= render 'add_picture_form', :f => file	
-  = f.input :city_guide_id, as: :hidden, input_html: {value: @city_guide.id}
-  = f.input :position, as: :hidden, input_html: {value: @city_guide_places.count + 1}
-  

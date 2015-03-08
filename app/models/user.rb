@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_followships, source: :followed
   has_many :followers, through: :passive_followships, source: :follower
   
-  has_many :city_guides
+  has_many :black_books
   has_many :uploaded_files, as: :imageable
   
   has_many :authorizations

@@ -1,15 +1,15 @@
-#new_cityguide-place_modal {
-	.input__field--cityguide, 
+#new_BlackBook-place_modal {
+	.input__field--BlackBook, 
 	.input__label,
 	.upload-icon {
 		color: white;
 	}
-	.input__label--cityguide-color-1::after {
+	.input__label--BlackBook-color-1::after {
 		border-color: $white;
 	}
 	
 }
-.cityguideplace-button {
+.BlackBookplace-button {
 	@include button($white);
 	color: $sunset-orange;
 	&:hover {

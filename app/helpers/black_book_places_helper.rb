@@ -1,0 +1,2 @@
+module BlackBookPlacesHelper
+end

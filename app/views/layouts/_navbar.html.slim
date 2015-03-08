@@ -27,7 +27,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
                   i.fa.fa-user
                   |  Profile 
               li
-                = link_to city_guides_path(current_user.city_guides.all) do
+                = link_to black_books_path(current_user.black_books.all) do
                   i.fa.fa-home
                   |  Guides 
               li
@@ -45,7 +45,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
                     |  Sign Up
         li
           - if current_user                            
-            = link_to new_user_city_guide_path(current_user), class: "btn btn-primary", id: "nav-btn" do
+            = link_to new_user_black_book_path(current_user), class: "btn btn-primary", id: "nav-btn" do
               |  Create your guide
           - else
             = link_to "users/sign_in", class: "btn btn-primary", id: "nav-btn" do

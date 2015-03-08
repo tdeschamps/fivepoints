@@ -1,5 +1,5 @@
-class ChangeRankNameInCityGuidePlace < ActiveRecord::Migration
+class ChangeRankNameInBlackBookPlace < ActiveRecord::Migration
   def change
-  	rename_column(:city_guide_places, :rank, :position)
+  	rename_column(:black_book_places, :rank, :position)
   end
 end
