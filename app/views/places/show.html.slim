@@ -32,16 +32,26 @@
 
 	.map-wrapper
 		#map
-	.container.similar-places
-		h1.strong.text-center Similar places
-		.places-list-wrapper#active-places-list
-			ul.place-list.list-unstyled#sortable
-				- @similar_places.each do |similar_place|	
-					= render partial: './city_guides/show_place', locals: {place: similar_place, city_guide_place: similar_place, archive: false}	
+	- if @similar_places.length > 0	
+		.container.similar-places
+			h1.strong.text-center Similar places
+			.places-list-wrapper#active-places-list
+				ul.place-list.list-unstyled#sortable
+					- @similar_places.each do |similar_place|	
+						= render partial: './black_books/show_place', locals: {place: similar_place, black_book_place: similar_place, archive: false}
+	
+	- if @active_black_books.length > 0
+		.container.active-city-guides
+			h1.strong.text-center black books
+			places-list-wrapper#active-places-list
+				ul.place-list.list-unstyled#sortable
+					- @active_black_books.each do |black_book|
+						
+						= render partial: './black_books/show_place_edit', locals: {place: black_book, black_book_place: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true} 						
 
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do	
 
 = content_for :js do
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
-	= javascript_include_tag "city_guides/map"												
+	= javascript_include_tag "black_books/map"												

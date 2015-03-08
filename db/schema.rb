@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305094606) do
+ActiveRecord::Schema.define(version: 20150308220240) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20150305094606) do
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid"
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
 
-  create_table "city_guide_places", force: :cascade do |t|
-    t.integer  "city_guide_id"
+  create_table "black_book_places", force: :cascade do |t|
+    t.integer  "black_book_id"
     t.integer  "place_id"
     t.integer  "position"
     t.datetime "created_at"
@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 20150305094606) do
     t.text     "story"
   end
 
-  add_index "city_guide_places", ["city_guide_id"], name: "index_city_guide_places_on_city_guide_id"
-  add_index "city_guide_places", ["place_id"], name: "index_city_guide_places_on_place_id"
+  add_index "black_book_places", ["black_book_id"], name: "index_black_book_places_on_black_book_id"
+  add_index "black_book_places", ["place_id"], name: "index_black_book_places_on_place_id"
 
-  create_table "city_guides", force: :cascade do |t|
+  create_table "black_books", force: :cascade do |t|
     t.string   "city",              limit: 255
     t.integer  "user_id"
     t.text     "story"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150305094606) do
     t.string   "formatted_address"
   end
 
-  add_index "city_guides", ["user_id"], name: "index_city_guides_on_user_id"
+  add_index "black_books", ["user_id"], name: "index_black_books_on_user_id"
 
   create_table "followships", force: :cascade do |t|
     t.integer "follower_id"

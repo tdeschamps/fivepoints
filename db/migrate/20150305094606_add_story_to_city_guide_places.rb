@@ -1,5 +1,5 @@
-class AddStoryToCityGuidePlaces < ActiveRecord::Migration
+class AddStoryToBlackBookPlaces < ActiveRecord::Migration
   def change
-  	add_column :city_guide_places, :story, :text 
+  	add_column :black_book_places, :story, :text 
   end
 end

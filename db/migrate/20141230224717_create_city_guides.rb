@@ -1,6 +1,6 @@
-class CreateCityGuides < ActiveRecord::Migration
+class CreateBlackBooks < ActiveRecord::Migration
   def change
-    create_table :city_guides do |t|
+    create_table :black_books do |t|
     	t.string :city
     	t.references :user
     	t.text :story

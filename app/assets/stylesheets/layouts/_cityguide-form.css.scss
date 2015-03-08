@@ -1,9 +1,9 @@
-/* cityguide */
-.input--cityguide {
+/* BlackBook */
+.input--BlackBook {
 	overflow: hidden;
 }
 
-.input__field--cityguide {
+.input__field--BlackBook {
 	margin-top: 1em;
 	padding: 0.85em 0.15em;
 	width: 100%;
@@ -11,7 +11,7 @@
 	color: #595F6E;
 }
 
-.input__label--cityguide {
+.input__label--BlackBook {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -22,12 +22,12 @@
 	pointer-events: none;
 }
 
-.input__label-content--cityguide {
+.input__label-content--BlackBook {
 	position: absolute;
 }
 
-.input__label--cityguide::before,
-.input__label--cityguide::after {
+.input__label--BlackBook::before,
+.input__label--BlackBook::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -37,7 +37,7 @@
 	border-bottom: 1px solid #B9C1CA;
 }
 
-.input__label--cityguide::after {
+.input__label--BlackBook::after {
 	margin-top: 2px;
 	border-bottom: 4px solid red;
 	-webkit-transform: translate3d(-100%, 0, 0);
@@ -46,26 +46,26 @@
 	transition: transform 0.3s;
 }
 
-.input__label--cityguide-color-1::after {
+.input__label--BlackBook-color-1::after {
 	border-color: $sunset-orange;
 }
 
-.input__label--cityguide-color-2::after {
+.input__label--BlackBook-color-2::after {
 	border-color: $froly;
 }
 
-.input__label--cityguide-color-3::after {
+.input__label--BlackBook-color-3::after {
 	border-color: hsl(20, 100%, 50%);
 }
 
-.input__field--cityguide:focus + .input__label--cityguide::after,
-.input--filled .input__label--cityguide::after {
+.input__field--BlackBook:focus + .input__label--BlackBook::after,
+.input--filled .input__label--BlackBook::after {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 }
 
-.input__field--cityguide:focus + .input__label--cityguide .input__label-content--cityguide,
-.input--filled .input__label-content--cityguide {
+.input__field--BlackBook:focus + .input__label--BlackBook .input__label-content--BlackBook,
+.input--filled .input__label-content--BlackBook {
 	-webkit-animation: anim-1 0.3s forwards;
 	animation: anim-1 0.3s forwards;
 }
@@ -107,11 +107,11 @@
 }
 
 /* Kyo */
-.input--cityguide-story {
+.input--BlackBook-story {
 	z-index: auto;
 }
 
-.input__field--cityguide-story {
+.input__field--BlackBook-story {
 	padding: 0.85em 1.5em;
 	width: 100%;
 	background: #fff;
@@ -120,14 +120,14 @@
 	height: 400px;
 }
 
-.input__label--cityguide-story {
+.input__label--BlackBook-story {
 	z-index: 0;
 	width: 100%;
 	text-align: left;
 	position: absolute;
 }
 
-.input__label--cityguide-story::after {
+.input__label--BlackBook-story::after {
 	content: '';
 	position: fixed;
 	top: 0;
@@ -143,20 +143,20 @@
 	pointer-events: none;
 }
 
-.input__label-content--cityguide-story {
+.input__label-content--BlackBook-story {
 	padding: 0.5em 0;
 }
 
-.input__field--cityguide-story:focus,
-.input__field--cityguide-story:focus +  .input__label--cityguide-story .input__label-content--cityguide-story {
+.input__field--BlackBook-story:focus,
+.input__field--BlackBook-story:focus +  .input__label--BlackBook-story .input__label-content--BlackBook-story {
 	z-index: 10000;
 }
 
-.input__field--cityguide-story:focus + .input__label--cityguide-story {
+.input__field--BlackBook-story:focus + .input__label--BlackBook-story {
 	color: #fff;
 }
 
-.input__field--cityguide-story:focus + .input__label--cityguide-story::after {
+.input__field--BlackBook-story:focus + .input__label--BlackBook-story::after {
 	opacity: 1;
 }
 

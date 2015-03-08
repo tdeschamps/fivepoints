@@ -28,8 +28,8 @@ jQuery ->
 
         $.ajax(
           type: 'POST'
-          url: '/city_guide_places/update_position'
+          url: '/black_book_places/update_position'
           dataType: 'json'
-          data: { city_guide_place: {city_guide_place_id: item_id, position: position } }
+          data: { black_book_place: {black_book_place_id: item_id, position: position } }
         )
       )

@@ -1,5 +1,5 @@
-class AddPictureToCityGuidePlace < ActiveRecord::Migration
+class AddPictureToBlackBookPlace < ActiveRecord::Migration
   def change
-    add_column :city_guide_places, :foursquare_picture_url, :string
+    add_column :black_book_places, :foursquare_picture_url, :string
   end
 end

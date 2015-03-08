@@ -1,4 +1,4 @@
-.cityguide-place {
+.BlackBook-place {
 	min-height: 300px;
 	max-height: 500px;
 	max-width: 1200px;
@@ -61,7 +61,7 @@
   height: 100%;
 }
 
-.cityguide-tile {
+.BlackBook-tile {
   display: table;
   width: 100%;
   height: 100%;
@@ -95,7 +95,7 @@
     @include centered_h1;
   }
 }
-.cityguide-card {
+.BlackBook-card {
   width: 100%;
   min-height: 300px;
   background-color: white;
@@ -108,7 +108,7 @@
 }
 
 
-.cityguideplace-infos {
+.BlackBookplace-infos {
   clear:both;
   color: $gray-light;
   overflow: hidden;

@@ -1,6 +1,6 @@
-class RemoveColumnStoryFromPlacesAndAddStoryToCityGuidePlaces < ActiveRecord::Migration
+class RemoveColumnStoryFromPlacesAndAddStoryToBlackBookPlaces < ActiveRecord::Migration
   def change
-  	add_column :city_guide_places, :story, :text
+  	add_column :black_book_places, :story, :text
   	remove_column :places, :story
   end
 end

@@ -28,7 +28,7 @@ gem 'simple_form'
 gem 'remotipart', '~> 1.2'
 #add geocode coordinate to new places
 gem 'geocoder'
-#sort places within city guide
+#sort places within black book
 gem 'acts_as_list'
 #security
 gem 'pundit'

@@ -1,11 +1,11 @@
 class Place < ActiveRecord::Base
-	has_many :city_guide_places
-	has_many :city_guides, through: :city_guide_places
+	has_many :black_book_places
+	has_many :black_books, through: :black_book_places
   has_many :uploaded_files, as: :imageable
 	after_create :set_foursquare_picture, :update_score
   after_update :save_foursquare_picture,  if: :foursquare_picture_url_changed?
   
-	accepts_nested_attributes_for :city_guide_places, allow_destroy: true
+	accepts_nested_attributes_for :black_book_places, allow_destroy: true
 
 	geocoded_by :address
   after_validation :geocode, if: :address_changed?

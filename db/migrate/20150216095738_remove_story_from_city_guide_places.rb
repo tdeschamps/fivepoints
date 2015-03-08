@@ -1,9 +1,9 @@
-class RemoveStoryFromCityGuidePlaces < ActiveRecord::Migration
+class RemoveStoryFromBlackBookPlaces < ActiveRecord::Migration
   def up
-  	remove_column :city_guide_places, :story
+  	remove_column :black_book_places, :story
   end
 
   def down 
-  	add_column :city_guide_places, :story, :text
+  	add_column :black_book_places, :story, :text
   end
 end

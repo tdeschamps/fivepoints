@@ -1,7 +1,7 @@
-class CreateCityGuidePlaces < ActiveRecord::Migration
+class CreateBlackBookPlaces < ActiveRecord::Migration
   def change
-    create_table :city_guide_places do |t|
-    	t.references :city_guide
+    create_table :black_book_places do |t|
+    	t.references :black_book
     	t.references :place
     	t.integer :rank
       t.timestamps

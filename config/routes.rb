@@ -6,22 +6,22 @@ Rails.application.routes.draw do
 
     root 'home#index'
     devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-    post 'places/create_place_from_city_guide' => 'places#create_place_from_city_guide'
+    post 'places/create_place_from_black_book' => 'places#create_place_from_black_book'
     resources :places, only: [:index, :show, :new, :create]
 
     resources :users do 
-      resources :city_guides, only: [:new, :create, :edit]
+      resources :black_books, only: [:new, :create, :edit]
     end
 
-    resources :city_guides, only: [:show, :index] do
-      resources :city_guide_places, only: [:new, :create]
+    resources :black_books, only: [:show, :index] do
+      resources :black_book_places, only: [:new, :create]
     end
 
-    resources :city_guide_places, only: [:show]
+    resources :black_book_places, only: [:show]
     resources :places, only: [:show, :index]
     
-    post 'city_guide_places/update_position' => 'city_guide_places#update_position'
-    post 'city_guide_places/:id/send_to_archive' => 'city_guide_places#send_to_archive', as: :archive
+    post 'black_book_places/update_position' => 'black_book_places#update_position'
+    post 'black_book_places/:id/send_to_archive' => 'black_book_places#send_to_archive', as: :archive
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

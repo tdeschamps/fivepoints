@@ -1,6 +1,6 @@
-class AddStateAndCountryToCityGuides < ActiveRecord::Migration
+class AddStateAndCountryToBlackBooks < ActiveRecord::Migration
   def change
-    add_column :city_guides, :state, :string
-    add_column :city_guides, :country, :string
+    add_column :black_books, :state, :string
+    add_column :black_books, :country, :string
   end
 end

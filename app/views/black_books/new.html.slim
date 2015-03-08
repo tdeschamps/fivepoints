@@ -1,45 +1,45 @@
 div.container.padded-down.full-page
 	div.col-xs-12.col-sm-8.col-sm-offset-2
 		h1 
-			| Create your city guide
-		= simple_form_for @city_guide,
-		url: url_for(action: 'create', controller: 'city_guides'),
+			| Create your black book
+		= simple_form_for @black_book,
+		url: url_for(action: 'create', controller: 'black_books'),
 		method: 'post' do |f|
 			.col-xs-12.col-md-6
-				.input.input--cityguide
-					= f.input_field :name, {class: "input__field input__field--cityguide", id: "cityguide-name"}
-					label.input__label.input__label--cityguide.input__label--cityguide-color-1 for="cityguide-name" 
-					  span.input__label-content.input__label-content--cityguide Title
+				.input.input--BlackBook
+					= f.input_field :name, {class: "input__field input__field--BlackBook", id: "BlackBook-name"}
+					label.input__label.input__label--BlackBook.input__label--BlackBook-color-1 for="BlackBook-name" 
+					  span.input__label-content.input__label-content--BlackBook Title
 				
 				= f.simple_fields_for :uploaded_files do |file|
 				    = render 'add_picture_form', :f => file
 				
-				.input.input--cityguide
+				.input.input--BlackBook
 					
-					input#user_input_autocomplete_address.cityguide-input.input__field.input__field--cityguide autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
+					input#user_input_autocomplete_address.BlackBook-input.input__field.input__field--BlackBook autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
 					
-					label.input__label.input__label--cityguide.input__label--cityguide-color-2 for="user_input_autocomplete_address" 
-					  span.input__label-content.input__label-content--cityguide Enter a location  
+					label.input__label.input__label--BlackBook.input__label--BlackBook-color-2 for="user_input_autocomplete_address" 
+					  span.input__label-content.input__label-content--BlackBook Enter a location  
 						    
 				= f.input :city, as: :hidden, input_html: {id: "locality"}
 				= f.input :formatted_address, as: :hidden, input_html: {id: "formatted_address"}
 				= f.input :country, as: :hidden, input_html: {id: "country"}
 				= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}
 			.col-xs-12.col-md-6	
-				.input.input--cityguide-story
+				.input.input--BlackBook-story
 				
-					= f.input_field :story,{ required: false, as: :text, class: "input__field input__field--cityguide-story", id: "cityguide-story", placeholder: "Tell us your beautiful story"}
+					= f.input_field :story,{ required: false, as: :text, class: "input__field input__field--BlackBook-story", id: "BlackBook-story", placeholder: "Tell us your beautiful story"}
 				
-					label.input__label.input__label--cityguide-story for="cityguide-story" 
-					  span.input__label-content.input__label-content--cityguide-story Story
+					label.input__label.input__label--BlackBook-story for="BlackBook-story" 
+					  span.input__label-content.input__label-content--BlackBook-story Story
 			
 			= f.button :submit, "Create", {class: "submit-button progress-button", "data-style" => "fill", "data-horizontal" => ""}
 
 = content_for :js do
 
 	script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
-	= javascript_include_tag "city_guides/autocomplete.js"
-	= javascript_include_tag "city_guides/newUpload.js"
+	= javascript_include_tag "black_books/autocomplete.js"
+	= javascript_include_tag "black_books/newUpload.js"
 	= javascript_include_tag "classie.js"
 	javascript:
 		(function() {
