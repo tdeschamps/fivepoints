@@ -1,15 +1,15 @@
-#new_BlackBook-place_modal {
-	.input__field--BlackBook, 
+#new_black_book-place_modal {
+	.input__field--black_book, 
 	.input__label,
 	.upload-icon {
 		color: white;
 	}
-	.input__label--BlackBook-color-1::after {
+	.input__label--black_book-color-1::after {
 		border-color: $white;
 	}
 	
 }
-.BlackBookplace-button {
+.black_bookplace-button {
 	@include button($white);
 	color: $sunset-orange;
 	&:hover {

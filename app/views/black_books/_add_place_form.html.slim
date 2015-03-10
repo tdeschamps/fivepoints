@@ -9,10 +9,10 @@
 		method: 'post',
 		remote: true do |f|
 			.form-inputs
-			.input.input--BlackBook
-				= f.input_field :name, {class: "input__field input__field--BlackBook", id: "user_input_foursquare"}
-				label.input__label.input__label--BlackBook.input__label--BlackBook-color-1 for="user_input_foursquare" 
-					span.input__label-content.input__label-content--BlackBook Name
+			.input.input--black_book
+				= f.input_field :name, {class: "input__field input__field--black_book", id: "user_input_foursquare"}
+				label.input__label.input__label--black_book.input__label--black_book-color-1 for="user_input_foursquare" 
+					span.input__label-content.input__label-content--black_book Name
 			= f.input :city, as: :hidden, input_html: {id: "city"}
 			= f.input :zipcode, as: :hidden, input_html: {id: "postalCode"}
 			= f.input :address, as: :hidden, input_html: {id: "address"}
@@ -24,4 +24,4 @@
 			= f.simple_fields_for :black_book_places do |black_book_place|
 				= render 'black_books/create_black_book_place', f: black_book_place
 			.form-actions
-			= f.button :submit, "Create", id: "send-form", class: "BlackBookplace-button progress-button"
+			= f.button :submit, "Create", id: "send-form", class: "black_bookplace-button progress-button"

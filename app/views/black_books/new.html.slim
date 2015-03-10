@@ -6,32 +6,32 @@ div.container.padded-down.full-page
 		url: url_for(action: 'create', controller: 'black_books'),
 		method: 'post' do |f|
 			.col-xs-12.col-md-6
-				.input.input--BlackBook
-					= f.input_field :name, {class: "input__field input__field--BlackBook", id: "BlackBook-name"}
-					label.input__label.input__label--BlackBook.input__label--BlackBook-color-1 for="BlackBook-name" 
-					  span.input__label-content.input__label-content--BlackBook Title
+				.input.input--black_book
+					= f.input_field :name, {class: "input__field input__field--black_book", id: "black_book-name"}
+					label.input__label.input__label--black_book.input__label--black_book-color-1 for="black_book-name" 
+					  span.input__label-content.input__label-content--black_book Title
 				
 				= f.simple_fields_for :uploaded_files do |file|
 				    = render 'add_picture_form', :f => file
 				
-				.input.input--BlackBook
+				.input.input--black_book
 					
-					input#user_input_autocomplete_address.BlackBook-input.input__field.input__field--BlackBook autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
+					input#user_input_autocomplete_address.black_book-input.input__field.input__field--black_book autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
 					
-					label.input__label.input__label--BlackBook.input__label--BlackBook-color-2 for="user_input_autocomplete_address" 
-					  span.input__label-content.input__label-content--BlackBook Enter a location  
+					label.input__label.input__label--black_book.input__label--black_book-color-2 for="user_input_autocomplete_address" 
+					  span.input__label-content.input__label-content--black_book Enter a location  
 						    
 				= f.input :city, as: :hidden, input_html: {id: "locality"}
 				= f.input :formatted_address, as: :hidden, input_html: {id: "formatted_address"}
 				= f.input :country, as: :hidden, input_html: {id: "country"}
 				= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}
 			.col-xs-12.col-md-6	
-				.input.input--BlackBook-story
+				.input.input--black_book-story
 				
-					= f.input_field :story,{ required: false, as: :text, class: "input__field input__field--BlackBook-story", id: "BlackBook-story", placeholder: "Tell us your beautiful story"}
+					= f.input_field :story,{ required: false, as: :text, class: "input__field input__field--black_book-story", id: "black_book-story", placeholder: "Tell us your beautiful story"}
 				
-					label.input__label.input__label--BlackBook-story for="BlackBook-story" 
-					  span.input__label-content.input__label-content--BlackBook-story Story
+					label.input__label.input__label--black_book-story for="black_book-story" 
+					  span.input__label-content.input__label-content--black_book-story Story
 			
 			= f.button :submit, "Create", {class: "submit-button progress-button", "data-style" => "fill", "data-horizontal" => ""}
 

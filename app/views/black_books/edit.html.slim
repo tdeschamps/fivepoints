@@ -1,12 +1,12 @@
 .page-wrapper
 	.header-wrapper
-		.BlackBook-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
+		.black_book-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
 		.darken			
 			h1
 				= @black_book.name
 	.container
 		.col-xs-12
-			= render "BlackBook_story", black_book: @black_book if @black_book.story
+			= render "black_book_story", black_book: @black_book if @black_book.story
 		.col-xs-12
 			.row-space-top-8.row-space-8.text-center	
 				h2 Your places
@@ -22,7 +22,7 @@
 					- else
 						.hidden
 							= render 'add_place'
-						= render 'BlackBook_full'	
+						= render 'black_book_full'	
 					
 	.map-wrapper
 		#map

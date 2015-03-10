@@ -1,0 +1,23 @@
+.panel-body{
+	position: relative;
+
+}
+.panel-card-section {
+	padding: 10px;
+	background-color: white; 
+	.media {
+		overflow: inherit;
+	}
+}
+.black-book-city {
+	i {
+		color: $sunset-orange;
+	}
+}
+.left10 {
+	margin-left: 10px;
+}
+.top2 {
+	position: relative;
+	top: -2px;
+}

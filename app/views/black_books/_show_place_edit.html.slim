@@ -1,7 +1,7 @@
 li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (black_book_place.id if black_book_place || 0)
 	- if picture_url
 		.tile-place.row-space-4 style=("background-image: url(#{picture_url});")
-			.BlackBook-tile 
+			.black_book-tile 
 				.vertical-middle
 					h2 #{place.name}
 			- unless archive
@@ -11,7 +11,7 @@ li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (black_book_place.id if black
 					h1 #{black_book_place.position}	
 	- else
 		.tile-place.row-space-4
-			.BlackBook-tile 
+			.black_book-tile 
 				.vertical-middle
 					h2 #{place.name}
 			- unless archive		

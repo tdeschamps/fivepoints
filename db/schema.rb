@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308220240) do
+ActiveRecord::Schema.define(version: 20150310122655) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -94,6 +94,12 @@ ActiveRecord::Schema.define(version: 20150308220240) do
     t.string   "formatted_phone"
   end
 
+  create_table "table_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "plural_name"
+    t.string "short_name"
+  end
+
   create_table "uploaded_files", force: :cascade do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type",    limit: 255
@@ -129,6 +135,7 @@ ActiveRecord::Schema.define(version: 20150308220240) do
     t.string   "token",                  limit: 255
     t.datetime "token_expiry"
     t.string   "username",               limit: 255
+    t.string   "biography"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,2 +1,5 @@
 div.container.padded-down
-| hello world
+	.row
+		.col-xs-12.col-sm-4.user-profile-pic style=("background-image: url(#{@user.picture})")
+		.col-xs-12.col-sm-8
+			h1 Hey my name is #{@user.first_name || @user.username}

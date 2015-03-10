@@ -29,9 +29,12 @@
 										|    #{@place[attr.to_sym]}
 						.rating-wrapper.col-xs-3 style=("background-color: rgba(#{(255 * (1 - @place.foursquare_rating.to_f/10)).to_i}, #{(255 * (@place.foursquare_rating.to_f/10)).to_i}, 0, 0.7);")
 							h1 #{@place.foursquare_rating}
+		h3 People who have selected this place
+			= 					
 
-	.map-wrapper
+	.map-wrapper.map-place
 		#map
+	
 	- if @similar_places.length > 0	
 		.container.similar-places
 			h1.strong.text-center Similar places
@@ -40,14 +43,15 @@
 					- @similar_places.each do |similar_place|	
 						= render partial: './black_books/show_place', locals: {place: similar_place, black_book_place: similar_place, archive: false}
 	
+	
 	- if @active_black_books.length > 0
 		.container.active-city-guides
-			h1.strong.text-center black books
+			h1.strong.text-center Black books containing #{@place.name}
 			places-list-wrapper#active-places-list
 				ul.place-list.list-unstyled#sortable
 					- @active_black_books.each do |black_book|
-						
-						= render partial: './black_books/show_place_edit', locals: {place: black_book, black_book_place: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true} 						
+						.listing
+							= render partial: 'related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}					
 
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do	

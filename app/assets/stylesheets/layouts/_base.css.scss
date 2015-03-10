@@ -43,3 +43,9 @@ h1 {
 .strong {
   font-weight: $weight-bold
 }
+.text-normal, a.text-normal {
+  color: inherit;
+}
+.inline {
+  display: inherit;
+}
