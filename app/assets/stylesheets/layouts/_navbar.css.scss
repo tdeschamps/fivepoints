@@ -61,6 +61,7 @@ $profile-border-width: 2px;
 
 #nav-btn {
   @include button($sunset-orange);
+  font-weight: $weight-light;
 }
 
 #logo{

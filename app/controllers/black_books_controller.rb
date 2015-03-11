@@ -54,8 +54,8 @@ class BlackBooksController < ApplicationController
 	end
 	
 	def index
-		@black_books = @user.black_books.all
-		@friends_black_books = BlackBook.friends(@user).includes(:black_book_places).limit(10)
+		@black_books = current_user.black_books.all
+		@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places).limit(10)
 	end
 
 	private

@@ -15,7 +15,7 @@
 				
 					- @black_book_places.each do |black_book_place|
 						
-						= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, archive: false} 
+						= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: "#{black_book_place.place.foursquare_picture_url}", archive: false} 
 							
 					- if @black_book_places.count < 5
 						= render 'add_place' 
@@ -34,8 +34,7 @@
 			ul.place-list.list-unstyled
 				- @archived_black_book_places.each do |black_book_place|
 				
-					= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: '#{place.foursquare_picture_url}'}
-						archive: true} 
+					= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: black_book_place.place.foursquare_picture_url, archive: true} 
 
 = render "add_place_modal"
 .md-overlay

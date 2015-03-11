@@ -34,8 +34,10 @@ gem 'acts_as_list'
 gem 'pundit'
 #add bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
-gem 'font-awesome-sass', '~> 4.2.0'
+gem 'font-awesome-sass', '~> 4.3.0'
 gem 'modernizr-rails'
+#paginating items
+gem 'will_paginate', '~> 3.0.6'
 #add delayed jobs mgmt
 gem 'sidekiq'
 #add slim support

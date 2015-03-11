@@ -1,0 +1,2 @@
+module FollowshipsControllerHelper
+end

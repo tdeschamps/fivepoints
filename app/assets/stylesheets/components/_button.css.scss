@@ -1,4 +1,5 @@
 @mixin button($color) {
+  position: relative;
   line-height: $btn-height;
   padding: 0 $btn-horizontal-padding;
   min-width: 120px;
@@ -6,12 +7,14 @@
   border-radius: 4px;
   margin-top: $btn-margin-top;
   border-radius: 2px;
-  font-weight: $weight-light;
+  font-weight: $weight-regular;
   background-color: $color;
   border-top: $btn-top-border-width solid $btn-top-border-color;
   border-right: $btn-right-border-width solid $btn-right-border-color;
   border-bottom: $btn-bottom-border-width solid $btn-bottom-border-color;
   border-left: $btn-left-border-width solid $btn-left-border-color;
+  font-size: $larger-size;
+  transition: background-color ease-in 0.4s; 
   
   &:hover {
     background-color: lighten($color, 10%);
@@ -36,4 +39,12 @@
   letter-spacing: 1px;
   font-size: 1em;
   line-height: 4;
+}
+.button-icon {
+  position: absolute;
+  top:0;
+  bottom:0;
+  margin: auto 0;
+  left: 8px;
+  height: 14px;
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310122655) do
+ActiveRecord::Schema.define(version: 20150310122954) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -62,6 +62,21 @@ ActiveRecord::Schema.define(version: 20150310122655) do
 
   add_index "black_books", ["user_id"], name: "index_black_books_on_user_id"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "plural_name"
+    t.string   "short_name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "categories_places", id: false, force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "category_id"
+  end
+
+  add_index "categories_places", ["category_id", "place_id"], name: "index_categories_places_on_category_id_and_place_id"
+
   create_table "followships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -92,12 +107,6 @@ ActiveRecord::Schema.define(version: 20150310122655) do
     t.string   "facebook_name"
     t.string   "phone"
     t.string   "formatted_phone"
-  end
-
-  create_table "table_categories", force: :cascade do |t|
-    t.string "name"
-    t.string "plural_name"
-    t.string "short_name"
   end
 
   create_table "uploaded_files", force: :cascade do |t|

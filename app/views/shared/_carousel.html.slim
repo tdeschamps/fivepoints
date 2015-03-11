@@ -1,8 +1,7 @@
 .carousel.slide#carousel data-ride="carousel"
 	.carousel-inner
 		.item.active style= "background-image: url('#{pictures[-1].file.url(:xlarge)}');" 
-
-		- pictures.each_with_index do |picture, index|
+		- pictures[0..-1].each_with_index do |picture, index|
 			.item style="background-image: url('#{picture.file.url(:xlarge)}');"
 		
 		a.left.carousel-control data-slide="prev" href="#carousel" role="button" 

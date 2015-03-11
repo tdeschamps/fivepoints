@@ -1,0 +1,5 @@
+= form_for(current_user.active_followships.find_by(followed_id: followed.id),
+             html: { method: :delete },
+             remote: true) do |f|
+	= f.submit "Unfollow", class: "btn", id: "follow-btn", title: "Unfollow unsuscribe from this user" do
+    | Unfollow

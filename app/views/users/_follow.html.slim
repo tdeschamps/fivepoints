@@ -1,0 +1,5 @@
+=form_for(current_user.active_followships.build, remote: true) do |f|
+  = hidden_field_tag :followed_id, followed.id
+  = f.submit "Follow", class: "btn", id: "follow-btn", title: "Follow to get new black books from this author" do
+    i.fa.fa-plus.button-icon
+    | Follow

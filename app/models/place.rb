@@ -2,6 +2,7 @@ class Place < ActiveRecord::Base
 	has_many :black_book_places
 	has_many :black_books, through: :black_book_places
   has_many :uploaded_files, as: :imageable
+  has_and_belongs_to_many :categories, -> {uniq}
 	after_create :set_foursquare_picture, :update_score
   after_update :save_foursquare_picture,  if: :foursquare_picture_url_changed?
   
@@ -31,7 +32,7 @@ class Place < ActiveRecord::Base
   private
   	
 	def set_foursquare_picture
-		foursquare_additional_infos, picture_group = FoursquareInfos.new(self).get_additional_infos()
+		foursquare_additional_infos = FoursquareInfos.new(self).get_additional_infos()
 		self.update(foursquare_additional_infos)
 	end
 

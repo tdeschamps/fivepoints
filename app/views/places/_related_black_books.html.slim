@@ -1,9 +1,10 @@
-item.col-xs-12.col-sm-6.col-md-4.row-space-4 
-	-  picture_url ? style = "background-image: url(#{picture_url});" : style = "background-color: %w(lightpink lightpurple lightblue lightgreen).sample();"
-	.tile-place.cornered-top style=(style)
-		.black_book-tile 
-			.vertical-middle
-				h2 #{black_book.name}
+ 	-  picture_url ? style = "background-image: url(#{picture_url});" : style = "background-color: %w(lightpink lightpurple lightblue lightgreen).sample();"
+	= link_to black_book_path(black_book)
+		.tile-place.cornered-top style=(style)
+			.darken
+				.black_book-tile 
+					.vertical-middle
+						h2 #{black_book.name}
 	.panel-body.panel-card-section
 		.media
 			= link_to user_path(black_book.user_id), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"

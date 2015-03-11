@@ -1,7 +1,8 @@
 li.item.col-xs-12.col-lg-6
 	.black_book-card.row-space-8.cornered-top
 		- if place.foursquare_picture_url || black_book_place.uploaded_files.first
-			.tile-place.cornered-top style=("background-image: url('#{ place.foursquare_picture_url}');")
+			= link_to place
+				.tile-place.cornered-top style=("background-image: url('#{ place.foursquare_picture_url}');")
 			.black_bookplace-infos
 				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
 				h1 #{place.name}

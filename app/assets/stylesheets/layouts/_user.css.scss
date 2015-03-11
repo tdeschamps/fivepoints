@@ -1,8 +1,19 @@
 .user-profile-pic {
-	height:300px;
-	width: 300px;
+	height:125px;
+	width: 125px;
 	border-radius: 8px;
 	box-shadow: 1px 3px 2px #999;
 	background-size: cover;
 	background-position: center;
+	margin: 0 auto 10px;
+}
+#follow-btn {
+	@include button(white);
+	color: $sunset-orange;
+	width: 100%;
+	transition: border ease-in 0.2s;
+	&:hover {
+		border-bottom: none;
+		border: 2px solid $froly;
+	}
 }

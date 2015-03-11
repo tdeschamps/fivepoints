@@ -32,14 +32,23 @@ class FoursquareInfos
 			foursquare_picture_url = "#{picture_object['prefix']}#{picture_object['width']}x#{picture_object['height']}#{picture_object['suffix']}"
 			
 		end
+		
 		foursquare_rating = json['response']['venue']['rating']
 		social_infos = {}
 		json['response']['venue']['contact'].each do |k,v| 
 			social_infos[k.underscore.to_sym] = v
 		end
+
+		categories = json['response']['venue']['categories']
+		
+		categories.each do |category|
+			FoursquareCategory.perform_later place_id, category
+		end
+
+
 		
 		p social_infos
-		return {foursquare_picture_url: foursquare_picture_url, foursquare_rating: foursquare_rating}.merge(social_infos), picture_group
+		return {foursquare_picture_url: foursquare_picture_url, foursquare_rating: foursquare_rating}.merge(social_infos)
 	
 	end 
 

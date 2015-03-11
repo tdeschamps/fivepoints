@@ -1,0 +1,12 @@
+.profile-pic-wrapper	
+	= link_to black_book.user
+		img.profile-pic src=("#{black_book.user.picture}")
+.black-book-place-story
+	p Written on #{(black_book.created_at).strftime("%b %d")} by
+	hr
+	= link_to black_book.user
+		| #{black_book.user.name || black_book.user.username}
+	.places-story-wrapper	
+		p.places-story #{black_book.story}
+.comment-block-actions
+	= render partial: './users/follow', locals: {followed: black_book.user}			 	

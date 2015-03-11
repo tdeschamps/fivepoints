@@ -89,3 +89,49 @@ form {
 
 	}
 }
+.form-user {
+	
+	input.user-account {
+  		width: 100%;
+  		font-size: 45px;
+	  	font-weight: 700;
+	  	margin-bottom: 20px;
+
+	  	&.light {
+ 			font-weight: $weight-light;
+ 		}
+ 		&:focus {
+ 			outline: none;
+ 			background-color: white;
+ 		}
+	}
+
+  	.user-account {
+  		border: none;
+  		padding: 0;
+ 		background-color: transparent;
+ 		transition: background-color ease-in 0.4s;
+ 	}
+ 	.btn-user-submit {
+ 		@include button(lightgreen);
+ 	}
+}
+.separator {
+	position: relative;
+	span {
+		position: absolute;
+		top: -7px;
+		text-transform: uppercase;
+		color: #999;
+		font-size: 12px;
+		letter-spacing: 1px;
+		margin-left: 40px;
+		padding: 0 10px;
+		background: $background-grey;
+	}	
+}
+#facebook-btn {
+	@include button($fbblue);
+	min-width: 250px;
+	font-weight: $weight-light;
+}

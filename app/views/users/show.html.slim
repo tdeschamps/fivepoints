@@ -1,5 +1,33 @@
 div.container.padded-down
 	.row
-		.col-xs-12.col-sm-4.user-profile-pic style=("background-image: url(#{@user.picture})")
-		.col-xs-12.col-sm-8
-			h1 Hey my name is #{@user.first_name || @user.username}
+		.col-xs-12.col-sm-3.sidebar-profile
+			.user-profile-pic style=("background-image: url(#{@user.picture})")
+			h2 Hey my name is #{@user.first_name || @user.username}
+			h5 #{@user.biography} fkjerhjkerdchjkehcnkjewcnjkebcnejh
+			.follow-stats
+				.following
+					.stats-count
+					 	| #{@user.following.count}
+					.stats-name 
+						| Following
+				.followers
+					.stats-count	
+						| #{@user.followers.count}
+					.stats-name
+						| Followers
+			- unless @user == current_user
+				#follow_form
+					- if !signed_in?
+						= render partial: 'follow_unsigned'
+					- elsif current_user.following?(@user)
+			    		= render partial: 'unfollow', locals: {followed: @user}
+			 		- else
+			    		= render partial: 'follow', locals: {followed: @user}
+			    		
+        .col-xs-12.col-sm-9.col-sm-offset-3.user-blackbooks
+        	ul.place-list.list-unstyled
+        		- @black_books.each do |black_book|
+        			.listing
+        				item.col-xs-10.col-xs-offset-1.black-book.row-space-8
+        					= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}      				
+					

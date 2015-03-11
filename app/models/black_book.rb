@@ -7,5 +7,7 @@ class BlackBook < ActiveRecord::Base
 
 	scope :friends, ->(user) {
 		joins(user: :followers).where("followships.follower_id = ?", user.id)
-	} 
+	}
+
+	self.per_page = 10
 end
