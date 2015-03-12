@@ -1,18 +1,18 @@
- 	-  picture_url ? style = "background-image: url(#{picture_url});" : style = "background-color: %w(lightpink lightpurple lightblue lightgreen).sample();"
+ 	-  picture_url ? style = "background-image: url(#{picture_url});" : style = "background-color: %w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample();"
 	= link_to black_book_path(black_book)
 		.tile-place.cornered-top style=(style)
 			.darken
 				.black_book-tile 
 					.vertical-middle
 						h2 #{black_book.name}
-	.panel-body.panel-card-section
+	.panel-body.panel-card-section style=("background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
 		.media
 			= link_to user_path(black_book.user_id), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"
 				img src="#{black_book.user.picture}"
-		= link_to black_book_path(black_book), class: "text-normal black-book-city"
+		= link_to black_book_path(black_book), class: "black-book-city h4 inline left10 top2 text-truncate white-text"
 			i.fa.fa-map-marker.fa-2x
-			h4.inline.left10.top2 #{black_book.formatted_address}
-		p Curated by #{black_book.user.first_name}				
+			| #{black_book.formatted_address}
+		p.white-text Curated by #{black_book.user.first_name}				
 	
 
 								 	

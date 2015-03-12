@@ -90,7 +90,8 @@ form {
 	}
 }
 .form-user {
-	
+	margin-bottom: 25px;
+	position: relative;;
 	input.user-account {
   		width: 100%;
   		font-size: 45px;
@@ -115,6 +116,37 @@ form {
  	.btn-user-submit {
  		@include button(lightgreen);
  	}
+ 	.form-edit {
+ 		border:none;
+ 		background: transparent;
+ 		box-shadow: none;
+ 		font-size: $base-size;
+ 		padding:0;
+ 		height:auto;
+ 		cursor: inherit;
+ 	}
+ 	.btn-user-form-activate {
+ 		@include button-rounded(white);
+ 		color: lightgreen;
+ 		margin-right: 10px;
+ 		&:hover, &:focus {
+ 			border: 1px solid green;
+ 		}
+ 	}
+ 	.btn-user-form-cancel {
+ 		@include button-rounded(white);
+ 		color: $gray;
+ 		&:hover, &:focus {
+ 			color: black;
+ 			border: 1px solid black;
+ 		}
+
+ 	}
+ 	.form-edit-submit {
+ 		position: absolute;
+ 		right: 0;
+ 		top: 0;
+ 	}
 }
 .separator {
 	position: relative;
@@ -134,4 +166,15 @@ form {
 	@include button($fbblue);
 	min-width: 250px;
 	font-weight: $weight-light;
+	&,.rounded {
+	  border-radius: 99px;
+	}
+}
+#twitter-btn {
+	@include button($twitterblue);
+	min-width: 250px;
+	font-weight: $weight-light;
+	&,.rounded {
+	  border-radius: 99px;
+	}
 }

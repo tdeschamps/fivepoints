@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     post 'places/create_place_from_black_book' => 'places#create_place_from_black_book'
     resources :places, only: [:index, :show, :new, :create]
 
-    resources :users, only: [:show, :edit] do 
+    resources :users, only: [:show, :edit, :update] do 
       resources :black_books, only: [:new, :create, :edit]
       member do
             get :following, :followers

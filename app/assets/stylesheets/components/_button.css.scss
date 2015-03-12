@@ -27,6 +27,32 @@
     border-bottom: none;
   }
 }
+@mixin button-rounded($color) {
+  @include button($color);
+  border-radius: 99px;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
+  border: 1px solid transparent;
+  font-weight: $weight-light;
+  min-width:60px;
+  font-size: 14px;
+  padding:0 16px;
+  outline:none;
+  transition: all ease-in 0.3s;
+
+  &:hover {
+    background-color: lighten($color, 10%);
+    border-bottom: none;
+    margin-top: $btn-margin-top;
+  }
+
+  &:active{
+    margin-top: $btn-margin-top;
+    border-bottom: none;
+  }
+}
 /* General styles for all types of buttons */
 .progress-button {
   position: relative;
@@ -45,6 +71,6 @@
   top:0;
   bottom:0;
   margin: auto 0;
-  left: 8px;
+  left: 12px;
   height: 14px;
 }

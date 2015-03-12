@@ -1,6 +1,4 @@
-.profile-pic-wrapper	
-	= link_to black_book.user
-		img.profile-pic src=("#{black_book.user.picture}")
+= render partial: './shared/user_credentials', locals: {user: user}
 .black-book-place-story
 	p Written on #{(black_book.created_at).strftime("%b %d")} by
 	hr

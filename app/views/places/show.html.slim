@@ -17,7 +17,7 @@
 			h4 #{@active_black_books.count} people have recommended #{@place.name}
 			hr 
 			- @active_black_books.each do |black_book|
-				= render partial: 'comment_block', locals: {black_book: black_book}				
+				= render partial: 'comment_block', locals: {black_book: black_book, user: black_book.user}				
 
 	.map-wrapper.map-place
 		#map

@@ -28,6 +28,7 @@ div.container.padded-down
         	ul.place-list.list-unstyled
         		- @black_books.each do |black_book|
         			.listing
-        				item.col-xs-10.col-xs-offset-1.black-book.row-space-8
-        					= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}      				
+        				.item.col-xs-10.col-sm-6.row-space-8
+        					.black-book.drop-shadow
+        						= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}      				
 					

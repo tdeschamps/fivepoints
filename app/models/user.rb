@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.first_name = auth.info.name.split[0]
       user.last_name = auth.info.name.split.drop(1).join(' ')
-      user.username = auth.info.name
+      user.username = auth.info.name.gsub(" ", "_").downcase
       user.name = auth.info.name
       user.picture = auth.info.image + '?width=500&height=500'
       user.token = auth.credentials.token

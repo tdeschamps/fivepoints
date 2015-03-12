@@ -123,8 +123,12 @@
   margin-right: 10px;
 }
 .places-story {
+  overflow: hidden;
   display: inline-block;
   font-size: $base-size;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 } 
 .black-book-place-story {
   float:left;

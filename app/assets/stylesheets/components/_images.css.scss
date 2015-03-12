@@ -35,6 +35,11 @@
 .media-round {
   border-radius: 50%;
   border: 2px solid #fff;
+  transition: border-color ease-in 0.4s;
+
+  &:hover, &:focus {
+    border-color: $froly;
+  }
 }
 .profile-pic-wrapper {
   max-width:50px;

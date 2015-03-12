@@ -6,6 +6,7 @@ html{
    min-height: 100%;
    height: 100%;
    background-color: $background-grey;
+   font-size: $base-size;
    .full-page{
    	min-height: 95%;
    }
@@ -52,4 +53,21 @@ h1 {
 }
 hr {
   border-top: 1px solid #dedede;
+}
+.text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.white-text {
+  color:white;
+  transition: color ease-in 0.3s;
+}
+a.white-text {
+  &:hover, &:focus {
+    color: $froly;
+  }
+}
+.white-background {
+  background: white;
 }
