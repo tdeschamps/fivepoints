@@ -1,3 +1,9 @@
+= content_for :head do
+	title
+		| "#{@black_book.name}"
+	= @tags
+	=raise	
+
 .page-wrapper
 	.header-wrapper
 		.black_book-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")

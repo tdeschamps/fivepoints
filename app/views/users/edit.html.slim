@@ -1,10 +1,8 @@
 div.container.padded-down
-	div.col-xs-12.col-sm-6.col-sm-offset-3.padded-down
-		.text-center
-			h1.strong Your informations  
-		.separator
-			hr	
-		.form-user#edit-email
+	div.col-xs-12.col-sm-10.col-sm-offset-1.padded-down
+		.text-center.underline-title
+			h1.strong Your informations  	
+		section.form-user.form-list#edit-email
 			.form-edit-fields
 				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
 			  		= f.error_notification
@@ -14,9 +12,8 @@ div.container.padded-down
 		    			#edit-email-submission.hide	 
 			  				= f.button :submit, "Submit", class: "btn-user-form-activate"
 			  				input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")
-		.separator
-			hr
-		.form-user#edit-username
+		
+		section.form-user.form-list#edit-username
 			.form-edit-fields
 				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
 			  		= f.error_notification
@@ -26,21 +23,32 @@ div.container.padded-down
 		    			#edit-username-submission.hide	 
 			  				= f.button :submit, "Submit", class: "btn-user-form-activate"
 			  				input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")	
-		.separator
-			hr
-		.form-user#edit-facebook-connection
-			form
-				label.form-edit-label.string Connect with Facebook
-			.form-edit-submit		  				  				
-				= link_to user_omniauth_authorize_path(:facebook), class: "btn rounded", id:"facebook-btn"
-					i.fa.fa-facebook.button-icon
-					| Connect with Facebook 
-		.separator
-			hr
-		.form-user#edit-twitter-connection
+		
+		section.form-user.form-list#edit-facebook-connection
+			.div
+				form
+					label.form-edit-label.string Connect with Facebook
+					p.disclosures
+						| Connect your Facebook account to see activities from your friends. 
+						strong We will never post to Facebook without your permission.
+			.form-connect-social-button
+				- if @user.provider == 'facebook'	
+					img.form-connect--user-image src="#{@user.picture}"
+					span.form-item-social-action
+						span.form-social-item-name #{@user.name}
+
+				- else				  				
+					= link_to user_omniauth_authorize_path(:facebook), class: "btn rounded", id:"facebook-btn"
+						i.fa.fa-facebook.button-icon
+						| Connect with Facebook 
+		
+		section.form-user.form-list#edit-twitter-connection
 			form
 				label.form-edit-label.string Connect with Twitter
-			.form-edit-submit		  				  				
+				p.disclosures
+					| Connect your Twitter account to see activities from your friends. 
+					strong We will never post to Twitter without your permission.
+			.form-connect-social-button		  				  				
 				= link_to user_omniauth_authorize_path(:twitter), class: "btn rounded", id:"twitter-btn"
 					i.fa.fa-twitter.button-icon
 					| Connect with Twitter

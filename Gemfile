@@ -38,6 +38,8 @@ gem 'font-awesome-sass', '~> 4.3.0'
 gem 'modernizr-rails'
 #paginating items
 gem 'will_paginate', '~> 3.0.6'
+#improve seo and social sharing
+gem 'meta-tags', '~> 2.0.0', :require => 'meta_tags'
 #add delayed jobs mgmt
 gem 'sidekiq'
 #add slim support

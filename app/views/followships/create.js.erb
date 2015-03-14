@@ -1,2 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>")
-$("#followers")find('.stats-count').html('<%= @user.followers.count %>')
+$(".followers").find('.stats-count').html('<%= user.followers.count %>')
+$("#follow_form").html("<%= j render partial: 'users/unfollow', locals: {followed: user} %>")

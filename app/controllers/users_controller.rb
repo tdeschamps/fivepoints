@@ -19,11 +19,18 @@ class UsersController < ApplicationController
 
 	def update
 		authorize @user
+		@user.update(user_params)
+
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 	
 	private
 	
 	def user_params
+		params.require(:user).permit(:username, :email)
 
 	end
 

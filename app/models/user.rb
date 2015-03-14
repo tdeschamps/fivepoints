@@ -15,9 +15,10 @@ class User < ActiveRecord::Base
   has_many :uploaded_files, as: :imageable
   
   has_many :authorizations
-
+  has_many :uploaded_files, as: :imageable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
 
   def self.find_for_facebook_oauth(auth)

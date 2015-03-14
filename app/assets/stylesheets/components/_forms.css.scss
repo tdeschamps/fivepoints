@@ -89,8 +89,16 @@ form {
 
 	}
 }
+.form-list {
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	padding-top: 30px;
+	padding-bottom: 36px;
+	.form-group {
+		margin-bottom: 5px;
+	}
+}
 .form-user {
-	margin-bottom: 25px;
 	position: relative;;
 	input.user-account {
   		width: 100%;
@@ -145,7 +153,43 @@ form {
  	.form-edit-submit {
  		position: absolute;
  		right: 0;
- 		top: 0;
+ 		top: 35%;
+ 		margin-top: -19px;
+ 	}
+ 	@media (min-width: 768px) {
+ 		.form-connect-social-button {
+ 		position: absolute;
+ 		right: 0;
+ 		top: 35%;	
+ 		}
+ 	}	
+ 	p.disclosures {
+ 		@media (min-width: 768px) {
+ 			max-width: 50%;
+ 		}	
+ 		font-size: 14px;
+ 		line-height: 15px;
+ 	}
+ 	.form-connect--user-image {
+ 		height: 35px;
+ 		width:35px;
+ 		border-radius: 50%;
+ 		float: right;
+ 	}
+ 	.form-item-social-action {
+ 		float:right;
+ 		margin-right: 10px;
+
+ 		.form-social-item-name {
+ 			font-size: 14px;
+ 			color: rgba(0,0,0,0.6);
+ 			text-align: right;
+ 			display: block;
+ 			/* font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif; */
+ 			letter-spacing: -0.02em;
+ 			font-weight: 700;
+ 			font-style: normal;
+ 		}
  	}
 }
 .separator {

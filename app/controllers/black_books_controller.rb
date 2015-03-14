@@ -13,6 +13,17 @@ class BlackBooksController < ApplicationController
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
 
 		@attributes = %w(address city category)
+
+		@tags = set_meta_tags :og => {
+  :title    => 'The Rock',
+  :type     => 'video.movie',
+  :url      => 'http://www.imdb.com/title/tt0117500/',
+  :image    => 'http://ia.media-imdb.com/rock.jpg',
+  :video    => {
+    :director => 'http://www.imdb.com/name/nm0000881/',
+    :writer   => ['http://www.imdb.com/name/nm0918711/', 'http://www.imdb.com/name/nm0177018/']
+  }
+}
 	end
 
 	def new
@@ -54,8 +65,7 @@ class BlackBooksController < ApplicationController
 	end
 	
 	def index
-		@black_books = current_user.black_books.all
-		@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places).limit(10)
+		@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places).order('updated_at desc').limit(10)
 	end
 
 	private

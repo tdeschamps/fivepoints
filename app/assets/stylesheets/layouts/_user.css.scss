@@ -17,3 +17,13 @@
 		border: 2px solid $froly;
 	}
 }
+.underline-title {
+	color: yellow;
+	&:after {
+		content: '';
+		border-bottom: 1px solid #ddd;
+		width:150px;
+		display: block;
+ 		margin: 30px auto 0;
+	}
+}

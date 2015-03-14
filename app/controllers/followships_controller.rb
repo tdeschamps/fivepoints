@@ -5,18 +5,17 @@ class FollowshipsController < ApplicationController
     	current_user.follow(user)
     	respond_to do |format|
     	  format.html { redirect_to user }
-    	  format.js
+    	  format.js	  { render action: 'create', status: :created, locals: {user: user} }
     	end
   	end
 
 	def destroy
-	    user = Relationship.find(params[:id]).followed
+	    user = Followship.find(params[:id]).followed
 	    current_user.unfollow(user)
-	    redirect_to user
 
 	    respond_to do |format|
 	      format.html { redirect_to user }
-	      format.js
+	      format.js   { render action: 'destroy', status: :created, locals: {user: user} }
 	    end
 	end
 end
