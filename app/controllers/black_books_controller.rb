@@ -15,15 +15,15 @@ class BlackBooksController < ApplicationController
 		@attributes = %w(address city category)
 
 		@tags = set_meta_tags :og => {
-  :title    => 'The Rock',
-  :type     => 'video.movie',
-  :url      => 'http://www.imdb.com/title/tt0117500/',
-  :image    => 'http://ia.media-imdb.com/rock.jpg',
-  :video    => {
-    :director => 'http://www.imdb.com/name/nm0000881/',
-    :writer   => ['http://www.imdb.com/name/nm0918711/', 'http://www.imdb.com/name/nm0177018/']
-  }
-}
+			  :title    => 'The Rock',
+			  :type     => 'video.movie',
+			  :url      => 'http://www.imdb.com/title/tt0117500/',
+			  :image    => 'http://ia.media-imdb.com/rock.jpg',
+			  :video    => {
+			    :director => 'http://www.imdb.com/name/nm0000881/',
+			    :writer   => ['http://www.imdb.com/name/nm0918711/', 'http://www.imdb.com/name/nm0177018/']
+			  }
+			}
 	end
 
 	def new
@@ -35,8 +35,11 @@ class BlackBooksController < ApplicationController
 	def create
 		@black_book = @user.black_books.new(black_book_params)
 		authorize @black_book
-		@black_book.save
-		redirect_to edit_user_black_book_path(@user, @black_book)
+		if @black_book.save
+			redirect_to edit_user_black_book_path(@user, @black_book)
+		else
+			redirect_to new_user_black_book_path(current_user, @black_book)
+		end	
 	end
 	
 	def edit

@@ -18,13 +18,13 @@
   
   &:hover {
     background-color: lighten($color, 10%);
-    border-bottom: ($btn-bottom-border-width * 2/3) solid $btn-bottom-border-color;
-    margin-top: $btn-margin-top + ($btn-bottom-border-width  * 1/3);
+    //border-bottom: ($btn-bottom-border-width * 2/3) solid $btn-bottom-border-color;
+    //margin-top: $btn-margin-top + ($btn-bottom-border-width  * 1/3);
   }
 
   &:active{
-    margin-top: $btn-margin-top + $btn-bottom-border-width;
-    border-bottom: none;
+    //margin-top: $btn-margin-top + $btn-bottom-border-width;
+    //border-bottom: none;
   }
 }
 @mixin button-rounded($color) {

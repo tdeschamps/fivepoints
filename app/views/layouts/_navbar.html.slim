@@ -27,11 +27,11 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
                   i.fa.fa-user
                   |  Profile 
               li
-                = link_to black_books_path(current_user.black_books.all) do
+                = link_to black_books_path do
                   i.fa.fa-home
                   |  Guides 
               li
-                = link_to destroy_user_session_path(current_user) do
+                = link_to destroy_user_session_path do
                   i.fa.fa-sign-out
                   |  Sign Out 
         - else 
@@ -40,7 +40,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
                 i.fa.fa-envelope-o
                 |  Sign In
                 li
-                  = link_to new_user_registration_path do
+                  = link_to new_user_registration_path, method: 'delete' do
                     i.fa.fa-sign-out
                     |  Sign Up
         li

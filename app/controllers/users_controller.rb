@@ -19,18 +19,19 @@ class UsersController < ApplicationController
 
 	def update
 		authorize @user
-		@user.update(user_params)
+		user_params[:file] ? @user.uploaded_files.create(file: user_params[:file]) : @user.update(user_params)
+		@user.save
 
 		respond_to do |format|
-			format.html
-			format.js
+			format.html {redirect_to edit_user_path(@user)}
+			format.js {render nothing: true}
 		end
 	end
 	
 	private
 	
 	def user_params
-		params.require(:user).permit(:username, :email)
+		params.require(:user).permit(:username, :email, :file)
 
 	end
 

@@ -12,7 +12,7 @@
 						= render partial: "picture_wrapper", locals: {picture: @place.foursquare_picture_url}
 				.col-xs-12.col-md-5.col-lg-4.text-center	
 					= render partial: "place_infos", locals: {place: @place}
-		
+		= render partial: "./shared/foursquare_attribution" if @place.foursquare_id
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2					
 			h4 #{@active_black_books.count} people have recommended #{@place.name}
 			hr 

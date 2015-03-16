@@ -1,7 +1,18 @@
 div.container.padded-down
 	div.col-xs-12.col-sm-10.col-sm-offset-1.padded-down
 		.text-center.underline-title
-			h1.strong Your informations  	
+			h1.strong Your informations  
+		section.form-user.form-list#edit-email
+			.form-edit-fields
+				.profile-picture-edit.rounded
+					img src = (@user.uploaded_files.length > 0 ? "#{@user.uploaded_files.first.file.url(:original)}" : asset_url('default_user_picture.png'))
+				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
+			  		= f.simple_fields_for @user.uploaded_files.build() do |file|
+			  			.nested-fields.input.input--black_book
+ 							= f.file_field :file, :label => "Upload an image",id:"file-upload"
+ 					.form-edit-submit
+ 						#edit-email-submission
+ 							= f.button :submit, "Submit", class: "btn-user-form-activate"		
 		section.form-user.form-list#edit-email
 			.form-edit-fields
 				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|

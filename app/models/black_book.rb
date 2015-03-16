@@ -1,4 +1,5 @@
 class BlackBook < ActiveRecord::Base
+	validates :name, :city, presence: true 
 	belongs_to :user
 	has_many :black_book_places
 	has_many :places, through: :black_book_places

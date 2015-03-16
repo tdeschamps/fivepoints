@@ -57,3 +57,16 @@
 		height:480px;
 	}
 }
+.profile-picture-edit{
+	height:300px;
+	width: 300px;
+	border: 2px solid white;
+  	box-shadow: 0px 2px 2px #ccc;
+  	overflow: hidden;
+	img {
+		max-width:300px;
+	} 
+	&,.rounded {
+		border-radius: 50%;
+	}
+}

@@ -31,7 +31,7 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
                   i.fa.fa-home
                   |  Guides 
               li
-                = link_to destroy_user_session_path(current_user) do
+                = link_to destroy_user_session_path, method: 'delete' do
                   i.fa.fa-sign-out
                   |  Sign Out 
         - else 

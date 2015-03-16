@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  #validates :username, uniqueness: true
   has_many :active_followships, class_name:  "Followship",
                                 foreign_key: "follower_id",
                                 dependent:   :destroy                              
@@ -20,6 +21,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
+
+  #after_create :you_should_follow_fivemarks
+  after_create :you_should_have_a_username, unless: :username?
 
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -138,5 +142,13 @@ class User < ActiveRecord::Base
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def you_should_follow_fivemarks
+    self.active_followships.create(followed_id: 1)
+  end
+
+  def you_should_have_a_username
+    self.update!({username: "username_#{self.id}"})
   end      
 end
