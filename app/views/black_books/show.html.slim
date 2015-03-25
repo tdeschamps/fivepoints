@@ -1,12 +1,16 @@
+= content_for :head do
+	title
+		| "#{@black_book.name}"	
+
 .page-wrapper
 	.header-wrapper
-		.BlackBook-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
+		.black_book-header style=(@black_book.uploaded_files.length > 0 ? "background: url('#{@black_book.uploaded_files.last.file.url(:original)}') no-repeat fixed; background-size:cover;" : "background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
 		.darken			
 			h1
 				= @black_book.name
 	.container
 		.col-xs-12
-			= render "BlackBook_story", black_book: @black_book if @black_book.story
+			= render "black_book_story", black_book: @black_book if @black_book.story
 		.col-xs-12
 			.row-space-top-8.row-space-8.text-center#story		
 				h2 The places
@@ -14,8 +18,13 @@
 				ul.place-list.list-unstyled#sortable
 					- @black_book_places.each do |black_book_place|	
 						= render partial: 'show_place', locals: {place: black_book_place.place, black_book_place: black_book_place, archive: false}
-	.map-wrapper
-		#map 			
+	.map-wrapper.row-space-8
+		#map
+
+	.container
+		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2
+			hr
+			= render partial: './shared/user_credentials', locals: {user: @black_book.user}	 			
 
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @city_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do

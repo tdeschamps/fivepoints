@@ -7,6 +7,8 @@ $mac-n-cheese-transparent: rgba(254, 191, 120, 0.8);
 $french-pass: #BDE6FF;
 $aquamarine: #87FFDD;
 $white: white;
+$fbblue: #3b5998;
+$twitterblue: #55acee;
 
 // Gray scale color scheme
 $gray-darker:  lighten(#000, 13.5%); // #222
@@ -15,6 +17,7 @@ $gray:         lighten(#000, 33.5%); // #555
 $gray-light:   lighten(#000, 46.7%); // #777
 $gray-lighter: lighten(#000, 93.5%); // #eee
 
+
 //semantic color names
 $brand-color: $sunset-orange;
 $light-brand-color: $froly;
@@ -22,4 +25,4 @@ $accent-brand-color: $mac-n-cheese;
 $navbar-color: grey;
 $navbar-bg: white;
 $navbar-border-bottom-color: transparent;
-
+$background-grey: #F5F5F5

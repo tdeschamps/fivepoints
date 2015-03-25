@@ -18,6 +18,7 @@ class FoursquareInfos
 		response = open(foursquare_place_url)
 		#p response
 		json = JSON.parse(response.read.to_s)
+		
 		if json['response']['venue']['photos']['count'] > 0
 			picture_group = json['response']['venue']['photos']['groups'][0]['items']
 			
@@ -32,14 +33,25 @@ class FoursquareInfos
 			foursquare_picture_url = "#{picture_object['prefix']}#{picture_object['width']}x#{picture_object['height']}#{picture_object['suffix']}"
 			
 		end
+		
 		foursquare_rating = json['response']['venue']['rating']
 		social_infos = {}
 		json['response']['venue']['contact'].each do |k,v| 
 			social_infos[k.underscore.to_sym] = v
 		end
+
+		categories = json['response']['venue']['categories']
+		
+		categories.each do |category|
+			FoursquareCategory.perform_later place_id, category
+		end
+
+		if json['response']['venue']['description']
+			description = json['response']['venue']['description']
+		end	
 		
 		p social_infos
-		return {foursquare_picture_url: foursquare_picture_url, foursquare_rating: foursquare_rating}.merge(social_infos), picture_group
+		return {foursquare_picture_url: foursquare_picture_url, foursquare_rating: foursquare_rating, description: description}.merge(social_infos)
 	
 	end 
 

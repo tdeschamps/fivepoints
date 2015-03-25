@@ -5,7 +5,8 @@ html{
    margin: 0;
    min-height: 100%;
    height: 100%;
-   background-color: #EDEFED;
+   background-color: $background-grey;
+   font-size: $base-size;
    .full-page{
    	min-height: 95%;
    }
@@ -14,6 +15,7 @@ html{
 
 body, p, a, h1, h2, h3 {
 	font-family: $base-font;
+  color: $gray-light;
 }
 
 //.padded-down {
@@ -31,15 +33,47 @@ textarea {
 .padded-down {
 	padding-top: 70px;
 	padding-bottom: 30px;
-	min-height: 95vh;
 }
 .light {
 	font-weight: $weight-light;
 }
 
 h1 {
-  color: $gray
+  color: $gray;
+  font-size: 28px;
 }
 .strong {
   font-weight: $weight-bold
+}
+.text-normal, a.text-normal {
+  color: inherit;
+}
+.inline {
+  display: inherit;
+}
+hr {
+  border-top: 1px solid #dedede;
+}
+.text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.white-text {
+  color:white;
+  transition: color ease-in 0.3s;
+}
+a.white-text {
+  &:hover, &:focus {
+    color: $froly;
+  }
+}
+.white-background {
+  background: white;
+}
+.clear {
+  clear: both;
+}
+.transparent-white {
+    background: rgba(255,255,255,0.85);
 }

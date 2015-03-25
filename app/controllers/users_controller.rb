@@ -5,6 +5,12 @@ class UsersController < ApplicationController
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 	def show
+		@black_books = @user.black_books.paginate(page: params[:page], per_page: 5).order('updated_at DESC')
+		
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end
 	end
 
 	def edit
@@ -13,16 +19,24 @@ class UsersController < ApplicationController
 
 	def update
 		authorize @user
+		user_params[:file] ? @user.uploaded_files.create(file: user_params[:file]) : @user.update(user_params)
+		@user.save
+
+		respond_to do |format|
+			format.html {redirect_to edit_user_path(@user)}
+			format.js {render nothing: true}
+		end
 	end
 	
 	private
 	
 	def user_params
+		params.require(:user).permit(:username, :email, :file)
 
 	end
 
 	def set_user
-		@user = User.find(params[:id])
+		@user = User.includes(:followers, :following, black_books: :places).find(params[:id])
 	end
 
 	def user_not_authorized

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  #validates :username, uniqueness: true
   has_many :active_followships, class_name:  "Followship",
                                 foreign_key: "follower_id",
                                 dependent:   :destroy                              
@@ -15,10 +16,15 @@ class User < ActiveRecord::Base
   has_many :uploaded_files, as: :imageable
   
   has_many :authorizations
-
+  has_many :uploaded_files, as: :imageable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
+
+  #after_create :you_should_follow_fivemarks
+  after_create :you_should_have_a_username, unless: :username?
+  after_create :send_welcome_email
 
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -27,8 +33,9 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.first_name = auth.info.name.split[0]
-      user.last_name = auth.info.name.split.drop(0).join(' ')
-      user.username = auth.info.name
+      user.last_name = auth.info.name.split.drop(1).join(' ')
+      user.username = auth.info.name.gsub(" ", "_").downcase
+      user.name = auth.info.name
       user.picture = auth.info.image + '?width=500&height=500'
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
@@ -136,5 +143,19 @@ class User < ActiveRecord::Base
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
-  end      
+  end
+
+  def you_should_follow_fivemarks
+    self.active_followships.create(followed_id: 1)
+  end
+
+  def you_should_have_a_username
+    self.update!({username: "username_#{self.id}"})
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver
+  end       
 end

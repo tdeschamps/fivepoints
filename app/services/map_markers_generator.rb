@@ -8,7 +8,7 @@ class MapMarkersGenerator
 		geolocations = Array.new
 
 		@places = [@places] if @places.class == Place
-		@places.each do |place|
+		@places.each_with_index do |place, index|
 		  geolocations << {
 		    type: 'Feature',
 		    geometry: {
@@ -19,7 +19,7 @@ class MapMarkersGenerator
 		      name: place.name,
 		      address: place.address,
 		      :'marker-color' => '#FF4A50',
-		      :'marker-symbol' => 'circle',
+		      :'marker-symbol' => index + 1,
 		      :'marker-size' => 'medium'
 		    }
 		  }

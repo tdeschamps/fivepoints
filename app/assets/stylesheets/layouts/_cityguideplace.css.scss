@@ -1,8 +1,9 @@
-.BlackBook-place {
+.black_book-place {
 	min-height: 300px;
 	max-height: 500px;
 	max-width: 1200px;
 	background-size: cover;
+
 }
 .item {
   border: 1px solid transparent;
@@ -20,7 +21,7 @@
   background-position: center;
   position: relative;
   background-color: $bg-color;
-  height: 345px;
+  height: 250px;
   color: $white;
   font-weight: $weight-light;
 
@@ -61,11 +62,14 @@
   height: 100%;
 }
 
-.BlackBook-tile {
+.black_book-tile {
   display: table;
   width: 100%;
   height: 100%;
   text-align: center;
+  h1,h2{
+    color: white;
+  }
 }
 
 .row-space-top-8 {
@@ -87,20 +91,20 @@
   border-radius: 50%;
   top:5px;
   left:5px;
-  height: 15%;
-  width:15%;
-  background-color: $mac-n-cheese;
+  height: 40px;
+  width:40px;
+  background-color: rgba(255,255,255,0.9);
   text-align: center;
   h1 {
     @include centered_h1;
+    color: $froly;
   }
 }
-.BlackBook-card {
+.black_book-card {
   width: 100%;
   min-height: 300px;
   background-color: white;
   padding-bottom: 8px;
-  box-shadow: 2px 3px 10px #aaa;
 }
 .cornered-top {   
   border-top-left-radius: 5px;
@@ -108,7 +112,7 @@
 }
 
 
-.BlackBookplace-infos {
+.black_bookplace-infos {
   clear:both;
   color: $gray-light;
   overflow: hidden;
@@ -127,10 +131,16 @@
     margin-bottom: 10px;
     color: $gray;
   }
-
-  p {
-    display: inline;
+  .attributes>strong, .attributes>p {
+    float:left;
   }
+  .attributes {
+    p {
+      padding-left: 5px;
+      width: 200px;
+      margin-bottom: 0px;
+    }
+  } 
 }
 .icon-attribution {
   overflow: hidden;
@@ -156,5 +166,10 @@
     margin: 5px 7px 7px 5px;
     display: inline-block;
     vertical-align: 10%;
+  }
+}
+#active-places-list, #archived-places-list {
+  .tile-place {
+    height: 300px;
   }
 }

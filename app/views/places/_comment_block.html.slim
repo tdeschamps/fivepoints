@@ -1,0 +1,14 @@
+= render partial: './shared/user_credentials', locals: {user: user}
+.black-book-place-story
+	p Written on #{(black_book.created_at).strftime("%b %d")} by
+	= link_to black_book.user
+		| #{black_book.user.name || black_book.user.username}
+	.places-story-wrapper	
+		p.places-story #{black_book.story}
+.comment-block-actions
+	- if current_user
+		= render partial: './users/follow', locals: {followed: black_book.user}	
+	- else
+		= render partial: './users/follow_unsigned'
+.clear
+hr					 	

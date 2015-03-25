@@ -1,2 +1,45 @@
 div.container.padded-down
-| hello world
+	.row
+		.col-xs-12.col-sm-3.sidebar-profile
+			.user-profile-pic.rounded 
+				- if @user.uploaded_files.length > 0
+					img src = ("#{@user.uploaded_files.first.file.url(:original)}")
+				- elsif @user.provider == 'facebook'
+					img src = '#{@user.picture}'
+				- else
+					img src = asset_url('default_user_picture.png')
+			h2 Hey my name is #{@user.first_name || @user.username}
+			h5 #{@user.biography} fkjerhjkerdchjkehcnkjewcnjkebcnejh
+			.follow-stats
+				.following
+					.stats-count
+					 	| #{@user.following.count}
+					.stats-name 
+						| Following
+				.followers
+					.stats-count	
+						| #{@user.followers.count}
+					.stats-name
+						| Followers
+			- unless @user == current_user
+				#follow_form
+					- if !signed_in?
+						= render partial: 'follow_unsigned'
+					- elsif current_user.following?(@user)
+			    		= render partial: 'unfollow', locals: {followed: @user}
+			 		- else
+			    		= render partial: 'follow', locals: {followed: @user}
+			    		
+        .col-xs-12.col-sm-9.col-sm-offset-3.user-blackbooks
+        	ul.place-list.list-unstyled
+        		- @black_books.each do |black_book|
+        			.listing
+        				.item.col-xs-10.col-sm-6.row-space-8
+        					.black-book.drop-shadow
+        						= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: (black_book.uploaded_files.first.file.url(:large) unless black_book.uploaded_files.first.nil?), archive: true}      				
+- if !signed_in?
+	= render './modals/disconnected_modal'
+	.md-overlay.transparent-white	
+= content_for :js do
+	=javascript_include_tag 'classie'
+	= javascript_include_tag 'users/disconnected'				

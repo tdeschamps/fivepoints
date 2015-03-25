@@ -2,7 +2,7 @@
   = f.simple_fields_for :uploaded_files do |file|
   	= render 'add_picture_form', :f => file
   .input	
-  	= f.input :story, as: :text, placeholder: 'Add a few words about this places (if you feel so :))', input_html: {class: ' textarea--BlackBook'}	
+  	= f.input :story, as: :text, placeholder: 'Add a few words about this places (if you feel so :))', input_html: {class: ' textarea--black_book'}	
   = f.input :black_book_id, as: :hidden, input_html: {value: @black_book.id}
   = f.input :position, as: :hidden, input_html: {value: @black_book_places.count + 1}
   

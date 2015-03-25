@@ -52,11 +52,14 @@
 
     h1 {
       color: white;
-      font-size: 70px;
+      font-size: 50px;
+      font-weight: $weight-bold
     }
 
     h2 {
       color: white;
+      font-size: 25px;
+      font-weight: $weight-light
     }
   }
 }
@@ -69,7 +72,7 @@
 }
 
 .moto {
-  background: #FF4A50;
+  background: $froly;
   color: white;
   padding: 30px 0 40px 0;
   position: relative;
@@ -77,6 +80,10 @@
 }
 .moto-containers {
   margin-top: 5vh;
+  h3 {
+    color:white;
+    font-weight: 100;
+  }
 }
 
 .moto-icon {
@@ -97,6 +104,8 @@
 
   h1 {
     color: white;
+    font-size: 2em;
+    font-weight: 200;
     }
 
   .home-skill {
@@ -327,7 +336,7 @@
 }
 
 
-.city-guides {
+.back-books {
   height: 25vh;
   img {
     height: 25vh;
@@ -423,7 +432,8 @@
   position: absolute;
   top:0;
   bottom: 0;
-  height: 36px;
+  min-height: 36px;
+  max-height: 2em;
   margin: auto 0;
 
   h1 {

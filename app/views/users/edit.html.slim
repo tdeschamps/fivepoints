@@ -1,7 +1,75 @@
 div.container.padded-down
-h1 
-	= @user.email
-h2 
-	= @user.username
-= link_to 'twitter', user_omniauth_authorize_path(:twitter)
-= link_to 'twitter', user_omniauth_authorize_path(:linkedin)
+	div.col-xs-12.col-sm-10.col-sm-offset-1.padded-down
+		.text-center.underline-title
+			h1.strong Your informations  
+		section.form-user.form-list#edit-email
+			.form-edit-fields
+				.profile-picture-edit
+					- if @user.uploaded_files.length > 0
+						img src = ("#{@user.uploaded_files.first.file.url(:original)}")
+					- elsif @user.provider == 'facebook'
+						img src = '#{@user.picture}'
+					- else
+						img src = asset_url('default_user_picture.png')
+
+				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
+			  		= f.simple_fields_for @user.uploaded_files.build() do |file|
+			  			.nested-fields.input.input--black_book
+ 							= f.file_field :file, :label => "Upload an image",id:"file-upload"
+ 					.form-edit-submit
+ 						#edit-email-submission
+ 							= f.button :submit, "Submit", class: "btn-user-form-activate"		
+		section.form-user.form-list#edit-email
+			.form-edit-fields
+				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
+			  		= f.error_notification
+			  		= f.input :email, required: false, label: "Your email", input_html: {class: "form-edit disabled"}, label_html: {class: "form-edit-label disabled"}, disabled:true		
+		    		.form-edit-submit
+		    			input#enable-edit-email.btn.btn-default.btn-user-form-activate type="button" value= ("Edit")
+		    			#edit-email-submission.hide	 
+			  				= f.button :submit, "Submit", class: "btn-user-form-activate"
+			  				input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")
+		
+		section.form-user.form-list#edit-username
+			.form-edit-fields
+				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
+			  		= f.error_notification
+			  		= f.input :username, required: false, label: "Your username", input_html: {class: "form-edit disabled"}, label_html: {class: "form-edit-label disabled"}, disabled:true		
+		    		.form-edit-submit
+		    			input#enable-edit-username.btn.btn-default.btn-user-form-activate type="button" value= ("Edit")
+		    			#edit-username-submission.hide	 
+			  				= f.button :submit, "Submit", class: "btn-user-form-activate"
+			  				input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")	
+		
+		section.form-user.form-list#edit-facebook-connection
+			.div
+				form
+					label.form-edit-label.string Connect with Facebook
+					p.disclosures
+						| Connect your Facebook account to see activities from your friends. 
+						strong We will never post to Facebook without your permission.
+			.form-connect-social-button
+				- if @user.provider == 'facebook'	
+					img.form-connect--user-image src="#{@user.picture}"
+					span.form-item-social-action
+						span.form-social-item-name #{@user.name}
+
+				- else				  				
+					= link_to user_omniauth_authorize_path(:facebook), class: "btn rounded", id:"facebook-btn"
+						i.fa.fa-facebook.button-icon
+						| Connect with Facebook 
+		
+		section.form-user.form-list#edit-twitter-connection
+			form
+				label.form-edit-label.string Connect with Twitter
+				p.disclosures
+					| Connect your Twitter account to see activities from your friends. 
+					strong We will never post to Twitter without your permission.
+			.form-connect-social-button		  				  				
+				= link_to user_omniauth_authorize_path(:twitter), class: "btn rounded", id:"twitter-btn"
+					i.fa.fa-twitter.button-icon
+					| Connect with Twitter
+		
+
+= content_for :js do
+	= javascript_include_tag "users/user_edit"

@@ -24,9 +24,9 @@ $(document).ready(function() {
 			tile.find('.rank-square').remove();
 			tile.find('#send-to-archive').remove();
 			tile.appendTo($('#archived-places-list > ul')).fadeIn(200);
-			var newPlace = document.getElementById('new-place');
+			var newPlace = document.getElementById('new-place').parentNode;
 			classie.remove( newPlace, 'hidden');
-			$('#BlackBook-full').remove();
+			$('#black_book-full').remove();
 			$('#new-place').show(200);
 			$('#place_black_book_places_attributes_0_position').val(parseInt($('#place_black_book_places_attributes_0_position').val()) - 1);
 		})
@@ -42,6 +42,8 @@ $(document).ready(function() {
 	    $('#place_black_book_places_attributes_0_position').val( parseInt($('#place_black_book_places_attributes_0_position').val()) + 1 );
 	    // clear error state
 	    this.find('form input[type="text"]').val('');
+	    this.find('form .input--filled').removeClass('input--filled');
+	    this.find('form textarea').val('');
 	    this.clear_previous_errors();
 	  };
 

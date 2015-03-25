@@ -1,0 +1,9 @@
+.get-connected-dialog
+	h1.row-space-4
+		| You need to be signed in, to do that!
+	.col-xs-12
+		= link_to new_user_registration_path, class: "btn light-green-button"
+			| Sign Up
+	.col-xs-12	
+		= link_to new_user_session_path, class: "btn light-blue-button"
+			| Sign In		

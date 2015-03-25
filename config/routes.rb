@@ -9,16 +9,20 @@ Rails.application.routes.draw do
     post 'places/create_place_from_black_book' => 'places#create_place_from_black_book'
     resources :places, only: [:index, :show, :new, :create]
 
-    resources :users do 
+    resources :users, only: [:show, :edit, :update] do 
       resources :black_books, only: [:new, :create, :edit]
+      member do
+            get :following, :followers
+      end
     end
 
     resources :black_books, only: [:show, :index] do
       resources :black_book_places, only: [:new, :create]
     end
-
+    get 'black_books/search' => 'black_books#search', as: :search_black_books
     resources :black_book_places, only: [:show]
     resources :places, only: [:show, :index]
+    resources :followships, only: [:create, :destroy]
     
     post 'black_book_places/update_position' => 'black_book_places#update_position'
     post 'black_book_places/:id/send_to_archive' => 'black_book_places#send_to_archive', as: :archive

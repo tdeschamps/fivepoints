@@ -1,0 +1,18 @@
+.place-main-data
+	h1 #{place.name}
+	.place-main-adress
+		i.fa.fa-map-marker.fa-2x
+		p #{place.address}
+	h3 #{place.city}
+.place-type.text-center
+	.type-wrapper
+		h1 #{place.category}
+.place-attributes
+	.col-xs-9
+		- %w(twitter facebook_username formatted_phone).each_with_index do |attr,i|
+			- if place[attr.to_sym]
+				.attribute
+					i.fa class="#{%w(fa-twitter fa-facebook-official fa-phone)[i]}"
+					|    #{place[attr.to_sym]}
+	.rating-wrapper.col-xs-3 style=("background-color: rgba(#{(255 * (1 - place.foursquare_rating.to_f/10)).to_i}, #{(255 * (place.foursquare_rating.to_f/10)).to_i}, 0, 0.7);")
+		h1 #{place.foursquare_rating}

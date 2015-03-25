@@ -31,16 +31,16 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
                   i.fa.fa-home
                   |  Guides 
               li
-                = link_to destroy_user_session_path(current_user) do
+                = link_to destroy_user_session_path, method: 'delete' do
                   i.fa.fa-sign-out
                   |  Sign Out 
         - else 
             li
-              = link_to "users/sign_in" do
+              = link_to new_user_session_path do
                 i.fa.fa-envelope-o
                 |  Sign In
                 li
-                  = link_to "users/sign_up" do
+                  = link_to new_user_registration_path do
                     i.fa.fa-sign-out
                     |  Sign Up
         li
@@ -48,5 +48,5 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
             = link_to new_user_black_book_path(current_user), class: "btn btn-primary", id: "nav-btn" do
               |  Create your guide
           - else
-            = link_to "users/sign_in", class: "btn btn-primary", id: "nav-btn" do
+            = link_to new_user_registration_path, class: "btn btn-primary", id: "nav-btn" do
               |  Create your guide   

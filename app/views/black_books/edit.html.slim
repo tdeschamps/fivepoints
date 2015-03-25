@@ -1,12 +1,12 @@
 .page-wrapper
 	.header-wrapper
-		.BlackBook-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
+		.black_book-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
 		.darken			
 			h1
 				= @black_book.name
 	.container
 		.col-xs-12
-			= render "BlackBook_story", black_book: @black_book if @black_book.story
+			= render "black_book_story", black_book: @black_book if @black_book.story
 		.col-xs-12
 			.row-space-top-8.row-space-8.text-center	
 				h2 Your places
@@ -15,14 +15,14 @@
 				
 					- @black_book_places.each do |black_book_place|
 						
-						= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, archive: false} 
+						= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: "#{black_book_place.place.foursquare_picture_url}", archive: false} 
 							
 					- if @black_book_places.count < 5
 						= render 'add_place' 
 					- else
 						.hidden
 							= render 'add_place'
-						= render 'BlackBook_full'	
+						= render 'black_book_full'	
 					
 	.map-wrapper
 		#map
@@ -34,8 +34,7 @@
 			ul.place-list.list-unstyled
 				- @archived_black_book_places.each do |black_book_place|
 				
-					= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: '#{place.foursquare_picture_url}'}
-						archive: true} 
+					= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: black_book_place.place.foursquare_picture_url, archive: true} 
 
 = render "add_place_modal"
 .md-overlay

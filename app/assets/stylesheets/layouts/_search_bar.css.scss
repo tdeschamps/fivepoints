@@ -1,0 +1,29 @@
+.search-bar {
+	background-color: rgba(255,255,255, 0.85);
+	box-shadow: 0px 4px 2px #bbb;
+	height: 50px;
+	border-radius: 2px;
+	.form-user{
+		height: 100%;				
+	 	text-align: left;
+	 	margin-left: -15px;	
+	 	input.user-account {
+	 		height:50px;	 			
+			font-size: 20px;
+			padding-left: 10px;
+	 	}
+	 	.btn {
+	 		height:50px;
+	 		float:right;
+	 		margin: auto -15px;
+	 		position: absolute;
+	 		right: 0px;
+	 	} 
+	}
+}
+.search-container {
+	.search-bar {
+		position:relative;
+		bottom: 75px;
+	}
+}

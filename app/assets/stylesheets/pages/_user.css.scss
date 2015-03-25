@@ -1,0 +1,81 @@
+.user-bio {
+	height:100px;
+	max-height: 120px;
+	width:100%;
+	color: black;
+	background: white;
+	padding: 5px;
+}
+
+@media (max-width: 768px) {
+	.sidebar-profile {	
+		padding-top: 20px;
+		text-align: center;
+	}
+}
+@media (min-width: 768px) {
+	.sidebar-profile {
+		padding-top: 20px;
+		text-align: center;
+		position: fixed;
+		max-width: 290px;
+	}
+}
+
+.follow-stats {
+	display: table;
+	width: 100%;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	>div {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+		padding: 4px 10px;
+		color: #464646;
+	}
+	div.following {
+		border-right: 2px solid #e4e4e4;
+	}
+	.stats-count {
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: .015em;
+		line-height: 17px;
+	}
+	.stats-name {
+		font-size: 12px;
+		font-weight: 400;
+		letter-spacing: .029em;
+		line-height: 16px;
+	}
+}
+.profile-picture-edit{
+	height:200px;
+	width: 200px;
+	border: 2px solid white;
+  	box-shadow: 0px 2px 2px #ccc;
+  	overflow: hidden;
+	img {
+		max-width:200px;
+	}
+}
+.rounded {
+		border-radius: 50%;
+	}
+.light-blue-button {
+	@include button(dodgerblue);
+	width: 80%;
+	&:hover, &:focus, &:active {
+		color: white;
+	}
+}
+.light-green-button {
+	@include button(palegreen);
+	width: 80%;
+	&:hover, &:focus, &:active {
+		color: white;
+	}
+}

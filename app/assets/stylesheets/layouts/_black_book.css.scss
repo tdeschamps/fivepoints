@@ -1,0 +1,47 @@
+.panel-body{
+	position: relative;
+
+}
+.panel-card-section {
+	padding: 10px;
+	background-color: white; 
+	.media {
+		overflow: inherit;
+	}
+}
+.black-book-city {
+	i {
+		//color: $sunset-orange;
+		margin-right: 10px;
+	}
+	&,h4 {
+		margin-top: 0px;
+		margin-bottom: 5px;
+	}
+}
+.left10 {
+	margin-left: 10px;
+}
+.top2 {
+	position: relative;
+	top: -2px;
+}
+.darken {
+		position: absolute;
+		top:0;
+		left:0;
+		height:100%;
+		width: 100%;
+		background-color: rgba(0,0,0,0.3);
+		h1,h2,h3 {
+			color: white;
+	}
+}
+.drop-shadow {
+	box-shadow: 0px 5px 6px #ccc;
+}
+.user-blackbooks {
+	.tile-place {
+		height:350px;
+	}
+}		

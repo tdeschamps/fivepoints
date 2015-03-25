@@ -68,7 +68,7 @@ form {
 	margin-right: 0.5em;
 }
 
-.textarea--BlackBook {
+.textarea--black_book {
 	display: block;
 	width: 100%;
 	min-height: 80px;
@@ -88,4 +88,152 @@ form {
 		min-height: 150px;
 
 	}
+}
+.form-list {
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	padding-top: 30px;
+	padding-bottom: 36px;
+	.form-group {
+		margin-bottom: 5px;
+	}
+}
+.form-user {
+	position: relative;;
+	input.user-account {
+  		width: 100%;
+  		font-size: 45px;
+	  	font-weight: 700;
+	  	margin-bottom: 20px;
+
+	  	&.light {
+ 			font-weight: $weight-light;
+ 		}
+ 		&:focus {
+ 			outline: none;
+ 			background-color: white;
+ 		}
+	}
+
+  	.user-account {
+  		border: none;
+  		padding: 0;
+ 		background-color: transparent;
+ 		transition: background-color ease-in 0.4s;
+ 	}
+ 	.btn-user-submit {
+ 		@include button(lightgreen);
+ 	}
+ 	.form-edit {
+ 		border:none;
+ 		background: transparent;
+ 		box-shadow: none;
+ 		font-size: $base-size;
+ 		padding:0;
+ 		height:auto;
+ 		cursor: inherit;
+ 	}
+ 	.btn-user-form-activate {
+ 		@include button-rounded(white);
+ 		color: lightgreen;
+ 		margin-right: 10px;
+ 		&:hover, &:focus {
+ 			border: 1px solid green;
+ 		}
+ 	}
+ 	.btn-user-form-cancel {
+ 		@include button-rounded(white);
+ 		color: $gray;
+ 		&:hover, &:focus {
+ 			color: black;
+ 			border: 1px solid black;
+ 		}
+
+ 	}
+ 	.form-edit-submit {
+ 		position: absolute;
+ 		right: 0;
+ 		top: 35%;
+ 		margin-top: -19px;
+ 	}
+ 	@media (min-width: 768px) {
+ 		.form-connect-social-button {
+ 		position: absolute;
+ 		right: 0;
+ 		top: 35%;	
+ 		}
+ 	}	
+ 	p.disclosures {
+ 		@media (min-width: 768px) {
+ 			max-width: 50%;
+ 		}	
+ 		font-size: 14px;
+ 		line-height: 15px;
+ 	}
+ 	.form-connect--user-image {
+ 		height: 35px;
+ 		width:35px;
+ 		border-radius: 50%;
+ 		float: right;
+ 	}
+ 	.form-item-social-action {
+ 		float:right;
+ 		margin-right: 10px;
+
+ 		.form-social-item-name {
+ 			font-size: 14px;
+ 			color: rgba(0,0,0,0.6);
+ 			text-align: right;
+ 			display: block;
+ 			/* font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif; */
+ 			letter-spacing: -0.02em;
+ 			font-weight: 700;
+ 			font-style: normal;
+ 		}
+ 	}
+}
+.separator {
+	position: relative;
+	span {
+		position: absolute;
+		top: -7px;
+		text-transform: uppercase;
+		color: #999;
+		font-size: 12px;
+		letter-spacing: 1px;
+		margin-left: 40px;
+		padding: 0 10px;
+		background: $background-grey;
+	}	
+}
+#facebook-btn {
+	@include button($fbblue);
+	min-width: 250px;
+	font-weight: $weight-light;
+	&,.rounded {
+	  border-radius: 99px;
+	}
+}
+#twitter-btn {
+	@include button($twitterblue);
+	min-width: 250px;
+	font-weight: $weight-light;
+	&,.rounded {
+	  border-radius: 99px;
+	}
+}
+.blackbook-error-handler {
+	color: $froly;
+	position: relative;
+	top: 0px;
+	font-style: italic;
+}
+.form-requirements {
+	font-size: 14px;
+	position: relative;
+	text-align: left;
+	margin-left: 20px;
+	margin-top: -30px;
+	font-weight: $weight-bold;
+	color: steelblue;
 }

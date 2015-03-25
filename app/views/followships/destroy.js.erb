@@ -1,0 +1,2 @@
+$(".followers").find('.stats-count').html('<%= user.followers.count %>')
+$("#follow_form").html("<%= escape_javascript(render partial: 'users/follow', locals: {followed: user}) %>")

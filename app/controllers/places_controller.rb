@@ -15,9 +15,10 @@ class PlacesController < ApplicationController
 		@place_coordinates = [@place.latitude, @place.longitude]
 
 		@similar_places = Place.where("category like :category AND id != :id ", {category:@place.category, id: @place.id}).near([@place.latitude, @place.longitude]).limit(5).order("RANDOM()")
-		@active_black_books = BlackBook.joins(:black_book_places).where("black_book_places.place_id = ? AND black_book_places.position IS NOT NULL", @place.id)
+		@active_black_books = BlackBook.includes(:user).joins(:black_book_places).where("black_book_places.place_id = ? AND black_book_places.position IS NOT NULL", @place.id)
 
 		@attributes = %w(address city category)
+
 	end
 
 	def new
@@ -72,7 +73,7 @@ class PlacesController < ApplicationController
 	private
 
 	def set_place
-		@place = Place.includes(:uploaded_files, :black_books).find(params[:id])
+		@place = Place.includes(:uploaded_files, black_books: :user).find(params[:id])
 	end
 
 	def place_params

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308220240) do
+ActiveRecord::Schema.define(version: 20150323093203) do
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -58,9 +58,26 @@ ActiveRecord::Schema.define(version: 20150308220240) do
     t.string   "state",             limit: 255
     t.string   "country",           limit: 255
     t.string   "formatted_address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "black_books", ["user_id"], name: "index_black_books_on_user_id"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "plural_name"
+    t.string   "short_name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "categories_places", id: false, force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "category_id"
+  end
+
+  add_index "categories_places", ["category_id", "place_id"], name: "index_categories_places_on_category_id_and_place_id"
 
   create_table "followships", force: :cascade do |t|
     t.integer "follower_id"
@@ -92,6 +109,7 @@ ActiveRecord::Schema.define(version: 20150308220240) do
     t.string   "facebook_name"
     t.string   "phone"
     t.string   "formatted_phone"
+    t.text     "description"
   end
 
   create_table "uploaded_files", force: :cascade do |t|
@@ -129,6 +147,7 @@ ActiveRecord::Schema.define(version: 20150308220240) do
     t.string   "token",                  limit: 255
     t.datetime "token_expiry"
     t.string   "username",               limit: 255
+    t.string   "biography"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

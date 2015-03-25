@@ -1,0 +1,39 @@
+.user-profile-pic {
+	height:125px;
+	width: 125px;
+	border-radius: 8px;
+	box-shadow: 0px 3px 2px #999;
+	background-size: cover;
+	background-position: center;
+	margin: 0 auto 10px;
+	overflow: hidden;
+
+
+	img {
+		max-width: 125px;
+	}
+}
+#follow-btn {
+	@include button(white);
+	color: $sunset-orange;
+	width: 100%;
+	transition: border ease-in 0.2s;
+	&:hover {
+		border-bottom: none;
+		border: 2px solid $froly;
+	}
+}
+.underline-title {
+	color: yellow;
+	&:after {
+		content: '';
+		border-bottom: 1px solid #ddd;
+		width:150px;
+		display: block;
+ 		margin: 30px auto 0;
+	}
+}
+.get-connected-dialog {
+	text-align: center;
+	overflow: auto;
+}

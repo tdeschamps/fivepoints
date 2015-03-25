@@ -4,8 +4,8 @@
   i {
     color: $sunset-orange;
   }
-  .fa-facebook {
-    color: blue;
+  .fa-facebook-official {
+    color: $fbblue;
   }
   .fa-twitter {
     color: lightblue;
@@ -29,9 +29,9 @@
 .place-main-data {
 	margin-left: -15px;
 	background-color: #ffffff;
-  	padding: 25px 50px 5px 50px;
+  	padding: 15px 50px 5px 50px;
   	border-top-right-radius: 4px;
-  	max-height: 200px;
+  	height: 200px;
 
   	h1 {
   		text-transform: uppercase;
@@ -57,7 +57,7 @@
   	}
 }
 .place-type {
-  		background-color: $sunset-orange;
+  		background-color: $froly;
   		max-height:200px;
   		height: 120px;
   		top:0;
@@ -106,7 +106,7 @@
 
   .attribute {
     text-align: left;
-    margin-top: 5px; 
+    margin-top: 4px; 
   }
 }
 
@@ -117,4 +117,29 @@
     @include centered_h1;
     color: white;
    }
-  } 
+  }
+.quote-left {
+  color: $froly;
+  margin-right: 10px;
+}
+.places-story {
+  overflow: hidden;
+  display: inline-block;
+  font-size: $base-size;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+} 
+.black-book-place-story {
+  float:left;
+  margin-left: 20px;
+  max-width: 400px;
+
+  a {
+    color: $froly;
+  }
+}
+
+.place-user-info {
+  
+}  
