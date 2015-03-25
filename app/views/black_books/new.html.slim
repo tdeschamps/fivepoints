@@ -3,15 +3,17 @@ div.container.padded-down.full-page
 		h1 
 			| Create your black book
 		= simple_form_for @black_book,
-		url: url_for(action: 'create', controller: 'black_books'),
+		url: url_for(action: 'create', controller: 'black_books', novalidate: 'validate'),
 		method: 'post' do |f|
 			.col-xs-12.col-md-6
 				.input.input--black_book
-					= f.input_field :name, {class: "input__field input__field--black_book", id: "black_book-name"}
+					= f.input_field :name, {hint: 'You need to add a title to your book', class: "input__field input__field--black_book", id: "black_book-name"}
 					label.input__label.input__label--black_book.input__label--black_book-color-1 for="black_book-name" 
 					  span.input__label-content.input__label-content--black_book Title
-				
-				= f.simple_fields_for :uploaded_files do |file|
+				.form-requirements
+					| A good story needs a title	  
+				= f.full_error :name, class:"blackbook-error-handler"  
+				= f.simple_fields_for @black_book.uploaded_files.build() do |file|
 				    = render 'add_picture_form', :f => file
 				
 				.input.input--black_book
@@ -19,9 +21,12 @@ div.container.padded-down.full-page
 					input#user_input_autocomplete_address.black_book-input.input__field.input__field--black_book autocomplete="off" name="user_input_autocomplete_address" placeholder = ""
 					
 					label.input__label.input__label--black_book.input__label--black_book-color-2 for="user_input_autocomplete_address" 
-					  span.input__label-content.input__label-content--black_book Enter a location  
-						    
+					  span.input__label-content.input__label-content--black_book Enter a location 
+					
+				.form-requirements
+						| A city is needed 	    
 				= f.input :city, as: :hidden, input_html: {id: "locality"}
+				= f.full_error :city, class:"blackbook-error-handler"
 				= f.input :formatted_address, as: :hidden, input_html: {id: "formatted_address"}
 				= f.input :country, as: :hidden, input_html: {id: "country"}
 				= f.input :state, as: :hidden, input_html: {id: "administrative_area_level_1"}

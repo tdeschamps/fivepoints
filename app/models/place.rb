@@ -11,6 +11,12 @@ class Place < ActiveRecord::Base
 	geocoded_by :address
   after_create :geocode, if: Proc.new {|c| c.latitude.nil? && c.longitude.nil?}
 
+  scope :friends, ->(user) {
+    joins(black_books: {user: :followers}).where("followships.follower_id = ?", user.id)
+  }
+
+  self.per_page = 10
+  
   def update_score(previous_rank = 0 , new_rank = 0)
   	scores = {
   		"1"=> 10,
@@ -29,6 +35,9 @@ class Place < ActiveRecord::Base
 		self.save   	
   end
   
+  def self.search_around(search_query)
+    near(search_query)
+  end
   private
   	
 	def set_foursquare_picture

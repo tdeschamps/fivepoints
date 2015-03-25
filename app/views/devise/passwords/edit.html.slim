@@ -1,12 +1,16 @@
-h2
-  | Change your password
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
-  = f.input :reset_password_token, as: :hidden
-  = f.full_error :reset_password_token
-  .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
-  .form-actions
-    = f.button :submit, "Change my password"
-= render "devise/shared/links"
+div.container.padded-down
+	div.col-xs-12.col-sm-6.col-sm-offset-3.padded-down
+		h2.row-space-4.text-center
+  			| Change your password
+		= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+		  = f.error_notification
+		  = f.input :reset_password_token, as: :hidden
+		  = f.full_error :reset_password_token
+		  .form-user.row-space-4
+		  		input.user-account.light autocomplete="off" autofocus="" name="user[password]" placeholder="new password" required="true" type="password"
+		  		input.user-account.light autocomplete="off" autofocus="" name="user[password_confitmation]" placeholder="confirm password" required="true" type="password"
+			    / = f.input :password, label: "New password", required: true, autofocus: true
+			    / = f.input :password_confirmation, label: "Confirm your new password", required: true
+		  		.form-actions
+		    		= f.button :submit, "Change my password", class: "btn-user-submit"
+		= render "devise/shared/links"

@@ -1,8 +1,9 @@
 .page-wrapper	
 	.container.padded-down
 		.back-link
-			i.fa.fa-arrow-left
-			| Explore #{@place.city}
+			=link_to black_books_path(params:{search: "#{@place.city}"})
+				i.fa.fa-arrow-left
+				| Explore #{@place.city}
 		.place-main-wrapper.row-space-4
 			.row
 				.col-xs-12.col-md-7.col-lg-8
@@ -17,7 +18,8 @@
 			h4 #{@active_black_books.count} people have recommended #{@place.name}
 			hr 
 			- @active_black_books.each do |black_book|
-				= render partial: 'comment_block', locals: {black_book: black_book, user: black_book.user}				
+				.user-comment
+					= render partial: 'comment_block', locals: {black_book: black_book, user: black_book.user}				
 
 	.map-wrapper.map-place
 		#map
@@ -39,11 +41,15 @@
 					- @active_black_books.each do |black_book|
 						.listing
 							item.col-xs-12.col-sm-6.col-md-4.row-space-4
-								= render partial: 'related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}					
-
+								= render partial: 'related_black_books', locals: {black_book: black_book, picture_url: (black_book.uploaded_files.first.file.url(:large) unless black_book.uploaded_files.first.nil?), archive: true}					
+- if !current_user
+	= render './modals/disconnected_modal'
+	.md-overlay.transparent-white
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do	
 
 = content_for :js do
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
-	= javascript_include_tag "black_books/map"												
+	= javascript_include_tag "classie"
+	= javascript_include_tag "black_books/map"
+	= javascript_include_tag "users/disconnected"												

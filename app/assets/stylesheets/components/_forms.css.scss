@@ -222,3 +222,18 @@ form {
 	  border-radius: 99px;
 	}
 }
+.blackbook-error-handler {
+	color: $froly;
+	position: relative;
+	top: 0px;
+	font-style: italic;
+}
+.form-requirements {
+	font-size: 14px;
+	position: relative;
+	text-align: left;
+	margin-left: 20px;
+	margin-top: -30px;
+	font-weight: $weight-bold;
+	color: steelblue;
+}

@@ -1,0 +1,42 @@
+.padded-down
+	.search-bar.col-xs-12.col-sm-6.col-sm-offset-3
+	 	.form-user
+	 		= simple_form_for(:search,  url: black_books_path, method: 'get', defaults: { input_html: { class: 'default_class' } }) do |f|			
+	 			input.user-account autocomplete="off" autofocus="false" name="search" placeholder="search a city..." type="text" id="user_input_autocomplete_address"
+	 			= f.button :submit, "Search", class: "btn-user-submit", name: nil
+	
+.container
+	.col-xs-12.text-center
+		h1
+			| Last black books about #{params[:search]}
+	.col-xs-12.col-sm-9.col-lg-12.user-blackbooks
+	    ul.place-list.list-unstyled#blackbooks
+	    	- @friends_black_books.each do |black_book|
+	    		.item.col-xs-10.col-sm-6.col-lg-4.row-space-8
+	    			.black-book.drop-shadow
+	     				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}
+	    .div.clear
+	    	.see-more.drop-shadow#see-more-black-books
+	   			.centered.text-center
+	   				p see more
+	   	.hidden			
+	    	= will_paginate @friends_black_books, class: "pagination" 					
+    .col-xs-12.text-center
+		h1
+			| Places around #{params[:search]}
+	.col-xs-12.col-sm-9.col-lg-12
+		ul.place-list.list-unstyled#places
+		   	- @places.each do |place|
+	    		drop-shadow	
+	    			= render partial: './black_books/show_place', locals: {place: place, black_book_place: place.black_book_places.first, archive: false}
+	    .div.clear
+	    	.see-more.drop-shadow#see-more-places
+	   			.centered.text-center
+	   				p see more			
+	    .hidden	
+	    	= will_paginate @places , class: "pagination"				   					
+= content_for :js do
+		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
+		= javascript_include_tag "black_books/autocomplete.js"
+		= javascript_include_tag "black_books/paginationBlackBooks.js"
+

@@ -34,4 +34,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #open emails in browser
+  config.action_mailer.delivery_method = :letter_opener
+
+  #set base url for devise mailer
+  config.action_mailer.default_url_options = 
+      { :host => 'localhost:3000' }
 end

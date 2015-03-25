@@ -6,24 +6,11 @@ class BlackBooksController < ApplicationController
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 	
 	def show
-		@black_book_places = @black_book.black_book_places.includes(:place).active_places
-		@places = @black_book.places.joins(:black_book_places).where.not(black_book_places: {position: nil})
+		@black_book_places = @black_book.black_book_places.includes(:place).active_places.order('position desc')
+		@places = @black_book.places.select("places.*, black_book_places.position as place_position").joins(:black_book_places).where.not(black_book_places: {position: nil}).order('place_position asc')
 		
-		@city_coordinates = (Geocoder.search @black_book.formatted_address)[0].data["geometry"]["location"].map { |k, v| v}
+		@city_coordinates = [@black_book.longitude, @black_book.latitude]
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
-
-		@attributes = %w(address city category)
-
-		@tags = set_meta_tags :og => {
-			  :title    => 'The Rock',
-			  :type     => 'video.movie',
-			  :url      => 'http://www.imdb.com/title/tt0117500/',
-			  :image    => 'http://ia.media-imdb.com/rock.jpg',
-			  :video    => {
-			    :director => 'http://www.imdb.com/name/nm0000881/',
-			    :writer   => ['http://www.imdb.com/name/nm0918711/', 'http://www.imdb.com/name/nm0177018/']
-			  }
-			}
 	end
 
 	def new
@@ -35,10 +22,12 @@ class BlackBooksController < ApplicationController
 	def create
 		@black_book = @user.black_books.new(black_book_params)
 		authorize @black_book
+		@black_book.save
+
 		if @black_book.save
-			redirect_to edit_user_black_book_path(@user, @black_book)
+			render action: :edit 
 		else
-			redirect_to new_user_black_book_path(current_user, @black_book)
+			render action: :new
 		end	
 	end
 	
@@ -68,7 +57,20 @@ class BlackBooksController < ApplicationController
 	end
 	
 	def index
-		@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places).order('updated_at desc').limit(10)
+		if params[:search]
+			@friends_black_books = BlackBook.includes(:uploaded_files).search_around(params[:search]).order('updated_at desc').paginate(:page => params[:page])
+			@places = Place.includes(:black_book_places).search_around(params[:search]).order('ranking desc').paginate(:page => params[:page])
+		else	
+			@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places, :uploaded_files).order('updated_at desc').paginate(:page => params[:page])
+			@places = Place.includes(:black_book_places).friends(current_user).order('ranking desc').paginate(:page => params[:page])
+		end
+
+		@attributes = %w(address city category)
+		
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end
 	end
 
 	private

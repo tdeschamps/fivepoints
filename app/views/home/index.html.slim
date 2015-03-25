@@ -5,15 +5,19 @@
  			div.va-container
  				.centering
  					h1 Never miss a place you'll love
- 					h2 Fivemarks is the easiest way to share your travel stories with your friends
- 		
+ 					h2 The easiest way to share your travel stories
+ 			.search-bar.col-xs-12.col-sm-6.col-sm-offset-3
+ 				.form-user
+ 					= simple_form_for(:search,  url: black_books_path, method: 'get', defaults: { input_html: { class: 'default_class' } }) do |f|			
+ 						input.user-account autocomplete="off" autofocus="false" name="search" placeholder="search a city..." type="text" id="user_input_autocomplete_address"
+ 						= f.button :submit, "Search", class: "btn-user-submit", name: nil
 
  	div.moto
  		div.container 
 	 		div.row
 	 			div.col-sm-4.col-xs-12.moto-containers
 	 				= image_tag "backpack.svg", class:"moto-icon"
-	 				h3 Travel smoothly, you won't have to bring a zillion black_books with you
+	 				h3 Travel smoothly, you won't have to bring a zillion city guides with you
 	 			div.col-sm-4.col-xs-12.moto-containers
 	 				= image_tag "map.svg", class:"moto-icon"
 	 				h3 Walk in your friends footprints
@@ -59,6 +63,8 @@
 
 	 									
 	= content_for :js do
+		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 		= javascript_include_tag "scrollReveal.js"
+		= javascript_include_tag "black_books/autocomplete.js"
 		javascript: 
 			window.sr = new scrollReveal();

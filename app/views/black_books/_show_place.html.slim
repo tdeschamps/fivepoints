@@ -1,5 +1,5 @@
-li.item.col-xs-12.col-lg-6
-	.black_book-card.row-space-8.cornered-top
+li.item.col-xs-12.col-sm-6.col-lg-4
+	.black_book-card.row-space-8.cornered-top.drop-shadow
 		- if place.foursquare_picture_url || black_book_place.uploaded_files.first
 			= link_to place
 				.tile-place.cornered-top style=("background-image: url('#{ place.foursquare_picture_url}');")
@@ -7,11 +7,11 @@ li.item.col-xs-12.col-lg-6
 				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
 				h1 #{place.name}
 				.col-xs-12
-					- @attributes.each do |a|
+					- %w(address city category).each do |a|
 						- if (!place[a].nil? && place[a] != "")
 							.attributes
 								strong #{a.capitalize}: 
-								p   #{place[a]}
+								p.text-truncate   #{place[a]}
 
 		- else
 			.tile-place.cornered-top
@@ -24,7 +24,7 @@ li.item.col-xs-12.col-lg-6
 						- if (!place[a].nil? && place[a] != "" )
 							.attributes
 								strong #{a.capitalize}: 
-								p   #{place[a]}
+								p.text-truncate   #{place[a]}
 
 
 					 	

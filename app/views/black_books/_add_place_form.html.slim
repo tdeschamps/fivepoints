@@ -2,7 +2,7 @@
 - remote = modal ? true : false
 #new-place-form
 	div.col-xs-12
-		h1 
+		h1.text-center 
 			| Create a new Place
 		= simple_form_for [@black_book, @place],
 		url: url_for(action: 'create_place_from_black_book', controller: 'places'),

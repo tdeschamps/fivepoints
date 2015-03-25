@@ -52,21 +52,30 @@
 		line-height: 16px;
 	}
 }
-.user-blackbooks {
-	.tile-place {
-		height:480px;
-	}
-}
 .profile-picture-edit{
-	height:300px;
-	width: 300px;
+	height:200px;
+	width: 200px;
 	border: 2px solid white;
   	box-shadow: 0px 2px 2px #ccc;
   	overflow: hidden;
 	img {
-		max-width:300px;
-	} 
-	&,.rounded {
+		max-width:200px;
+	}
+}
+.rounded {
 		border-radius: 50%;
+	}
+.light-blue-button {
+	@include button(dodgerblue);
+	width: 80%;
+	&:hover, &:focus, &:active {
+		color: white;
+	}
+}
+.light-green-button {
+	@include button(palegreen);
+	width: 80%;
+	&:hover, &:focus, &:active {
+		color: white;
 	}
 }
