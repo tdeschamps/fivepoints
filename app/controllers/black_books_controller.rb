@@ -39,6 +39,7 @@ class BlackBooksController < ApplicationController
 		@archived_black_book_places = @black_book.black_book_places.archived_places
 		city_boundaries_latitudes, city_boundaries_longitudes = [], []
 		@city_coordinates = (Geocoder.search @black_book.formatted_address)[0].data["geometry"]["location"].map { |k, v| v}
+		
 		if @black_book_places.count > 1
 
 			@black_book_places.each do |a|
