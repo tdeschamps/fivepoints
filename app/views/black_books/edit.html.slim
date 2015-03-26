@@ -12,7 +12,7 @@
 				h2 Your places
 			.places-list-wrapper#active-places-list
 				ul.place-list.list-unstyled.ui-sortable#sortable
-					- if @black_book_places.count > 0
+					- if @black_book_places
 						- @black_book_places.each do |black_book_place|
 							
 							= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: "#{black_book_place.place.foursquare_picture_url}", archive: false} 
@@ -34,7 +34,7 @@
 				h2 Archived places
 		.places-list-wrapper#archived-places-list
 			ul.place-list.list-unstyled
-				- if @archived_black_book_places.count > 0
+				- if @archived_black_book_places
 					- @archived_black_book_places.each do |black_book_place|
 					
 						= render partial: 'show_place_edit', locals: {place: black_book_place.place, black_book_place: black_book_place, picture_url: black_book_place.place.foursquare_picture_url, archive: true} 

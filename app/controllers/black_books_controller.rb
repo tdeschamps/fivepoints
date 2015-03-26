@@ -25,7 +25,7 @@ class BlackBooksController < ApplicationController
 		@black_book.save
 
 		if @black_book.save
-			render action: :edit 
+			redirect_to edit_user_black_book_path(@user, @black_book)
 		else
 			render action: :new
 		end	

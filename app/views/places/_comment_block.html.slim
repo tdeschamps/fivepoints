@@ -6,9 +6,9 @@
 	.places-story-wrapper	
 		p.places-story #{black_book.story}
 .comment-block-actions
-	- if current_user
-		= render partial: './users/follow', locals: {followed: black_book.user}	
-	- else
+	- if !signed_in?
 		= render partial: './users/follow_unsigned'
+	- elsif !current_user.following?(@user) && !(current_user == user) 
+		= render partial: './users/follow'
 .clear
 hr					 	

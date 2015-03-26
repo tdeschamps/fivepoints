@@ -20,7 +20,11 @@ div.container.padded-down
 			  /   input name="authenticity_token" type="hidden" value="tGc6cGdDyBNXaqr1JnDbFv4/Uy6dsXxAcN8O6POm5i6K7S/qxWuIinRZjq6gD5+gQ75rEN+gH/FPL4O/R1ozwg=="
 				
 		      input.user-account autocomplete="off" autofocus="" name="user[email]" placeholder="email" required="true" type="text"
-			  input.user-account.light name="user[password]" placeholder="Password" required="true" type="password" 
+		      = f.full_error :email, class:"blackbook-error-handler"
+
+			  input.user-account.light name="user[password]" placeholder="Password" required="true" type="password"
+			  = f.full_error :password, class:"blackbook-error-handler" 
+			  
 			  = f.button :submit, "Sign up", class: "btn-user-submit"
 		hr  
 		= render partial: "devise/shared/links", locals: {social: false}

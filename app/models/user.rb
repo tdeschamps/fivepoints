@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  #validates :username, uniqueness: true
+  validates :email, uniqueness: true
   has_many :active_followships, class_name:  "Followship",
                                 foreign_key: "follower_id",
                                 dependent:   :destroy                              
@@ -36,12 +36,19 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.name.split.drop(1).join(' ')
       user.username = auth.info.name.gsub(" ", "_").downcase
       user.name = auth.info.name
-      user.picture = auth.info.image + '?width=500&height=500'
+      user.picture = process_uri(auth.info.image + '?width=500&height=500')
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
+
+  def self.process_uri(uri)
+    avatar_url = URI.parse uri
+    avatar_url.scheme = 'https'
+    avatar_url.to_s
+  end
   
+
   #allow to connect twitter/linkedin
   def has_connection_with(provider)
     auth = self.authorizations.where(provider: provider).first

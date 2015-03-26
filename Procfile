@@ -1,3 +1,2 @@
-redis: redis-server
+web: bundle exec unicorn
 worker: bundle exec sidekiq
-web: rails s

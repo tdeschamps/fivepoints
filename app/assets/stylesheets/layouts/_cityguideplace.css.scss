@@ -67,9 +67,7 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  h1,h2{
-    color: white;
-  }
+  padding: 0 10px;
 }
 
 .row-space-top-8 {
@@ -169,7 +167,7 @@
   }
 }
 #active-places-list, #archived-places-list {
-  .tile-place {
+  .tile-place, .tile-full {
     height: 300px;
   }
 }
