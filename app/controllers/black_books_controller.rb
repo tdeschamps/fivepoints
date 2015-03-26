@@ -15,7 +15,7 @@ class BlackBooksController < ApplicationController
 
 	def new
 		@black_book = BlackBook.new()
-		@uploaded_file = @black_book.uploaded_files.build()
+		uploaded_file = @black_book.uploaded_files.build()
 		authorize @black_book
 	end
 	
