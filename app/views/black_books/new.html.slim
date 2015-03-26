@@ -13,7 +13,7 @@ div.container.padded-down.full-page
 				.form-requirements
 					| A good story needs a title	  
 				= f.full_error :name, class:"blackbook-error-handler"  
-				= f.simple_fields_for @black_book.uploaded_files.build() do |file|
+				= f.simple_fields_for :uploaded_files do |file|
 				    = render 'add_picture_form', :f => file
 				
 				.input.input--black_book
