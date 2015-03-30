@@ -25,9 +25,14 @@ class HomeController < ApplicationController
 		
 		
 			socialfriends = SocialFriends.new(social_params)
-			fb_friends = socialfriends.get_facebook_friends if current_user.token
+			if current_user.token
+				fb_friends = socialfriends.get_facebook_friends 
+				SocialFriendshipBuilder.perform_later current_user.id, fb_friends, 'facebook'
+			end	
 			twitter_friends = socialfriends.get_twitter_friends if current_user.authorizations.where(provider: 'Twitter').first
 			linkedin_connections = socialfriends.get_linkedin_connections if current_user.authorizations.where(provider: 'LinkedIn').first
+
+
 		end
 
 	end

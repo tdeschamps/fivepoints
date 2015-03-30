@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323093203) do
+ActiveRecord::Schema.define(version: 20150326165539) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "authentifications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,22 +22,22 @@ ActiveRecord::Schema.define(version: 20150323093203) do
   end
 
   create_table "authorizations", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
+    t.text     "provider"
+    t.text     "uid"
     t.integer  "user_id"
-    t.string   "token"
-    t.string   "secret"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "name"
-    t.string   "link"
+    t.text     "token"
+    t.text     "secret"
+    t.text     "first_name"
+    t.text     "last_name"
+    t.text     "name"
+    t.text     "link"
     t.datetime "token_expiry"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "authorizations", ["uid"], name: "index_authorizations_on_uid"
-  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
+  add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
   create_table "black_book_places", force: :cascade do |t|
     t.integer  "black_book_id"
@@ -45,8 +48,8 @@ ActiveRecord::Schema.define(version: 20150323093203) do
     t.text     "story"
   end
 
-  add_index "black_book_places", ["black_book_id"], name: "index_black_book_places_on_black_book_id"
-  add_index "black_book_places", ["place_id"], name: "index_black_book_places_on_place_id"
+  add_index "black_book_places", ["black_book_id"], name: "index_black_book_places_on_black_book_id", using: :btree
+  add_index "black_book_places", ["place_id"], name: "index_black_book_places_on_place_id", using: :btree
 
   create_table "black_books", force: :cascade do |t|
     t.string   "city",              limit: 255
@@ -57,17 +60,17 @@ ActiveRecord::Schema.define(version: 20150323093203) do
     t.string   "name",              limit: 255
     t.string   "state",             limit: 255
     t.string   "country",           limit: 255
-    t.string   "formatted_address"
+    t.text     "formatted_address"
     t.float    "latitude"
     t.float    "longitude"
   end
 
-  add_index "black_books", ["user_id"], name: "index_black_books_on_user_id"
+  add_index "black_books", ["user_id"], name: "index_black_books_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.string   "plural_name"
-    t.string   "short_name"
+    t.text     "name"
+    t.text     "plural_name"
+    t.text     "short_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -77,16 +80,16 @@ ActiveRecord::Schema.define(version: 20150323093203) do
     t.integer "category_id"
   end
 
-  add_index "categories_places", ["category_id", "place_id"], name: "index_categories_places_on_category_id_and_place_id"
+  add_index "categories_places", ["category_id", "place_id"], name: "index_categories_places_on_category_id_and_place_id", using: :btree
 
   create_table "followships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
   end
 
-  add_index "followships", ["followed_id"], name: "index_followships_on_followed_id"
-  add_index "followships", ["follower_id", "followed_id"], name: "index_followships_on_follower_id_and_followed_id", unique: true
-  add_index "followships", ["follower_id"], name: "index_followships_on_follower_id"
+  add_index "followships", ["followed_id"], name: "index_followships_on_followed_id", using: :btree
+  add_index "followships", ["follower_id", "followed_id"], name: "index_followships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "followships", ["follower_id"], name: "index_followships_on_follower_id", using: :btree
 
   create_table "places", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -98,18 +101,23 @@ ActiveRecord::Schema.define(version: 20150323093203) do
     t.integer  "ranking"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "foursquare_id"
-    t.string   "category"
-    t.string   "state"
-    t.string   "foursquare_picture_url"
+    t.text     "foursquare_id"
+    t.text     "category"
+    t.text     "state"
+    t.text     "foursquare_picture_url"
     t.float    "foursquare_rating"
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "facebook_username"
-    t.string   "facebook_name"
-    t.string   "phone"
-    t.string   "formatted_phone"
+    t.text     "twitter"
+    t.text     "facebook"
+    t.text     "facebook_username"
+    t.text     "facebook_name"
+    t.text     "phone"
+    t.text     "formatted_phone"
     t.text     "description"
+  end
+
+  create_table "social_friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
   create_table "uploaded_files", force: :cascade do |t|
@@ -123,7 +131,7 @@ ActiveRecord::Schema.define(version: 20150323093203) do
     t.datetime "file_updated_at"
   end
 
-  add_index "uploaded_files", ["imageable_id", "imageable_type"], name: "index_uploaded_files_on_imageable_id_and_imageable_type"
+  add_index "uploaded_files", ["imageable_id", "imageable_type"], name: "index_uploaded_files_on_imageable_id_and_imageable_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -147,10 +155,10 @@ ActiveRecord::Schema.define(version: 20150323093203) do
     t.string   "token",                  limit: 255
     t.datetime "token_expiry"
     t.string   "username",               limit: 255
-    t.string   "biography"
+    t.text     "biography"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

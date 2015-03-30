@@ -1,3 +1,22 @@
 footer.footer
-	.footer-wrapper
-		p toto
+	.container
+		.row	
+			.layoutMultiColumn--primary.site-footer--primary.col-xs-12.col-sm-6
+				= link_to '#', class: 'siteFooterLogo' do
+					img alt='fivemarks' height='48' width='48' src = asset_url('logo_rounded.png')
+				ul.site-footer-nav
+					li.list-item
+						= link_to '#' do
+							| Terms of services
+					li.list-item
+						= link_to '#' do
+							| Team
+			.layoutMultiColumn--secondary.site-footer--secondary.col-xs-12.col-sm-6
+				p.col-xs-12.col-sm-6.site-footer-copyright.white-text
+					| Fivemarks inc. © 2015
+				ul.col-xs-12.col-sm-6.site-footer-contact
+					li
+						i.fa.fa-facebook-official.white-text	
+					li
+						i.fa.fa-twitter.white-text									
+		row

@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_followships, source: :followed
   has_many :followers, through: :passive_followships, source: :follower
   
+  has_many :social_friendships
+  has_many :friends, :through => :social_friendships
+  has_many :inverse_social_friendships, :class_name => "SocialFriendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_social_friendships, :source => :user
+  
   has_many :black_books
   has_many :uploaded_files, as: :imageable
   
