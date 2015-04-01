@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  ActiveAdmin.routes(self)
     # authenticated :user do
     #   root :to => "home#feed", :as => "authenticated_root"
     # end

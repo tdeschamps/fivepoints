@@ -5,8 +5,6 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'quiet_assets'
 	gem "letter_opener"
-	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-	gem 'spring'
 end
 #securing secrets
 gem 'figaro'
@@ -19,6 +17,8 @@ gem 'omniauth-facebook'
 gem 'uuidtools', '~> 2.1.5'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
+#adding a nice and slick admin
+gem 'activeadmin', github: 'activeadmin'
 #picture_upload
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
@@ -77,7 +77,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-
+gem 'spring'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

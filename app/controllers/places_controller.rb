@@ -49,16 +49,16 @@ class PlacesController < ApplicationController
 		respond_to do |format|
 
       		if @place.persisted?
-      			if @place.black_book_places.find_by_black_book_id(@foursquare_place_params[:black_book_places_attributes]["0"][:black_book_id])
+      			if @black_book_place = @place.black_book_places.includes(black_book: :user).find_by_black_book_id(@foursquare_place_params[:black_book_places_attributes]["0"][:black_book_id])
       			#@black_book_place = @place.black_book_places.where(black_book_id: @black_book_id).first
-	      			format.html { render action: 'new' }
+	      			format.html redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id)
 	      			format.json { render json: 'no_new_place', status: :found }
 	      			format.js   { render action: 'no_new_place', status: :found }
 	      		else
-	      			@black_book_place = @place.black_book_places.create(@foursquare_place_params[:black_book_places_attributes]["0"])
-	      			format.html { redirect_to @place, notice: 'Place was successfully created.' }
+	      			@black_book_place = @place.black_book_places.includes(black_book: :user).create(@foursquare_place_params[:black_book_places_attributes]["0"])
+	      			format.html { redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id), notice: 'Place was successfully created.' }
 	      			format.json { render json: 'create_new_place', status: :created, location: black_book_place(@black_book_place) }
-	      			format.js   { render action: 'create_new_place', status: :created, locals: {place: @place, black_book_place: @black_book_place} }
+	      			format.js   { render action: 'create_new_place', status: :created, locals: {place: @place, black_book_place: @black_book_place}}
       			end
       		else
       			format.html { render action: 'new' }
