@@ -1,0 +1,6 @@
+$('#blackbooks').append("<%= j render partial: 'container_black_books', locals: {resources: @black_books} %>");
+<% if @black_books.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @black_books %>');
+<% else %>
+  $('.see-more').remove();
+<% end %>

@@ -14,7 +14,6 @@ Rails.application.config.assets.precompile += %w( black_books/foursquare_autocom
 Rails.application.config.assets.precompile += %w( classie.js )
 Rails.application.config.assets.precompile += %w( scrollReveal.js )
 Rails.application.config.assets.precompile += %w( black_books/map.js )
-Rails.application.config.assets.precompile += %w( scrollReveal.js )
 Rails.application.config.assets.precompile += %w( black_books/newUpload.js )
 Rails.application.config.assets.precompile += %w( users/user_edit.js )
 Rails.application.config.assets.precompile += %w( black_books/paginationBlackBooks.js )

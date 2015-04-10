@@ -9,7 +9,6 @@ $(document).ready(function() {
 		$('.md-close').click();
 	});
 
-
 	 $(document).bind('ajaxError', 'form#new-place-form', function(event, jqxhr, settings, exception){
 
 	   // note: jqxhr.responseJSON undefined, parsing responseText instead
