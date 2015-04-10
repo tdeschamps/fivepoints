@@ -13,12 +13,12 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
       ul.nav.navbar-nav.navbar-right
         - if current_user
           li
-            = link_to "#" do
-              i.fa.fa-envelope-o
-              |  Messages 
+            = link_to black_books_path do
+              i.fa.fa-ticket
+              |  Explore 
           li.dropdown
             = link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do
-              = image_tag current_user.picture, id: "profile-pic"
+              = image_tag current_user.picture || current_user.uploaded_files.last.file, id: "profile-pic"
               |  Profile 
               span.caret
             ul.dropdown-menu[role="menu"]
@@ -27,7 +27,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
                   i.fa.fa-user
                   |  Profile 
               li
-                = link_to black_books_path do
+                = link_to user_path(current_user) do
                   i.fa.fa-home
                   |  Guides 
               li

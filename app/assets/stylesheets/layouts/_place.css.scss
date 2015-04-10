@@ -29,7 +29,7 @@
 .place-main-data {
 	margin-left: -15px;
 	background-color: #ffffff;
-  	padding: 15px 50px 5px 50px;
+  	padding: 5px 50px 5px 50px;
   	border-top-right-radius: 4px;
   	height: 200px;
 
@@ -138,6 +138,12 @@
   a {
     color: $froly;
   }
+}
+.title-truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .place-user-info {

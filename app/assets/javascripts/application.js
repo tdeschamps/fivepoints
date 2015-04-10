@@ -15,7 +15,7 @@
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
 //= require jquery-ui/autocomplete
-//= require jquery.remotipart
 //= require bootstrap-sprockets
-//= require cocoon
 //= require modernizr
+//= require jquery.remotipart
+

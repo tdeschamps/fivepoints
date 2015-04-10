@@ -11,7 +11,7 @@ class BlackBook < ActiveRecord::Base
 		joins(user: :followers).where("followships.follower_id = ?", user.id)
 	}
 
-	self.per_page = 10
+	self.per_page = 6
 
 	def self.search_around(search_query)
     	near(search_query)

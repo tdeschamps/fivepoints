@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 	def show
-		@black_books = @user.black_books.paginate(page: params[:page], per_page: 5).order('updated_at DESC')
+		@black_books = @user.black_books.paginate(page: params[:page], per_page: 4).order('updated_at DESC')
 		
 		respond_to do |format|
   			format.html

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     root 'home#index'
     devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-    post 'places/create_place_from_black_book' => 'places#create_place_from_black_book'
+    post 'places/create_place_from_black_book' => 'places#create_place_from_black_book', as: :create_from_black_book
     resources :places, only: [:index, :show, :new, :create]
 
     resources :users, only: [:show, :edit, :update] do 

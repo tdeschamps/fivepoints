@@ -23,14 +23,13 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
 #nested-forms
-gem 'cocoon'
+#gem 'cocoon'
 #gems socials friends
 gem 'koala', "~> 1.10.0rc"
 gem 'twitter'
 gem 'linkedin'
 #create simple forms
 gem 'simple_form'
-gem 'remotipart', '~> 1.2'
 #add geocode coordinate to new places
 gem 'geocoder'
 #sort places within black book
@@ -43,8 +42,6 @@ gem 'font-awesome-sass', '~> 4.3.0'
 gem 'modernizr-rails'
 #paginating items
 gem 'will_paginate', '~> 3.0.6'
-#improve seo and social sharing
-gem 'meta-tags', '~> 2.0.0', :require => 'meta_tags'
 #add delayed jobs mgmt
 gem 'sidekiq'
 #add slim support
@@ -69,6 +66,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'remotipart', '~> 1.2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

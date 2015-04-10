@@ -15,7 +15,7 @@ class PlacesController < ApplicationController
 		@place_coordinates = [@place.latitude, @place.longitude]
 
 		@similar_places = Place.where("category like :category AND id != :id ", {category:@place.category, id: @place.id}).near([@place.latitude, @place.longitude]).limit(5).order("RANDOM()")
-		@active_black_books = BlackBook.includes(:user).joins(:black_book_places).where("black_book_places.place_id = ? AND black_book_places.position IS NOT NULL", @place.id)
+		@active_black_books = BlackBook.includes(:user, :black_book_places).joins(:black_book_places).where("black_book_places.place_id = ? AND black_book_places.position IS NOT NULL", @place.id)
 
 		@attributes = %w(address city category)
 
@@ -51,9 +51,16 @@ class PlacesController < ApplicationController
       		if @place.persisted?
       			if @black_book_place = @place.black_book_places.includes(black_book: :user).find_by_black_book_id(@foursquare_place_params[:black_book_places_attributes]["0"][:black_book_id])
       			#@black_book_place = @place.black_book_places.where(black_book_id: @black_book_id).first
-	      			format.html redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id)
-	      			format.json { render json: 'no_new_place', status: :found }
-	      			format.js   { render action: 'no_new_place', status: :found }
+	      			if @black_book_place.position
+		      			#format.html redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id)
+		      			format.json { render json: 'no_new_place', status: :found }
+		      			format.js   { render action: 'no_new_place', status: :found }
+		      		else
+		      			@black_book_place.update_attributes(@foursquare_place_params[:black_book_places_attributes]["0"])
+		      			#format.html redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id)
+		      			format.json { render json: 'retrieve_place', status: :found }
+		      			format.js   { render action: 'retrieve_place', status: :found }
+		      		end	
 	      		else
 	      			@black_book_place = @place.black_book_places.includes(black_book: :user).create(@foursquare_place_params[:black_book_places_attributes]["0"])
 	      			format.html { redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id), notice: 'Place was successfully created.' }

@@ -5,20 +5,20 @@ li.item.col-xs-12.col-sm-6.col-lg-4
 				.tile-place.cornered-top style=("background-image: url('#{ place.foursquare_picture_url}');")
 			.black_bookplace-infos
 				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
-				h1 #{place.name}
+				h1.title-truncate #{place.name}
 				.col-xs-12
-					- %w(address city category).each do |a|
+					- %w(address city category story).each do |a|
 						- if (!place[a].nil? && place[a] != "")
 							.attributes
 								strong #{a.capitalize}: 
 								p.text-truncate   #{place[a]}
 
 		- else
-			.tile-place.cornered-top
-				.black_book-tile
+			= link_to place
+				.tile-place.cornered-top
 			.black_bookplace-infos
 				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
-				h1 #{place.name}
+				h1.title-truncate #{place.name}
 				.col-xs-12
 					- @attributes.each do |a|
 						- if (!place[a].nil? && place[a] != "" )

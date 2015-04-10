@@ -1,0 +1,13 @@
+//$('#place_black_book_places_attributes_0_position').val() = parseInt($('#place_black_book_places_attributes_0_position').val()) + 1; 
+$("<%= j render partial: 'black_books/show_place_edit', locals: {place: @place, black_book_place: @black_book_place, picture_url: @place.foursquare_picture_url, archive: false} %>").insertAfter($('#active-places-list > ul > li').last().fadeIn());
+
+if ($('#active-places-list > ul > li').length > 4) {
+	$('#new-place').hide();
+	$("<%= j render partial: 'black_books/black_book_full' %>").appendTo($('ul.place-list#sortable')).fadeIn();
+};
+$('#new-place-form').modal_success();
+$('#archived-places-list').find('.item').each( function () {
+	if ($(this).data('itemId') == <%= @black_book_place.id %>) {
+			$(this).remove();
+	};
+});

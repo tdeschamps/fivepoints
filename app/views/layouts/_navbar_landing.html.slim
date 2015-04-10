@@ -18,7 +18,7 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
               |  Messages 
           li.dropdown
             = link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do
-              = image_tag current_user.picture, id: "profile-pic"
+              = image_tag current_user.picture || current_user.uploaded_files.last.file, id: "profile-pic"
               |  Profile 
               span.caret
             ul.dropdown-menu[role="menu"]

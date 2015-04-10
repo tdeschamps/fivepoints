@@ -5,9 +5,10 @@
 		h1.text-center 
 			| Create a new Place
 		= simple_form_for [@black_book, @place],
-		url: url_for(action: 'create_place_from_black_book', controller: 'places', novalidate: 'validate'),
+		url: url_for(action: 'create_place_from_black_book', controller: 'places'),
 		method: 'post',
-		remote: true do |f|
+		remote: true,
+		multipart: true do |f|
 			.form-inputs
 				input type='hidden' name='authenticity_token' value='#{form_authenticity_token()}'
 			.input.input--black_book

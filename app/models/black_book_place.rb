@@ -8,9 +8,17 @@ class BlackBookPlace < ActiveRecord::Base
 	scope :archived_places , -> { where(position: nil) }
 
 	acts_as_list scope: :black_book
-	
+	after_create :set_score
+	before_update :update_score, if: :position_changed? 
 	
 
 	accepts_nested_attributes_for :uploaded_files, :allow_destroy => true
 	
+	def update_score
+		self.place.update_score(position_was, position)
+	end
+
+	def set_score
+		self.place.update_score(nil, position)
+	end
 end
