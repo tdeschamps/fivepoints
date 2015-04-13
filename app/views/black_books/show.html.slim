@@ -22,6 +22,15 @@
 		#map
 
 	.container
+		.upvote-block
+			.float-left
+				- if current_user
+					- if current_user.voted_for? @black_book
+					- else
+						= render partial: './shared/recommend', locals: {black_book: @black_book}
+				- else
+					= render partial: './shared/unsigned_link', locals: {button_text: 'Recommend'}
+		.clear			
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2
 			hr
 			= render partial: './shared/user_credentials', locals: {user: @black_book.user}	 			

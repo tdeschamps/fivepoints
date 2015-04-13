@@ -34,6 +34,7 @@ gem 'simple_form'
 gem 'geocoder'
 #sort places within black book
 gem 'acts_as_list'
+gem 'acts_as_votable'
 #security
 gem 'pundit'
 #add bootstrap

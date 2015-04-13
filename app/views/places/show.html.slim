@@ -19,7 +19,7 @@
 			hr 
 			- @active_black_books.select{|b| b if b.black_book_places.first.story.last != ''}.last(3).each do |black_book|
 				.user-comment
-					= render partial: 'comment_block', locals: {black_book: black_book.black_book_place.first, user: black_book.user}				
+					= render partial: 'comment_block', locals: {black_book: black_book.black_book_places.first, user: black_book.user}				
 
 	.map-wrapper.map-place
 		#map

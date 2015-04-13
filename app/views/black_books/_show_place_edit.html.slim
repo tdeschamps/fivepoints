@@ -6,7 +6,7 @@ li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (black_book_place.id if black
 				h2.white-text #{place.name}
 		- unless archive
 			= link_to archive_url(id: black_book_place.id), method: :post, remote: true, class: 'archive-tile', id: 'send-to-archive'
-				i.fa.fa-times.fa-4x
+				i.fa.fa-times.fa-2x
 			.rank-square
 				h1 #{black_book_place.position}	
 

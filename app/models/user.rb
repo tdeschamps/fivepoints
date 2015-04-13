@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   after_create :you_should_have_a_username, unless: :username?
   after_create :send_welcome_email
 
+  acts_as_voter
+  
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
