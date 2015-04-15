@@ -1,0 +1,2 @@
+$('.vote-button-block').find('form').remove();
+$('.vote-button-block').append("<%= j render partial: 'shared/recommend', locals: {black_book: @black_book} %>")

@@ -11,6 +11,8 @@ class BlackBooksController < ApplicationController
 		
 		@city_coordinates = [@black_book.longitude, @black_book.latitude]
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
+
+		@voters = @black_book.votes_for.up.by_type(User).voters
 		
 	end
 

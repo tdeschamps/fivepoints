@@ -68,4 +68,14 @@
 		color: $froly;
 		background-color: white; 
 	}
+}
+.vote-block {
+	#follow-btn {
+		padding: 5px 15px 5px 25px;
+	}
+}
+.voters-block {
+	margin: 5px 0;
+	font-weight: $weight-light;
+	font-size: $slightly-smaller-size;
 }	
