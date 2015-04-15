@@ -33,10 +33,11 @@
 						= render partial: './shared/recommend', locals: {black_book: @black_book}
 				- if @voters.count > 1		
 					.voters-block
-						| #{@voters.first.name} and #{(@voters.count - 1)} have recommended this story
+						=link_to '#user-list-modal', class: "md-trigger", 'data-modal' => "user-list-modal" 
+							| #{@voters.first.name || @voters.first.username} and #{(@voters.count - 1)} have recommended this story
 				- elsif @voters.count == 1		
 					.voters-block
-						| #{@voters.first.name} has recommended this story		
+						| #{@voters.first.name || @voters.first.username} has recommended this story		
 				- else
 					.voters-block
 						| Be the first to recommend this black-book			
@@ -45,11 +46,14 @@
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2
 			hr
 			= render partial: './shared/user_credentials', locals: {user: @black_book.user}	 			
-
+= render partial: './modals/user_list', locals: {users: @voters}
+.md-overlay.transparent-white
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @city_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do
 					
 = content_for :js do
 
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
+	= javascript_include_tag "classie.js"
 	= javascript_include_tag "black_books/map.js"
+	= javascript_include_tag "black_books/black_book_places.js"

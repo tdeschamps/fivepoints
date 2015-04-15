@@ -8,6 +8,7 @@ $(document).ready(function(){
 
 		} else {  
 			el.attr({'disabled':'disabled'});
+			el.find('.btn-user-form-activate').first().show();
 		}
 		el.toggleClass('white-background')
 		el.focus();
@@ -19,8 +20,13 @@ $(document).ready(function(){
 	$('.btn-user-form-activate').on('click', function() {
 		var $this = $(this);
 		console.log('toto');
-		$this.hide();
-		$this.next().toggleClass('hide');
+		if ($this.val() == 'Edit') {
+			$this.hide();
+			$this.next().toggleClass('hide');
+		} else if ($this.val() == 'Submit') {
+			$this.parent().toggleClass('hide');
+			$this.parent().parent().find('input').first().show();
+		}	
 		var input = $this.parent().parent().find('.form-group');
 		switching(input);
 	})

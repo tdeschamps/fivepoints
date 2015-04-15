@@ -1,0 +1,17 @@
+li.list-item.user-list-item
+	.profile-pic-wrapper	
+		= link_to user
+			img.profile-pic src=("#{user.picture || (user.uploaded_files.last.file if user.uploaded_files.count > 0)}")
+	.comment-block-actions
+		- if !signed_in?
+			= render partial: './users/follow_unsigned'
+		- elsif !current_user.following?(user) && !(current_user == user) 
+			= render partial: './users/follow', locals: {followed: user}
+		- elsif !(current_user == user)  
+			= render partial: './users/unfollow', locals: {followed: user}		
+	.user-description
+		= link_to user, class: "link link-overlay"
+			| #{user.name || user.username}
+		.user-description-secondary	
+			p.truncate-story #{user.biography}
+				 							

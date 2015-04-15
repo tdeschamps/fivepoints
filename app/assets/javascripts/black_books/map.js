@@ -6,9 +6,7 @@ $(document).ready(function() {
   var map = L.mapbox.map('map', 'thomasduchamp.3d50a81c', {
 		zoomControl: true
 	}).setView([cityBoundariesCoordinates[0] , cityBoundariesCoordinates[1]], 12);
-	map.touchZoom.disable();
-  map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable();
+	
 
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
@@ -31,7 +29,9 @@ $(document).ready(function() {
     });
     myLayer.setGeoJSON(geojson);
     map.fitBounds(myLayer.getBounds());
-
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
   }; 
 
   console.log(myLayer.getBounds());

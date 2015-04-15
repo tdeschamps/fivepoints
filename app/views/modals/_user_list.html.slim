@@ -1,0 +1,6 @@
+#user-list-modal.md-modal.md-effect-12
+	.md-content
+		ul.user-list
+		- users.each do |user|
+			.user-part
+				= render partial: './users/follow_block', locals: {user: user}

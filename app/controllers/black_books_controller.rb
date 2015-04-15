@@ -13,7 +13,6 @@ class BlackBooksController < ApplicationController
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
 
 		@voters = @black_book.votes_for.up.by_type(User).voters
-		
 	end
 
 	def new
