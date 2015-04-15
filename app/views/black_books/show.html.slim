@@ -22,14 +22,15 @@
 		#map
 
 	.container
-		.upvote-block
+		.vote-block
 			.float-left
-				- if current_user
-					- if current_user.voted_for? @black_book
-					- else
-						= render partial: './shared/recommend', locals: {black_book: @black_book}
-				- else
+				- if !signed_in?
 					= render partial: './shared/unsigned_link', locals: {button_text: 'Recommend'}
+				- elsif current_user.voted_for? @black_book
+					= render partial: './shared/recommended', locals: {black_book: @black_book}
+				- else
+					= render partial: './shared/recommend', locals: {black_book: @black_book}
+					
 		.clear			
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2
 			hr
