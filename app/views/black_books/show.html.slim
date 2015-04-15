@@ -22,6 +22,26 @@
 		#map
 
 	.container
+		.vote-block
+			.float-left
+				.vote-button-block
+					- if !signed_in?
+						= render partial: './shared/unsigned_link', locals: {button_text: 'Recommend'}
+					- elsif current_user.voted_for? @black_book
+						= render partial: './shared/recommended', locals: {black_book: @black_book}
+					- else
+						= render partial: './shared/recommend', locals: {black_book: @black_book}
+				- if @voters.count > 1		
+					.voters-block
+						| #{@voters.first.name} and #{(@voters.count - 1)} have recommended this story
+				- elsif @voters.count == 1		
+					.voters-block
+						| #{@voters.first.name} has recommended this story		
+				- else
+					.voters-block
+						| Be the first to recommend this black-book			
+					
+		.clear			
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2
 			hr
 			= render partial: './shared/user_credentials', locals: {user: @black_book.user}	 			

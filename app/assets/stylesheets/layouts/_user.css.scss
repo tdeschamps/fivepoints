@@ -14,13 +14,15 @@
 	}
 }
 #follow-btn {
-	@include button(white);
+	@include button-rounded(white);
 	color: $sunset-orange;
 	width: 100%;
 	transition: border ease-in 0.2s;
+	min-width: 120px;
+	padding: 5px 10px 5px 15px;
 	&:hover {
 		border-bottom: none;
-		border: 2px solid $froly;
+		border: 1px solid $froly;
 	}
 }
 .underline-title {

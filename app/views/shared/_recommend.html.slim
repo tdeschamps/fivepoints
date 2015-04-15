@@ -1,0 +1,4 @@
+= form_for(black_book, url:upvote_black_book_path, method: 'post', remote: true) do |f|
+  = button_tag "Recommend", class: "btn", id: "recommend-btn", title: "Follow to get new black books from this author" do
+  	i.fa.fa-heart-o
+  	| Recommend

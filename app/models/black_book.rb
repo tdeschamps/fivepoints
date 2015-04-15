@@ -10,7 +10,10 @@ class BlackBook < ActiveRecord::Base
 	scope :friends, ->(user) {
 		joins(user: :followers).where("followships.follower_id = ?", user.id)
 	}
+	geocoded_by :formatted_address
+  	after_create :geocode
 
+	acts_as_votable
 	self.per_page = 6
 
 	def self.search_around(search_query)

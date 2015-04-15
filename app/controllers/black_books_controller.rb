@@ -1,7 +1,7 @@
 class BlackBooksController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :update]
-	before_action :set_black_book, only: [:edit, :update, :show]
+	before_action :set_black_book, only: [:edit, :update, :show, :downvote, :upvote]
 
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 	
@@ -11,6 +11,9 @@ class BlackBooksController < ApplicationController
 		
 		@city_coordinates = [@black_book.longitude, @black_book.latitude]
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
+
+		@voters = @black_book.votes_for.up.by_type(User).voters
+		
 	end
 
 	def new
@@ -59,8 +62,8 @@ class BlackBooksController < ApplicationController
 	
 	def index
 		if params[:search]
-			@friends_black_books = BlackBook.includes(:uploaded_files).search_around(params[:search]).order('updated_at desc').paginate(:page => params[:page])
-			@places = Place.includes(:black_book_places).search_around(params[:search]).order('ranking desc').paginate(:page => params[:page])
+			@friends_black_books = BlackBook.includes(:uploaded_files).near(params[:search], 5).order('updated_at desc').paginate(:page => params[:page])
+			@places = Place.includes(:black_book_places).near(params[:search], 5).order('ranking desc').paginate(:page => params[:page])
 		else	
 			@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places, :uploaded_files).order('updated_at desc').paginate(:page => params[:page])
 			@places = Place.includes(:black_book_places).friends(current_user).order('ranking desc').paginate(:page => params[:page])
@@ -68,6 +71,24 @@ class BlackBooksController < ApplicationController
 
 		@attributes = %w(address city category)
 		
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end
+	end
+
+	def upvote
+		current_user.likes @black_book
+
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end
+	end
+
+	def downvote
+		@black_book.unliked_by current_user
+
 		respond_to do |format|
   			format.html
   			format.js

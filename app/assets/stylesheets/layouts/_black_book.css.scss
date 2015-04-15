@@ -44,4 +44,38 @@
 	.tile-place {
 		height:350px;
 	}
-}		
+}
+#recommend-btn {
+	@include button-rounded(white);
+	color: $froly;
+	border: 1px solid $froly;
+	padding: 5px 20px 5px 10px;
+
+	&:hover, &:active {
+		border: 1px solid $froly;
+		color: white;
+		background-color: $froly;
+		background-opacity: 0.8; 
+	}
+}
+#recommended-btn {
+	@include button-rounded($froly);
+	border: 1px solid $froly;
+	padding: 5px 20px 5px 10px;
+
+	&:hover, &:active {
+		border: 1px solid $froly;
+		color: $froly;
+		background-color: white; 
+	}
+}
+.vote-block {
+	#follow-btn {
+		padding: 5px 15px 5px 25px;
+	}
+}
+.voters-block {
+	margin: 5px 0;
+	font-weight: $weight-light;
+	font-size: $slightly-smaller-size;
+}	

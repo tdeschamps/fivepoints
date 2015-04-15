@@ -135,9 +135,9 @@ md-perspective,
 }
 #disconnected_modal {
 	.md-content {
-		background: rgba(255,255,255, 0.975)
+		background: transparent;
 	}
 }
 .md-show.md-effect-12 ~ .transparent-white,.md-overlay {
-	background: rgba(255,255,255, 0.925);
+	background: rgba(255,255,255, 0.975);
 }
