@@ -17,7 +17,7 @@
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2					
 			h4 #{@active_black_books.count} people have added #{@place.name} to their black books
 			hr 
-			- @active_black_books.select{|b| b if b.black_book_places.first.story.last != ''}.last(3).each do |black_book|
+			- @active_black_books.select{|b| b if b.black_book_places.first.story != nil &&  b.black_book_places.first.story != ''}.last(3).each do |black_book|
 				.user-comment
 					= render partial: 'comment_block', locals: {black_book: black_book.black_book_places.first, user: black_book.user}				
 
@@ -44,6 +44,7 @@
 								= render partial: 'related_black_books', locals: {black_book: black_book, picture_url: (black_book.uploaded_files.first.file.url(:large) unless black_book.uploaded_files.first.nil?), archive: true}					
 - if !current_user
 	= render './modals/disconnected_modal'
+	= render partial: '.modals/user_list', locals: {users: @voters}
 	.md-overlay.transparent-white
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do	

@@ -4,7 +4,7 @@
 	= link_to user
 		| #{user.name || user.username}
 	.places-story-wrapper	
-		p.places-story #{black_book.story}
+		p.truncate-story #{black_book.story}
 .comment-block-actions
 	- if !signed_in?
 		= render partial: './users/follow_unsigned'

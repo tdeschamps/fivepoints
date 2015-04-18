@@ -39,3 +39,39 @@
 	text-align: center;
 	overflow: auto;
 }
+.user-list {
+	padding-bottom: 30px;
+	.user-part {
+		.user-list-item {
+			padding: 20px 0 25px 0;
+		}
+	}	
+}
+.user-description {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 300px;
+	margin-right: 0px;
+	color: rgba(0,0,0,0.8);
+	font-size: 16px;letter-spacing: -0.02em;
+	font-weight: 700;
+	font-style: normal;
+	.link-overlay {
+		color: rgba(0,0,0,0.8);
+		.text-decoration: none;
+	}
+	.user-description-secondary {
+	  margin-bottom: 0;
+	  color: rgba(0,0,0,0.6);
+	  font-size: 14px;
+	  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+	  letter-spacing: -0.02em;
+	  font-weight: 100;
+	  font-style: normal;
+	}
+	.user-description-secondary > p {
+		display: -webkit-box;
+		padding: 0;
+		margin-bottom: 10px;
+	}
+}
