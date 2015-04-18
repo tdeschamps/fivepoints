@@ -35,7 +35,7 @@ deploy:
           ApplicationName=docker-fivemarks
           DevToolsEndpoint=git.elasticbeanstalk.us-west-2.amazonaws.com
           EnvironmentName=fivemarks
-          Region=us-east-1
+          Region=us-west-2
           ServiceEndpoint=https://elasticbeanstalk.us-west-2.amazonaws.com
           [branches]
           master=fivemarks
