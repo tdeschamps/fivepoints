@@ -20,6 +20,7 @@
 
 # Ignore application configuration
 /config/application.yml
+wercker.yml
 
 # Ignore OS generated files
 .DS_Store

@@ -32,5 +32,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: fivepoints
-  username: fivepoints
+  username: <%= ENV['FIVEPOINTS_DATABASE_USERNAME'] %>
   password: <%= ENV['FIVEPOINTS_DATABASE_PASSWORD'] %>
+  hostname: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
