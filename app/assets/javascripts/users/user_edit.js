@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	function switching(el) {
 		el.toggleClass('disabled');
-		el = el.find('input');
+		el = el.find('.form-edit');
 		if (el.attr('disabled')) {
 		        el.removeAttr('disabled');
 
@@ -17,17 +17,19 @@ $(document).ready(function(){
 		el.val(tmpStr);
 	}
 
-	$('.btn-user-form-activate').on('click', function() {
+	$('.btn-user-form-activate').on('click', function(event) {
 		var $this = $(this);
+		event.preventDefault();
 		console.log('toto');
 		if ($this.val() == 'Edit') {
 			$this.hide();
 			$this.next().toggleClass('hide');
 		} else if ($this.val() == 'Submit') {
+			$this.submit();
 			$this.parent().toggleClass('hide');
 			$this.parent().parent().find('input').first().show();
 		}	
-		var input = $this.parent().parent().find('.form-group');
+		var input = $this.parentsUntil('.form-user').find('.form-group');
 		switching(input);
 	})
 
