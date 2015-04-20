@@ -1,71 +1,33 @@
-box: wercker/default
+box: wercker-labs/docker
+
+build:
+    steps:
+        - script:
+            name: upgrade docker
+            code: |
+              which docker
+              mkdir tmp
+              curl https://get.docker.com/builds/Linux/x86_64/docker-latest -o tmp/docker
+              chmod +x tmp/docker
+              sudo service docker stop
+              sudo cp tmp/docker /usr/bin/docker
+              sudo service docker start
+        - script:
+            name: docker version
+            code: docker -v
+        - script:
+            name: docker build
+            code: |
+              docker build --rm=false -t uslide .
+
 deploy:
-  steps:
-    - install-packages:
-        packages: unzip
-
-    - script:
-        name: Install Beanstalk CLI
-        code: |-
-          wget --quiet https://s3.amazonaws.com/elasticbeanstalk/cli/AWS-ElasticBeanstalk-CLI-2.4.0.zip
-          unzip -qq AWS-ElasticBeanstalk-CLI-2.4.0.zip
-          sudo mkdir -p /usr/local/aws/elasticbeanstalk
-          sudo mv AWS-ElasticBeanstalk-CLI-2.4.0/* /usr/local/aws/elasticbeanstalk/
-          export PATH="/usr/local/aws/elasticbeanstalk/eb/linux/ruby2.1:$PATH"
-          export AWS_CREDENTIAL_FILE="/home/ubuntu/.elasticbeanstalk/aws_credential_file"
-          mkdir -p "/home/ubuntu/.elasticbeanstalk/"
-          mkdir -p "$WERCKER_SOURCE_DIR/.elasticbeanstalk/"
-    # Store the key and secret key in the the aws_credential_file
-    # This key and secret_key must be set as environment variable
-    # in your deploy target.
-    - create-file:
-        name: Create AWS credential file
-        filename: $AWS_CREDENTIAL_FILE
-        content: |-
-            AWSAccessKeyId=$KEY
-            AWSSecretKey=$SECRET_KEY
-    # I'm not sure which information is mendatory, I've copied
-    # the full content from the config file on my local dev machine
-    # after a "eb init".
-    - create-file:
-        name: Add beanstalk config
-        filename: $WERCKER_SOURCE_DIR/.elasticbeanstalk/config
-        content: |-
-          [global]
-          ApplicationName=fivemarks
-          DevToolsEndpoint=git.elasticbeanstalk.us-west-2.amazonaws.com
-          EnvironmentName=fivemarks
-          Region=us-west-2
-          ServiceEndpoint=https://elasticbeanstalk.us-west-2.amazonaws.com
-          [branches]
-          master=fivemarks
-          [branch:master]
-          ApplicationVersionName=master
-          EnvironmentName=fivemarks
-          InstanceProfileName=aws-elasticbeanstalk-ec2-role
-    # Check if beanstalk CLI is there
-    - script:
-        name: Beanstalk there?
-        code: eb status
-
-    # Remove the existing repository and re-add everything
-    # in a new repository that will be used to push it to beanstalk
-    # The last line in this script add the beanstalk hooks to the
-    # repository
-    - script:
-        name: Create deploy repository
-        code: |-
-          git config --global user.email "thomas@fivemarks.in"
-          git config --global user.name "fivemarks"
-          rm -rf $WERCKER_SOURCE_DIR/.git
-          echo ".elasticbeanstalk/" > .gitignore
-          git init
-          git add .
-          git commit -m "deploy commit"
-          sudo bash /usr/local/aws/elasticbeanstalk/AWSDevTools/Linux/AWSDevTools-RepositorySetup.sh
-    # Do the actual deploy via the aws.push hook that the Beanstalk CLI adds
-    - script:
-        name: Push it!
-        code: |-
-          git checkout master
-          git aws.push
+    steps:
+        - script:
+            name: install ruby
+            code: sudo apt-get install -y ruby
+        - mrono/elastic-beanstalk-deploy@1.0.0:
+            key: $KEY
+            secret: $SECRET_KEY
+            app_name: fivemarks
+            env_name: fivemarks
+            region: eu-west-2
