@@ -11,7 +11,7 @@ deploy:
           unzip -qq AWS-ElasticBeanstalk-CLI-2.4.0.zip
           sudo mkdir -p /usr/local/aws/elasticbeanstalk
           sudo mv AWS-ElasticBeanstalk-CLI-2.4.0/* /usr/local/aws/elasticbeanstalk/
-          export PATH="/usr/local/aws/elasticbeanstalk/eb/linux/python2.7:$PATH"
+          export PATH="/usr/local/aws/elasticbeanstalk/eb/linux/ruby2.1:$PATH"
           export AWS_CREDENTIAL_FILE="/home/ubuntu/.elasticbeanstalk/aws_credential_file"
           mkdir -p "/home/ubuntu/.elasticbeanstalk/"
           mkdir -p "$WERCKER_SOURCE_DIR/.elasticbeanstalk/"
@@ -32,7 +32,7 @@ deploy:
         filename: $WERCKER_SOURCE_DIR/.elasticbeanstalk/config
         content: |-
           [global]
-          ApplicationName=docker-fivemarks
+          ApplicationName=fivemarks
           DevToolsEndpoint=git.elasticbeanstalk.us-west-2.amazonaws.com
           EnvironmentName=fivemarks
           Region=us-west-2
