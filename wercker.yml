@@ -18,7 +18,7 @@ build:
         - script:
             name: docker build
             code: |
-              docker build --rm=false -t uslide .
+              docker build --rm=false -t fivemarks .
 
 deploy:
     steps:
