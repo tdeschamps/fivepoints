@@ -19,6 +19,16 @@ div.container.padded-down
  					.form-edit-submit
  						#edit-email-submission
  							= f.button :submit, "Submit", class: "btn-user-form-activate"		
+		section.form-user.form-list#edit-bio
+			.form-edit-fields
+				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
+			  		= f.error_notification
+			  		= f.input :biography, required: false, label: "Add a small bio", input_html: {class: "form-edit disabled"}, label_html: {class: "form-edit-label disabled"}, disabled:true		
+		    		.form-edit-submit
+		    			input#enable-edit-biography.btn.btn-default.btn-user-form-activate type="button" value= ("Edit")
+		    			#edit-biography-submission.hide	 
+			  				= f.button :submit, "Submit", class: "btn-user-form-activate"
+			  				input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")
 		section.form-user.form-list#edit-email
 			.form-edit-fields
 				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates :email, uniqueness: true
-  validates :cbio, length: {maximum: 160}
+  validates :biography, length: {maximum: 160}
   has_many :active_followships, class_name:  "Followship",
                                 foreign_key: "follower_id",
                                 dependent:   :destroy                              

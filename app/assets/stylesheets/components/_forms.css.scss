@@ -133,6 +133,9 @@ form {
  		height:auto;
  		cursor: inherit;
  	}
+ 	.form-edit.white-background {
+			background-color: white;
+		}
  	.btn-user-form-activate {
  		@include button-rounded(white);
  		color: lightgreen;
@@ -236,4 +239,7 @@ form {
 	margin-top: -30px;
 	font-weight: $weight-bold;
 	color: steelblue;
+}
+.form-edit-fields {
+	max-width: 70%;
 }
