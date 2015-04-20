@@ -3,6 +3,7 @@ box: wercker-labs/docker
 build:
     steps:
         - script:
+        
             name: upgrade docker
             code: |
               which docker
@@ -25,9 +26,9 @@ deploy:
         - script:
             name: install ruby
             code: sudo apt-get install -y ruby
-        - mrono/elastic-beanstalk-deploy@1.0.0:
+        - mrono/elastic-beanstalk-deploy:
             key: $KEY
             secret: $SECRET_KEY
-            app_name: fivemarks
+            app_name: My First Elastic Beanstalk Application
             env_name: fivemarks
             region: eu-west-2
