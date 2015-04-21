@@ -46,5 +46,5 @@ RUN bundle exec rake assets:precompile
 ADD nginx-sites.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
-
+RUN echo 'env[RDS_HOSTNAME] = $RDS_HOSTNAME'
 CMD bundle exec rake db:migrate && foreman start -f Procfile
