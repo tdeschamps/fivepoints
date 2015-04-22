@@ -8,7 +8,6 @@ class CreatePlaces < ActiveRecord::Migration
     	t.float :longitude
     	t.float :latitude
     	t.integer :ranking
-
       t.timestamps
     end
   end
