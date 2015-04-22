@@ -31,8 +31,8 @@ test:
 production:
   adapter: postgresql
   encoding: utf-8
-  database: <%= ENV['FIVEPOINTS_DATABASE_NAME'] %>
-  username: <%= ENV['FIVEPOINTS_DATABASE_USERNAME'] %>
-  password: <%= ENV['FIVEPOINTS_DATABASE_PASSWORD'] %>
+  database: <%= ENV['RDS_DATABASE_NAME'] %>
+  username: <%= ENV['RDS_DATABASE_USERNAME'] %>
+  password: <%= ENV['RDS_DATABASE_PASSWORD'] %>
   hostname: <%= ENV['RDS_HOSTNAME'] %>
   port: <%= ENV['RDS_PORT'] %>
