@@ -39,6 +39,7 @@ gem 'acts_as_votable'
 #security
 gem 'pundit'
 #add bootstrap
+
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'modernizr-rails'
@@ -64,7 +65,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem 'rack-cors', :require => 'rack/cors'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

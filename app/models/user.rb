@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
   private
 
   def send_welcome_email
-    UserMailer.welcome(self).deliver
+    UserMailer.welcome(self).deliver_later
   end
          
 end
