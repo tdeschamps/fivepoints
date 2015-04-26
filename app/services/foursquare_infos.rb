@@ -4,8 +4,8 @@ require 'json'
 class FoursquareInfos
 	
 	def initialize(place)
-		@foursquare_id = ENV['4SQ_CLIENT_ID']
-		@foursquare_secret = ENV['4SQ_CLIENT_SECRET']
+		@foursquare_id = ENV['FOURSQ_CLIENT_ID']
+		@foursquare_secret = ENV['FOURSQ_CLIENT_SECRET']
 		@place = place
 	end
 
