@@ -5,9 +5,10 @@ html
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /
     meta content="width=device-width" name="viewport" /
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = csrf_meta_tags
+    = favicon_link_tag 'favicon.png'
     link href="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css" rel="stylesheet"
     link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" /
+    
     = yield :head
     
   body
