@@ -20,7 +20,7 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
               |  Explore  
           li.dropdown
             = link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do
-              = image_tag current_user.picture || (current_user.uploaded_files.last.file if current_user.uploaded_files != []), id: "profile-pic"
+              = image_tag current_user.picture || (current_user.uploaded_files.last.file if current_user.uploaded_files != []) || "default_user_picture.png", id: "profile-pic"
               |  Profile 
               span.caret
             ul.dropdown-menu[role="menu"]
