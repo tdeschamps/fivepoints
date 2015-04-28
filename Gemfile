@@ -85,7 +85,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Use unicorn as the app server
 group :production do
 	#gem 'unicorn'
-	gem 'font_assets'
+	#gem 'font_assets'
 end
 
 # Use Capistrano for deployment
