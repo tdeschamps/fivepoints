@@ -1,7 +1,8 @@
 server {
   listen 80;
+  server_name fiverks.in
   client_max_body_size 50M;
-  root /app/public;
+  
   location ~ ^/(assets|images|javascripts|stylesheets|swfs|system)/ {
     gzip_static on;
     expires max;
@@ -14,6 +15,7 @@ server {
     open_file_cache_errors on;
     break;
   }
+
   location / {
     if ($request_method = 'GET') {
       add_header 'Access-Control-Allow-Origin' '*';
