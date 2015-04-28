@@ -12,7 +12,7 @@ div.container.padded-down
 					- else
 						img src = asset_url('default_user_picture.png')
 
-				= simple_form_for(@user, url: user_path(@user), remote: true) do |f|
+				= simple_form_for(@user, url: user_path(@user)) do |f|
 			  		= f.simple_fields_for @user.uploaded_files.build() do |file|
 			  			.nested-fields.input.input--black_book
  							= f.file_field :file, :label => "Upload an image",id:"file-upload"
