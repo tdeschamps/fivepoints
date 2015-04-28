@@ -168,12 +168,10 @@ http {
             }
         }
         location / {
-          if ($request_method = 'GET') {
-            add_header 'Access-Control-Allow-Origin' '*';
-            add_header 'Access-Control-Allow-Credentials' 'true';
-            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-            add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-          }
+            if ($request_filename ~* ^.*?\.(eot)|(ttf)|(woff)|(svg)|(otf)$){
+                add_header Access-Control-Allow-Origin *;
+                add_header Access-Control-Request-Method *;
+            }
         }
         location @static_asset {
             gzip_static on;
@@ -188,4 +186,4 @@ http {
         }
     }
     passenger_pre_start http://<%= nginx_listen_address(app) %>;
-    <% end %>
+<% end %>
