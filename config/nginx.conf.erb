@@ -157,6 +157,8 @@ http {
             error_page 490 = @static_asset;
             error_page 491 = @dynamic_request;
             recursive_error_pages on;
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Request-Method *;
 
             if (-f $request_filename) {
                 return 490;
@@ -164,6 +166,14 @@ http {
             if (!-f $request_filename) {
                 return 491;
             }
+        }
+        location / {
+          if ($request_method = 'GET') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Credentials' 'true';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+          }
         }
         location @static_asset {
             gzip_static on;
