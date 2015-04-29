@@ -7,9 +7,9 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand.hidden-sm.hidden-xs[href="/"]
+      a.navbar-brand.hidden-xs[href="/"]
         = image_tag "fivepoints.png", id: "logo"
-      a.navbar-brand.visible-sm.visible-xs[href="/"]
+      a.navbar-brand.visible-xs[href="/"]
         = image_tag "logo_rounded.png", id: "logo"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse     
       ul.nav.navbar-nav.navbar-right
@@ -41,10 +41,10 @@ nav.navbar.navbar-default.navbar-fixed-top.landing.navbar-fivemarks[role="naviga
               = link_to new_user_session_path do
                 i.fa.fa-envelope-o
                 |  Sign In
-                li
-                  = link_to new_user_registration_path do
-                    i.fa.fa-sign-out
-                    |  Sign Up
+            li
+              = link_to new_user_registration_path do
+                i.fa.fa-sign-out
+                |  Sign Up
         li
           - if current_user                            
             = link_to new_user_black_book_path(current_user), class: "btn btn-primary", id: "nav-btn" do
