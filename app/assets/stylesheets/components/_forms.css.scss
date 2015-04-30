@@ -144,6 +144,14 @@ form {
  			border: 1px solid green;
  		}
  	}
+ 	.btn-user-form-active {
+ 		@include button-rounded(white);
+ 		color: lightgreen;
+ 		margin-right: 10px;
+ 		&:hover, &:focus {
+ 			border: 1px solid green;
+ 		}
+ 	}
  	.btn-user-form-cancel {
  		@include button-rounded(white);
  		color: $gray;
