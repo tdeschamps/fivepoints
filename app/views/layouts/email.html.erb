@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<style type="text/css">
+		h1 {
+			color: #f97171;
+			font-size:16px;
+			font-weight: 200;
+			margin-bottom: 0px;
+		}
+		p {
+			color: #555;
+			font-size: 12px;
+			font-weight: 100;
+		}
+		h3 {
+			color: #f97171;
+			font-size:12px;
+			font-weight: 400;
+			margin-top: 5px;
+			margin-bottom: 0px;
+		}
+		h4 { 
+			color: #999;
+			font-size:12px;
+			font-weight: 100;
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+	</style>
+	<title>Welcome to fivemarks</title>
+</head>
+<body>
+	<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr>
+					<td width="200" valign="top"></td>
+					<td width="200" valign="top"></td>
+					<td width="200" valign="top"></td>
+				</tr>
+			</table>
+			<%= yield %>
+		</td>
+	</tr>
+	<tr>
+		<td>		
+			<table cellpadding="0" cellspacing="5px" border="0" align="left">
+				<tr>	
+					<td class="credential">
+						<h3>Thomas Deschamps</h3>
+						<h4>Founder</h4>
+					</td>
+				</tr>
+				<tr class="logo">
+					<td>
+						<%= link_to(new_user_black_book_url(@user), html_options = {target: "_blank", title: "Logo", style: ("color: orange; text-decoration: none;")}) do%>
+							<img class="image_fix" src = 'http://www.fivemarks.in//assets/fivepoints-d02f4c2a36e8a7f5186ace44c3a8010b.png' alt="logo" title="Logo" height="30"/>
+						<% end %>	
+					</td>
+				</tr>		
+			</table>				
+		</td>
+	</tr>
+	</table>
+</body>
+</html>
