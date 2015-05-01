@@ -10,7 +10,8 @@ class UserMailer < ApplicationMailer
     @user = user
 
     mail(to: @user.email,
-    	subject: 'Welcome to Fivemarks') do |format|
+    	subject: 'Welcome to Fivemarks',
+      css: :email) do |format|
       format.html { render layout: 'email', locals: {title: "Welcome to fivemarks"} }
       format.text
     end
