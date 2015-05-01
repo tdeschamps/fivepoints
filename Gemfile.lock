@@ -342,6 +342,7 @@ DEPENDENCIES
   figaro
   font-awesome-sass (~> 4.3.0)
   geocoder
+  hitimes
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails

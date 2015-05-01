@@ -46,6 +46,7 @@ gem 'modernizr-rails'
 #paginating items
 gem 'will_paginate', '~> 3.0.6'
 #add delayed jobs mgmt
+gem 'hitimes'
 gem 'sidekiq'
 #add slim support
 gem 'slim'
