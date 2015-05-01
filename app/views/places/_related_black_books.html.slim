@@ -8,7 +8,7 @@
 	.panel-body.panel-card-section style=("background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
 		.media
 			= link_to user_path(black_book.user_id), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"
-				img src="#{black_book.user.picture || black_book.user.uploaded_files.last.file}"
+				img src="#{choose_user_picture black_book.user}"
 		= link_to black_book_path(black_book), class: "black-book-city h4 inline left10 top2 text-truncate white-text"
 			i.fa.fa-map-marker.fa-2x
 			| #{black_book.formatted_address}
