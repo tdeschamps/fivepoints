@@ -9,7 +9,8 @@ Rails.application.configure do
       :domain =>         'fivemarks.in',
       :authentication => :plain
   }
-
+  config.action_mailer.default_url_options = 
+      { :host => 'http://www.fivemarks.in' }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
