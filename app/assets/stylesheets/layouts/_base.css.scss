@@ -8,7 +8,7 @@ html{
    background-color: $background-grey;
    font-size: $base-size;
    .full-page{
-   	min-height: 95%;
+   	min-height: calc(100% - 70px);
    }
   }
 }
