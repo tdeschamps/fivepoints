@@ -4,8 +4,8 @@ module UsersHelper
 
 		if user.uploaded_files.last
 			user.uploaded_files.last.file
-		elsif user.image
-			user.image
+		elsif user.picture
+			user.picture
 		else
 			'default_user_picture.png'
 		end					
