@@ -47,7 +47,7 @@ gem 'modernizr-rails'
 gem 'will_paginate', '~> 3.0.6'
 #add delayed jobs mgmt
 gem 'hitimes'
-gem 'sidekiq'
+#gem 'sidekiq'
 #add slim support
 gem 'slim'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
