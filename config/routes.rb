@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     post 'black_book_places/:id/send_to_archive' => 'black_book_places#send_to_archive', as: :archive
     post 'black_books/:id/upvote' => 'black_books#upvote', as: :upvote_black_book
     post 'black_books/:id/downvote' => 'black_books#downvote', as: :downvote_black_book
+
+    get 'terms' => 'home#terms', as: :terms
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

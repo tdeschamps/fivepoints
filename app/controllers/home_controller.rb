@@ -11,6 +11,8 @@ class HomeController < ApplicationController
 		@black_books = BlackBook.friends(@user)
 	end
 
+	def terms
+	end
 	private
 	
 	def get_social_friends
