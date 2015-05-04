@@ -7,7 +7,7 @@ module UsersHelper
 		elsif user.picture
 			user.picture
 		else
-			'default_user_picture.png'
+			asset_url('default_user_picture.png')
 		end					
 	end	
 end
