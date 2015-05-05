@@ -13,6 +13,9 @@ class HomeController < ApplicationController
 
 	def terms
 	end
+
+	def about_us
+	end
 	private
 	
 	def get_social_friends

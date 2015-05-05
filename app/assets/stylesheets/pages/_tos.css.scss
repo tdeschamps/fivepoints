@@ -1,4 +1,4 @@
-.t-o-s {
+.t-o-s, .about-us {
 	max-width: 800px;
 	h1 {
 		font-size: 24px;
@@ -22,5 +22,13 @@
 	li {
 		margin-left: 40px;
 	}
-
+}
+.role {
+	text-align: center;
+	h2 {
+		font-size: 20px;
+		color: $froly;
+		font-weight: 100;
+		font-style: italic;
+	}
 }

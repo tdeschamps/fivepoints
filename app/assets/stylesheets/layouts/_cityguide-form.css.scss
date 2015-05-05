@@ -39,7 +39,7 @@
 
 .input__label--black_book::after {
 	margin-top: 2px;
-	border-bottom: 4px solid red;
+	border-bottom: 4px solid $froly;
 	-webkit-transform: translate3d(-100%, 0, 0);
 	transform: translate3d(-100%, 0, 0);
 	-webkit-transition: -webkit-transform 0.3s;
@@ -149,7 +149,7 @@
 
 .input__field--black_book-story:focus,
 .input__field--black_book-story:focus +  .input__label--black_book-story .input__label-content--black_book-story {
-	z-index: 10000;
+	z-index: 1000;
 }
 
 .input__field--black_book-story:focus + .input__label--black_book-story {

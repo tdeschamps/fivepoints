@@ -6,12 +6,10 @@ class BlackBook < ActiveRecord::Base
 	has_many :uploaded_files, as: :imageable
 	accepts_nested_attributes_for :uploaded_files, :allow_destroy => true
 	geocoded_by :formatted_address
-	after_create :geocode
+	after_validation :geocode
 	scope :friends, ->(user) {
 		joins(user: :followers).where("followships.follower_id = ?", user.id)
 	}
-	geocoded_by :formatted_address
-  	after_create :geocode
 
 	acts_as_votable
 	self.per_page = 6

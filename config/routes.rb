@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     post 'black_books/:id/downvote' => 'black_books#downvote', as: :downvote_black_book
 
     get 'terms' => 'home#terms', as: :terms
+    get 'about_us' => 'home#about_us', as: :about_us
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
