@@ -49,6 +49,12 @@
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @place_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do	
 
+= content_for :meta_facebook do
+	meta property = "og:title" content= "#{@place.name}"
+	meta property = "og:image" content= "#{@place.uploaded_files.last.file.url(:medium)}"
+	meta property = "og:url" content= "http://fivemarks.in/places/#{@place.id}"
+	meta property = "og:description" content= "#{@place.categories.map{|c| c.name}.join(', ')}"
+
 = content_for :js do
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
 	= javascript_include_tag "classie"

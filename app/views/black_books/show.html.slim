@@ -50,7 +50,13 @@
 .md-overlay.transparent-white
 = content_tag(:div, id: "city-boundaries-coordinates", data: {url: @city_coordinates}) do
 = content_tag(:div, id: "geolocations", data: {url: @geolocations}) do
-					
+
+= content_for :meta_facebook do
+	meta property = "og:title" content= "#{@black_book.name}"
+	meta property = "og:image" content= "#{@black_book.uploaded_files.last.file.url(:medium)}"
+	meta property = "og:url" content= "http://fivemarks.in/black_books/#{@black_book.id}"
+	meta property = "og:description" content= "#{@black_book.story}"
+
 = content_for :js do
 
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
