@@ -20,7 +20,12 @@ function onPlaceChanged() {
       }
     }
   }
-  document.getElementById('formatted_address').value = place.formatted_address; 
+  document.getElementById('formatted_address').value = place.formatted_address;
+  var city_inputs = document.getElementById('locality').value
+
+  if (city_inputs == '') {
+    document.getElementById('locality').value = place.formatted_address.split(',')[0];
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', function() {

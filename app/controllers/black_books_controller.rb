@@ -23,9 +23,13 @@ class BlackBooksController < ApplicationController
 	
 	def create
 		@black_book = @user.black_books.new(black_book_params)
-		authorize @black_book
+		authorize @black_book	
 		@black_book.save
-
+		begin
+			image = @black_book.uploaded_files.new
+			image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},9/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
+			image.save
+		end
 		if @black_book.save
 			redirect_to edit_user_black_book_path(@user, @black_book)
 		else
@@ -40,7 +44,7 @@ class BlackBooksController < ApplicationController
 		@black_book_places = @black_book.black_book_places.active_places
 		@archived_black_book_places = @black_book.black_book_places.archived_places
 		city_boundaries_latitudes, city_boundaries_longitudes = [], []
-		@city_coordinates = (Geocoder.search @black_book.formatted_address)[0].data["geometry"]["location"].map { |k, v| v}
+		@city_coordinates = [@black_book.latitude, @black_book.longitude]
 		
 		if @black_book_places.count > 1
 

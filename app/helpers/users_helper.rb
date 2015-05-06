@@ -3,7 +3,7 @@ module UsersHelper
 	def choose_user_picture(user)
 
 		if user.uploaded_files.last
-			user.uploaded_files.last.file
+			user.uploaded_files.last.file.url(:large)
 		elsif user.picture
 			user.picture
 		else

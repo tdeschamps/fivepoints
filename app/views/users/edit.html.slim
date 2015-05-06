@@ -5,12 +5,7 @@ div.container.padded-down
 		section.form-user.form-list#edit-email
 			.form-edit-fields
 				.profile-picture-edit
-					- if @user.uploaded_files.length > 0
-						img src = ("#{@user.uploaded_files.first.file.url(:original)}")
-					- elsif @user.provider == 'facebook'
-						img src = '#{@user.picture}'
-					- else
-						img src = asset_url('default_user_picture.png')
+						img src = asset_url(choose_user_picture(current_user)
 
 				= simple_form_for(@user, url: user_path(@user)) do |f|
 			  		= f.simple_fields_for @user.uploaded_files.build() do |file|

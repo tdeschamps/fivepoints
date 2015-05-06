@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	L.mapbox.accessToken = 'pk.eyJ1IjoidGhvbWFzZHVjaGFtcCIsImEiOiI3VWtQXzdBIn0.o8nQtuU21tFPiTTiDajong';
+	L.mapbox.accessToken = '<%= ENV['MAPBOX_ACCESS_TOKEN'].to_s %>';
 	var cityBoundariesCoordinates =  $('#city-boundaries-coordinates').data('url')
   
 
-  var map = L.mapbox.map('map', 'thomasduchamp.3d50a81c', {
+  var map = L.mapbox.map('map', '<%= ENV['MAPBOX_MAP_ID'].to_s %>', {
 		zoomControl: true
 	}).setView([cityBoundariesCoordinates[0] , cityBoundariesCoordinates[1]], 12);
 	
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	var geojson = geolocations;
   
 
-  if (geolocations) {
+  if (geolocations.length > 0) {
     myLayer.on('layeradd', function(e) {
       var marker, popupContent, properties;
       marker = e.layer;
@@ -29,11 +29,10 @@ $(document).ready(function() {
     });
     myLayer.setGeoJSON(geojson);
     map.fitBounds(myLayer.getBounds());
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-  }; 
-
+  };
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable(); 
   console.log(myLayer.getBounds());
   
 
