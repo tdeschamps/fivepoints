@@ -1,31 +1,23 @@
-box: wercker-labs/docker
-
+box: wercker/ubuntu12.04-ruby2.0.0@1.0.0
+services:
+    - wercker/postgresql
 build:
     steps:
+        - bundle-install
+        - rails-database-yml:
+            service: postgresql
         - script:
-        
-            name: upgrade docker
+            name: echo ruby information
             code: |
-              which docker
-              mkdir tmp
-              curl https://get.docker.com/builds/Linux/x86_64/docker-latest -o tmp/docker
-              chmod +x tmp/docker
-              sudo service docker stop
-              sudo cp tmp/docker /usr/bin/docker
-              sudo service docker start
+                echo "ruby version $(ruby --version) running"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
         - script:
-            name: docker version
-            code: docker -v
-        - script:
-            name: docker build
-            code: |
-              docker build --rm=false -t fivemarks .
+            name: Set up db
+            code: bundle exec rake db:schema:load RAILS_ENV=test
 
 deploy:
     steps:
-        - script:
-            name: install ruby
-            code: sudo apt-get install -y ruby
         - mrono/elastic-beanstalk-deploy:
             key: $KEY
             secret: $SECRET_KEY
