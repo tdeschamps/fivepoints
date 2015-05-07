@@ -7,7 +7,12 @@ class BlackBooksController < ApplicationController
 	
 	def show
 		@black_book_places = @black_book.black_book_places.includes(:place).active_places.order('position desc')
-		@places = @black_book.places.select("places.*, black_book_places.position as place_position").joins(:black_book_places).where.not(black_book_places: {position: nil}).order('place_position asc')
+		@places = @black_book
+							.places
+							.select("places.*, black_book_places.position as place_position")
+							.joins(:black_book_places)
+							.where.not(black_book_places: {position: nil})
+							.order('place_position asc')
 		
 		@city_coordinates = [@black_book.longitude, @black_book.latitude]
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
@@ -25,11 +30,13 @@ class BlackBooksController < ApplicationController
 		@black_book = @user.black_books.new(black_book_params)
 		authorize @black_book	
 		@black_book.save
-		begin
+		
+		if !black_book_params[:uploaded_files_attributes]
 			image = @black_book.uploaded_files.new
 			image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},9/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
 			image.save
 		end
+		
 		if @black_book.save
 			redirect_to edit_user_black_book_path(@user, @black_book)
 		else
