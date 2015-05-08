@@ -1,47 +1,48 @@
-.padded-down
-	.search-bar.col-xs-12.col-sm-6.col-sm-offset-3
+.container.padded-down
+	.search-bar.col-xs-12.col-sm-8.col-sm-offset-2
 	 	.form-user
 	 		= simple_form_for(:search,  url: black_books_path, method: 'get', defaults: { input_html: { class: 'default_class' } }) do |f|			
 	 			input.user-account autocomplete="off" autofocus="false" name="search" placeholder="search a city..." type="text" id="user_input_autocomplete_address"
 	 			= f.button :submit, "Search", class: "btn-user-submit", name: nil
 	
-
-.container.black-books-results
-	- if @friends_black_books != []
-		.col-xs-12.text-center
-			h1.row-space-4
-				| Last black books from #{params[:search] || 'your friends'}
-		.col-xs-12.user-blackbooks
-		    ul.place-list.list-unstyled#blackbooks
-		    	- @friends_black_books.each do |black_book|
-		    		.item.col-xs-10.col-sm-6.col-lg-4.row-space-8
-		    			.black-book.drop-shadow
-		     				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}
-		    - if @friends_black_books.next_page
-			    .div.clear
-			    	.see-more.drop-shadow#see-more-black-books
-			   			.centered.text-center
-			   				p see more
-			   	.hidden			
-			    	= will_paginate @friends_black_books, class: "pagination"
-	- if @places != []		    	 					
-	    .col-xs-12.text-center
-			h1.row-space-4
-				| Last places in #{params[:search] || 'your friends black books'}
-		.col-xs-12.user-places
-			ul.place-list.list-unstyled#places
-			   	- @places.each do |place|
-		    		drop-shadow	
-		    			= render partial: './black_books/show_place', locals: {place: place, black_book_place: place.black_book_places.first, archive: false}
-			- if @places.next_page    
-			    .div.clear
-			    	.see-more.drop-shadow#see-more-places
-			   			.centered.text-center
-			   				p see more			
-			    .hidden	
-			    	= will_paginate @places , class: "pagination"
-	- if @activities
-		.col-xs-12.text-center		    					   					
+	.black-books-results
+		- if @friends_black_books != [] && @friends_black_books != nil
+			.col-xs-12.text-center
+				h1.row-space-4
+					| Last black books from #{params[:search] || 'your friends'}
+			.col-xs-12.user-blackbooks
+			    ul.place-list.list-unstyled#blackbooks
+			    	- @friends_black_books.each do |black_book|
+			    		.item.col-xs-10.col-sm-6.col-lg-4.row-space-8
+			    			.black-book.drop-shadow
+			     				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}
+			    - if @friends_black_books.next_page
+				    .div.clear
+				    	.see-more.drop-shadow#see-more-black-books
+				   			.centered.text-center
+				   				p see more
+				   	.hidden			
+				    	= will_paginate @friends_black_books, class: "pagination"
+		- if @places != []	&& @places != nil	    	 					
+		    .col-xs-12.text-center
+				h1.row-space-4
+					| Last places in #{params[:search] || 'your friends black books'}
+			.col-xs-12.user-places
+				ul.place-list.list-unstyled#places
+				   	- @places.each do |place|
+			    		drop-shadow	
+			    			= render partial: './black_books/show_place', locals: {place: place, black_book_place: place.black_book_places.first, archive: false}
+				- if @places.next_page    
+				    .div.clear
+				    	.see-more.drop-shadow#see-more-places
+				   			.centered.text-center
+				   				p see more			
+				    .hidden	
+				    	= will_paginate @places , class: "pagination"
+		- if @activities
+			.col-xs-12.text-center
+				- @activities.each do |activty|
+					= 		    					   					
 = content_for :js do
 		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 		= javascript_include_tag "black_books/autocomplete.js"
