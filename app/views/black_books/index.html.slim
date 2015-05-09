@@ -1,5 +1,5 @@
 .container.padded-down
-	.search-bar.col-xs-12.col-sm-8.col-sm-offset-2
+	.search-bar.col-xs-12.col-sm-8.col-sm-offset-2.row-space-8
 	 	.form-user
 	 		= simple_form_for(:search,  url: black_books_path, method: 'get', defaults: { input_html: { class: 'default_class' } }) do |f|			
 	 			input.user-account autocomplete="off" autofocus="false" name="search" placeholder="search a city..." type="text" id="user_input_autocomplete_address"
@@ -40,9 +40,8 @@
 				    .hidden	
 				    	= will_paginate @places , class: "pagination"
 		- if @activities
-			.col-xs-12.text-center
-				- @activities.each do |activty|
-					= 		    					   					
+			.col-xs-12.activities
+				= render_activities @activities 		    					   					
 = content_for :js do
 		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 		= javascript_include_tag "black_books/autocomplete.js"

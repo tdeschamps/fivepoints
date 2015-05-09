@@ -31,11 +31,13 @@ class BlackBooksController < ApplicationController
 		authorize @black_book	
 		@black_book.save
 		
-		if !black_book_params[:uploaded_files_attributes]
-			image = @black_book.uploaded_files.new
-			image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},12/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
-			image.save
-		end
+		without_tracking do
+			if !black_book_params[:uploaded_files_attributes]
+				image = @black_book.uploaded_files.new
+				image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},12/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
+				image.save
+			end
+		end 	
 
 		if @black_book.save
 			flash.now[:success] = 'Your black book was created'
@@ -78,7 +80,7 @@ class BlackBooksController < ApplicationController
 		else	
 			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").order('created_at DESC').limit(20)
 		end
-
+		
 		@attributes = %w(address city category)
 		
 		respond_to do |format|
@@ -121,6 +123,12 @@ class BlackBooksController < ApplicationController
 	def user_not_authorized
     	flash[:alert] = "You are not authorized to perform this action."
     	redirect_to(request.referrer || new_user_registration_path)
+  	end
+
+  	def without_tracking
+  	  BlackBook.public_activity_off
+  	  yield if block_given?
+  	  BlackBook.public_activity_on
   	end
 
 end

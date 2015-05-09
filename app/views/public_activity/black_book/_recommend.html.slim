@@ -1,0 +1,3 @@
+.item.col-xs-10.col-sm-6.col-lg-4.row-space-8
+	.black-book.drop-shadow
+		= render partial: 'black_books/show_partials/black_book', locals: {black_book: activity.trackable, caption: "#{activity.owner.first_name || activity.trackable.user.username} has recommended this black book"}
