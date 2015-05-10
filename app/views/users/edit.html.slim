@@ -5,7 +5,7 @@ div.container.padded-down
 		section.form-user.form-list#edit-email
 			.form-edit-fields
 				.profile-picture-edit
-						img src = asset_url(choose_user_picture(current_user)
+						img src = asset_url(choose_user_picture(current_user))
 
 				= simple_form_for(@user, url: user_path(@user)) do |f|
 			  		= f.simple_fields_for @user.uploaded_files.build() do |file|

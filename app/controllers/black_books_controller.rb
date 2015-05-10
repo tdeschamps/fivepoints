@@ -7,9 +7,14 @@ class BlackBooksController < ApplicationController
 	
 	def show
 		@black_book_places = @black_book.black_book_places.includes(:place).active_places.order('position desc')
-		@places = @black_book.places.select("places.*, black_book_places.position as place_position").joins(:black_book_places).where.not(black_book_places: {position: nil}).order('place_position asc')
+		@places = @black_book
+							.places
+							.select("places.*, black_book_places.position as place_position")
+							.joins(:black_book_places)
+							.where.not(black_book_places: {position: nil})
+							.order('place_position asc')
 		
-		@city_coordinates = [@black_book.longitude, @black_book.latitude]
+		@city_coordinates = [ @black_book.latitude, @black_book.longitude]
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
 
 		@voters = @black_book.votes_for.up.by_type(User).voters
@@ -25,12 +30,17 @@ class BlackBooksController < ApplicationController
 		@black_book = @user.black_books.new(black_book_params)
 		authorize @black_book	
 		@black_book.save
-		begin
-			image = @black_book.uploaded_files.new
-			image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},9/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
-			image.save
-		end
+		
+		without_tracking do
+			if !black_book_params[:uploaded_files_attributes]
+				image = @black_book.uploaded_files.new
+				image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},12/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
+				image.save
+			end
+		end 	
+
 		if @black_book.save
+			flash.now[:success] = 'Your black book was created'
 			redirect_to edit_user_black_book_path(@user, @black_book)
 		else
 			render action: :new
@@ -68,10 +78,9 @@ class BlackBooksController < ApplicationController
 			@friends_black_books = BlackBook.includes(:uploaded_files).near(params[:search], 5).order('updated_at desc').paginate(:page => params[:page])
 			@places = Place.includes(:black_book_places).near(params[:search], 5).order('ranking desc').paginate(:page => params[:page])
 		else	
-			@friends_black_books = BlackBook.friends(current_user).includes(:black_book_places, :uploaded_files).order('updated_at desc').paginate(:page => params[:page])
-			@places = Place.includes(:black_book_places).friends(current_user).order('ranking desc').paginate(:page => params[:page])
+			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").order('created_at DESC').limit(20)
 		end
-
+		
 		@attributes = %w(address city category)
 		
 		respond_to do |format|
@@ -82,7 +91,7 @@ class BlackBooksController < ApplicationController
 
 	def upvote
 		current_user.likes @black_book
-
+		@black_book.create_activity :recommend, recipient: @black_book.user
 		respond_to do |format|
   			format.html
   			format.js
@@ -91,7 +100,6 @@ class BlackBooksController < ApplicationController
 
 	def downvote
 		@black_book.unliked_by current_user
-
 		respond_to do |format|
   			format.html
   			format.js
@@ -115,6 +123,12 @@ class BlackBooksController < ApplicationController
 	def user_not_authorized
     	flash[:alert] = "You are not authorized to perform this action."
     	redirect_to(request.referrer || new_user_registration_path)
+  	end
+
+  	def without_tracking
+  	  BlackBook.public_activity_off
+  	  yield if block_given?
+  	  BlackBook.public_activity_on
   	end
 
 end

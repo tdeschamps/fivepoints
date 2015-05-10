@@ -36,6 +36,7 @@ gem 'geocoder'
 #sort places within black book
 gem 'acts_as_list'
 gem 'acts_as_votable'
+gem 'public_activity'
 #security
 gem 'pundit'
 #add bootstrap
@@ -46,7 +47,6 @@ gem 'modernizr-rails'
 #paginating items
 gem 'will_paginate', '~> 3.0.6'
 #add delayed jobs mgmt
-gem 'hitimes'
 gem 'sidekiq'
 #add slim support
 gem 'slim'
