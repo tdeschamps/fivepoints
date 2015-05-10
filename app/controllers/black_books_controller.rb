@@ -33,7 +33,7 @@ class BlackBooksController < ApplicationController
 		
 		if !black_book_params[:uploaded_files_attributes]
 			image = @black_book.uploaded_files.new
-			image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},9/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
+			image.file_from_url "https://api.tiles.mapbox.com/v4/#{ENV['MAPBOX_MAP_ID']}/#{@black_book.longitude},#{@black_book.latitude},12/1200x800.png?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}"
 			image.save
 		end
 		
