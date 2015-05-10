@@ -1,0 +1,15 @@
+= link_to black_book_path(black_book)
+	.tile-place.cornered-top style=(style = "background-image: url(#{black_book.uploaded_files.last.file.url(:large)});")
+		.darken
+			.black_book-tile 
+				.vertical-middle
+					h2 #{black_book.name}
+	.panel-body.panel-card-section style=("background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
+		.media
+			= link_to user_path(black_book.user_id), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"
+				img src="#{choose_user_picture black_book.user}"
+		= link_to black_book_path(black_book), class: "black-book-city h4 inline left10 top2 text-truncate white-text"
+			i.fa.fa-map-marker.fa-2x
+			| #{black_book.formatted_address}
+		p.white-text
+			| #{caption}		

@@ -1,4 +1,7 @@
 .page-wrapper
+	- flash.each do |k,v|
+		.alert *{class: ["alert-#{k}"]}
+			= v	
 	.header-wrapper
 		.black_book-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
 		.darken			

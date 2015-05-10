@@ -13,8 +13,8 @@ class PlacesController < ApplicationController
 	def show
 		@geolocations = MapMarkersGenerator.new(@place).create_markers()
 		@place_coordinates = [@place.latitude, @place.longitude]
-
-		@similar_places = Place.where("category like :category AND id != :id ", {category:@place.category, id: @place.id}).near([@place.latitude, @place.longitude]).limit(5).order("RANDOM()")
+		place_categories = @place.categories.map {|c| "%#{c.name}%"}
+		@similar_places = Place.where("category ILIKE ANY ( array[:category] ) AND id != :id ", {category: place_categories, id: @place.id}).near([@place.latitude, @place.longitude]).limit(6).order("RANDOM()")
 		@active_black_books = BlackBook.includes(:user, :black_book_places).joins(:black_book_places).where("black_book_places.place_id = ? AND black_book_places.position IS NOT NULL", @place.id)
 
 		@attributes = %w(address city category)
@@ -49,7 +49,7 @@ class PlacesController < ApplicationController
 		respond_to do |format|
 
       		if @place.persisted?
-      			if @black_book_place = @place.black_book_places.includes(black_book: :user).find_by_black_book_id(@foursquare_place_params[:black_book_places_attributes]["0"][:black_book_id])
+      			if @black_book_place = @place.black_book_places.find_by_black_book_id(@foursquare_place_params[:black_book_places_attributes]["0"][:black_book_id])
       			#@black_book_place = @place.black_book_places.where(black_book_id: @black_book_id).first
 	      			if @black_book_place.position
 		      			#format.html redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id)
@@ -62,7 +62,8 @@ class PlacesController < ApplicationController
 		      			format.js   { render action: 'retrieve_place', status: :found }
 		      		end	
 	      		else
-	      			@black_book_place = @place.black_book_places.includes(black_book: :user).create(@foursquare_place_params[:black_book_places_attributes]["0"])
+	      			@black_book_place = @place.black_book_places.create(@foursquare_place_params[:black_book_places_attributes]["0"])
+	      			@black_book_place.create_activity :create, owner: current_user
 	      			format.html { redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id), notice: 'Place was successfully created.' }
 	      			format.json { render json: 'create_new_place', status: :created, location: black_book_place(@black_book_place) }
 	      			format.js   { render action: 'create_new_place', status: :created, locals: {place: @place, black_book_place: @black_book_place}}
