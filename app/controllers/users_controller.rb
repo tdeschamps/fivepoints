@@ -36,7 +36,11 @@ class UsersController < ApplicationController
 	end
 
 	def set_user
-		@user = User.includes(:followers, :following, black_books: :places).find(params[:id])
+		begin
+			@user = User.includes(:followers, :following, black_books: :places).friendly.find(params[:id])	
+		rescue	
+			@user = User.includes(:followers, :following, black_books: :places).find(params[:id])
+		end	
 	end
 
 	def user_not_authorized

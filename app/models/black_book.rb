@@ -1,10 +1,12 @@
 class BlackBook < ActiveRecord::Base
+	extend FriendlyId
 	validates :name, :city, presence: true 
 	belongs_to :user
 	has_many :black_book_places
 	has_many :places, through: :black_book_places
 	has_many :uploaded_files, as: :imageable
 	accepts_nested_attributes_for :uploaded_files, :allow_destroy => true
+	friendly_id :name, :use => :slugged
 	geocoded_by :formatted_address
 	after_validation :geocode
 	scope :friends, ->(user) {
@@ -20,4 +22,12 @@ class BlackBook < ActiveRecord::Base
 	def self.search_around(search_query)
     	near(search_query)
   	end
+
+  	def slug_candidates
+    [
+      :name,
+      [:name, :city],
+      [:name, :user_id, :city],
+    ]
+  end
 end

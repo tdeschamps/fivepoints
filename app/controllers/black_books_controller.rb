@@ -18,6 +18,10 @@ class BlackBooksController < ApplicationController
 		@geolocations = MapMarkersGenerator.new(@places).create_markers
 
 		@voters = @black_book.votes_for.up.by_type(User).voters
+		
+		if request.path != black_book_path(@black_book)
+    		redirect_to @black_book, status: :moved_permanently
+  		end
 	end
 
 	def new
@@ -110,7 +114,7 @@ class BlackBooksController < ApplicationController
 	private
 
 	def set_user
-		@user = User.find(params[:user_id])
+		@user = User.friendly.find(params[:user_id])
 	end
 
 	def black_book_params
@@ -118,7 +122,11 @@ class BlackBooksController < ApplicationController
 	end
 
 	def set_black_book
-		@black_book = BlackBook.includes(:places).find(params[:id])
+		begin
+			@black_book = BlackBook.includes(:places).friendly.find(params[:id])
+		rescue
+			@black_book = BlackBook.includes(:places).find(params[:id]) 
+		end		
 	end
 	
 	def user_not_authorized
