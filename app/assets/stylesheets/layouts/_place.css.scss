@@ -108,7 +108,12 @@
     margin-top: 4px; 
   }
 }
-
+@media (max-width: 768px) {
+  .place-main-data, .picture-wrapper, .place-type {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
 .rating-wrapper {
    height:100%;
 

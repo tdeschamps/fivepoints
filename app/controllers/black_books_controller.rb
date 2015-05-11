@@ -19,6 +19,8 @@ class BlackBooksController < ApplicationController
 
 		@voters = @black_book.votes_for.up.by_type(User).voters
 		
+		@attributes = %w(address city category)
+		
 		if request.path != black_book_path(@black_book)
     		redirect_to @black_book, status: :moved_permanently
   		end
