@@ -32,7 +32,11 @@ $(document).ready(function() {
   };
   map.touchZoom.disable();
   map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable(); 
+  map.scrollWheelZoom.disable();
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    // some code..
+    map.dragging.disable();
+  } 
   console.log(myLayer.getBounds());
   
 
