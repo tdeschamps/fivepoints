@@ -81,7 +81,11 @@ class PlacesController < ApplicationController
 	private
 
 	def set_place
-		@place = Place.includes(:uploaded_files, black_books: :user).find(params[:id])
+		begin
+			@place = Place.includes(:uploaded_files, black_books: :user).friendly.find(params[:id])	
+		rescue	
+			@place = Place.includes(:uploaded_files, black_books: :user).find(params[:id])
+		end	
 	end
 
 	def place_params

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508093045) do
+ActiveRecord::Schema.define(version: 20150511104607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,8 +95,10 @@ ActiveRecord::Schema.define(version: 20150508093045) do
     t.text     "formatted_address"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "slug"
   end
 
+  add_index "black_books", ["slug"], name: "index_black_books_on_slug", using: :btree
   add_index "black_books", ["user_id"], name: "index_black_books_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
@@ -145,7 +147,10 @@ ActiveRecord::Schema.define(version: 20150508093045) do
     t.text     "phone"
     t.text     "formatted_phone"
     t.text     "description"
+    t.string   "slug"
   end
+
+  add_index "places", ["slug"], name: "index_places_on_slug", using: :btree
 
   create_table "social_friendships", force: :cascade do |t|
     t.integer "user_id"
@@ -189,10 +194,12 @@ ActiveRecord::Schema.define(version: 20150508093045) do
     t.string   "username",               limit: 255
     t.text     "biography"
     t.boolean  "admin",                              default: false, null: false
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"

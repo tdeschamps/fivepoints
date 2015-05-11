@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  extend FriendlyId
   validates :email, uniqueness: true
   validates :biography, length: {maximum: 160}
   has_many :active_followships, class_name:  "Followship",
@@ -27,8 +28,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
-
-  #after_create :you_should_follow_fivemarks
+  friendly_id :username, use: :slugged
+  after_create :you_should_follow_fivemarks
   after_create :you_should_have_a_username, unless: :username?
   after_create :send_welcome_email
 
@@ -165,7 +166,7 @@ class User < ActiveRecord::Base
   end
 
   def you_should_have_a_username
-    self.update!({username: "username_#{self.id}"})
+    self.update!({username: "user_#{self.id}"})
   end
 
   private

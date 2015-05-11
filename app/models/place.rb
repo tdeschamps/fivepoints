@@ -1,4 +1,5 @@
 class Place < ActiveRecord::Base
+  extend FriendlyId
 	has_many :black_book_places
 	has_many :black_books, through: :black_book_places
   has_many :uploaded_files, as: :imageable
@@ -7,7 +8,7 @@ class Place < ActiveRecord::Base
   after_update :save_foursquare_picture,  if: :foursquare_picture_url_changed?
   
 	accepts_nested_attributes_for :black_book_places, allow_destroy: true
-
+  friendly_id :name, use: :slugged
 	geocoded_by :address
   after_create :geocode, if: Proc.new {|c| c.latitude.nil? && c.longitude.nil?}
 
@@ -38,6 +39,14 @@ class Place < ActiveRecord::Base
   
   def self.search_around(search_query)
     near(search_query)
+  end
+
+  def slug_candidates
+    [
+      :name,
+      [:name, :city],
+      [:name, :category, :city]
+    ]
   end
   private
   	

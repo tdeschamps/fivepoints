@@ -37,6 +37,7 @@ gem 'geocoder'
 gem 'acts_as_list'
 gem 'acts_as_votable'
 gem 'public_activity'
+gem 'friendly_id'
 #security
 gem 'pundit'
 #add bootstrap
