@@ -76,6 +76,10 @@ class BlackBooksController < ApplicationController
 		@new_black_book_places = @place.black_book_places.build()
 		@new_black_book_places_file = @new_black_book_places.uploaded_files.build()
 		@geolocations = MapMarkersGenerator.new(@black_book.places.where(black_book_places: {position: [1..5]})).create_markers()
+		
+		if request.path != edit_user_black_book_path(@black_book.user, @black_book)
+    		redirect_to edit_user_black_book_path(@black_book.user, @black_book), status: :moved_permanently
+  		end
 	end
 	
 	def index

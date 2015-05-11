@@ -58,7 +58,7 @@ $(document).ready(function() {
             // one can customize markers by adding simplestyle properties
             // https://www.mapbox.com/guides/an-open-platform/#simplestyle
             'marker-size': 'medium',
-            'marker-symbol': 'circle',
+            'marker-symbol': $('#active-places-list > ul > li').length + 1,
             'marker-color': '#FF4A50'
         }
     }).addTo(map);
