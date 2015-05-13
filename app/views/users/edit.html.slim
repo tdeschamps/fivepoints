@@ -54,26 +54,31 @@ div.container.padded-down
 						| Connect your Facebook account to see activities from your friends. 
 						strong We will never post to Facebook without your permission.
 			.form-connect-social-button
-				- if @user.provider == 'facebook'	
-					img.form-connect--user-image src="#{@user.picture}"
+				- if @user.authorizations.map(&:provider).include? 'Facebook'	
+					img.form-connect--user-image src="#{@user.authorizations.find_by_provider('Facebook').picture}"
 					span.form-item-social-action
-						span.form-social-item-name #{@user.name}
+						span.form-social-item-name #{@user.authorizations.find_by_provider('Facebook').name}
 
 				- else				  				
 					= link_to user_omniauth_authorize_path(:facebook), class: "btn rounded", id:"facebook-btn"
 						i.fa.fa-facebook.button-icon
 						| Connect with Facebook 
-		
 		section.form-user.form-list#edit-twitter-connection
 			form
 				label.form-edit-label.string Connect with Twitter
 				p.disclosures
 					| Connect your Twitter account to see activities from your friends. 
 					strong We will never post to Twitter without your permission.
-			.form-connect-social-button		  				  				
-				= link_to user_omniauth_authorize_path(:twitter), class: "btn rounded", id:"twitter-btn"
-					i.fa.fa-twitter.button-icon
-					| Connect with Twitter
+			.form-connect-social-button	
+
+				- if @user.authorizations.map(&:provider).include? 'Twitter'
+					img.form-connect--user-image src="#{@user.authorizations.find_by_provider('Twitter').picture}"
+					span.form-item-social-action
+						span.form-social-item-name #{@user.authorizations.find_by_provider('Twitter').name}
+				- else			  				  				
+					= link_to user_omniauth_authorize_path(:twitter), class: "btn rounded", id:"twitter-btn"
+						i.fa.fa-twitter.button-icon
+						| Connect with Twitter
 		
 
 = content_for :js do

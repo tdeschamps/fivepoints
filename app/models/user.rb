@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :black_books
   has_many :uploaded_files, as: :imageable
   
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
   has_many :uploaded_files, as: :imageable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -72,22 +72,41 @@ class User < ActiveRecord::Base
     user, email, name, uid, auth_attr = nil, nil, nil, {}
 
     case provider
-
+      when "Facebook"
+              uid = access_token['uid']
+              email = access_token['info']['email']
+              auth_attr = { uid: uid, 
+                            token: access_token['credentials']['token'],
+                            secret: nil, 
+                            first_name: access_token['info']['name'].split[0],
+                            last_name: access_token['info']['name'].split.drop(1).join(' '), 
+                            name: access_token['info']['name'],
+                            link: access_token['extra']['raw_info']['link'],
+                            token_expiry: Time.at(access_token['credentials']['expires_at']),
+                            picture: process_uri(access_token.info.image + '?width=500&height=500') }  
+      
       when "Twitter"
         uid = access_token['extra']['raw_info']['id']
         name = access_token['extra']['raw_info']['name']
-        auth_attr = { uid: uid, token: access_token['credentials']['token'],
-          secret: access_token['credentials']['secret'], first_name: access_token['info']['first_name'],
-          last_name: access_token['info']['last_name'], name: name,
-          link: "http://twitter.com/#{name}" }
+        auth_attr = { uid: uid, 
+                      token: access_token['credentials']['token'],
+                      secret: access_token['credentials']['secret'], 
+                      first_name: access_token['info']['first_name'],
+                      last_name: access_token['info']['last_name'], 
+                      name: name,
+                      picture: access_token['info']['image'],
+                      link: "http://twitter.com/#{name}" }
     
       when 'LinkedIn'
         uid = access_token['uid']
         name = access_token['info']['name']
-        auth_attr = { uid:  uid, token: access_token['credentials']['token'],
-          secret: access_token['credentials']['secret'], first_name: access_token['info']['first_name'],
-          last_name: access_token['info']['last_name'],
-          link: access_token['info']['public_profile_url'] }
+        auth_attr = { uid:  uid, 
+                      token: access_token['credentials']['token'],
+                      secret: access_token['credentials']['secret'], 
+                      first_name: access_token['info']['first_name'],
+                      last_name: access_token['info']['last_name'],
+                      link: access_token['info']['public_profile_url'] 
+                    }
     
     else
       raise 'Provider #{provider} not handled'
@@ -116,7 +135,7 @@ class User < ActiveRecord::Base
     return user
   end
 
-  def find_for_oauth_by_uid(uid, resource=nil)
+  def self.find_for_oauth_by_uid(uid, resource=nil)
     user = nil
     if auth = Authorization.find_by_uid(uid.to_s)
       user = auth.user
@@ -124,7 +143,7 @@ class User < ActiveRecord::Base
     return user
   end
 
-  def find_for_oauth_by_email(email, resource=nil)
+  def self.find_for_oauth_by_email(email, resource=nil)
     if user = User.find_by_email(email)
       user
     else
@@ -134,7 +153,7 @@ class User < ActiveRecord::Base
     return user
   end
 
-  def find_for_oauth_by_name(name, resource=nil)
+  def self.find_for_oauth_by_name(name, resource=nil)
     if user = User.find_by_name(name)
       user
     else
@@ -166,7 +185,13 @@ class User < ActiveRecord::Base
   end
 
   def you_should_have_a_username
-    self.update!({username: "user_#{self.id}"})
+    if fb_profile = self.authorizations.find_by_provider('Facebook')
+      self.update!({username: fb_profile.name.gsub(" ", "_").downcase,
+                    picture: fb_profile.picture
+                  })
+    else
+      self.update!({username: "user_#{self.id}"})
+    end
   end
 
   private

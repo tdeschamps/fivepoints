@@ -10,10 +10,10 @@
 			.col-xs-12.text-center
 				h1.row-space-4
 					| Last black books from #{params[:search] || 'your friends'}
-			.col-xs-12.user-blackbooks
+			.user-blackbooks
 			    ul.place-list.list-unstyled#blackbooks
 			    	- @friends_black_books.each do |black_book|
-			    		.item.col-xs-10.col-sm-6.col-lg-4.row-space-8
+			    		.item.col-xs-12.col-sm-6.col-lg-4.row-space-8
 			    			.black-book.drop-shadow
 			     				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}
 			    - if @friends_black_books.next_page

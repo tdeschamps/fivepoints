@@ -37,9 +37,9 @@ class UsersController < ApplicationController
 
 	def set_user
 		begin
-			@user = User.includes(:followers, :following, black_books: :places).friendly.find(params[:id])	
+			@user = User.includes(:followers, :following, :authorizations, black_books: :places).friendly.find(params[:id])	
 		rescue	
-			@user = User.includes(:followers, :following, black_books: :places).find(params[:id])
+			@user = User.includes(:followers, :following, :authorizations, black_books: :places).find(params[:id])
 		end	
 	end
 
