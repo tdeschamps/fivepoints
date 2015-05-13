@@ -33,7 +33,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
                   i.fa.fa-home
                   |  Guides 
               li
-                = link_to destroy_user_session_path do
+                = link_to destroy_user_session_path, method: 'delete' do
                   i.fa.fa-sign-out
                   |  Sign Out 
         - else 

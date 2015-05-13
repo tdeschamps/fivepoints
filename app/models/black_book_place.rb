@@ -13,7 +13,6 @@ class BlackBookPlace < ActiveRecord::Base
 	
 
 	accepts_nested_attributes_for :uploaded_files, :allow_destroy => true
-	include PublicActivity::Common
 	
 	def update_score
 		self.place.update_score(position_was, position)
