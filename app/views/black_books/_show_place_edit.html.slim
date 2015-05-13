@@ -1,5 +1,5 @@
 li.item.col-xs-12.col-sm-6.col-md-4 data-item-id = (black_book_place.id if black_book_place || 0)
-	-  style = choose_black_book_place_picture(black_book_place)
+	-  style = choose_black_book_place_picture ? "background-image: url(#{choose_black_book_place_picture});" : "background-color: #{%w(lightpink royalblue lightblue lightgreen lightcyan lightsteelblue).sample};"
 	.tile-place.row-space-4 style=(style)
 		.black_book-tile
 		 	.vertical-middle
