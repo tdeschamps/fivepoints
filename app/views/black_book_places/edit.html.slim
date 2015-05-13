@@ -1,0 +1,28 @@
+.container.padded-down
+	.text-center
+		h1 Edit your tile for #{@black_book_place.place.name}
+		p You can add your own picture if you want
+	section.form-user.form-list#edit-email
+		.form-edit-fields
+			.profile-picture-edit
+				img src = choose_black_book_place_picture(@black_book_place)
+
+			= simple_form_for(@black_book_place, url: black_book_place_path(@black_book_place)) do |f|
+			  	= f.simple_fields_for @black_book_place.uploaded_files.build() do |file|
+			  		.nested-fields.input.input--black_book
+ 						= f.file_field :file, :label => "Upload an image",id:"file-upload"
+ 				.form-edit-submit
+ 					#edit-email-submission
+ 						= f.button :submit, "Submit", class: "btn-user-form-active"
+ 	section.form-user.form-list#edit-story
+ 		.form-edit-fields
+ 			= simple_form_for(@black_book_place, url: black_book_place_path(@black_book_place), remote: true) do |f|
+ 		  		= f.error_notification
+ 		  		= f.input :story, required: false, label: "Add a small story", input_html: {class: "form-edit disabled"}, label_html: {class: "form-edit-label disabled"}, disabled:true
+ 				.form-edit-submit
+ 			    	input#enable-edit-black-book-story.btn.btn-default.btn-user-form-activate type="button" value= ("Edit")
+ 			    	#edit-black-book-story-submission.hide	 
+ 				  		= f.button :submit, "Submit", class: "btn-user-form-activate"
+ 				  		input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")
+= content_for :js do
+	= javascript_include_tag "users/user_edit" 				  										

@@ -63,7 +63,6 @@ class PlacesController < ApplicationController
 		      		end	
 	      		else
 	      			@black_book_place = @place.black_book_places.create(@foursquare_place_params[:black_book_places_attributes]["0"])
-	      			@black_book_place.create_activity :create, owner: current_user
 	      			format.html { redirect_to edit_user_black_book_path(@black_book_place.black_book.user.id,@black_book_place.black_book.id), notice: 'Place was successfully created.' }
 	      			format.json { render json: 'create_new_place', status: :created, location: black_book_place(@black_book_place) }
 	      			format.js   { render action: 'create_new_place', status: :created, locals: {place: @place, black_book_place: @black_book_place}}
