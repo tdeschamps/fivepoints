@@ -1,6 +1,6 @@
 class BlackBooksController < ApplicationController
 	respond_to :html, :js
-	before_action :set_user, only: [:new, :create, :update]
+	before_action :set_user, only: [:new, :create, :edit, :update]
 	before_action :set_black_book, only: [:edit, :update, :show, :downvote, :upvote]
 
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -82,6 +82,17 @@ class BlackBooksController < ApplicationController
 		if request.path != edit_user_black_book_path(@black_book.user, @black_book)
     		redirect_to edit_user_black_book_path(@black_book.user, @black_book), status: :moved_permanently
   		end
+	end
+
+	def update
+		authorize @black_book
+		without_tracking do
+			@black_book.update_attributes black_book_params
+		end
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end	
 	end
 	
 	def index

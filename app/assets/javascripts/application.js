@@ -18,4 +18,5 @@
 //= require bootstrap-sprockets
 //= require modernizr
 //= require jquery.remotipart
+//= require vendor/jquery.elastic.source
 

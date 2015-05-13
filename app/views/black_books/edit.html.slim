@@ -9,7 +9,16 @@
 				= @black_book.name
 	.container
 		.col-xs-12
-			= render "black_book_story", black_book: @black_book if @black_book.story
+			section.form-user.form-list#edit-story
+				.form-edit-fields
+					= simple_form_for([@user, @black_book], url: user_black_book_path(@user, @black_book), remote: true) do |f|
+				  		= f.error_notification
+				  		= f.input :story, required: false, label: "Add a small story", input_html: {class: "form-edit disabled"}, label_html: {class: "form-edit-label disabled"}, disabled:true
+						.form-edit-submit
+					    	input#enable-edit-black-book-story.btn.btn-default.btn-user-form-activate type="button" value= ("Edit")
+					    	#edit-black-book-story-submission.hide	 
+						  		= f.button :submit, "Submit", class: "btn-user-form-activate"
+						  		input#cancel.btn.btn-default.btn-user-form-cancel type="button" value= ("Cancel")
 		.col-xs-12
 			.row-space-top-8.row-space-8.text-center	
 				h2 Your places
@@ -57,6 +66,7 @@
 	= javascript_include_tag "black_books/newUpload.js"
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
 	= javascript_include_tag "black_books/map"
+	= javascript_include_tag "users/user_edit.js"
 	
 	javascript:
 

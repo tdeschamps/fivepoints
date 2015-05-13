@@ -18,4 +18,8 @@ class BlackBookPolicy
 	def edit?
 		black_book.user == user
 	end
+
+	def update?
+		black_book.user == user
+	end	
 end

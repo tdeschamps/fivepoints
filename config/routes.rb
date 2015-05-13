@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :places, only: [:index, :show, :new, :create]
 
     resources :users, only: [:show, :edit, :update] do 
-      resources :black_books, only: [:new, :create, :edit]
+      resources :black_books, only: [:new, :create, :edit, :update]
       member do
             get :following, :followers
       end
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     
     post 'black_book_places/update_position' => 'black_book_places#update_position'
     post 'black_book_places/:id/send_to_archive' => 'black_book_places#send_to_archive', as: :archive
+    resources :black_book_places, only: [:edit, :update]
     post 'black_books/:id/upvote' => 'black_books#upvote', as: :upvote_black_book
     post 'black_books/:id/downvote' => 'black_books#downvote', as: :downvote_black_book
 

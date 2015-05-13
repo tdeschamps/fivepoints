@@ -30,6 +30,7 @@ $(document).ready(function() {
 			$('#place_black_book_places_attributes_0_position').val(parseInt($('#place_black_book_places_attributes_0_position').val()) - 1);
 		})
 	})
+	$('#black_book_story').elastic();
 });
 
 	(function($) {
