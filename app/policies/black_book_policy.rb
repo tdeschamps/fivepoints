@@ -8,7 +8,7 @@ class BlackBookPolicy
 	end
 
 	def new?
-		user
+		user == black_book.user
 	end
 
 	def create?

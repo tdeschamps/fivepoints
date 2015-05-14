@@ -1,30 +1,16 @@
 li.item.col-xs-12.col-sm-6.col-lg-4
 	.black_book-card.row-space-8.cornered-top.drop-shadow
-		- if place.foursquare_picture_url || black_book_place.uploaded_files.first
-			= link_to place
-				.tile-place.cornered-top style=("background-image: url('#{ place.foursquare_picture_url}');")
-			.black_bookplace-infos
-				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
-				h1.title-truncate #{place.name}
-				.col-xs-12
-					- %w(address city category story).each do |a|
-						- if (!place[a].nil? && place[a] != "")
-							.attributes
-								strong #{a.capitalize}: 
-								p.text-truncate   #{place[a]}
-
-		- else
-			= link_to place
-				.tile-place.cornered-top
-			.black_bookplace-infos
-				= render partial: "./shared/foursquare_attribution" if place.foursquare_id
-				h1.title-truncate #{place.name}
-				.col-xs-12
-					- @attributes.each do |a|
-						- if (!place[a].nil? && place[a] != "" )
-							.attributes
-								strong #{a.capitalize}: 
-								p.text-truncate   #{place[a]}
+		= link_to place
+			.tile-place.cornered-top style=(choose_black_book_place_background(black_book_place))
+		.black_bookplace-infos
+			= render partial: "./shared/foursquare_attribution" if place.foursquare_id
+			h1.title-truncate #{place.name}
+			.col-xs-12
+				- @attributes.each do |a|
+					- if (!place[a].nil? && place[a] != "")
+						.attributes
+							strong #{a.capitalize}: 
+							p.text-truncate   #{place[a]}
 
 
 					 	
