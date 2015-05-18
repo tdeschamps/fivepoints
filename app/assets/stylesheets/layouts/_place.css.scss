@@ -12,7 +12,7 @@
   }
 }
 
-.carousel {
+.place-carousel {
 	margin-right: -15px;
 	.carousel-inner {
 		.item {
@@ -110,7 +110,7 @@
   }
 }
 @media (max-width: 768px) {
-  .place-main-data, .picture-wrapper, .place-type {
+  .place-main-data, .picture-wrapper, .place-type, .place-caroussel {
     margin-left: 0px;
     margin-right: 0px;
   }
