@@ -44,6 +44,11 @@ gem 'pundit'
 
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.3.0'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-material-design'
+end
+
 gem 'modernizr-rails'
 #paginating items
 gem 'will_paginate', '~> 3.0.6'
