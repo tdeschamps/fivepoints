@@ -127,6 +127,7 @@ class User < ActiveRecord::Base
 
     auth = user.authorizations.find_by_provider(provider)
     if auth.nil?
+      p "toto"
       auth = user.authorizations.build(provider: provider)
       user.authorizations << auth
     end
