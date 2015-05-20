@@ -110,11 +110,18 @@
   }
 }
 @media (max-width: 768px) {
-  .place-main-data, .picture-wrapper, .place-type, .place-caroussel {
+  .place-main-data, .picture-wrapper, .place-type{
     margin-left: 0px;
     margin-right: 0px;
   }
 }
+@media (max-width: 992px) {
+  .place-carousel {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
 .rating-wrapper {
    height:100%;
 

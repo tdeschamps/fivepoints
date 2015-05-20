@@ -16,7 +16,6 @@
 //= require jquery-ui/effect-highlight
 //= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
-//= require bootstrap-material-design
 //= require modernizr
 //= require jquery.remotipart
 //= require vendor/jquery.elastic.source

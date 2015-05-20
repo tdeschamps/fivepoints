@@ -105,7 +105,7 @@ $profile-border-width: 2px;
 
 @media screen and (max-width: 768px) {
   #logo {
-    height: 40px;
+    height: 30px;
   }
   .navbar-fivemarks .navbar-brand,
   .navbar-fivemarks .navbar-brand:hover
@@ -116,4 +116,15 @@ $profile-border-width: 2px;
     padding-bottom: 10px;
     margin-left: -50px;
   }
+  .navbar-fivemarks {
+    .navbar-toggle {
+      border:none;
+      &:hover, &:active, &:focus, &:visited {
+        background-color: transparent;
+      }
+      .icon-bar {
+          background-color: $froly;
+      }  
+    }
+  }  
 }
