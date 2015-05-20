@@ -22,13 +22,10 @@ class HomeController < ApplicationController
 		
 		if user_signed_in?
 			social_params = {}
-			social_params[:fb_token] = current_user.token if current_user.token
 			
 			current_user.authorizations.all.each do |auth|
 				get_params social_params, auth.provider
 			end
-		
-		
 			socialfriends = SocialFriends.new(social_params)
 			if current_user.token
 				fb_friends = socialfriends.get_facebook_friends 

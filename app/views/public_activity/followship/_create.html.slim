@@ -1,0 +1,17 @@
+.item.col-xs-12.col-sm-6.col-lg-4.row-space-8
+	.black-book.drop-shadow
+		= link_to user_path(activity.recipient)
+			.tile-place.cornered-top style=(style = "background-image: url(#{choose_user_picture activity.recipient});")
+				.darken
+					.black_book-tile 
+						.vertical-middle
+							h2 #{activity.recipient.username}
+			.panel-body.panel-card-section style=("background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
+				.media
+					= link_to user_path(activity.owner), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"
+						img src="#{choose_user_picture activity.owner}"
+				.clear
+				= link_to user_path(activity.owner)
+					| #{activity.owner.username}
+				p.white-text.inline
+					|   has started to follow #{activity.recipient.username}		
