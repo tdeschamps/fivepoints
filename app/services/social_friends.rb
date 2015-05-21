@@ -1,7 +1,7 @@
 class SocialFriends
 
 	def initialize(args = {})
-		@fb_token = args[:fb_token]
+		@fb_token = args[:facebook_token]
 		@twitter_token = args[:twitter_token]
 		@twitter_secret = args[:twitter_secret]
 		@twitter_user_id = args[:twitter_user_id]

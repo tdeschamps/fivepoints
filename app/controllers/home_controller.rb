@@ -23,14 +23,15 @@ class HomeController < ApplicationController
 		if user_signed_in?
 			social_params = {}
 			
-			current_user.authorizations.all.each do |auth|
+			current_user.authorizations.find_each do |auth|
 				get_params social_params, auth.provider
 			end
 			socialfriends = SocialFriends.new(social_params)
-			if current_user.token
+			if social_params[:facebook_token]
 				fb_friends = socialfriends.get_facebook_friends 
 				SocialFriendshipBuilder.perform_later current_user.id, fb_friends, 'facebook'
 			end	
+
 			twitter_friends = socialfriends.get_twitter_friends if current_user.authorizations.where(provider: 'Twitter').first
 			linkedin_connections = socialfriends.get_linkedin_connections if current_user.authorizations.where(provider: 'LinkedIn').first
 
