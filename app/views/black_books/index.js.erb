@@ -1,14 +1,6 @@
-$('#blackbooks').append("<%= j render partial: 'resource_container', locals: {resources: @friends_black_books} %>");
-$('#places').append("<%= j render partial: 'resource_container', locals: {resources: @places} %>");
-
-<% if @friends_black_books.next_page  %>
-  $('.user-blackbooks').find('.pagination').replaceWith('<%= j will_paginate @friends_black_books %>');
+$('#activities').append("<%= j render_activities @activities %>")
+<% if @activities.next_page %>
+	$('.activities').find('.pagination').replaceWith('<%= j will_paginate @activities %>');
 <% else %>
-  $('.user-blackbooks').find('.see-more').remove();
-<% end %>
-
-<% if @places.next_page %>
-	$('.user-places').find('.pagination').replaceWith('<%= j will_paginate @places %>');
-<% else %>
-	$('.user-places').find('.see-more').remove();
+	$('.activities').find('.see-more').remove();
 <% end %>

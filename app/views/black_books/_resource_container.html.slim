@@ -1,7 +1,7 @@
 - if resources.kind_of? Place::ActiveRecord_Relation
 	- resources.each do |resource|
 		.black-book.drop-shadow
-		  	= render partial: 'show_place', locals: {place: resource, black_book_place: resource.black_book_places.first, archive: true}
+		  	= render partial: './black_books/show_place', locals: {place: resource, black_book_place: resource.black_book_places.first, archive: true}
 - else
 	- resources.each do |resource|
 		.item.col-xs-10.col-sm-6.col-lg-4.row-space-8

@@ -29,7 +29,7 @@ class HomeController < ApplicationController
 			socialfriends = SocialFriends.new(social_params)
 			if social_params[:facebook_token]
 				fb_friends = socialfriends.get_facebook_friends 
-				SocialFriendshipBuilder.perform_later current_user.id, fb_friends, 'facebook'
+				SocialFriendshipBuilder.perform_later current_user.id, fb_friends, 'Facebook'
 			end	
 
 			twitter_friends = socialfriends.get_twitter_friends if current_user.authorizations.where(provider: 'Twitter').first

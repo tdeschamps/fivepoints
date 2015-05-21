@@ -22,7 +22,7 @@
 				   			.centered.text-center
 				   				p see more
 				   	.hidden			
-				    	= will_paginate @friends_black_books, class: "pagination"
+				    	= will_paginate @friends_black_books, params: {controller: 'black_books', action: 'get_more_black_books'}, class: "pagination"
 		- if @places != []	&& @places != nil	    	 					
 		    .col-xs-12.text-center
 				h1.row-space-4
@@ -38,10 +38,19 @@
 				   			.centered.text-center
 				   				p see more			
 				    .hidden	
-				    	= will_paginate @places , class: "pagination"
+				    	= will_paginate @places, params: {controller: 'places', action: 'get_more_places'} , class: "pagination"
 		- if @activities
 			.col-xs-12.activities
-				= render_activities @activities 		    					   					
+				ul.activity-list.list-unstyled#activities
+					= render_activities @activities
+				- if @activities.next_page
+					.div.clear
+						.see-more.drop-shadow#see-more-places
+							.centered.text-center
+								p see more			
+					.hidden	
+						= will_paginate @activities, class: "pagination"	
+
 = content_for :js do
 		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 		= javascript_include_tag "black_books/autocomplete.js"

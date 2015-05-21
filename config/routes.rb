@@ -30,9 +30,12 @@ Rails.application.routes.draw do
     post 'black_book_places/update_position' => 'black_book_places#update_position'
     post 'black_book_places/:id/send_to_archive' => 'black_book_places#send_to_archive', as: :archive
     resources :black_book_places, only: [:edit, :update]
+    
     post 'black_books/:id/upvote' => 'black_books#upvote', as: :upvote_black_book
     post 'black_books/:id/downvote' => 'black_books#downvote', as: :downvote_black_book
-
+    get 'get_more_black_books' => 'black_books#get_more_black_books', as: :get_more_black_books
+    get 'get_more_places' => 'places#get_more_places', as: :get_more_places
+    
     get 'terms' => 'home#terms', as: :terms
     get 'about_us' => 'home#about_us', as: :about_us
   # The priority is based upon order of creation: first created -> highest priority.

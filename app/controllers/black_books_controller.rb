@@ -101,7 +101,7 @@ class BlackBooksController < ApplicationController
 			@friends_black_books = BlackBook.includes(:uploaded_files).near(params[:search], 5).order('updated_at desc').paginate(:page => params[:page])
 			@places = Place.includes(:black_book_places).near(params[:search], 5).order('ranking desc').paginate(:page => params[:page])
 		else	
-			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").order('created_at DESC').limit(20)
+			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").order('created_at DESC').paginate(:page => params[:page], :per_page => 2)
 		end
 		
 		@attributes = %w(address city category)
@@ -120,6 +120,18 @@ class BlackBooksController < ApplicationController
   			format.js
   		end
 	end
+
+	def get_more_black_books
+
+		if params[:search]
+			@friends_black_books = BlackBook.includes(:uploaded_files).near(params[:search], 5).order('updated_at desc').paginate(:page => params[:page])
+		end
+
+		respond_to do |format|
+			format.html
+			format.js
+		end	
+	end	
 
 	def downvote
 		@black_book.unliked_by current_user

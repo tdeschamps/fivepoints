@@ -23,29 +23,24 @@
 
 .see-more {
 	position: relative;
-	background: lightblue;
-	height: 100px;
-	width: 100px;
+	background: lightskyblue;
+	height: 50px;
+	width: 150px;
 	margin: 0 auto;
-	border-radius: 50%;
+	border-radius: 99px;
 	margin-top:10px;
 	margin-bottom: 10px;
+	padding-top: 13px;
+	transition: background-color linear 0.2s;
 	cursor: pointer;
-	.centered {
-		height: 50px;
-		width: 60px;
-		margin: auto auto;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-
-		p {
-			font-weight: 100;
+	&:hover, &:active {
+		background: lighten(lightskyblue, 10);
+	}
+	
+	p {
+			font-weight: 400;
 			color: white;
 			margin:0;
-		}
 	}
 }
 .black-books-results > .text-center > h1 {

@@ -45,13 +45,14 @@
 	section.cities-ribbon
 		- @cities_pictures.each_with_index do |city, index|
 			div.col-lg-2.col-md-4.col-sm-12 
-				div[class= "discovery-card #{city}-style"]
-					div.city-badge
-						.iconmelon
-						  svg viewbox=("0 0 32 32") 
-						    use xlink:href="##{city}"
-					div.city-title
-						h1 #{city}
+				= link_to black_books_path(search: "#{city}")
+					div[class= "discovery-card #{city}-style"]
+						.city-badge
+							.iconmelon
+							  svg viewbox=("0 0 32 32") 
+							    use xlink:href="##{city}"
+						.city-title
+							h1 #{city}
 	section.your-turn
 		div.container
 			- if current_user

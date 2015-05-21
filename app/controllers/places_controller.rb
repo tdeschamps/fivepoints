@@ -75,6 +75,18 @@ class PlacesController < ApplicationController
       	end
 	end
 
+	def get_more_places
+
+		if params[:search]
+			@places = Place.includes(:uploaded_files).near(params[:search], 5).order('updated_at desc').paginate(:page => params[:page])
+		end
+		@attributes = %w(address city category)
+		
+		respond_to do |format|
+			format.html
+			format.js
+		end	
+	end	
 	
 
 	private

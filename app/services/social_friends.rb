@@ -13,6 +13,7 @@ class SocialFriends
 	def get_facebook_friends
 		@graph = Koala::Facebook::API.new(@fb_token)
 		friends = @graph.get_connections("me", "friends")
+		p friends
 	end
 
 	def get_twitter_friends
