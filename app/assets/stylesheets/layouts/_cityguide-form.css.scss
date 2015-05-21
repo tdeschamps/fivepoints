@@ -161,7 +161,12 @@
 }
 
 .submit-button {
-	@include button($sunset-orange)
+	@include button($sunset-orange);
+	
+	&:hover, &:active {
+		color: white;
+		border-color: $froly;
+	}
 }
 .upload-icon {
 	color: $froly;
