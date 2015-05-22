@@ -11,11 +11,12 @@
 				h1.row-space-4
 					| Last black books from #{params[:search] || 'your friends'}
 			.user-blackbooks
-			    ul.place-list.list-unstyled#blackbooks
+			    ul.black-book-list.list-unstyled#blackbooks
 			    	- @friends_black_books.each do |black_book|
 			    		.item.col-xs-12.col-sm-6.col-lg-4.row-space-8
 			    			.black-book.drop-shadow
 			     				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}
+			     		.clear-toto		
 			    - if @friends_black_books.next_page
 				    .div.clear
 				    	.see-more.drop-shadow#see-more-black-books
@@ -30,8 +31,9 @@
 			.col-xs-12.user-places
 				ul.place-list.list-unstyled#places
 				   	- @places.each do |place|
-			    		drop-shadow	
+			    		.placedrop-shadow	
 			    			= render partial: './black_books/show_place', locals: {place: place, black_book_place: place.black_book_places.first, archive: false}
+			    		.clear-toto	
 				- if @places.next_page    
 				    .div.clear
 				    	.see-more.drop-shadow#see-more-places
@@ -47,7 +49,8 @@
 					.div.clear
 						.see-more.drop-shadow#see-more-places
 							.centered.text-center
-								p see more			
+								p see more
+						.clear-toto					
 					.hidden	
 						= will_paginate @activities, class: "pagination"	
 
