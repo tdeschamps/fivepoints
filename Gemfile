@@ -89,6 +89,7 @@ gem 'roadie-rails', '~> 1.0.5'
 group :production do
 	#gem 'unicorn'
 	#gem 'font_assets'
+	gem 'newrelic_rpm'
 end
 
 # Use Capistrano for deployment
