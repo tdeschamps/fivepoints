@@ -1,5 +1,6 @@
 - resources.each do |black_book|
 	.listing
-		.item.col-xs-12.col-sm-6.row-space-8
+		.item.col-xs-12.col-sm-6.row-space-4
 			.black-book.drop-shadow
 				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: (black_book.uploaded_files.first.file.url(:large) unless black_book.uploaded_files.first.nil?), archive: true}
+	.clear-toto			

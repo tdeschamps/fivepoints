@@ -47,24 +47,32 @@
 	color: $gray-light;		
 	font-weight: $weight-bold;
 }
-@media (min-width: 1199px) {
-    .place-list, .black-book-list, .activity-list > .clear-toto:nth-child(6n)::before {
-      content: '';
-      display: table;
-      clear: both;
+@media (max-width: 768px) {
+    .black-books-results, .place-list, .black-book-list, .activity-list, .get-full-width {
+
+    	padding-left: 0px;
+    	padding-right: 0px;
+    	& > .col-xs-12 {
+    		padding-left: 0px;
+    		padding-right: 0px;
+    	} 
     }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
-    .place-list, .black-book-list, .activity-list > .clear-toto:nth-child(4n)::before {
-      content: '';
-      display: table;
-      clear: both;
-    }
+    .activity-list, .black-book-list, .place-list {
+    	& > .clear-toto:nth-child(4n)::before {
+	      content: '';
+	      display: table;
+	      clear: both;
+    	}
+    }	
 }
 @media (min-width: 1200px) {
-    .place-list, .black-book-list, .activity-list >.clear-toto:nth-child(6n)::before {  
-      content: '';
-      display: table;
-      clear: both;
-    }
+    .activity-list, .black-book-list, .place-list {
+    	& > .clear-toto:nth-child(6n)::before {  
+	      content: '';
+	      display: table;
+	      clear: both;
+    	}
+    }	
 }

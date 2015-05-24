@@ -5,6 +5,11 @@
 	margin: auto;
 	margin-bottom: 15px;
 }
+@media (max-width: 768px) {
+	.map-wrapper {
+		height:60vh;
+	}
+}
 #map {
 	position: absolute;
 	height: 100%;
