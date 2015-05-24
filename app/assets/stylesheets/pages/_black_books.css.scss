@@ -48,14 +48,9 @@
 	font-weight: $weight-bold;
 }
 @media (max-width: 768px) {
-    .black-books-results, .place-list, .black-book-list, .activity-list, .get-full-width {
-
+    .get-full-width {
     	padding-left: 0px;
-    	padding-right: 0px;
-    	& > .col-xs-12 {
-    		padding-left: 0px;
-    		padding-right: 0px;
-    	} 
+    	padding-right: 0px; 
     }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
