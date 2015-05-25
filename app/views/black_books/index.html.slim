@@ -1,11 +1,11 @@
-.container.padded-down
+.container.padded-down.get-full-width
 	.search-bar.col-xs-12.col-sm-8.col-sm-offset-2.row-space-8
 	 	.form-user
 	 		= simple_form_for(:search,  url: black_books_path, method: 'get', defaults: { input_html: { class: 'default_class' } }) do |f|			
 	 			input.user-account autocomplete="off" autofocus="false" name="search" placeholder="search a city..." type="text" id="user_input_autocomplete_address"
 	 			= f.button :submit, "Search", class: "btn-user-submit", name: nil
 	
-	.black-books-results
+	.black-books-results.get-full-width
 		- if @friends_black_books != [] && @friends_black_books != nil
 			.col-xs-12.text-center
 				h1.row-space-4
@@ -13,7 +13,7 @@
 			.user-blackbooks
 			    ul.black-book-list.list-unstyled#blackbooks
 			    	- @friends_black_books.each do |black_book|
-			    		.item.col-xs-12.col-sm-6.col-lg-4.row-space-8
+			    		.item.col-xs-12.col-sm-6.col-lg-4.row-space-4.get-full-width
 			    			.black-book.drop-shadow
 			     				= render partial: './places/related_black_books', locals: {black_book: black_book, picture_url: black_book.uploaded_files.first.file.url(:large), archive: true}
 			     		.clear-toto		
@@ -28,7 +28,7 @@
 		    .col-xs-12.text-center
 				h1.row-space-4
 					| Last places in #{params[:search] || 'your friends black books'}
-			.col-xs-12.user-places
+			.col-xs-12.user-places.get-full-width
 				ul.place-list.list-unstyled#places
 				   	- @places.each do |place|
 			    		.placedrop-shadow	
@@ -42,7 +42,7 @@
 				    .hidden	
 				    	= will_paginate @places, params: {controller: 'places', action: 'get_more_places'} , class: "pagination"
 		- if @activities
-			.col-xs-12.activities
+			.col-xs-12.activities.get-full-width
 				ul.activity-list.list-unstyled#activities
 					= render_activities @activities
 				- if @activities.next_page
