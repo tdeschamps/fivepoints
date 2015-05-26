@@ -62,7 +62,12 @@
             	= link_to new_user_registration_path, class: "btn btn-primary", id: "landing-btn" do
               		|  Join us!  	
 
-	 									
+	= content_for :meta_facebook do
+		meta property = "og:title" content= "Fivemarks"
+		meta property = "og:image" content= "#{asset_url('logo_rounded.png')}"
+		meta property = "og:url" content= "http://fivemarks.in"
+		meta property = "og:description" content= "Fivemarks is the easiest way to create and share your travel stories"
+		meta property = "og:site_name" content="fivemarks" 									
 	= content_for :js do
 		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 		= javascript_include_tag "black_books/autocomplete.js"
