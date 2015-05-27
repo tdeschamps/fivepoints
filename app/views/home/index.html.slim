@@ -67,7 +67,14 @@
 		meta property = "og:image" content= "#{asset_url('logo_rounded.png')}"
 		meta property = "og:url" content= "http://fivemarks.in"
 		meta property = "og:description" content= "Fivemarks is the easiest way to create and share your travel stories"
-		meta property = "og:site_name" content="fivemarks" 									
+		meta property = "og:site_name" content="fivemarks"
+
+		meta name="twitter:card" content="summary_large_image"
+		meta name="twitter:site" content="@fivemarks_in"
+		meta name="twitter:title" content="Fivemarks - never miss a place you'll love"
+		meta name="twitter:description" content="The easiest way to share your travel stories"
+		meta name="twitter:image" content="#{asset_url('logo_rounded.png')}"
+
 	= content_for :js do
 		script src = "https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyAhp6C4bGRbxb-fI9r69B-uocco11a9qjE"
 		= javascript_include_tag "black_books/autocomplete.js"

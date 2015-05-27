@@ -61,6 +61,12 @@
 	meta property = "og:description" content= "#{@black_book.story}"
 	meta property = "og:site_name" content="fivemarks"
 
+	meta name="twitter:card" content = "summary_large_image"
+	meta name="twitter:site" content = "@fivemarks_in"
+	meta name="twitter:title" content = "#{@black_book.name}"
+	meta name="twitter:description" content = "#{@black_book.story}"
+	meta name="twitter:image" content = "#{@black_book.uploaded_files.last.file.url(:large)}"
+
 = content_for :js do
 
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"

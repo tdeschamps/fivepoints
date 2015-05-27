@@ -56,6 +56,12 @@
 	meta property = "og:url" content= "http://fivemarks.in/places/#{@place.id}"
 	meta property = "og:description" content= "#{@place.categories.map{|c| c.name}.join(', ')}"
 
+	meta name="twitter:card" content = "summary_large_image"
+	meta name="twitter:site" content = "@fivemarks_in"
+	meta name="twitter:title" content = "#{place.name}"
+	meta name="twitter:description" content = "#{@place.categories.map{|c| c.name}.join(', ')}"
+	meta name="twitter:image" content = "#{@place.uploaded_files.last.file.url(:large)}"
+
 = content_for :js do
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
 	= javascript_include_tag "classie"
