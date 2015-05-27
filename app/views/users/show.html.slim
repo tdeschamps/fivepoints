@@ -31,7 +31,7 @@ div.container.padded-down.get-full-width
 			    		= render partial: 'follow', locals: {followed: @user}
 			    		
         .col-xs-12.col-sm-9.col-sm-offset-4.user-blackbooks.get-full-width
-        	ul.place-list.list-unstyled#blackbooks
+        	ul.user-blackbooks.list-unstyled#blackbooks
         		= render partial: 'container_black_books', locals: {resources: @black_books}
 	        - if @black_books.next_page	
 	        	.div.clear

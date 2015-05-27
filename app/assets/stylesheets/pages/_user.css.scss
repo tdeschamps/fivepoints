@@ -80,3 +80,13 @@
 		color: white;
 	}
 }
+
+@media (min-width: 768px) {
+    .user-blackbooks {
+    	& > .clear-toto:nth-child(4n)::before {
+	      content: '';
+	      display: table;
+	      clear: both;
+    	}
+    }	
+}
