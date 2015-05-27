@@ -14,7 +14,7 @@ class FoursquareInfos
 		foursquare_place_id = @place.foursquare_id
 		foursquare_api_version = DateTime.now().strftime("%Y%m%d")
 
-		foursquare_place_url = "https://api.foursquare.com/v2/venues/#{foursquare_place_id}?&client_id=#{@foursquare_id}&client_secret=#{@foursquare_secret}&v=#{foursquare_api_version}"
+		foursquare_place_url = "https://api.foursquare.com/v2/venues/#{foursquare_place_id}?&client_id=#{@foursquare_id}&client_secret=#{@foursquare_secret}&v=#{foursquare_api_version}&locale=en"
 		response = open(foursquare_place_url)
 		#p response
 		json = JSON.parse(response.read.to_s)

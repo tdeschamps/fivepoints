@@ -41,7 +41,7 @@
 					- @active_black_books.each do |black_book|
 						.listing
 							item.col-xs-12.col-sm-6.col-md-4.row-space-4
-								= render partial: 'related_black_books', locals: {black_book: black_book}					
+								= render partial: 'related_black_books', locals: {black_book: black_book, can_edit: false}					
 - if !current_user
 	= render './modals/disconnected_modal'
 - if @voters	

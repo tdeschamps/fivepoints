@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
     
     if resource.nil?
       if email
-        user = find_for_oauth_by_email(email, resource)
+        user = find_for_oauth_by_email(email, access_token, resource)
       elsif uid && name
         user = find_for_oauth_by_uid(uid, resource)
         if user.nil?
@@ -143,11 +143,19 @@ class User < ActiveRecord::Base
     return user
   end
 
-  def self.find_for_oauth_by_email(email, resource=nil)
+  def self.find_for_oauth_by_email(email, access_token, resource=nil)
     if user = User.find_by_email(email)
       user
     else
-      user = User.new(:email => email, :password => Devise.friendly_token[0,20])
+      user = User.new(
+        email: email, 
+        password: Devise.friendly_token[0,20],
+        first_name: access_token['info']['name'].split[0],
+        last_name: access_token['info']['name'].split.drop(1).join(' '), 
+        name: access_token['info']['name'],
+        link: access_token['extra']['raw_info']['link'],
+        picture: process_uri(access_token.info.image + '?width=500&height=500')
+        )
       user.save
     end
     return user

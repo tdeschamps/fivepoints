@@ -4,6 +4,12 @@
 			.black_book-tile 
 				.vertical-middle
 					h2 #{black_book.name}
+		- if can_edit			
+			.archive-tile
+					= link_to black_book_path(black_book), method: :delete, remote: true, id: 'send-to-archive'
+						i.fa.fa-trash-o.fa-2x 
+					= link_to edit_user_black_book_path(black_book.user, black_book)
+						i.fa.fa-pencil-square-o.fa-2x style=("margin-top: 3px;")			
 	.panel-body.panel-card-section style=("background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
 		.media
 			= link_to user_path(black_book.user_id), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"

@@ -32,7 +32,7 @@ div.container.padded-down.get-full-width
 			    		
         .col-xs-12.col-sm-9.col-sm-offset-4.user-blackbooks.get-full-width
         	ul.user-blackbooks.list-unstyled#blackbooks
-        		= render partial: 'container_black_books', locals: {resources: @black_books}
+        		= render partial: 'container_black_books', locals: {resources: @black_books, can_edit: @user == current_user}
 	        - if @black_books.next_page	
 	        	.div.clear
 	        		.see-more.drop-shadow#see-more-black-books
