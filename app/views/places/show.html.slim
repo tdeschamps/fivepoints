@@ -52,15 +52,22 @@
 
 = content_for :meta_facebook do
 	meta property = "og:title" content= "#{@place.name}"
-	meta property = "og:image" content= "#{@place.uploaded_files.last.file.url(:medium)}"
+	- if @place.uploaded_files
+		meta property = "og:image" content= "#{@place.uploaded_files.last.file.url(:medium)}"
+	- else
+		meta property = "og:image" content= "#{asset_url('logo_rounded.png')}"	
 	meta property = "og:url" content= "http://fivemarks.in/places/#{@place.id}"
 	meta property = "og:description" content= "#{@place.categories.map{|c| c.name}.join(', ')}"
 
 	meta name="twitter:card" content = "summary_large_image"
 	meta name="twitter:site" content = "@fivemarks_in"
-	meta name="twitter:title" content = "#{place.name}"
+	meta name="twitter:title" content = "#{@place.name}"
 	meta name="twitter:description" content = "#{@place.categories.map{|c| c.name}.join(', ')}"
-	meta name="twitter:image" content = "#{@place.uploaded_files.last.file.url(:large)}"
+	- if @place.uploaded_files
+		meta name="twitter:image" content = "#{@place.uploaded_files.last.file.url(:large)}"
+	- else
+		meta name="twitter:image" content = "#{asset_url('logo_rounded.png')}"
+			
 
 = content_for :js do
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
