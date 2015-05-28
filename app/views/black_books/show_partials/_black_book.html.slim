@@ -6,7 +6,7 @@
 					h2 #{black_book.name}
 		- if can_edit			
 			.archive-tile
-					= link_to black_book_path(black_book), method: :delete, remote: true, id: 'send-to-archive'
+					= link_to black_book_path(black_book), method: :delete, remote: true, onclick: 'deleteThis($(this))', id: 'delete_black_book'
 						i.fa.fa-trash-o.fa-2x 
 					= link_to edit_user_black_book_path(black_book.user, black_book)
 						i.fa.fa-pencil-square-o.fa-2x style=("margin-top: 3px;")			

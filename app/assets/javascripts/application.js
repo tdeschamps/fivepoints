@@ -19,4 +19,4 @@
 //= require modernizr
 //= require jquery.remotipart
 //= require vendor/jquery.elastic.source
-
+//= require remove_things

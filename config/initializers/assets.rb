@@ -20,3 +20,5 @@ Rails.application.config.assets.precompile += %w( black_books/paginationBlackBoo
 Rails.application.config.assets.precompile += %w( users/disconnected.js )
 Rails.application.config.assets.precompile += %w( black_books/modal.js )
 Rails.application.config.assets.precompile += %w( vendor/jquery.elastic.source.js )
+Rails.application.config.assets.precompile += %w( remove_things.js )
+Rails.application.config.assets.precompile += %w( users/remove_black_books.js )

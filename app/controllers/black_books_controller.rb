@@ -1,7 +1,7 @@
 class BlackBooksController < ApplicationController
 	respond_to :html, :js
 	before_action :set_user, only: [:new, :create, :edit, :update]
-	before_action :set_black_book, only: [:edit, :update, :show, :downvote, :upvote]
+	before_action :set_black_book, only: [:edit, :update, :show, :downvote, :upvote, :destroy]
 
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 	
@@ -54,7 +54,14 @@ class BlackBooksController < ApplicationController
 			render action: :new
 		end	
 	end
-	
+	def destroy
+		@black_book.destroy
+		respond_to do |format|
+			format.html {redirect_to user_path current_user}
+			format.js {render nothing: true}
+		end
+
+	end
 	def edit
 		
 		authorize @black_book

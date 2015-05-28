@@ -1,4 +1,9 @@
-$('#blackbooks').append("<%= j render partial: 'container_black_books', locals: {resources: @black_books} %>");
+<% if current_user == @user %>
+	$('#blackbooks').append("<%= j render partial: 'container_black_books', locals: {resources: @black_books, can_edit: true} %>");
+<% else %>
+	$('#blackbooks').append("<%= j render partial: 'container_black_books', locals: {resources: @black_books, can_edit: false} %>");
+<% end %>
+
 <% if @black_books.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @black_books %>');
 <% else %>
