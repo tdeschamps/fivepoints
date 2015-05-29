@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth_by_email(email, access_token, resource=nil)
     if user = User.find_by_email(email)
-      user.update_attributes (picture: process_uri(access_token.info.image + '?width=500&height=500') )
+      user.update_attributes({picture: process_uri(access_token.info.image + '?width=500&height=500')} )
     else
       user = User.new(
         email: email, 
