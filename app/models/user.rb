@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth_by_email(email, access_token, resource=nil)
     if user = User.find_by_email(email)
-      user
+      user.update_attributes (picture: process_uri(access_token.info.image + '?width=500&height=500') )
     else
       user = User.new(
         email: email, 
@@ -153,6 +153,7 @@ class User < ActiveRecord::Base
         first_name: access_token['info']['name'].split[0],
         last_name: access_token['info']['name'].split.drop(1).join(' '), 
         name: access_token['info']['name'],
+        username: auth.info.name.gsub(" ", "_").downcase,
         link: access_token['extra']['raw_info']['link'],
         picture: process_uri(access_token.info.image + '?width=500&height=500')
         )
@@ -163,7 +164,6 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth_by_name(name, resource=nil)
     if user = User.find_by_name(name)
-      user
     else
       first_name = name
       last_name = name
