@@ -123,7 +123,6 @@ class User < ActiveRecord::Base
       end
     else
       user = resource
-      user.update_attributes ()
     end
 
     auth = user.authorizations.find_by_provider(provider)
@@ -132,6 +131,11 @@ class User < ActiveRecord::Base
       user.authorizations << auth
     end
     auth.update_attributes auth_attr
+    user.update_attributes ({
+      first_name: auth_attr[:first_name],
+      last_name: auth_attr[:last_name],
+      picture: auth_attr[:picture]
+      })
     return user
   end
 
@@ -145,7 +149,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth_by_email(email, access_token, resource=nil)
     if user = User.find_by_email(email)
-      user.update_attributes (picture: process_uri(access_token.info.image + '?width=500&height=500') )
+      user.update_attributes({picture: process_uri(access_token.info.image + '?width=500&height=500')} )
     else
       user = User.new(
         email: email, 
