@@ -234,7 +234,6 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   Devise.setup do |config|
-    require "omniauth-facebook"
     config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"], scope: 'user_friends, email, public_profile'
     config.omniauth :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"], strategy_class: OmniAuth::Strategies::Twitter
     config.omniauth :linkedin, ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"], scope: 'r_fullprofile r_emailaddress r_network', fields: ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "connections"]
