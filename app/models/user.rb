@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
       end
     else
       user = resource
+      user.update_attributes ()
     end
 
     auth = user.authorizations.find_by_provider(provider)
@@ -131,7 +132,6 @@ class User < ActiveRecord::Base
       user.authorizations << auth
     end
     auth.update_attributes auth_attr
-
     return user
   end
 
