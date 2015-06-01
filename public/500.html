@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The page you were looking for doesn't exist (404)</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta content="width=device-width" name="viewport">
+  <stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' = true >
   <style>
+  html {
+    height: 100%;
+  }
   body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
+    background: -webkit-linear-gradient(dodgerblue, lightgreen); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(dodgerblue, lightgreen); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(dodgerblue, lightgreen); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(dodgerblue, lightgreen); /* Standard syntax */
+    color: white;
     text-align: center;
     font-family: arial, sans-serif;
     margin: 0;
+    min-height: 100%;
+    height: 100%;
   }
 
   div.dialog {
@@ -31,10 +41,32 @@
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
-  h1 {
-    font-size: 100%;
-    color: #730E15;
+  .jumbotron > h1 {
+    font-size: 34px;
+    font-weight: 900;
+    color: white;
     line-height: 1.5em;
+  }
+  .jumbotron > h1.super {
+    font-size: 44px;
+    font-weight: 900;
+    color: #f97171;
+    line-height: 1em;
+  }
+
+  .jumbotron > p {
+    font-size: 18px;
+    display: inline;
+  }
+  .jumbotron > a {
+    font-size: 18px;
+    color: #ff4a50;
+    display: inline;
+    text-decoration: none;
+    transition: color ease-in 0.2s;
+  }
+  .jumbotron > a:hover {
+    color: dodgerblue;
   }
 
   div.dialog > p {
@@ -51,16 +83,30 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .container {
+    padding-top: 30vh;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1100px;
+  }
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  <!-- This file lives in public/404.html -->
+  <div class="4040-body-style">
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="super">Error #500</h1>
+        <h1>Houston, we got a problem</h1>
+        <p>Just follow the white rabbit to go</p>  
+        <a href="http://fivemarks.in", alt='home'>home.</a>
+      </div>
+    </div>      
   </div>
 </body>
 </html>
