@@ -157,9 +157,9 @@ class User < ActiveRecord::Base
         first_name: access_token['info']['name'].split[0],
         last_name: access_token['info']['name'].split.drop(1).join(' '), 
         name: access_token['info']['name'],
-        username: auth.info.name.gsub(" ", "_").downcase,
+        username: access_token['info']['name'].gsub(" ", "_").downcase,
         link: access_token['extra']['raw_info']['link'],
-        picture: process_uri(access_token.info.image + '?width=500&height=500')
+        picture: process_uri(access_token['info']['image'] + '?width=500&height=500')
         )
       user.save
     end
