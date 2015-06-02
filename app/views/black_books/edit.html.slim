@@ -7,6 +7,17 @@
 		.darken			
 			h1
 				= @black_book.name
+		.change-black-book-header
+			= simple_form_for([@user, @black_book], url: user_black_book_path(@user, @black_book)) do |f|
+				= f.simple_fields_for @black_book.uploaded_files.build() do |file|
+					.nested-fields.input.input--black_book
+			 			= f.file_field :file, :label => "Upload an image", class:"hide", id:"file-upload"
+			 			.upload
+			 				i.fa.fa-camera-retro.fa-2x.upload-icon
+			 	.form-edit-submit
+			 		#edit-black-book-header-submission
+			 			= f.button :submit, "upload", class: "btn btn-upload-background"
+				
 	.container
 		.col-xs-12
 			section.form-user.form-list#edit-story

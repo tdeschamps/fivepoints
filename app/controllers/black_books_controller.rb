@@ -95,11 +95,12 @@ class BlackBooksController < ApplicationController
 	def update
 		authorize @black_book
 		without_tracking do
-			@black_book.update_attributes black_book_params
+			black_book_params[:file] ? @black_book.uploaded_files.create(file: black_book_params[:file]) : @black_book.update_attributes(black_book_params)
+			@black_book.save 
 		end
 		respond_to do |format|
-  			format.html
-  			format.js
+  			format.html {redirect_to edit_user_black_book_path(@user, @black_book)}
+  			format.js 
   		end	
 	end
 	
@@ -155,7 +156,7 @@ class BlackBooksController < ApplicationController
 	end
 
 	def black_book_params
-		params.require(:black_book).permit(:user_id, :city, :formatted_address, :country, :state, :name, :story, uploaded_files_attributes: [:file])
+		params.require(:black_book).permit(:user_id, :city, :formatted_address, :country, :state, :name, :story,:file, uploaded_files_attributes: [:file])
 	end
 
 	def set_black_book
