@@ -108,4 +108,47 @@
 		margin: 0;
 		padding: 0;
 	}
+}
+.shadow-title-edit {
+	textarea {
+		font-size: 36px;
+		position: absolute;
+		vertical-align: center;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		color: black;
+		font-weight: 600;
+		text-align: center;
+		background-color: transparent;
+		border: none;
+		color: white;
+		&:active, &:focus {
+			border:none;
+			box-shadow: none;
+			outline: none;
+		}
+	}
+	#edit-black-book-title-submission {
+
+		position: absolute;
+		top: calc(50% + 72px);
+		left: 0;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		color: black;
+		text-align: center;
+	}
+}
+.btn-special-shadow-treatment {
+	@include button-rounded(white);
+	background-color: transparent;
+	border: 2px solid white;
+	font-weight: 400;
+	&:focus, &:hover, &:active,&:visited {
+		border: 2px solid white;	
+	}
 }	

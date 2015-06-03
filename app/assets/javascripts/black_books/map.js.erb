@@ -75,5 +75,16 @@ $(document).ready(function() {
       layer.bindPopup(popupContent);
     });
     //map.fitBounds(featureLayer.getBounds());
-  }); 
+  });
+  $('.shadow-title-edit').find('textarea').on('focus', function() {
+    $('#edit-black-book-title-submission').removeClass('hide');
+  })
+
+  $('.shadow-title-edit').find('textarea').on('focusout', function() {
+    $('#edit-black-book-title-submission').addClass('hide');
+  })
+
+  $('#edit-black-book-title-submission').on('click', function() {
+    $(this).toggleClass('hide');
+  }) 
 });

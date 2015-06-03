@@ -4,9 +4,12 @@
 			= v	
 	.header-wrapper
 		.black_book-header style=("background: url('#{@black_book.uploaded_files.last.file.url(:xlarge)}') no-repeat fixed; background-size:cover;")
-		.darken			
-			h1
-				= @black_book.name
+		.darken
+			.shadow-title-edit
+				= form_for([@user, @black_book], url:user_black_book_path(@user, @black_book), remote: true) do |f|
+					= f.text_area :name, class: "h1"
+					#edit-black-book-title-submission.hide
+						= f.submit "change title", class: "btn btn-special-shadow-treatment"
 		.change-black-book-header
 			= simple_form_for([@user, @black_book], url: user_black_book_path(@user, @black_book)) do |f|
 				= f.simple_fields_for @black_book.uploaded_files.build() do |file|

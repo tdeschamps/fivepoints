@@ -100,7 +100,7 @@ class BlackBooksController < ApplicationController
 		end
 		respond_to do |format|
   			format.html {redirect_to edit_user_black_book_path(@user, @black_book)}
-  			format.js 
+  			format.js {render nothing: true}
   		end	
 	end
 	
