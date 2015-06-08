@@ -55,6 +55,7 @@ class BlackBooksController < ApplicationController
 		end	
 	end
 	def destroy
+
 		@black_book.destroy
 		respond_to do |format|
 			format.html {redirect_to user_path current_user}

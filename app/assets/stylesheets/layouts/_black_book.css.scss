@@ -45,11 +45,12 @@
 		height:350px;
 	}
 }
-#recommend-btn {
+#recommend-btn, .action-buttons {
 	@include button-rounded(white);
 	color: $froly;
 	border: 1px solid $froly;
 	padding: 5px 20px 5px 10px;
+	min-width: 120px;
 
 	&:hover, &:active {
 		border: 1px solid $froly;

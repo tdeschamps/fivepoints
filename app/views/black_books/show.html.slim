@@ -1,3 +1,4 @@
+#fb-root
 = content_for :head do
 	title
 		| "#{@black_book.name}"	
@@ -41,8 +42,21 @@
 						| #{@voters.first.name || @voters.first.username} has recommended this story		
 				- else
 					.voters-block
-						| Be the first to recommend this black-book			
-					
+						| Be the first to recommend this black-book	
+			.float-right
+				.dropdown
+					= link_to "#", {class: "btn action-buttons", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do
+              			|  Share
+              			span.caret
+            		ul.dropdown-menu[role="menu"]
+              			li
+                			= link_to "https://www.facebook.com/sharer/sharer.php?app_id=#{FB_ID}&sdk=joey&u=#{facebook_black_book_url_render(@black_book)}&display=popup&ref=plugin&src=share_button", target: "_blank", id: "u_0_1" do
+	                  			i.fa.fa-facebook
+	                  			|  Share on facebook
+             			li
+                			= link_to user_path(current_user) do
+	                  			i.fa.fa-home
+	                  			|  Guides     			      			 				
 		.clear			
 		.place-user-info.col-xs-12.col-sm-8.col-sm-offset-2
 			hr
@@ -73,3 +87,11 @@
 	= javascript_include_tag "classie.js"
 	= javascript_include_tag "black_books/map.js"
 	= javascript_include_tag "black_books/black_book_places.js"
+	javascript:
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=513576405452318";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));

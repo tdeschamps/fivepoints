@@ -5,6 +5,7 @@ class BlackBook < ActiveRecord::Base
 	has_many :black_book_places
 	has_many :places, through: :black_book_places
 	has_many :uploaded_files, as: :imageable
+	has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 	accepts_nested_attributes_for :uploaded_files, :allow_destroy => true
 	friendly_id :slug_candidates, :use => :slugged
 	geocoded_by :formatted_address
