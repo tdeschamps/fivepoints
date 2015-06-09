@@ -56,7 +56,7 @@
 		meta property = "og:image" content= "#{@place.uploaded_files.last.file.url(:medium)}"
 	- else
 		meta property = "og:image" content= "#{asset_url('logo_rounded.png')}"	
-	meta property = "og:url" content= "http://fivemarks.in/places/#{@place.id}"
+	meta property = "og:url" content= "http://www.fivemarks.in/places/#{@place.slug}"
 	meta property = "og:description" content= "#{@place.categories.map{|c| c.name}.join(', ')}"
 
 	meta name="twitter:card" content = "summary_large_image"
