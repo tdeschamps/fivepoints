@@ -81,35 +81,6 @@
 	script src = "https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"
 	= javascript_include_tag "black_books/map"
 	= javascript_include_tag "users/user_edit.js"
-	
-	javascript:
+	= javascript_include_tag "black_books/foursquare_autocompletion.js"
 
-		$(document).on('click', '#user_input_foursquare', function () {
-			initFoursquare({
-				city : #{{(@black_book.city.gsub(" ","%20")+ "," + @black_book.state).to_json}},
-				black_book_id : #{{@black_book.id}}
-				})
-      		var city = #{{(@black_book.city.gsub(" ","%20")+ "," + @black_book.state).to_json}};
-      		var $this = $(this);
-      		var $that = $this.parentsUntil($('form #new_place'));
-      		console.log($that);
-      		$this.autocomplete({
-      			source: function(request, response) {
-      					fs_suggest(response, {
-      						near: city, 
-      						query: request.term
-      						}
-      					)
-      				},
-      			minLength : 3,
-      			focus: function( event, ui ) {
-      			        $this.val( ui.item.name );
-      			        return false;
-      			      },
-      		  	select: function( event, ui ) {	
-      		  	  fs_complete($that, ui.item)
-      		  	  $this.val( ui.item.name );
-      		  	  return false;
-      		  	},	
-      		});
-      	});
+		

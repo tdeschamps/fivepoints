@@ -43,7 +43,7 @@
 		fs_suggest = function(response, options) {
 			var defaults = {
 				url	: 'https://api.foursquare.com/v2/venues/suggestCompletion?', // i suppose you could change this...
-				near : 'Paris', //default to SF since it's well known
+				ll : '40.7,-74', //default to SF since it's well known
 				v : '20150526', //last API version
 				locale: 'en',	
 	   			m : 'foursquare', //mode foursquare
@@ -77,7 +77,7 @@
 			function callFoursquareSuggestion(response) {
 				url = opts.url 
 						+ "query=" + opts.query
-						+ "&near=" + opts.near
+						+ "&ll=" + opts.ll
 						+ "&v=" + opts.v
 						+ "&locale=" + opts.locale 
 						+ "&m=" + opts.m
