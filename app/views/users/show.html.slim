@@ -2,12 +2,7 @@ div.container.padded-down.get-full-width
 	.row
 		.col-xs-12.col-sm-4.sidebar-profile
 			.user-profile-pic.rounded 
-				- if @user.uploaded_files.length > 0
-					img src = ("#{@user.uploaded_files.first.file.url(:original)}")
-				- elsif @user.provider == 'facebook'
-					img src = '#{@user.picture}'
-				- else
-					img src = asset_url('default_user_picture.png')
+					img src = choose_user_picture(@user)
 			h2 Hey my name is #{@user.first_name || @user.username}
 			h5 #{@user.biography}
 			.follow-stats
