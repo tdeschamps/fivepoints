@@ -18,7 +18,7 @@
 			i.fa.fa-map-marker.fa-2x
 			| #{black_book.formatted_address}
 		.clear
-		= link_to user_path(black_book.user_id)
+		= link_to user_path(owner.id)
 			| #{owner.username}
 		p.white-text.inline
 			|   #{caption}		
