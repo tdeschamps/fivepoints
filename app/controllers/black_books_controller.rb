@@ -55,8 +55,9 @@ class BlackBooksController < ApplicationController
 		end	
 	end
 	def destroy
-
-		@black_book.destroy
+		without_tracking do
+			@black_book.destroy
+		end
 		respond_to do |format|
 			format.html {redirect_to user_path current_user}
 			format.js {render nothing: true}
