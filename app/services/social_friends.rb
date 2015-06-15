@@ -12,8 +12,7 @@ class SocialFriends
 
 	def get_facebook_friends
 		@graph = Koala::Facebook::API.new(@fb_token)
-		friends = @graph.get_connections("me", "friends")
-		p friends
+		friends = @graph.get_connections("me", "friends").map {|f| f["id"]}
 	end
 
 	def get_twitter_friends
@@ -31,7 +30,6 @@ class SocialFriends
 	def get_linkedin_connections
 		client = LinkedIn::Client.new(ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET'])
 		client.authorize_from_access(@linkedin_token, @linkedin_secret)
-		p client
 		client.connections
 
 	end
