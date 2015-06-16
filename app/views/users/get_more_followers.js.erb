@@ -1,4 +1,4 @@
-("<%= j render partial: './shared/user_list', locals: {users: @followers} %>").insertBefore($('#follower-list-modal').find('.clear'));
+$("<%= j render partial: './shared/user_list', locals: {users: @followers} %>").insertBefore($('#follower-list-modal').find('.clear'));
 
 <% if @followers.next_page  %>
   $('#follower-list-modal').find('.pagination').replaceWith('<%= j will_paginate @followers %>');
