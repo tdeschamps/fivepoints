@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :black_books, only: [:show, :index, :destroy] do
       resources :black_book_places, only: [:new, :create]
     end
+    
     get 'black_books/search' => 'black_books#search', as: :search_black_books
     resources :black_book_places, only: [:show]
     resources :places, only: [:show, :index]

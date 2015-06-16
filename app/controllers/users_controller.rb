@@ -6,8 +6,8 @@ class UsersController < ApplicationController
 
 	def show
 		@black_books = @user.black_books.paginate(page: params[:page], per_page: 4).order('updated_at DESC')
-		@followers = @user.followers.paginate(page: params[:page], per_page: 10)
-		@following = @user.following.paginate(page: params[:page], per_page: 10)
+		@followers = @user.followers.paginate(page: params[:page], per_page: 5)
+		@following = @user.following.paginate(page: params[:page], per_page: 5)
 
 		respond_to do |format|
   			format.html
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 	end
 	
 	def get_more_followers
-		@followers = @user.followers.paginate(page: params[:page], per_page: 10)
+		@followers = @user.followers.paginate(page: params[:page], per_page: 5)
 
 		respond_to do |format|
   			format.html
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 	end
 
 	def get_more_followings
-		@following = @user.following.paginate(page: params[:page], per_page: 10)
+		@following = @user.following.paginate(page: params[:page], per_page: 5)
 
 		respond_to do |format|
   			format.html

@@ -44,6 +44,9 @@
 	overflow: scroll;
 	margin-top: 400px;
 	margin-bottom: 200px;
+	min-height: 500px;
+	max-height: 1000px;
+	height: 70%; 
 	.user-part {
 		.user-list-item {
 			padding: 20px 0 25px 0;
