@@ -6,7 +6,9 @@ class UsersController < ApplicationController
 
 	def show
 		@black_books = @user.black_books.paginate(page: params[:page], per_page: 4).order('updated_at DESC')
-		
+		@followers = @user.followers.paginate(page: params[:page], per_page: 10)
+		@following = @user.following.paginate(page: params[:page], per_page: 10)
+
 		respond_to do |format|
   			format.html
   			format.js
@@ -28,6 +30,24 @@ class UsersController < ApplicationController
 		end
 	end
 	
+	def get_more_followers
+		@followers = @user.followers.paginate(page: params[:page], per_page: 10)
+
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end
+	end
+
+	def get_more_followings
+		@following = @user.following.paginate(page: params[:page], per_page: 10)
+
+		respond_to do |format|
+  			format.html
+  			format.js
+  		end
+	end
+
 	private
 	
 	def user_params
@@ -37,9 +57,9 @@ class UsersController < ApplicationController
 
 	def set_user
 		begin
-			@user = User.includes(:followers, :following, :authorizations, black_books: :places).friendly.find(params[:id])	
+			@user = User.includes(:authorizations, black_books: :places).friendly.find(params[:id])	
 		rescue	
-			@user = User.includes(:followers, :following, :authorizations, black_books: :places).find(params[:id])
+			@user = User.includes(:authorizations, black_books: :places).find(params[:id])
 		end	
 	end
 
