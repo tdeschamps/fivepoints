@@ -1,7 +1,7 @@
 li.list-item.user-list-item
 	.profile-pic-wrapper	
 		= link_to user
-			img.profile-pic src=("#{user.picture || (user.uploaded_files.last.file if user.uploaded_files.count > 0)}")
+			img.profile-pic src=(choose_user_picture user)
 	.comment-block-actions
 		- if !signed_in?
 			= render partial: './users/follow_unsigned'

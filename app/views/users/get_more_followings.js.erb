@@ -1,0 +1,7 @@
+("<%= j render partial: './shared/user_list', locals: {users: @followings} %>").insertBefore($('#following-list-modal').find('.clear'));
+
+<% if @frollowings.next_page  %>
+  $('#following-list-modal').find('.pagination').replaceWith('<%= j will_paginate @followings %>');
+<% else %>
+  $('#following-list-modal').find('.see-more').remove();
+<% end %>

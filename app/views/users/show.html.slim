@@ -7,15 +7,18 @@ div.container.padded-down.get-full-width
 			h5 #{@user.biography}
 			.follow-stats
 				.following
-					.stats-count
-					 	| #{@user.following.count}
-					.stats-name 
-						| Following
+					=link_to '#following-list-modal', class: "md-trigger", 'data-modal' => "following-list-modal"
+						.stats-count
+						 	| #{@user.following.count}
+						.stats-name 
+							| Following
+				
 				.followers
-					.stats-count	
-						| #{@user.followers.count}
-					.stats-name
-						| Followers
+					=link_to '#follower-list-modal', class: "md-trigger", 'data-modal' => "follower-list-modal"
+						.stats-count	
+							| #{@user.followers.count}
+						.stats-name
+							| Followers
 			- unless @user == current_user
 				#follow_form
 					- if !signed_in?
@@ -37,7 +40,12 @@ div.container.padded-down.get-full-width
 	        		= will_paginate @black_books , class: "pagination"									      				
 - if !signed_in?
 	= render './modals/disconnected_modal'
-	.md-overlay.transparent-white	
+- if @followers
+	= render partial: './modals/follower_list', locals: {users: @followers}
+- if @following
+	= render partial: './modals/following_list', locals: {users: @following}
+.md-overlay.transparent-white	
+
 = content_for :js do
 	=javascript_include_tag 'classie'
 	= javascript_include_tag 'users/disconnected'

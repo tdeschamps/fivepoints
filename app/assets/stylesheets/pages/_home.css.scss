@@ -11,6 +11,7 @@
 .search-wrapper{
     height: 100vh;
     min-height: 540px;
+    max-height: 100%;
  }
 .landing-wrapper {
     background:asset-url('landing.jpg') no-repeat top center fixed;
@@ -201,6 +202,7 @@
     -o-background-size: cover;
     background-size: cover;
     min-height: 40vh;
+    max-height: 40%;
     color: white;
     position: relative;
     margin : 0;

@@ -41,6 +41,9 @@
 }
 .user-list {
 	padding-bottom: 30px;
+	overflow: scroll;
+	margin-top: 400px;
+	margin-bottom: 200px;
 	.user-part {
 		.user-list-item {
 			padding: 20px 0 25px 0;

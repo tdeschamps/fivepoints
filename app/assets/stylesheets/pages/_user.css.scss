@@ -39,6 +39,20 @@
 	}
 	div.following {
 		border-right: 2px solid #e4e4e4;
+		a {
+			&:hover, &:focus, &:active {
+				text-decoration: none;
+				color: $froly;
+			}
+		}
+	}
+	.followers {
+		a {
+			&:hover, &:focus, &:active {
+				text-decoration: none;
+				color: $froly;
+			}
+		}
 	}
 	.stats-count {
 		font-size: 12px;
