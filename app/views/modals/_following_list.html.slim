@@ -1,5 +1,6 @@
 #following-list-modal.md-modal.md-effect-12
 	.md-content
+		h3 #{@user.username} is following
 		ul.user-list
 			= render partial: './shared/user_list', locals: {users: users}
 		   	- if @following.next_page
@@ -10,4 +11,4 @@
 			   		.hidden			
 			    		= will_paginate @following, params: {controller: 'users', action: 'get_more_followings'}, class: "pagination"
 	.md-close
-		i.fa.fa-times.fa-4x		    			
+		i.fa.fa-times.fa-2x		    			

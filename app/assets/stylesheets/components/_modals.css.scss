@@ -141,3 +141,48 @@ md-perspective,
 .md-show.md-effect-12 ~ .transparent-white,.md-overlay {
 	background: rgba(255,255,255, 0.975);
 }
+
+#follower-list-modal.md-modal, #following-list-modal.md-modal {
+	position: fixed;
+  	overflow: auto;
+  	overflow-x: auto;
+  	overflow-y: auto;
+  	text-align: center;
+  	top: 0;
+  	left: 0;
+  	bottom: 0;
+  	right: 0;
+  	display: block;
+  	z-index: 2000;
+  	background-color: rgba(255,255,255,0.97);
+  	width: 100%;
+  	max-width: 100%;
+  	padding: 0;
+  	margin: 0;
+  	border: 0;
+  	-webkit-transform: none;
+  	-moz-transform: none;
+  	-ms-transform: none;
+   	transform: none;
+  .md-content {
+  	display: inline-block;
+  	vertical-align: middle;
+  	outline: none;
+  	overflow: hidden;
+  	max-width: 740px;
+  	padding: 100px 80px;
+  }
+  .modal-animate {
+  	webkit-transform-origin: bottom center;
+  	-ms-transform-origin: bottom center;
+  	transform-origin: bottom center;
+  	-webkit-animation: scale-fade 300ms forwards cubic-bezier(.8, .02, .45, .91);
+  	animation: scale-fade 300ms forwards cubic-bezier(.8, .02, .45, .91);
+  	}
+  .md-close {
+  	color: black;
+  	position: absolute;
+  	right: 5px;
+  	top: 5px;
+  }	
+}
