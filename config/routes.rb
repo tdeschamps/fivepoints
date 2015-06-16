@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     post 'black_books/:id/downvote' => 'black_books#downvote', as: :downvote_black_book
     get 'get_more_black_books' => 'black_books#get_more_black_books', as: :get_more_black_books
     get 'get_more_places' => 'places#get_more_places', as: :get_more_places
+
+    get 'users/:id/get_more_followers' => 'users#get_more_followers', as: :get_more_followers
+    get 'users/:id/get_more_followings' => 'users#get_more_followings', as: :get_more_followings
     
     get 'terms' => 'home#terms', as: :terms
     get 'about_us' => 'home#about_us', as: :about_us
