@@ -169,7 +169,7 @@ md-perspective,
   	vertical-align: middle;
   	outline: none;
   	overflow: hidden;
-  	max-width: 740px;
+  	max-width: 700px;
   	padding: 100px 80px;
   }
   .modal-animate {
@@ -184,5 +184,17 @@ md-perspective,
   	position: absolute;
   	right: 5px;
   	top: 5px;
+  }
+  .profile-pic-wrapper {
+  	width: 30px;
+  	height: 30px;
+  	.profile-pic {
+    	height: 30px;
+    	width: 30px;
+    }
   }	
+  #follow-btn {
+  	min-width: 90px;
+  	padding: 0px 10px 0px 15px
+  }
 }
