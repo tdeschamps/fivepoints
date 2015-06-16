@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update] 
+	before_action :set_user, only: [:show, :edit, :update, :get_more_followers, :get_more_followings] 
 	before_action :user_params, only: [:create, :update]
 
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
   friendly_id :username, use: :slugged
+  
   after_create :you_should_follow_fivemarks
   after_create :you_should_have_a_username, unless: :username?
   after_create :send_welcome_email
