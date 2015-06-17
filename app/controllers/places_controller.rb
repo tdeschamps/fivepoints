@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
 		@geolocations = MapMarkersGenerator.new(@place).create_markers()
 		@place_coordinates = [@place.latitude, @place.longitude]
 		place_categories = @place.categories.map {|c| "%#{c.name}%"}
-		@similar_places = Place.where("category ILIKE ANY ( array[:category] ) AND id != :id ", {category: place_categories, id: @place.id}).near([@place.latitude, @place.longitude]).limit(6).order("RANDOM()")
+		@similar_places = Place.where("category ILIKE ANY ( array[:category] ) AND id != :id ", {category: place_categories, id: @place.id}).near([@place.latitude, @place.longitude]).where.not(foursquare_picture_url: nil).limit(6).order("RANDOM()")
 		@active_black_books = BlackBook.includes(:user, :black_book_places).joins(:black_book_places).where("black_book_places.place_id = ? AND black_book_places.position IS NOT NULL", @place.id)
 
 		@attributes = %w(address city category)

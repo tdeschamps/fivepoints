@@ -109,7 +109,11 @@ class BlackBooksController < ApplicationController
 	def index
 		if params[:search]
 			@friends_black_books = BlackBook.includes(:uploaded_files).near(params[:search], 10).order('updated_at desc').paginate(:page => params[:page])
-			@places = Place.includes(:black_book_places).near(params[:search], 10).order('ranking desc').paginate(:page => params[:page])
+			@places = Place.near(params[:search], 10)
+							.joins(:black_book_places)
+							.where.not(black_book_places: {position: nil})
+							.order('distance')
+							.paginate(:page => params[:page])
 		else	
 			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").where.not(trackable_id: nil).order('created_at DESC').paginate(:page => params[:page], :per_page => 12)
 		end
