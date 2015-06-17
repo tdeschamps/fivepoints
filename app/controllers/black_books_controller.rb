@@ -110,6 +110,7 @@ class BlackBooksController < ApplicationController
 		if params[:search]
 			@friends_black_books = BlackBook.includes(:uploaded_files).near(params[:search], 10).order('updated_at desc').paginate(:page => params[:page])
 			@places = Place.near(params[:search], 10)
+							.includes(:uploaded_files)
 							.joins(:black_book_places)
 							.where.not(black_book_places: {position: nil})
 							.order('distance')
