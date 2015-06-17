@@ -6,4 +6,4 @@
 	- resources.each do |resource|
 		.item.col-xs-10.col-sm-6.col-lg-4.row-space-8
 		    .black-book.drop-shadow
-		     	= render partial: './places/related_black_books', locals: {black_book: resource, picture_url: resource.uploaded_files.first.file.url(:large), archive: true}		     				
+		     	= render partial: './places/related_black_books', locals: {black_book: resource, picture_url: resource.uploaded_files.first.file.url(:large), archive: true, can_edit: can_edit}		     				

@@ -74,17 +74,17 @@ class User < ActiveRecord::Base
 
     case provider
       when "Facebook"
-              uid = access_token['uid']
-              email = access_token['info']['email']
-              auth_attr = { uid: uid, 
-                            token: access_token['credentials']['token'],
-                            secret: nil, 
-                            first_name: access_token['info']['name'].split[0],
-                            last_name: access_token['info']['name'].split.drop(1).join(' '), 
-                            name: access_token['info']['name'],
-                            link: access_token['extra']['raw_info']['link'],
-                            token_expiry: Time.at(access_token['credentials']['expires_at']),
-                            picture: process_uri(access_token.info.image + '?width=500&height=500') }  
+        uid = access_token['uid']
+        email = access_token['info']['email']
+        auth_attr = { uid: uid, 
+                      token: access_token['credentials']['token'],
+                      secret: nil, 
+                      first_name: access_token['info']['name'].split[0],
+                      last_name: access_token['info']['name'].split.drop(1).join(' '), 
+                      name: access_token['info']['name'],
+                      link: access_token['extra']['raw_info']['link'],
+                      token_expiry: Time.at(access_token['credentials']['expires_at']),
+                      picture: process_uri(access_token.info.image + '?width=500&height=500') }  
       
       when "Twitter"
         uid = access_token['extra']['raw_info']['id']
