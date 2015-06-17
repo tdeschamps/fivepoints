@@ -12,6 +12,7 @@ class BlackBooksController < ApplicationController
 							.select("places.*, black_book_places.position as place_position")
 							.joins(:black_book_places)
 							.where.not(black_book_places: {position: nil})
+							.uniq
 							.order('place_position asc')
 		
 		@city_coordinates = [ @black_book.latitude, @black_book.longitude]
