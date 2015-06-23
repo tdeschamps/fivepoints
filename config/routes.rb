@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
     
   ActiveAdmin.routes(self)
-    authenticated :user do
-      root :to => "black_books#index", :as => "authenticated_root"
-    end
+    # authenticated :user do
+    #   root :to => "black_books#index", :as => "authenticated_root"
+    # end
 
     root 'home#index'
     devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks",

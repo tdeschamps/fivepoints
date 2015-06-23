@@ -112,6 +112,8 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.5.2)
+    faker (1.4.3)
+      i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     figaro (1.1.1)
@@ -346,6 +348,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.1)
   coffee-rails (~> 4.0.0)
   devise
+  faker
   figaro
   font-awesome-sass (~> 4.3.0)
   friendly_id

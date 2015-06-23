@@ -38,6 +38,7 @@ gem 'acts_as_list'
 gem 'acts_as_votable'
 gem 'public_activity'
 gem 'friendly_id'
+gem 'faker'
 #security
 gem 'pundit'
 #add bootstrap
