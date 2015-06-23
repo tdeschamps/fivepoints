@@ -205,7 +205,7 @@ class User < ActiveRecord::Base
                     picture: fb_profile.picture
                   })
     else
-      self.update!({username: "#{Faker::Internet.user_name(nil,%w(_))_#{rand(1..10)*self.id}"})
+      self.update!({username: "#{Faker::Internet.user_name(nil,%w(_))}_#{rand(1..10)*self.id}"})
     end
   end
 
