@@ -18,12 +18,12 @@ class Place < ActiveRecord::Base
 
   self.per_page = 6
   
-  def update_score(new_rank = 1)
+  def update_score(new_rank)
     
     if (1..5).include? new_rank
-      self.ranking += 1
-    elsif new_rank == 1
-      self.ranking -= 1
+      self.ranking = self.ranking.to_i 1
+    elsif new_rank == nil
+      self.ranking = self.ranking.to_i - 1
     end
 
 		self.save   	
