@@ -21,7 +21,7 @@ class Place < ActiveRecord::Base
   def update_score(new_rank)
     
     if (1..5).include? new_rank
-      self.ranking = self.ranking.to_i 1
+      self.ranking = self.ranking.to_i + 1
     elsif new_rank == nil
       self.ranking = self.ranking.to_i - 1
     end
