@@ -114,7 +114,8 @@ class BlackBooksController < ApplicationController
 							.includes(:uploaded_files)
 							.joins(:black_book_places)
 							.where.not(black_book_places: {position: nil})
-							.order('distance')
+							.uniq
+							.order('ranking desc')
 							.paginate(:page => params[:page])
 		else	
 			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").where.not(trackable_id: nil).order('created_at DESC').paginate(:page => params[:page], :per_page => 12)
