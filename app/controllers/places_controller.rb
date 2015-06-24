@@ -78,7 +78,13 @@ class PlacesController < ApplicationController
 	def get_more_places
 
 		if params[:search]
-			@places = Place.includes(:uploaded_files).near(params[:search], 5).order('updated_at desc').paginate(:page => params[:page])
+			@places = Place.near(params[:search], 10)
+							.includes(:uploaded_files)
+							.joins(:black_book_places)
+							.where.not(black_book_places: {position: nil})
+							.uniq
+							.order('ranking desc')
+							.paginate(:page => params[:page])
 		end
 		@attributes = %w(address city category)
 		
