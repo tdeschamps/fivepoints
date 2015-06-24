@@ -27,6 +27,7 @@ class HomeController < ApplicationController
 				get_params social_params, auth.provider
 			end
 			socialfriends = SocialFriends.new(social_params)
+			
 			if social_params[:facebook_token]
 				fb_friends = socialfriends.get_facebook_friends 
 				SocialFriendshipBuilder.perform_later current_user.id, fb_friends, 'Facebook'

@@ -18,22 +18,14 @@ class Place < ActiveRecord::Base
 
   self.per_page = 6
   
-  def update_score(previous_rank = 0 , new_rank = 0)
-  	return if (previous_rank == new_rank && new_rank == nil)
-    scores = {
-  		"1"=> 10,
-  		"2"=> 6,
-  		"3"=> 4,
-  		"4"=> 2,
-  		"5"=> 1,
-  		"0"=> 0 
-  	}
-  	previous_rank = "0" if previous_rank.to_i > 5 || previous_rank.nil?
-  	new_rank = "0" if new_rank.to_i > 5 || new_rank.nil?
+  def update_score(new_rank = 1)
+    
+    if (1..5).include? new_rank
+      self.ranking += 1
+    elsif new_rank == 1
+      self.ranking -= 1
+    end
 
-  	ranking = self.ranking || scores[previous_rank.to_s]
-    p scores[new_rank.to_s] - scores[previous_rank.to_s]
-  	self.ranking = ranking + scores[new_rank.to_s] - scores[previous_rank.to_s]
 		self.save   	
   end
   

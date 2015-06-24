@@ -11,12 +11,12 @@ class BlackBookPlacesController < ApplicationController
 
 		redirect_to edit_black_book_place_path @black_book_place
 	end
+
 	def update_position
 		@black_book_place = BlackBookPlace.find(black_book_place_params[:black_book_place_id])
-		previous_rank = @black_book_place.position
+		
 		@black_book_place.insert_at black_book_place_params[:position].to_i
 		#@black_book_place.save
-		@black_book_place.place.update_score(previous_rank, black_book_place_params[:position].to_i)
 		render nothing: true
 	end
 
@@ -24,6 +24,9 @@ class BlackBookPlacesController < ApplicationController
 
 		@black_book_place.remove_from_list
 		@black_book_place.save
+
+		@place.ranking -= 1
+		@place.save
 
 	
 	    render nothing: true
@@ -34,6 +37,7 @@ class BlackBookPlacesController < ApplicationController
 
 	def set_black_book_place
 		@black_book_place = BlackBookPlace.includes(:place).find(params[:id]);
+		@place = @black_book_place.place
 	end
 
 	def black_book_place_params
