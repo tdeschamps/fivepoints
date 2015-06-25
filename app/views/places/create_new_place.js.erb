@@ -1,5 +1,9 @@
 //$('#place_black_book_places_attributes_0_position').val() = parseInt($('#place_black_book_places_attributes_0_position').val()) + 1; 
-$("<%= j render partial: 'black_books/show_place_edit', locals: {place: @place, black_book_place: @black_book_place, picture_url: @place.foursquare_picture_url, archive: false} %>").insertAfter($('#active-places-list > ul > li').last().fadeIn());
+if ($('#active-places-list > ul > li').last().length > 0) {
+	$("<%= j render partial: 'black_books/show_place_edit', locals: {place: @place, black_book_place: @black_book_place, picture_url: @place.foursquare_picture_url, archive: false} %>").insertAfter($('#active-places-list > ul > li').last().fadeIn());
+} else {
+	$("<%= j render partial: 'black_books/show_place_edit', locals: {place: @place, black_book_place: @black_book_place, picture_url: @place.foursquare_picture_url, archive: false} %>").insertBefore($('#new-place').fadeIn());
+}
 
 if ($('#active-places-list > ul > li').length > 4) {
 	$('#new-place').hide();
