@@ -1,4 +1,8 @@
 .container.padded-down
+	.back-link
+		=link_to edit_black_book_path(@black_book_place.black_book)
+			i.fa.fa-arrow-left
+			| Go back to #{@black_book_place.black_book.name}
 	.text-center
 		h1 Edit your tile for #{@black_book_place.place.name}
 		p You can add your own picture if you want
