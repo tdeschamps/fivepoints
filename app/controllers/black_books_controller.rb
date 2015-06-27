@@ -118,7 +118,11 @@ class BlackBooksController < ApplicationController
 							.order('ranking desc')
 							.paginate(:page => params[:page])
 		else	
-			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User").where.not(trackable_id: nil).order('created_at DESC').paginate(:page => params[:page], :per_page => 12)
+			@activities = PublicActivity::Activity.where(owner_id: current_user.following_ids, owner_type: "User")
+												.where.not(trackable_id: nil)
+												.where.not("key like ?", "%update")
+												.order('created_at DESC')
+												.paginate(:page => params[:page], :per_page => 12)
 		end
 		
 		@attributes = %w(address city category)
