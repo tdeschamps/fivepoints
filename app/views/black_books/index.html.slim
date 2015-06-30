@@ -28,7 +28,7 @@
 		    .col-xs-12.text-center
 				h1.row-space-4
 					| Last places in #{params[:search] || 'your friends black books'}
-			.col-xs-12.user-places.get-full-width
+			.col-xs-12.user-places
 				ul.place-list.list-unstyled#places
 				   	- @places.each do |place|
 			    		.place	
