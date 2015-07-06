@@ -1,6 +1,9 @@
+= content_for :title do
+	title
+		| #{@black_book_place.place.name} tile edit
 .container.padded-down
 	.back-link
-		=link_to edit_black_book_path(@black_book_place.black_book)
+		=link_to edit_user_black_book_path(@user, @black_book_place.black_book)
 			i.fa.fa-arrow-left
 			| Go back to #{@black_book_place.black_book.name}
 	.text-center

@@ -40,6 +40,7 @@ class Place < ActiveRecord::Base
       [:name, :category, :city]
     ]
   end
+  
   private
   	
 	def set_foursquare_picture

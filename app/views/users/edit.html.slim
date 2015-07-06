@@ -1,3 +1,6 @@
+= content_for :title do
+	title
+		| #{@user.name || @user.username} edit
 div.container.padded-down
 	div.col-xs-12.col-sm-10.col-sm-offset-1.padded-down
 		.text-center.underline-title

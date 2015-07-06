@@ -3,6 +3,7 @@ class BlackBookPlacesController < ApplicationController
 	before_action :set_black_book_place, only: [:send_to_archive, :edit, :update] 
 	
 	def edit
+		@user = @black_book_place.black_book.user
 	end
 
 	def update
