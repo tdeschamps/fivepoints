@@ -1,3 +1,6 @@
+= content_for :title do
+	title
+		| #{@user.name || @user.username}'s profile
 div.container.padded-down
 	.row
 		.col-xs-12.col-sm-4.sidebar-profile

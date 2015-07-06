@@ -10,6 +10,7 @@ html
     = favicon_link_tag 'favicon.png', rel: 'apple-touch-icon', type: 'image/png'
     = csrf_meta_tags
     = yield :meta_facebook
+    = yield :title
     
   body
     - if current_page?(root_path)
