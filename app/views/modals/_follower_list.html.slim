@@ -1,7 +1,7 @@
 #follower-list-modal.md-effect-12.md-modal
 	.md-content.modal-animate
 		h3 #{@user.username}'s followers
-		ul.user-list
+		ul.user-list.col-xs-12
 			= render partial: './shared/user_list', locals: {users: users}
 		   	- if @followers.next_page
 				.div.clear
