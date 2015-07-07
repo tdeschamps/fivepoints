@@ -184,9 +184,8 @@ class User < ActiveRecord::Base
 
   # Unfollows a user.
   def unfollow(other_user)
-    Followship.public_activity_off do
-      active_followships.find_by(followed_id: other_user.id).destroy
-    end
+    Followship.public_activity_off
+    active_followships.find_by(followed_id: other_user.id).destroy
     Followship.public_activity_on  
   end
 

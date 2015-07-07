@@ -11,7 +11,8 @@ class FollowshipsController < ApplicationController
   	end
 
 	def destroy
-	    user = Followship.find(params[:id]).followed
+	    @followship = Followship.includes(:followed).find(params[:id])
+	    user = @followship.followed
 	    current_user.unfollow(user)
 
 	    respond_to do |format|

@@ -1,2 +1,3 @@
 $(".followers").find('.stats-count').html('<%= user.followers.count %>')
-$("#follow_form").html("<%= escape_javascript(render partial: 'users/follow', locals: {followed: user}) %>")
+var followshipId = <%= @followship.id %>
+$('#edit_followship_' + followshipId).parent().html("<%= j render partial: 'users/follow', locals: {followed: user} %>")

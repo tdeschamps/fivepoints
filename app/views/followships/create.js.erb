@@ -1,2 +1,6 @@
 $(".followers").find('.stats-count').html('<%= user.followers.count %>')
-$("#follow_form").html("<%= j render partial: 'users/unfollow', locals: {followed: user} %>")
+
+var userId = <%= user.id %>
+
+$('.new_followship').find(':input[value="' +userId + '"]').parent().parent().html("<%= j render partial: 'users/unfollow', locals: {followed: user} %>")
+
