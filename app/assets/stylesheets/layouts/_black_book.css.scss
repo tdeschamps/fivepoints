@@ -152,4 +152,12 @@
 	&:focus, &:hover, &:active,&:visited {
 		border: 2px solid white;	
 	}
+}
+@media (max-width: 768px) {
+	.place-user-info {
+		.black-book-place-story {
+			max-width: 300px;
+			margin-left: 0px;
+		}
+	}
 }	
