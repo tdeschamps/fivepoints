@@ -1,6 +1,16 @@
-$(".followers").find('.stats-count').html('<%= user.followers.count %>')
+var pageUserId = $('#user-path-markup').data('url');
+var userId = <%= user.id %>;
+var currentUserId = <%= current_user.id %>
 
-var userId = <%= user.id %>
+if (pageUserId == userId) {
+	$(".followers").find('.stats-count').html('<%= user.followers.count %>');
+} else if (pageUserId == currentUserId) {
+	$(".following").find('.stats-count').html('<%= current_user.following.count %>');
+}
 
-$('.new_followship').find(':input[value="' +userId + '"]').parent().parent().html("<%= j render partial: 'users/unfollow', locals: {followed: user} %>")
+
+
+var userId = <%= user.id %>;
+
+$('.new_followship').find(':input[value="' +userId + '"]').parent().parent().html("<%= j render partial: 'users/unfollow', locals: {followed: user} %>");
 

@@ -1,3 +1,12 @@
-$(".followers").find('.stats-count').html('<%= user.followers.count %>')
+var pageUserId = $('#user-path-markup').data('url');
+var userId = <%= user.id %>;
+var currentUserId = <%= current_user.id %>
+
+if (pageUserId == userId) {
+	$(".followers").find('.stats-count').html('<%= user.followers.count %>');
+} else if (pageUserId == currentUserId) {
+	$(".following").find('.stats-count').html('<%= current_user.following.count %>');
+}
+
 var followshipId = <%= @followship.id %>
 $('#edit_followship_' + followshipId).parent().html("<%= j render partial: 'users/follow', locals: {followed: user} %>")

@@ -48,7 +48,7 @@ div.container.padded-down
 - if @following
 	= render partial: './modals/following_list', locals: {users: @following}
 .md-overlay.transparent-white	
-
+= content_tag(:div, id: "user-path-markup", data: {url: @user.id}) do
 = content_for :js do
 	=javascript_include_tag 'classie'
 	= javascript_include_tag 'users/disconnected'
