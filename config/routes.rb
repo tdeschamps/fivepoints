@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     
     get 'terms' => 'home#terms', as: :terms
     get 'about_us' => 'home#about_us', as: :about_us
+    get 'help' => 'home#help', as: :help
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
