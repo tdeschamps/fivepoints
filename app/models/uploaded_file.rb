@@ -7,6 +7,8 @@ class UploadedFile < ActiveRecord::Base
   	validates_attachment_content_type :file,
     content_type: /\Aimage\/.*\z/
 
+    validates :file_file_name, uniqueness: {scope: [:imageable_id, :imageable_type]}
+    
     def file_from_url(url)
   		self.file = URI.parse(url)
 	end

@@ -8,7 +8,7 @@ class Place < ActiveRecord::Base
   after_update :save_foursquare_picture,  if: :foursquare_picture_url_changed?
   
 	accepts_nested_attributes_for :black_book_places, allow_destroy: true
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: :history
 	geocoded_by :address
   after_create :geocode, if: Proc.new {|c| c.latitude.nil? && c.longitude.nil?}
 

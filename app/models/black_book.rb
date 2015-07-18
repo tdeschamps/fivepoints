@@ -24,6 +24,10 @@ class BlackBook < ActiveRecord::Base
     	near(search_query)
   	end
 
+  	def should_generate_new_friendly_id?
+  		name_changed?  
+  	end
+  	
   	def slug_candidates
     [
       :name,

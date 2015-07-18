@@ -99,7 +99,6 @@ class BlackBooksController < ApplicationController
 		authorize @black_book
 		without_tracking do
 			black_book_params[:file] ? @black_book.uploaded_files.create(file: black_book_params[:file]) : @black_book.update_attributes(black_book_params)
-			@black_book.slug = nil if black_book_params[:name]
 			@black_book.save! 
 		end
 		respond_to do |format|
