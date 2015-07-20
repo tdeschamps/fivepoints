@@ -7,9 +7,9 @@ class BlackBook < ActiveRecord::Base
 	has_many :uploaded_files, as: :imageable
 	has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 	accepts_nested_attributes_for :uploaded_files, :allow_destroy => true
-	friendly_id :slug_candidates, :use => :slugged
+	friendly_id :slug_candidates, :use => :history
 	geocoded_by :formatted_address
-	after_validation :geocode
+	after_validation :geocode, if: :formatted_address_changed?
 	scope :friends, ->(user) {
 		joins(user: :followers).where("followships.follower_id = ?", user.id)
 	}
@@ -24,6 +24,10 @@ class BlackBook < ActiveRecord::Base
     	near(search_query)
   	end
 
+  	def should_generate_new_friendly_id?
+  		name_changed?  
+  	end
+  	
   	def slug_candidates
     [
       :name,

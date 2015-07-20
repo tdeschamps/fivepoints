@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
-  friendly_id :username, use: :slugged
+  friendly_id :username, use: :history
   
   after_create :you_should_follow_fivemarks
   after_create :you_should_have_a_username, unless: :username?
@@ -206,6 +206,10 @@ class User < ActiveRecord::Base
     else
       self.update!({username: "#{Faker::Internet.user_name(nil,%w(_))}_#{rand(1..10)*self.id}"})
     end
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?  
   end
 
   private
