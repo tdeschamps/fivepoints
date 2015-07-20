@@ -41,6 +41,10 @@ class Place < ActiveRecord::Base
     ]
   end
   
+  def should_generate_new_friendly_id?
+    name_changed?  
+  end
+  
   private
   	
 	def set_foursquare_picture
