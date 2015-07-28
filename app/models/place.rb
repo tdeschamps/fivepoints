@@ -45,7 +45,7 @@ class Place < ActiveRecord::Base
     name_changed?  
   end
   
-  private
+  protected
   	
 	def set_foursquare_picture
 		foursquare_additional_infos = FoursquareInfos.new(self).get_additional_infos()
