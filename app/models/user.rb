@@ -209,7 +209,7 @@ class User < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    name_changed?  
+    slug.blank? || name_changed?  
   end
 
   private
