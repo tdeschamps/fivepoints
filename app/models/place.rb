@@ -42,7 +42,7 @@ class Place < ActiveRecord::Base
   end
   
   def should_generate_new_friendly_id?
-    slug.blank? || name_changed?  
+    name_changed?  
   end
   
   protected
