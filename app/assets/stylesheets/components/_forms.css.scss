@@ -113,7 +113,14 @@ form {
  			background-color: white;
  		}
 	}
-
+	#flash_alert, #flash_notice, #flash_error {
+		position: relative;   
+		color: white;
+		background-color: tomato;
+		top: 0;
+		text-align: center;
+		border-radius: 4px;
+	}
   	.user-account {
   		border: none;
   		padding: 0;

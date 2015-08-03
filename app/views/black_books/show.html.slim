@@ -5,7 +5,7 @@
 
 .page-wrapper
 	.header-wrapper
-		.black_book-header style=(@black_book.uploaded_files.length > 0 ? "background: url('#{@black_book.uploaded_files.first.file.url(:original)}') no-repeat fixed; background-size:cover;" : "background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightseagreen lightskyblue).sample()};")
+		.black_book-header style=(@black_book.uploaded_files.length > 0 ? "background: url('#{@black_book.uploaded_files.first.file.url(:original)}') no-repeat fixed; background-size:cover;" : "background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightskyblue).sample()};")
 		.darken			
 			h1
 				= @black_book.name
