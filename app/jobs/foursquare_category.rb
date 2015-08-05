@@ -4,10 +4,7 @@ class FoursquareCategory < ActiveJob::Base
 
   def perform(place_id, category)
     place = Place.find(place_id)
-    category = Category.create_with(short_name: category["shortName"], plural_name: category["pluralName"]).find_or_create_by(name: category["name"])
-    logger.info "Things are happening."
-    logger.debug "Here's some info: #{hash.inspect}"
-    
+    category = Category.create_with(short_name: category["shortName"], plural_name: category["pluralName"]).find_or_create_by(name: category["name"]) 
     place.categories << category
 
   end
