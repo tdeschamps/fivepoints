@@ -1,4 +1,4 @@
-namespace :create_slug_history do
+namespace :subscribe_users_to_fivemarks do
 	desc 'subscribe user to fivemarks list'
 	task 'subscribe' do
 		User.find_each do |user|
