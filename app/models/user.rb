@@ -30,9 +30,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [ :facebook, :twitter, :linkedin ]
   friendly_id :username, use: :history
   
-  after_create :you_should_follow_fivemarks
-  after_create :you_should_have_a_username, unless: :username?
-  after_create :send_welcome_email
+  after_create :you_should_follow_fivemarks, :send_welcome_email, :subscribe_to_mailchimp_list
+  after_create :you_should_have_a_username, unless: :username? 
 
   acts_as_voter
   
@@ -212,10 +211,14 @@ class User < ActiveRecord::Base
     name_changed?  
   end
 
-  private
+  protected
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_later
+  end
+
+  def subscribe_to_mailchimp_list
+    AddToMailchimp.perform_later self.id
   end
          
 end
