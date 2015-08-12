@@ -5,7 +5,7 @@
 				.darken
 					.black_book-tile 
 						.vertical-middle
-							h2 #{activity.recipient.username}
+							h2 #{activity.recipient.name || activity.recipient.username}
 			.panel-body.panel-card-section style=("background-color: #{%w(lightpink lightblue lightsteelblue lightgreen lightcoral lightskyblue).sample()};")
 				.media
 					= link_to user_path(activity.owner), class: "pull-right media-photo media-round card-profile-picture card-profile-picture-offset"
