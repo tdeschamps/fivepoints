@@ -7,8 +7,15 @@ html
     meta name="description" content="Fivemarks is the easiest way to create and share your travel stories"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     link href="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css" rel="stylesheet"
-    = favicon_link_tag 'favicon.png'
+    = favicon_link_tag 'favicon.ico', sizes:"16x16 24x24 32x32 48x48 64x64"
     = favicon_link_tag 'favicon.png', rel: 'apple-touch-icon', type: 'image/png'
+    = favicon_link_tag 'favicon-57.png', rel: "apple-touch-icon", sizes: "57x57" 
+    = favicon_link_tag 'favicon-57.png', rel:"apple-touch-icon-precomposed", sizes:"57x57"
+    = favicon_link_tag 'favicon-72.png', rel:"apple-touch-icon", sizes: "72x72"
+    = favicon_link_tag 'favicon-114.png', rel:"apple-touch-icon", sizes:"114x114"
+    = favicon_link_tag 'favicon-120.png', rel:"apple-touch-icon", sizes:"120x120"  
+    = favicon_link_tag 'favicon-120.png', rel:"apple-touch-icon", sizes:"144x144"
+    = favicon_link_tag 'favicon-152.png', rel:"apple-touch-icon", sizes:"152x152"    
     = csrf_meta_tags
     = yield :meta_facebook
     = yield :title
