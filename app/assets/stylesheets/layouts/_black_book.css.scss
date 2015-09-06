@@ -5,9 +5,13 @@
 .panel-card-section {
 	padding: 0px 10px 10px 10px;
 	background-color: white; 
-	min-height: 110px;
 	.media {
 		overflow: inherit;
+	}
+}
+.activity-list {	
+	.panel-card-section {
+		min-height: 110px;
 	}
 }
 .black-book-city {
