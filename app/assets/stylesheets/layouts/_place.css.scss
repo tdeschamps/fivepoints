@@ -103,11 +103,13 @@
   height: 80px;
   max-height: 80px;
   margin-left: -15px;
-
+   
   .attribute {
     text-align: left;
     margin-top: 4px; 
+
   }
+
 }
 @media (max-width: 768px) {
   .place-main-data, .picture-wrapper, .place-type, .place-attributes {
