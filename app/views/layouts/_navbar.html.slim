@@ -39,11 +39,11 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-fivemarks[role="navigation"]
         - else 
             li
               = link_to new_user_session_path do
-                i.fa.fa-envelope-o
+                i.fa.fa-sign-in
                 |  Sign In
             li
               = link_to new_user_registration_path do
-                i.fa.fa-sign-out
+                i.fa.fa-plus-square
                 |  Sign Up
         li
           - if current_user                            

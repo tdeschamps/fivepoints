@@ -63,12 +63,15 @@
 				newFoursquareObject.foursquare_id = foursquareObject.id;
 				newFoursquareObject.address = foursquareObject.location.address;
 				newFoursquareObject.city = foursquareObject.location.city;
-				newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") + "32" + foursquareObject.categories[0].icon.suffix;
+				if (foursquareObject.categories[0] != undefined ) {
+					newFoursquareObject.categoryPic = foursquareObject.categories[0].icon.prefix.replace("https://ss3.4sqi.net/img/categories_v2/","https://foursquare.com/img/categories_v2/") + "32" + foursquareObject.categories[0].icon.suffix;	
+					newFoursquareObject.category = foursquareObject.categories[0].name;
+				};
 				newFoursquareObject.postalCode = foursquareObject.location.postalCode;
 				newFoursquareObject.state = foursquareObject.location.state;
 				newFoursquareObject.longitude = foursquareObject.location.lng;
 				newFoursquareObject.latitude = foursquareObject.location.lat;
-				newFoursquareObject.category = foursquareObject.categories[0].name;
+				
 
 				return newFoursquareObject;
 
